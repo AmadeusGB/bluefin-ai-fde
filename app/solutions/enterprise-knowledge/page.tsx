@@ -1,8 +1,79 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
-export const metadata:Metadata={title:'企业知识库与经营决策 AI 落地',description:'企业知识库不是文件仓库：用导入、分类治理、带来源问答和人工审核形成可持续知识闭环。',alternates:{canonical:'/solutions/enterprise-knowledge'}};
-const stages=[['导入','文档、图片、录音、聊天记录和结构化数据进入统一入口。'],['分类治理','识别分类、重复、版本、失效内容与敏感信息。'],['查询输出','通过内部网页、企业微信或报告提供带来源答案。'],['持续更新','新资料与既有主题关联，并留下人工确认与更新时间。']];
-export default function Page(){return <><SiteHeader/><main><PageHero eyebrow="场景支柱页 · 企业知识" title="企业知识库，不是另一个文件垃圾站。" intro="真正可用的企业知识系统必须解决版本、来源、权限、失效和人工确认问题。蓝旗鱼把知识库视为“导入—治理—查询—更新”的持续工作底座，而不是一次性文档向量化。"/><section className="px-5 py-20 lg:px-10"><div className="mx-auto max-w-[1300px]"><h2 className="max-w-4xl text-4xl font-black tracking-[-.04em] lg:text-6xl">四步形成可持续知识闭环</h2><div className="mt-12 grid md:grid-cols-4">{stages.map(([t,d],i)=><article key={t} className="border-t border-foreground/20 py-7 md:border-r md:px-6 first:pl-0"><span className="text-xs text-[#147e66]">0{i+1}</span><h3 className="mt-9 text-2xl font-black">{t}</h3><p className="mt-3 leading-7 text-muted-foreground">{d}</p></article>)}</div><div className="mt-20 grid gap-10 bg-[#071817] p-8 text-white lg:grid-cols-2 lg:p-12"><div><p className="eyebrow text-[#bff5d1]">回答规则</p><h2 className="mt-4 text-4xl font-black">系统必须知道，什么时候不该回答。</h2></div><div className="space-y-4 text-white/65"><p>有现行正式资料：优先现行版本并显示来源。</p><p>存在多个版本：提示冲突，使用最新已确认版本。</p><p>只有历史案例：明确标注为历史参考。</p><p>没有依据或涉及承诺、审批与敏感事项：转人工确认。</p><Button nativeButton={false} render={<Link href="/apply"/>} size="lg" className="mt-4 h-12 rounded-none bg-[#bff5d1] text-[#071817] hover:bg-[#d4f9e1]">申请知识现场诊断 <ArrowRight/></Button></div></div></div></section></main><SiteFooter/></>}
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
+import { ServiceStructuredData } from "@/components/structured-data";
+export const metadata: Metadata = {
+  title: "企业知识库与经营决策 AI 落地",
+  description:
+    "企业知识库不是文件仓库：用导入、分类治理、带来源问答和人工审核形成可持续知识闭环。",
+  alternates: { canonical: "/solutions/enterprise-knowledge" },
+};
+const stages = [
+  ["导入", "文档、图片、录音、聊天记录和结构化数据进入统一入口。"],
+  ["分类治理", "识别分类、重复、版本、失效内容与敏感信息。"],
+  ["查询输出", "通过内部网页、企业微信或报告提供带来源答案。"],
+  ["持续更新", "新资料与既有主题关联，并留下人工确认与更新时间。"],
+];
+export default function Page() {
+  return (
+    <>
+      <SiteHeader />
+      <main>
+        <ServiceStructuredData
+          title="企业知识库与经营决策 AI 落地"
+          description="用导入、分类治理、带来源问答和人工审核形成可持续知识闭环。"
+          path="/solutions/enterprise-knowledge"
+        />
+        <PageHero
+          eyebrow="场景支柱页 · 企业知识"
+          title="企业知识库，不是另一个文件垃圾站。"
+          intro="真正可用的企业知识系统必须解决版本、来源、权限、失效和人工确认问题。蓝旗鱼把知识库视为“导入—治理—查询—更新”的持续工作底座，而不是一次性文档向量化。"
+        />
+        <section className="px-5 py-20 lg:px-10">
+          <div className="mx-auto max-w-[1300px]">
+            <h2 className="max-w-4xl text-4xl font-black tracking-[-.04em] lg:text-6xl">
+              四步形成可持续知识闭环
+            </h2>
+            <div className="mt-12 grid md:grid-cols-4">
+              {stages.map(([t, d], i) => (
+                <article
+                  key={t}
+                  className="border-t border-foreground/20 py-7 md:border-r md:px-6 first:pl-0"
+                >
+                  <span className="text-xs text-[#147e66]">0{i + 1}</span>
+                  <h3 className="mt-9 text-2xl font-black">{t}</h3>
+                  <p className="mt-3 leading-7 text-muted-foreground">{d}</p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-20 grid gap-10 bg-[#071817] p-8 text-white lg:grid-cols-2 lg:p-12">
+              <div>
+                <p className="eyebrow text-[#bff5d1]">回答规则</p>
+                <h2 className="mt-4 text-4xl font-black">
+                  系统必须知道，什么时候不该回答。
+                </h2>
+              </div>
+              <div className="space-y-4 text-white/65">
+                <p>有现行正式资料：优先现行版本并显示来源。</p>
+                <p>存在多个版本：提示冲突，使用最新已确认版本。</p>
+                <p>只有历史案例：明确标注为历史参考。</p>
+                <p>没有依据或涉及承诺、审批与敏感事项：转人工确认。</p>
+                <Button
+                  nativeButton={false}
+                  render={<Link href="/apply" />}
+                  size="lg"
+                  className="mt-4 h-12 rounded-none bg-[#bff5d1] text-[#071817] hover:bg-[#d4f9e1]"
+                >
+                  申请知识现场诊断 <ArrowRight />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}
