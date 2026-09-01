@@ -20,6 +20,7 @@ export const diagnosticApplications = sqliteTable(
     problem: text('problem').notNull(),
     diagnosticScore: integer('diagnostic_score'),
     decision: text('decision'),
+    diagnosticProfile: text('diagnostic_profile'),
     source: text('source').notNull().default('website'),
     landingPath: text('landing_path'),
     referrer: text('referrer'),

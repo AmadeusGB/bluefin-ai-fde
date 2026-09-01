@@ -5,6 +5,7 @@ import { Download, Loader2, RefreshCw, Save, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { diagnosticDimensionScores } from '@/lib/diagnostic';
 
 type Lead = {
   id: string;
@@ -18,6 +19,7 @@ type Lead = {
   problem: string;
   diagnostic_score: number | null;
   decision: string | null;
+  diagnostic_profile: string | null;
   source: string;
   landing_path: string | null;
   referrer: string | null;
@@ -265,8 +267,19 @@ export function LeadOperations() {
                   {lead.decision && (
                     <span>
                       诊断：{lead.decision} · {lead.diagnostic_score}/100
+                      {lead.diagnostic_profile
+                        ? ` · #${lead.diagnostic_profile.toUpperCase()}`
+                        : ''}
                     </span>
                   )}
+                  {lead.diagnostic_profile &&
+                    diagnosticDimensionScores(lead.diagnostic_profile).map(
+                      (dimension) => (
+                        <span key={dimension.key}>
+                          {dimension.label} {dimension.score}
+                        </span>
+                      ),
+                    )}
                   {lead.utm_campaign && <span>活动：{lead.utm_campaign}</span>}
                   {lead.landing_path && (
                     <span className="break-all">

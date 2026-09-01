@@ -26,6 +26,7 @@ type Lead = {
   problem: string;
   diagnostic_score: number | null;
   decision: string | null;
+  diagnostic_profile: string | null;
   source: string;
   landing_path: string | null;
   referrer: string | null;
@@ -51,7 +52,7 @@ export async function GET(request: Request) {
   const db = getD1();
   const leads = await db
     .prepare(
-      `SELECT id,created_at,updated_at,name,company,contact,role,industry,problem,diagnostic_score,decision,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,acquisition_channel,status,owner_notes,next_action_at FROM diagnostic_applications ORDER BY created_at DESC LIMIT 500`,
+      `SELECT id,created_at,updated_at,name,company,contact,role,industry,problem,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,acquisition_channel,status,owner_notes,next_action_at FROM diagnostic_applications ORDER BY created_at DESC LIMIT 500`,
     )
     .all<Lead>();
   const rows = leads.results || [];
@@ -68,6 +69,7 @@ export async function GET(request: Request) {
       'problem',
       'diagnostic_score',
       'decision',
+      'diagnostic_profile',
       'source',
       'landing_path',
       'referrer',

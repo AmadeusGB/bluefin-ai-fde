@@ -14,6 +14,7 @@ export function ApplicationForm() {
   const [diagnostic, setDiagnostic] = useState({
     score: '',
     decision: '',
+    profile: '',
     source: 'website',
   });
   useEffect(() => {
@@ -23,6 +24,9 @@ export function ApplicationForm() {
         setDiagnostic({
           score: p.get('score') || '',
           decision: p.get('decision') || '',
+          profile: /^[0-9a-f]{1,3}$/i.test(p.get('profile') || '')
+            ? p.get('profile') || ''
+            : '',
           source: p.get('source') || 'website',
         }),
       0,
@@ -42,6 +46,7 @@ export function ApplicationForm() {
     payload.consent = data.get('consent') === 'on';
     payload.diagnosticScore = diagnostic.score;
     payload.decision = diagnostic.decision;
+    payload.diagnosticProfile = diagnostic.profile;
     payload.source = diagnostic.source;
     Object.assign(payload, captureFirstTouch());
     try {

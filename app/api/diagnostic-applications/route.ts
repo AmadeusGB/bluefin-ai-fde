@@ -1,4 +1,5 @@
 import { ensureSchema, getD1 } from '@/db';
+import { decodeDiagnosticProfile, diagnosticResult } from '@/lib/diagnostic';
 
 const clean = (value: unknown, max: number) =>
   typeof value === 'string' ? value.trim().slice(0, max) : '';
@@ -45,15 +46,26 @@ export async function POST(request: Request) {
       industry = clean(body.industry, 80),
       problem = clean(body.problem, 2000);
     const consent = body.consent === true;
-    const diagnosticScore = Number.isFinite(Number(body.diagnosticScore))
+    let diagnosticScore = Number.isFinite(Number(body.diagnosticScore))
       ? Math.max(0, Math.min(100, Math.round(Number(body.diagnosticScore))))
       : null;
-    const decision = ['GO', 'ADJUST', 'HOLD', 'STOP'].includes(
+    let decision = ['GO', 'ADJUST', 'HOLD', 'STOP'].includes(
       clean(body.decision, 12),
     )
       ? clean(body.decision, 12)
       : null;
     const source = clean(body.source, 40) || 'website';
+    const profileCandidate = clean(body.diagnosticProfile, 3);
+    const diagnosticProfile = /^[0-9a-f]{1,3}$/i.test(profileCandidate)
+      ? profileCandidate.toLowerCase()
+      : null;
+    if (diagnosticProfile) {
+      const selected = decodeDiagnosticProfile(diagnosticProfile);
+      diagnosticScore = Math.round(
+        (selected.filter(Boolean).length / selected.length) * 100,
+      );
+      decision = diagnosticResult(diagnosticScore).decision;
+    }
     const landingPath = clean(body.landingPath, 500),
       referrer = clean(body.referrer, 1000),
       utmSource = clean(body.utmSource, 120),
@@ -79,7 +91,7 @@ export async function POST(request: Request) {
     const id = crypto.randomUUID();
     await getD1()
       .prepare(
-        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,diagnostic_score,decision,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
       )
       .bind(
         id,
@@ -92,6 +104,7 @@ export async function POST(request: Request) {
         problem,
         diagnosticScore,
         decision,
+        diagnosticProfile,
         source,
         landingPath || null,
         referrer || null,

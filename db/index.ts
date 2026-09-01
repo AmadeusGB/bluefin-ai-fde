@@ -21,6 +21,7 @@ export function ensureSchema() {
       problem TEXT NOT NULL,
       diagnostic_score INTEGER,
       decision TEXT,
+      diagnostic_profile TEXT,
       source TEXT NOT NULL DEFAULT 'website',
       landing_path TEXT,
       referrer TEXT,
@@ -51,6 +52,7 @@ export function ensureSchema() {
         );
         const additions: [string, string][] = [
           ['landing_path', 'TEXT'],
+          ['diagnostic_profile', 'TEXT'],
           ['referrer', 'TEXT'],
           ['utm_source', 'TEXT'],
           ['utm_medium', 'TEXT'],
