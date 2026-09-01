@@ -4,3 +4,7 @@ declare namespace Cloudflare {
     OPERATIONS_ADMIN_EMAIL?: string;
   }
 }
+
+interface CloudflareEnv extends Cloudflare.Env {
+  __cloudflareEnvBrand?: never;
+}

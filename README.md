@@ -38,7 +38,8 @@ GEO 工程只能证明网站具备被发现、抓取、理解和引用的条件�
 - Node.js 22.13+
 - React 19
 - TypeScript 5
-- vinext / Vite
+- Next.js 16（App Router）
+- OpenNext for Cloudflare
 - Tailwind CSS 4
 - Cloudflare Workers / D1
 - Drizzle ORM
@@ -59,14 +60,15 @@ cp .env.example .env.local
 npm run dev
 ```
 
-默认开发地址通常为 <http://localhost:3000>。本地 D1 绑定由 Vite、Cloudflare 插件和 `.openai/hosting.json` 共同配置。
+默认开发地址通常为 <http://localhost:3000>。本地 D1 绑定由 OpenNext for Cloudflare、Wrangler 和 `.openai/hosting.json` 共同配置。
 
 ### 常用命令
 
 ```bash
 npm run dev          # 本地开发
-npm run build        # 生产构建
-npm run start        # 使用构建产物启动 Wrangler
+npm run build        # Next.js 生产构建
+npm run build:worker # 生成 Cloudflare / Sites 部署产物
+npm run start        # 启动 Next.js 生产服务器
 npm run lint         # 静态检查
 npm run format       # 代码格式化
 npm run db:generate  # 根据 schema 生成 Drizzle 迁移

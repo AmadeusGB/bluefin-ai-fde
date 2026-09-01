@@ -1,7 +1,8 @@
-import { env } from 'cloudflare:workers';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 let ready: Promise<void> | undefined;
 export function getD1() {
+  const { env } = getCloudflareContext();
   if (!env.DB) throw new Error('Cloudflare D1 binding `DB` is unavailable.');
   return env.DB;
 }
