@@ -138,43 +138,61 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     await ensureSchema();
-    const id = crypto.randomUUID();
-    await getD1()
-      .prepare(
-        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,problem_frequency,annual_loss_range,data_readiness,owner_readiness,qualification_score,qualification_tier,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,consent_at,privacy_policy_version,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
-      )
-      .bind(
-        id,
-        Date.now(),
-        name,
-        company,
-        contact,
-        role,
-        industry,
-        problem,
-        problemFrequency,
-        annualLossRange,
-        dataReadiness,
-        ownerReadiness,
-        qualificationScore,
-        qualificationTier,
-        diagnosticScore,
-        decision,
-        diagnosticProfile,
-        source,
-        landingPath || null,
-        referrer || null,
-        utmSource || null,
-        utmMedium || null,
-        utmCampaign || null,
-        utmContent || null,
-        utmTerm || null,
-        channel,
-        Date.now(),
-        "2026-09-01-v1.0",
-        "new",
-      )
-      .run();
+    const id = crypto.randomUUID(),
+      now = Date.now(),
+      db = getD1();
+    const statements = [
+      db
+        .prepare(
+          `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,problem_frequency,annual_loss_range,data_readiness,owner_readiness,qualification_score,qualification_tier,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,consent_at,privacy_policy_version,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+        )
+        .bind(
+          id,
+          now,
+          name,
+          company,
+          contact,
+          role,
+          industry,
+          problem,
+          problemFrequency,
+          annualLossRange,
+          dataReadiness,
+          ownerReadiness,
+          qualificationScore,
+          qualificationTier,
+          diagnosticScore,
+          decision,
+          diagnosticProfile,
+          source,
+          landingPath || null,
+          referrer || null,
+          utmSource || null,
+          utmMedium || null,
+          utmCampaign || null,
+          utmContent || null,
+          utmTerm || null,
+          channel,
+          now,
+          "2026-09-01-v1.1",
+          "new",
+        ),
+    ];
+    if (source !== "privacy-request") {
+      const eventDate = new Date(now).toISOString().slice(0, 10),
+        eventLandingPath = landingPath.startsWith("/")
+          ? landingPath.split("?")[0]
+          : "/apply";
+      statements.push(
+        db
+          .prepare(
+            `INSERT INTO funnel_events (event_date,event_name,source,landing_path,count,updated_at) VALUES (?,'application_submitted',?,?,1,?)
+             ON CONFLICT(event_date,event_name,source,landing_path) DO UPDATE SET count=count+1,updated_at=excluded.updated_at`,
+          )
+          .bind(eventDate, source, eventLandingPath, now),
+      );
+    }
+    await db.batch(statements);
     return Response.json({ ok: true, id }, { status: 201 });
   } catch (error) {
     console.error("diagnostic application failed", error);

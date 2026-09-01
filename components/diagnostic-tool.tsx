@@ -16,6 +16,7 @@ import {
   diagnosticResult,
   encodeDiagnosticProfile,
 } from "@/lib/diagnostic";
+import { trackFunnelEvent } from "@/lib/funnel-events";
 export function DiagnosticTool() {
   const [selected, setSelected] = useState<boolean[]>(
     diagnosticQuestions.map(() => false),
@@ -99,13 +100,19 @@ export function DiagnosticTool() {
                         key={text}
                         type="button"
                         aria-pressed={selected[index]}
-                        onClick={() =>
+                        onClick={() => {
+                          if (!selected.some(Boolean))
+                            trackFunnelEvent(
+                              "diagnostic_started",
+                              "diagnostic",
+                              "/diagnostic",
+                            );
                           setSelected((values) =>
                             values.map((value, current) =>
                               current === index ? !value : value,
                             ),
-                          )
-                        }
+                          );
+                        }}
                         className={`flex w-full gap-4 border p-5 text-left transition ${selected[index] ? "border-[#147e66] bg-[#dff6e6]" : "border-foreground/15 bg-white hover:border-foreground/35"}`}
                       >
                         <span
@@ -177,7 +184,14 @@ export function DiagnosticTool() {
         </div>
         <div className="mt-7 flex flex-wrap gap-3 print:hidden">
           <Button
-            onClick={() => window.location.assign(applyUrl)}
+            onClick={() => {
+              trackFunnelEvent(
+                "diagnostic_apply_clicked",
+                "diagnostic",
+                "/diagnostic",
+              );
+              window.location.assign(applyUrl);
+            }}
             size="lg"
             className="h-12 rounded-none px-5"
           >

@@ -90,6 +90,16 @@ export function ensureSchema() {
             ),
           );
         await db.batch([
+          db.prepare(`CREATE TABLE IF NOT EXISTS funnel_events (
+            event_date TEXT NOT NULL, event_name TEXT NOT NULL, source TEXT NOT NULL DEFAULT 'website', landing_path TEXT NOT NULL DEFAULT '/',
+            count INTEGER NOT NULL DEFAULT 0, updated_at INTEGER NOT NULL
+          )`),
+          db.prepare(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_funnel_events_daily_source_path ON funnel_events(event_date,event_name,source,landing_path)",
+          ),
+        ]);
+        await db.prepare("PRAGMA optimize").run();
+        await db.batch([
           db.prepare(`CREATE TABLE IF NOT EXISTS geo_measurements (
             id TEXT PRIMARY KEY NOT NULL, query_id TEXT NOT NULL, category TEXT NOT NULL, query TEXT NOT NULL, platform TEXT NOT NULL,
             test_date TEXT NOT NULL, model_or_mode TEXT NOT NULL DEFAULT '', location TEXT NOT NULL DEFAULT '', web_enabled TEXT, fresh_session TEXT,

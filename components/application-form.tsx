@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { captureFirstTouch } from "@/lib/attribution";
+import { trackFunnelEvent } from "@/lib/funnel-events";
 import Link from "next/link";
 
 type State = "idle" | "submitting" | "success" | "error";
@@ -20,18 +21,18 @@ export function ApplicationForm() {
   });
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
-    const timer = window.setTimeout(
-      () =>
-        setDiagnostic({
-          score: p.get("score") || "",
-          decision: p.get("decision") || "",
-          profile: /^[0-9a-f]{1,3}$/i.test(p.get("profile") || "")
-            ? p.get("profile") || ""
-            : "",
-          source: p.get("source") || "website",
-        }),
-      0,
-    );
+    const timer = window.setTimeout(() => {
+      const source = p.get("source") || "website";
+      trackFunnelEvent("application_viewed", source, "/apply");
+      setDiagnostic({
+        score: p.get("score") || "",
+        decision: p.get("decision") || "",
+        profile: /^[0-9a-f]{1,3}$/i.test(p.get("profile") || "")
+          ? p.get("profile") || ""
+          : "",
+        source,
+      });
+    }, 0);
     captureFirstTouch();
     return () => window.clearTimeout(timer);
   }, []);
@@ -260,7 +261,7 @@ export function ApplicationForm() {
             >
               《隐私与数据处理政策》
             </Link>
-            。蓝旗鱼保存以上信息、首次落地页、外部引荐来源及活动参数，仅用于项目资格判断、后续联系与渠道效果分析；表单会记录同意时间和政策版本。
+            。蓝旗鱼保存以上信息、结构化资格条件、由此生成的资格优先级、首次落地页、外部引荐来源及活动参数，仅用于项目资格判断、人工审查排序、后续联系与渠道效果分析；表单会记录同意时间和政策版本。
           </span>
         </label>
         {diagnostic.score && (

@@ -51,6 +51,26 @@ export const diagnosticApplications = sqliteTable(
   ],
 );
 
+export const funnelEvents = sqliteTable(
+  "funnel_events",
+  {
+    eventDate: text("event_date").notNull(),
+    eventName: text("event_name").notNull(),
+    source: text("source").notNull().default("website"),
+    landingPath: text("landing_path").notNull().default("/"),
+    count: integer("count").notNull().default(0),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("idx_funnel_events_daily_source_path").on(
+      table.eventDate,
+      table.eventName,
+      table.source,
+      table.landingPath,
+    ),
+  ],
+);
+
 export const geoMeasurements = sqliteTable(
   "geo_measurements",
   {
