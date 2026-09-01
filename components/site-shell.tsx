@@ -10,11 +10,8 @@ export function SiteHeader() {
           href="/"
           className="flex items-center gap-3 font-black tracking-tight"
         >
-          <span className="grid size-10 place-items-center rounded-full bg-foreground text-xs text-[#bff5d1]">
-            BF
-          </span>
-          <span className="text-lg">
-            蓝旗鱼 <b className="text-[#147e66]">AI</b>
+          <span className="flex h-12 w-[188px] items-center overflow-hidden">
+            <img src="/brand/bluefin-logo.png" alt="蓝旗鱼 AI" className="w-[188px] max-w-none origin-left scale-[1.42]" />
           </span>
         </Link>
         <nav
@@ -93,14 +90,14 @@ export function SiteFooter() {
               href="/"
               className="flex items-center gap-3 text-lg font-black"
             >
-              <span className="grid size-10 place-items-center rounded-full bg-[#bff5d1] text-xs text-[#071817]">
-                BF
+              <span className="inline-flex bg-white px-3 py-2">
+                <img src="/brand/bluefin-logo.png" alt="蓝旗鱼 AI" className="h-16 w-auto scale-125" />
               </span>
-              蓝旗鱼 AI
             </Link>
-            <p className="mt-4 text-white/55">面向中国企业的 FDE 落地团队</p>
+            <p className="mt-4 text-white/55">探索 · 实践 · 共创｜面向中国企业的 FDE 落地团队</p>
             <div className="mt-4 flex flex-col gap-2 text-sm text-white/60">
               <Link href="/about">关于蓝旗鱼 AI</Link>
+              <Link href="/brand">品牌与媒体资料</Link>
               <Link href="/about/arthur-guo">关于郭斌 Arthur</Link>
               <Link href="/editorial-policy">内容、证据与纠错政策</Link>
               <Link href="/privacy">隐私与数据处理政策</Link>

@@ -45,7 +45,7 @@ export default function Page() {
       "@type": "DataDownload",
       encodingFormat: "text/csv",
       contentUrl:
-        "https://bluefin-ai.cn/api/geo-measurement-template?format=csv",
+        "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-measurement-template?format=csv",
     },
   };
   return (

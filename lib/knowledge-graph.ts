@@ -1,9 +1,10 @@
 import { siteContent, siteContentUpdatedAt } from "@/lib/site-content";
 
-export const siteUrl = "https://bluefin-ai.cn";
+export const siteUrl = "https://bluefin-ai-fde.liuxiangth.chatgpt.site";
 export const organizationId = `${siteUrl}/#organization`;
 export const websiteId = `${siteUrl}/#website`;
 export const authorId = `${siteUrl}/about/arthur-guo#person`;
+export const founderId = `${siteUrl}/about#liu-xiang`;
 export const fdeTermId = `${siteUrl}/fde#term`;
 export const fdeMethodId = `${siteUrl}/fde#method`;
 
@@ -19,10 +20,19 @@ export function buildKnowledgeGraph() {
         "@type": ["Organization", "ProfessionalService"],
         "@id": organizationId,
         name: "蓝旗鱼 AI",
+        alternateName: "蓝旗鱼Ai",
+        legalName: "深圳市蓝旗鱼科技有限公司",
         url: siteUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteUrl}/brand/bluefin-logo.png`,
+          caption: "蓝旗鱼Ai｜探索 · 实践 · 共创",
+        },
+        slogan: "探索 · 实践 · 共创",
         description:
           "面向中国企业的 Forward Deployed Engineering 落地团队：从业务诊断、MVD 到生产部署、采用与交接。",
-        founder: { "@id": authorId },
+        founder: { "@id": founderId },
+        employee: { "@id": authorId },
         areaServed: { "@type": "Country", name: "中国" },
         knowsAbout: [
           { "@id": fdeTermId },
@@ -32,6 +42,14 @@ export function buildKnowledgeGraph() {
           "生产部署与采用",
         ],
         publishingPrinciples: `${siteUrl}/editorial-policy`,
+      },
+      {
+        "@type": "Person",
+        "@id": founderId,
+        name: "刘向",
+        alternateName: "大向",
+        jobTitle: "创始人、CEO",
+        worksFor: { "@id": organizationId },
       },
       {
         "@type": "Person",

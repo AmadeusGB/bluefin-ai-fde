@@ -33,12 +33,12 @@ export default function Page() {
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://bluefin-ai.cn/about/arthur-guo#person",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo#person",
         name: "郭斌",
         alternateName: "Arthur Guo",
-        url: "https://bluefin-ai.cn/about/arthur-guo",
+        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo",
         jobTitle: "企业 AI 系统设计与 FDE 落地实践者",
-        affiliation: { "@id": "https://bluefin-ai.cn/#organization" },
+        affiliation: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
         alumniOf: { "@type": "CollegeOrUniversity", name: "北京航空航天大学" },
         knowsAbout: [
           "Forward Deployed Engineering",

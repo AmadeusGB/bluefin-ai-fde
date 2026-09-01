@@ -82,6 +82,16 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="border-y border-foreground/10 bg-white px-5 py-10 lg:px-10">
+          <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
+            <Link href="/brand" className="block border border-foreground/15 p-6 transition hover:border-[#147e66]">
+              <img src="/brand/bluefin-logo.png" alt="蓝旗鱼Ai，探索、实践、共创" className="w-full max-w-[470px]" />
+            </Link>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[["品类","企业 AI 落地 / FDE"],["方法","诊断 → MVD → 生产部署 → 采用 → 复制"],["原则","先核验证据，再公开结果"]].map(([label,value])=><div key={label} className="border-t border-foreground/20 pt-4"><span className="text-xs font-bold text-[#147e66]">{label}</span><p className="mt-3 font-bold leading-6">{value}</p></div>)}
+            </div>
+          </div>
+        </section>
         <section
           id="method"
           className="bg-[#071817] px-5 py-24 text-white lg:px-10 lg:py-30"

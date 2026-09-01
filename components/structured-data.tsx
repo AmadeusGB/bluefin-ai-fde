@@ -1,4 +1,4 @@
-const siteUrl = "https://bluefin-ai.cn";
+const siteUrl = "https://bluefin-ai-fde.liuxiangth.chatgpt.site";
 
 type Breadcrumb = { name: string; path: string };
 

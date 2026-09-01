@@ -31,6 +31,12 @@ export const siteContent: SiteContentItem[] = [
     kind: "品牌",
   },
   {
+    path: "/brand",
+    title: "蓝旗鱼 AI 品牌与媒体资料",
+    summary: "正式名称、品牌口号、Logo、实体事实、公开资料使用边界与下载入口。",
+    kind: "品牌",
+  },
+  {
     path: "/editorial-policy",
     title: "内容、证据与纠错政策",
     summary: "作者责任、事实核验、证据分级、AI 辅助、更新、授权与纠错规则。",

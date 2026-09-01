@@ -27,28 +27,28 @@ export default function FdePage() {
     "@graph": [
       {
         "@type": "DefinedTerm",
-        "@id": "https://bluefin-ai.cn/fde#term",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#term",
         name: "Forward Deployed Engineering",
         alternateName: ["FDE", "前线部署工程", "前向部署工程"],
         description:
           "由工程师直接进入客户真实业务现场，与业务人员共同发现问题、接触数据、构建系统并推动采用，并以可核验业务结果为交付证据的工作方式。",
-        inDefinedTermSet: "https://bluefin-ai.cn/knowledge",
-        url: "https://bluefin-ai.cn/fde",
+        inDefinedTermSet: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/knowledge",
+        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde",
       },
       {
         "@type": "Article",
-        "@id": "https://bluefin-ai.cn/fde#article",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#article",
         headline: "什么是 FDE",
         description: metadata.description,
         datePublished: "2026-09-01",
         dateModified: "2026-09-01",
         inLanguage: "zh-CN",
-        mainEntity: { "@id": "https://bluefin-ai.cn/fde#term" },
-        mainEntityOfPage: "https://bluefin-ai.cn/fde",
+        mainEntity: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#term" },
+        mainEntityOfPage: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde",
         author: {
-          "@id": "https://bluefin-ai.cn/about/arthur-guo#person",
+          "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo#person",
         },
-        publisher: { "@id": "https://bluefin-ai.cn/#organization" },
+        publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
       },
       breadcrumbList([
         { name: "首页", path: "/" },

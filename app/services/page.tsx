@@ -39,17 +39,17 @@ export default function Page() {
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": "https://bluefin-ai.cn/services#collection",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/services#collection",
         name: "蓝旗鱼 FDE 服务",
         description: metadata.description,
-        url: "https://bluefin-ai.cn/services",
+        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/services",
         mainEntity: {
           "@type": "ItemList",
           itemListElement: services.map((item, index) => ({
             "@type": "ListItem",
             position: index + 1,
             name: item[1],
-            url: `https://bluefin-ai.cn${item[4]}`,
+            url: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${item[4]}`,
           })),
         },
       },

@@ -17,14 +17,14 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebApplication",
-        "@id": "https://bluefin-ai.cn/tools/30-60-90-review#app",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/30-60-90-review#app",
         name: "蓝旗鱼企业 AI 项目 30/60/90 天复查工具",
         description: metadata.description,
-        url: "https://bluefin-ai.cn/tools/30-60-90-review",
+        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/30-60-90-review",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         inLanguage: "zh-CN",
-        provider: { "@id": "https://bluefin-ai.cn/#organization" },
+        provider: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
       },
       breadcrumbList([
         { name: "首页", path: "/" },

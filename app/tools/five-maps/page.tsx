@@ -20,15 +20,15 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebApplication",
-        "@id": "https://bluefin-ai.cn/tools/five-maps#app",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/five-maps#app",
         name: "蓝旗鱼 AI 企业 AI 诊断五张地图",
         description: metadata.description,
-        url: "https://bluefin-ai.cn/tools/five-maps",
+        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/five-maps",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         inLanguage: "zh-CN",
         offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
-        provider: { "@id": "https://bluefin-ai.cn/#organization" },
+        provider: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
       },
       breadcrumbList([
         { name: "首页", path: "/" },

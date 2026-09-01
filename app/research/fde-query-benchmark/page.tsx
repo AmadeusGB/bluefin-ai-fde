@@ -35,18 +35,18 @@ export default function FdeQueryBenchmarkPage() {
     creator: {
       "@type": "Organization",
       name: "蓝旗鱼 AI",
-      url: "https://bluefin-ai.cn",
+      url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site",
     },
     distribution: [
       {
         "@type": "DataDownload",
         encodingFormat: "application/json",
-        contentUrl: "https://bluefin-ai.cn/api/geo-query-set",
+        contentUrl: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-query-set",
       },
       {
         "@type": "DataDownload",
         encodingFormat: "text/csv",
-        contentUrl: "https://bluefin-ai.cn/api/geo-query-set?format=csv",
+        contentUrl: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-query-set?format=csv",
       },
     ],
   };

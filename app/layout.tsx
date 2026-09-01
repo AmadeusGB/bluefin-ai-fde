@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { AttributionCapture } from "@/components/attribution-capture";
+import { buildKnowledgeGraph, siteUrl } from "@/lib/knowledge-graph";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bluefin-ai.cn"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "蓝旗鱼 AI｜企业 AI 落地与 FDE",
     template: "%s｜蓝旗鱼 AI",
@@ -45,40 +46,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const graph = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://bluefin-ai.cn/#organization",
-        name: "蓝旗鱼 AI",
-        url: "https://bluefin-ai.cn",
-        mainEntityOfPage: "https://bluefin-ai.cn/about",
-        description: "面向中国企业的 Forward Deployed Engineering 落地团队",
-        founder: {
-          "@type": "Person",
-          "@id": "https://bluefin-ai.cn/about/arthur-guo#person",
-          name: "郭斌 Arthur",
-          url: "https://bluefin-ai.cn/about/arthur-guo",
-        },
-        knowsAbout: [
-          "企业 AI 落地",
-          "Forward Deployed Engineering",
-          "最小可行部署",
-          "企业 AI 现场诊断",
-        ],
-        publishingPrinciples: "https://bluefin-ai.cn/editorial-policy",
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://bluefin-ai.cn/#website",
-        name: "蓝旗鱼 AI",
-        url: "https://bluefin-ai.cn",
-        inLanguage: "zh-CN",
-        publisher: { "@id": "https://bluefin-ai.cn/#organization" },
-      },
-    ],
-  };
+  const graph = buildKnowledgeGraph();
   return (
     <html lang="zh-CN">
       <body>

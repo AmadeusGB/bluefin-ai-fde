@@ -60,14 +60,14 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://bluefin-ai.cn/privacy#policy",
+        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/privacy#policy",
         name: "蓝旗鱼 AI 隐私与数据处理政策",
         description: metadata.description,
-        url: "https://bluefin-ai.cn/privacy",
+        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/privacy",
         datePublished: "2026-09-01",
         dateModified: "2026-09-01",
         inLanguage: "zh-CN",
-        publisher: { "@id": "https://bluefin-ai.cn/#organization" },
+        publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
         about: "隐私与个人信息处理",
       },
       breadcrumbList([

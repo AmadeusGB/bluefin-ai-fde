@@ -24,20 +24,20 @@ export function ArticleMeta({
     "@graph": [
       {
         "@type": "Article",
-        "@id": `https://bluefin-ai.cn${path}#article`,
+        "@id": `https://bluefin-ai-fde.liuxiangth.chatgpt.site${path}#article`,
         headline: title,
         description,
         datePublished: date,
         dateModified: date,
         inLanguage: "zh-CN",
-        mainEntityOfPage: `https://bluefin-ai.cn${path}`,
+        mainEntityOfPage: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${path}`,
         author: {
           "@type": "Person",
-          "@id": "https://bluefin-ai.cn/about/arthur-guo#person",
+          "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo#person",
           name: "郭斌 Arthur",
-          url: "https://bluefin-ai.cn/about/arthur-guo",
+          url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo",
         },
-        publisher: { "@id": "https://bluefin-ai.cn/#organization" },
+        publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
       },
       breadcrumbList([
         { name: "首页", path: "/" },
