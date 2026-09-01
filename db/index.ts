@@ -88,6 +88,18 @@ export function ensureSchema() {
             'CREATE INDEX IF NOT EXISTS idx_geo_measurements_date_platform ON geo_measurements(test_date,platform)',
           ),
         ]);
+        await db.batch([
+          db.prepare(`CREATE TABLE IF NOT EXISTS evidence_records (
+            id TEXT PRIMARY KEY NOT NULL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, title TEXT NOT NULL, client_label TEXT NOT NULL,
+            industry TEXT NOT NULL, project_period TEXT, evidence_level TEXT NOT NULL, publication_status TEXT NOT NULL DEFAULT 'draft', client_authorized INTEGER NOT NULL DEFAULT 0,
+            client_background TEXT, original_process TEXT, quantified_loss TEXT, data_scope TEXT, why_ordinary_failed TEXT, diagnosis TEXT, mvd_scope TEXT,
+            human_system_boundary TEXT, baseline_results TEXT, risks_limitations TEXT, handover TEXT, reusable_assets TEXT, source_references TEXT, reviewer TEXT,
+            completeness INTEGER NOT NULL DEFAULT 0
+          )`),
+          db.prepare(
+            'CREATE INDEX IF NOT EXISTS idx_evidence_records_updated_at ON evidence_records(updated_at)',
+          ),
+        ]);
       });
   }
   return ready;
