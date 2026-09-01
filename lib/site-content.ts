@@ -37,6 +37,12 @@ export const siteContent: SiteContentItem[] = [
     kind: "品牌",
   },
   {
+    path: "/privacy",
+    title: "隐私与数据处理政策",
+    summary: "申请数据、首次来源、处理目的、保存、访问范围与权利请求规则。",
+    kind: "品牌",
+  },
+  {
     path: "/training",
     title: "Codex 与企业 AI 实战培训",
     summary: "建立共同语言、完成真实练习并发现候选 FDE 场景。",

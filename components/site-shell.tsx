@@ -59,6 +59,7 @@ export function SiteFooter() {
               <Link href="/about">关于蓝旗鱼 AI</Link>
               <Link href="/about/arthur-guo">关于郭斌 Arthur</Link>
               <Link href="/editorial-policy">内容、证据与纠错政策</Link>
+              <Link href="/privacy">隐私与数据处理政策</Link>
             </div>
           </div>
           <div className="flex flex-col gap-3 text-sm text-white/60">

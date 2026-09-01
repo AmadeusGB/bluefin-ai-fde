@@ -1,33 +1,34 @@
-'use client';
+"use client";
 
-import { SyntheticEvent, useEffect, useState } from 'react';
-import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { captureFirstTouch } from '@/lib/attribution';
+import { SyntheticEvent, useEffect, useState } from "react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { captureFirstTouch } from "@/lib/attribution";
+import Link from "next/link";
 
-type State = 'idle' | 'submitting' | 'success' | 'error';
+type State = "idle" | "submitting" | "success" | "error";
 export function ApplicationForm() {
-  const [state, setState] = useState<State>('idle');
-  const [message, setMessage] = useState('');
+  const [state, setState] = useState<State>("idle");
+  const [message, setMessage] = useState("");
   const [diagnostic, setDiagnostic] = useState({
-    score: '',
-    decision: '',
-    profile: '',
-    source: 'website',
+    score: "",
+    decision: "",
+    profile: "",
+    source: "website",
   });
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
     const timer = window.setTimeout(
       () =>
         setDiagnostic({
-          score: p.get('score') || '',
-          decision: p.get('decision') || '',
-          profile: /^[0-9a-f]{1,3}$/i.test(p.get('profile') || '')
-            ? p.get('profile') || ''
-            : '',
-          source: p.get('source') || 'website',
+          score: p.get("score") || "",
+          decision: p.get("decision") || "",
+          profile: /^[0-9a-f]{1,3}$/i.test(p.get("profile") || "")
+            ? p.get("profile") || ""
+            : "",
+          source: p.get("source") || "website",
         }),
       0,
     );
@@ -36,36 +37,36 @@ export function ApplicationForm() {
   }, []);
   async function submit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
-    setState('submitting');
-    setMessage('');
+    setState("submitting");
+    setMessage("");
     const data = new FormData(event.currentTarget);
     const payload = Object.fromEntries(data.entries()) as Record<
       string,
       unknown
     >;
-    payload.consent = data.get('consent') === 'on';
+    payload.consent = data.get("consent") === "on";
     payload.diagnosticScore = diagnostic.score;
     payload.decision = diagnostic.decision;
     payload.diagnosticProfile = diagnostic.profile;
     payload.source = diagnostic.source;
     Object.assign(payload, captureFirstTouch());
     try {
-      const response = await fetch('/api/diagnostic-applications', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
+      const response = await fetch("/api/diagnostic-applications", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
       });
       const result = (await response.json()) as { error?: string };
-      if (!response.ok) throw new Error(result.error || '提交失败');
-      setState('success');
+      if (!response.ok) throw new Error(result.error || "提交失败");
+      setState("success");
     } catch (error) {
-      setState('error');
+      setState("error");
       setMessage(
-        error instanceof Error ? error.message : '提交失败，请稍后重试。',
+        error instanceof Error ? error.message : "提交失败，请稍后重试。",
       );
     }
   }
-  if (state === 'success')
+  if (state === "success")
     return (
       <div className="bg-[#dff6e6] p-10">
         <CheckCircle2 className="size-12 text-[#147e66]" />
@@ -171,7 +172,14 @@ export function ApplicationForm() {
             className="mt-1 size-4 accent-[#147e66]"
           />
           <span>
-            我同意蓝旗鱼保存以上信息、首次落地页、外部引荐来源及活动参数，仅用于项目资格判断、后续联系与渠道效果分析。不会记录完整浏览历史；我也不会在表单中提交账号密码、未授权客户数据或商业机密。
+            我已阅读并同意
+            <Link
+              href="/privacy"
+              className="font-bold text-[#147e66] underline underline-offset-4"
+            >
+              《隐私与数据处理政策》
+            </Link>
+            。蓝旗鱼保存以上信息、首次落地页、外部引荐来源及活动参数，仅用于项目资格判断、后续联系与渠道效果分析；表单会记录同意时间和政策版本。
           </span>
         </label>
         {diagnostic.score && (
@@ -184,24 +192,23 @@ export function ApplicationForm() {
         <Button
           type="submit"
           size="lg"
-          disabled={state === 'submitting'}
+          disabled={state === "submitting"}
           className="h-12 rounded-none px-6"
         >
-          {state === 'submitting' ? (
+          {state === "submitting" ? (
             <Loader2 className="animate-spin" />
           ) : (
             <ArrowRight />
           )}
-          {state === 'submitting' ? '正在提交' : '提交诊断申请'}
+          {state === "submitting" ? "正在提交" : "提交诊断申请"}
         </Button>
-        {state === 'error' && (
+        {state === "error" && (
           <p role="alert" className="mt-3 text-sm text-destructive">
             {message}
           </p>
         )}
         <p className="mt-4 text-xs leading-5 text-muted-foreground">
-          提交不代表项目被接受，也不会自动进入销售流程。蓝旗鱼会先判断是否具备
-          FDE 条件。
+          提交不代表项目被接受，也不会自动进入销售流程。请勿提交密码、未授权客户数据或商业机密；你可以通过隐私政策页面请求访问、更正或删除记录。
         </p>
       </div>
     </form>

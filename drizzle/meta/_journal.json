@@ -57,6 +57,13 @@
       "when": 1788238799979,
       "tag": "0007_open_eddie_brock",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1788242480893,
+      "tag": "0008_chunky_war_machine",
+      "breakpoints": true
     }
   ]
 }

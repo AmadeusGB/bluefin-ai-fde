@@ -1,8 +1,8 @@
-import { env } from 'cloudflare:workers';
+import { env } from "cloudflare:workers";
 
 let ready: Promise<void> | undefined;
 export function getD1() {
-  if (!env.DB) throw new Error('Cloudflare D1 binding `DB` is unavailable.');
+  if (!env.DB) throw new Error("Cloudflare D1 binding `DB` is unavailable.");
   return env.DB;
 }
 export function ensureSchema() {
@@ -31,13 +31,15 @@ export function ensureSchema() {
       utm_content TEXT,
       utm_term TEXT,
         acquisition_channel TEXT NOT NULL DEFAULT 'direct',
+        consent_at INTEGER,
+        privacy_policy_version TEXT,
         owner_notes TEXT,
         next_action_at INTEGER,
         updated_at INTEGER,
         status TEXT NOT NULL DEFAULT 'new'
     )`),
         db.prepare(
-          'CREATE INDEX IF NOT EXISTS idx_diagnostic_applications_created_at ON diagnostic_applications(created_at)',
+          "CREATE INDEX IF NOT EXISTS idx_diagnostic_applications_created_at ON diagnostic_applications(created_at)",
         ),
         db.prepare(
           "CREATE INDEX IF NOT EXISTS idx_diagnostic_applications_open_status ON diagnostic_applications(status) WHERE status != 'closed'",
@@ -45,24 +47,26 @@ export function ensureSchema() {
       ])
       .then(async () => {
         const result = await db
-          .prepare('PRAGMA table_info(diagnostic_applications)')
+          .prepare("PRAGMA table_info(diagnostic_applications)")
           .all<{ name: string }>();
         const columns = new Set(
           (result.results || []).map((column) => column.name),
         );
         const additions: [string, string][] = [
-          ['landing_path', 'TEXT'],
-          ['diagnostic_profile', 'TEXT'],
-          ['referrer', 'TEXT'],
-          ['utm_source', 'TEXT'],
-          ['utm_medium', 'TEXT'],
-          ['utm_campaign', 'TEXT'],
-          ['utm_content', 'TEXT'],
-          ['utm_term', 'TEXT'],
-          ['acquisition_channel', "TEXT NOT NULL DEFAULT 'direct'"],
-          ['owner_notes', 'TEXT'],
-          ['next_action_at', 'INTEGER'],
-          ['updated_at', 'INTEGER'],
+          ["landing_path", "TEXT"],
+          ["diagnostic_profile", "TEXT"],
+          ["referrer", "TEXT"],
+          ["utm_source", "TEXT"],
+          ["utm_medium", "TEXT"],
+          ["utm_campaign", "TEXT"],
+          ["utm_content", "TEXT"],
+          ["utm_term", "TEXT"],
+          ["acquisition_channel", "TEXT NOT NULL DEFAULT 'direct'"],
+          ["consent_at", "INTEGER"],
+          ["privacy_policy_version", "TEXT"],
+          ["owner_notes", "TEXT"],
+          ["next_action_at", "INTEGER"],
+          ["updated_at", "INTEGER"],
         ];
         const missing = additions.filter(([name]) => !columns.has(name));
         if (missing.length)
@@ -82,10 +86,10 @@ export function ensureSchema() {
             reviewer TEXT, notes TEXT, imported_at INTEGER NOT NULL, updated_at INTEGER NOT NULL
           )`),
           db.prepare(
-            'CREATE UNIQUE INDEX IF NOT EXISTS idx_geo_measurements_observation ON geo_measurements(query_id,platform,test_date,model_or_mode,location)',
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_geo_measurements_observation ON geo_measurements(query_id,platform,test_date,model_or_mode,location)",
           ),
           db.prepare(
-            'CREATE INDEX IF NOT EXISTS idx_geo_measurements_date_platform ON geo_measurements(test_date,platform)',
+            "CREATE INDEX IF NOT EXISTS idx_geo_measurements_date_platform ON geo_measurements(test_date,platform)",
           ),
         ]);
         await db.batch([
@@ -97,7 +101,7 @@ export function ensureSchema() {
             completeness INTEGER NOT NULL DEFAULT 0
           )`),
           db.prepare(
-            'CREATE INDEX IF NOT EXISTS idx_evidence_records_updated_at ON evidence_records(updated_at)',
+            "CREATE INDEX IF NOT EXISTS idx_evidence_records_updated_at ON evidence_records(updated_at)",
           ),
         ]);
       });

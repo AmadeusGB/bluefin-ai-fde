@@ -1,26 +1,26 @@
-import { ensureSchema, getD1 } from '@/db';
-import { decodeDiagnosticProfile, diagnosticResult } from '@/lib/diagnostic';
+import { ensureSchema, getD1 } from "@/db";
+import { decodeDiagnosticProfile, diagnosticResult } from "@/lib/diagnostic";
 
 const clean = (value: unknown, max: number) =>
-  typeof value === 'string' ? value.trim().slice(0, max) : '';
+  typeof value === "string" ? value.trim().slice(0, max) : "";
 function acquisitionChannel(utmSource: string, referrer: string) {
-  if (utmSource) return 'utm';
-  if (!referrer) return 'direct';
+  if (utmSource) return "utm";
+  if (!referrer) return "direct";
   try {
     const hostname = new URL(referrer).hostname.toLowerCase();
     const channels: [string, string][] = [
-      ['chatgpt.com', 'chatgpt'],
-      ['openai.com', 'chatgpt'],
-      ['google.', 'google'],
-      ['bing.com', 'bing'],
-      ['perplexity.ai', 'perplexity'],
-      ['baidu.com', 'baidu'],
-      ['doubao.com', 'doubao'],
-      ['kimi.com', 'kimi'],
-      ['moonshot.cn', 'kimi'],
-      ['deepseek.com', 'deepseek'],
-      ['tongyi.com', 'tongyi'],
-      ['qwen.ai', 'tongyi'],
+      ["chatgpt.com", "chatgpt"],
+      ["openai.com", "chatgpt"],
+      ["google.", "google"],
+      ["bing.com", "bing"],
+      ["perplexity.ai", "perplexity"],
+      ["baidu.com", "baidu"],
+      ["doubao.com", "doubao"],
+      ["kimi.com", "kimi"],
+      ["moonshot.cn", "kimi"],
+      ["deepseek.com", "deepseek"],
+      ["tongyi.com", "tongyi"],
+      ["qwen.ai", "tongyi"],
     ];
     return (
       channels.find(
@@ -28,10 +28,10 @@ function acquisitionChannel(utmSource: string, referrer: string) {
           hostname === domain ||
           hostname.endsWith(`.${domain}`) ||
           hostname.includes(domain),
-      )?.[1] || 'referral'
+      )?.[1] || "referral"
     );
   } catch {
-    return 'referral';
+    return "referral";
   }
 }
 export async function POST(request: Request) {
@@ -49,12 +49,12 @@ export async function POST(request: Request) {
     let diagnosticScore = Number.isFinite(Number(body.diagnosticScore))
       ? Math.max(0, Math.min(100, Math.round(Number(body.diagnosticScore))))
       : null;
-    let decision = ['GO', 'ADJUST', 'HOLD', 'STOP'].includes(
+    let decision = ["GO", "ADJUST", "HOLD", "STOP"].includes(
       clean(body.decision, 12),
     )
       ? clean(body.decision, 12)
       : null;
-    const source = clean(body.source, 40) || 'website';
+    const source = clean(body.source, 40) || "website";
     const profileCandidate = clean(body.diagnosticProfile, 3);
     const diagnosticProfile = /^[0-9a-f]{1,3}$/i.test(profileCandidate)
       ? profileCandidate.toLowerCase()
@@ -84,14 +84,14 @@ export async function POST(request: Request) {
       !consent
     )
       return Response.json(
-        { error: '请完整填写必填项并确认隐私授权。' },
+        { error: "请完整填写必填项并确认隐私授权。" },
         { status: 400 },
       );
     await ensureSchema();
     const id = crypto.randomUUID();
     await getD1()
       .prepare(
-        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,consent_at,privacy_policy_version,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
       )
       .bind(
         id,
@@ -114,14 +114,16 @@ export async function POST(request: Request) {
         utmContent || null,
         utmTerm || null,
         channel,
-        'new',
+        Date.now(),
+        "2026-09-01-v1.0",
+        "new",
       )
       .run();
     return Response.json({ ok: true, id }, { status: 201 });
   } catch (error) {
-    console.error('diagnostic application failed', error);
+    console.error("diagnostic application failed", error);
     return Response.json(
-      { error: '暂时无法提交，请稍后重试。' },
+      { error: "暂时无法提交，请稍后重试。" },
       { status: 500 },
     );
   }
