@@ -196,13 +196,23 @@ export default function Page() {
                 先完成适配度评估，或直接提交问题、损失、负责人和数据条件。资格确认不会承诺项目一定启动。
               </p>
             </div>
-            <Button
-              nativeButton={false}
-              render={<Link href="/apply?source=field-diagnostic" />}
-              className="h-13 rounded-none bg-[#bff5d1] px-6 text-[#071817] hover:bg-[#d4f9e1]"
-            >
-              申请 30 分钟资格确认 <ArrowRight />
-            </Button>
+            <div className="flex flex-wrap gap-3">
+              <Button
+                nativeButton={false}
+                render={<Link href="/apply?source=field-diagnostic" />}
+                className="h-13 rounded-none bg-[#bff5d1] px-6 text-[#071817] hover:bg-[#d4f9e1]"
+              >
+                申请 30 分钟资格确认 <ArrowRight />
+              </Button>
+              <Button
+                nativeButton={false}
+                render={<Link href="/services/mvd" />}
+                variant="outline"
+                className="h-13 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#071817]"
+              >
+                了解下一阶段 MVD
+              </Button>
+            </div>
           </div>
         </section>
       </main>

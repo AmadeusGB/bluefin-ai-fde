@@ -21,7 +21,7 @@ export function SiteHeader() {
           <Link href="/fde">什么是 FDE</Link>
           <Link href="/#method">交付方法</Link>
           <Link href="/solutions">行业场景</Link>
-          <Link href="/field-diagnostic">现场诊断</Link>
+          <Link href="/services">FDE 服务</Link>
           <Link href="/evidence">案例与证据</Link>
           <Link href="/tools">工具</Link>
           <Link href="/knowledge">知识库</Link>
@@ -65,7 +65,9 @@ export function SiteFooter() {
           <div className="flex flex-col gap-3 text-sm text-white/60">
             <b className="text-[#bff5d1]">开始判断</b>
             <Link href="/diagnostic">FDE 适配度评估</Link>
+            <Link href="/services">FDE 服务阶梯</Link>
             <Link href="/field-diagnostic">付费现场诊断</Link>
+            <Link href="/services/mvd">MVD 服务</Link>
             <Link href="/tools/mvd-designer">MVD 设计器</Link>
             <Link href="/apply">申请资格确认</Link>
           </div>

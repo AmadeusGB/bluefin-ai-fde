@@ -47,7 +47,10 @@ export default function Home() {
                 先了解 FDE{" "}
                 <MoveDownRight className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link href="/field-diagnostic" className="font-bold text-[#147e66]">
+              <Link
+                href="/field-diagnostic"
+                className="font-bold text-[#147e66]"
+              >
                 查看付费现场诊断
               </Link>
             </div>
@@ -91,6 +94,12 @@ export default function Home() {
             <p className="mt-5 text-lg text-white/60">
               每一步都有进入条件、证据、决策门和清晰的人工边界。
             </p>
+            <Link
+              href="/services"
+              className="mt-6 inline-flex items-center gap-2 font-bold text-[#bff5d1]"
+            >
+              查看分阶段服务与交付边界 <ArrowRight className="size-4" />
+            </Link>
             <div className="mt-16 grid border-t border-white/20 sm:grid-cols-2 lg:grid-cols-5">
               {steps.map(([n, t, d]) => (
                 <article

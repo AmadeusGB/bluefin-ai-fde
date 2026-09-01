@@ -133,6 +133,24 @@ export const siteContent: SiteContentItem[] = [
     kind: "转化",
   },
   {
+    path: "/services",
+    title: "蓝旗鱼 FDE 服务",
+    summary: "从现场诊断、MVD 到生产部署、采用与交接的分阶段服务阶梯。",
+    kind: "方案",
+  },
+  {
+    path: "/services/mvd",
+    title: "企业 AI 最小可行部署 MVD 服务",
+    summary: "用真实数据和真实使用者验证一个最小业务闭环。",
+    kind: "转化",
+  },
+  {
+    path: "/services/production-adoption",
+    title: "企业 AI 生产部署、采用与交接服务",
+    summary: "将已验证闭环接入系统、权限、监控与工作流并交给企业运营。",
+    kind: "转化",
+  },
+  {
     path: "/apply",
     title: "申请企业 AI 业务诊断",
     summary: "提交结构化真实问题，进入项目资格判断。",
