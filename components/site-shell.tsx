@@ -1,4 +1,5 @@
 import Link from '@/components/safe-link';
+import Image from 'next/image';
 import { ArrowRight, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -7,9 +8,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-[1500px] items-center justify-between px-5 lg:px-10">
         <Link href="/" className="flex items-center font-black tracking-tight">
-          <img
+          <Image
             src="/brand/bluefin-logo-lockup.png"
             alt="蓝旗鱼 AI"
+            width={1800}
+            height={524}
+            sizes="(max-width: 640px) 168px, 184px"
+            preload
             className="h-auto w-[168px] sm:w-[184px]"
           />
         </Link>
@@ -17,14 +22,20 @@ export function SiteHeader() {
           aria-label="主导航"
           className="hidden items-center gap-5 text-sm font-semibold lg:flex"
         >
-          <Link href="/fde">什么是 FDE</Link>
-          <Link href="/#method">交付方法</Link>
-          <Link href="/solutions">行业场景</Link>
-          <Link href="/services">FDE 服务</Link>
-          <Link href="/evidence">案例与证据</Link>
-          <Link href="/tools">工具</Link>
-          <Link href="/knowledge">知识库</Link>
-          <Link href="/research">研究</Link>
+          {[
+            ['什么是 FDE', '/fde'],
+            ['交付方法', '/#method'],
+            ['行业场景', '/solutions'],
+            ['FDE 服务', '/services'],
+            ['案例与证据', '/evidence'],
+            ['工具', '/tools'],
+            ['知识库', '/knowledge'],
+            ['研究', '/research'],
+          ].map(([label, href]) => (
+            <Link key={href} href={href} className="border-b border-transparent py-1 transition-colors hover:border-[#3657d6] hover:text-[#3657d6]">
+              {label}
+            </Link>
+          ))}
         </nav>
         <details className="group relative ml-auto lg:hidden">
           <summary
@@ -89,9 +100,12 @@ export function SiteFooter() {
               href="/"
               className="inline-flex items-center bg-[#cdd5ff] px-5 py-3 text-lg font-black"
             >
-              <img
+              <Image
                 src="/brand/bluefin-logo-lockup.png"
                 alt="蓝旗鱼 AI"
+                width={1800}
+                height={524}
+                sizes="230px"
                 className="h-auto w-[230px]"
               />
             </Link>
@@ -145,13 +159,13 @@ export function PageHero({
   intro: string;
 }) {
   return (
-    <section className="border-b border-foreground/10 px-5 py-20 lg:px-10 lg:py-28">
+    <section className="border-b border-foreground/10 px-5 py-16 lg:px-10 lg:py-22">
       <div className="mx-auto max-w-[1500px]">
         <p className="eyebrow text-[#3657d6]">{eyebrow}</p>
-        <h1 className="mt-6 max-w-5xl text-5xl font-black leading-[1.02] tracking-[-.06em] lg:text-8xl">
+        <h1 className="mt-6 max-w-[1150px] text-[clamp(3rem,5.4vw,5.75rem)] font-black leading-[1.02] tracking-[-.055em] text-balance">
           {title}
         </h1>
-        <p className="mt-8 max-w-3xl text-xl leading-9 text-muted-foreground">
+        <p className="mt-8 max-w-4xl text-lg leading-8 text-muted-foreground text-pretty lg:text-xl lg:leading-9">
           {intro}
         </p>
       </div>

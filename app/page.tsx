@@ -1,14 +1,15 @@
 import Link from "@/components/safe-link";
+import Image from "next/image";
 import { ArrowRight, Check, MoveDownRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 
 const steps = [
-  ["01", "诊断", "进入真实业务现场，找出最贵的问题。"],
-  ["02", "MVD", "用真实数据跑通最小可行部署。"],
-  ["03", "生产部署", "接入系统，建立评估与生产护栏。"],
-  ["04", "采用", "让一线真正使用，明确人机边界。"],
-  ["05", "复制", "完成交接，沉淀可复用资产。"],
+  { number: "01", title: "诊断", short: "找到最贵问题", description: "进入真实业务现场，找出最贵的问题。" },
+  { number: "02", title: "MVD", short: "跑通最小闭环", description: "用真实数据跑通最小可行部署。" },
+  { number: "03", title: "生产部署", short: "接入真实系统", description: "接入系统，建立评估与生产护栏。" },
+  { number: "04", title: "采用", short: "进入日常工作", description: "让一线真正使用，明确人机边界。" },
+  { number: "05", title: "复制", short: "沉淀组织能力", description: "完成交接，沉淀可复用资产。" },
 ];
 
 export default function Home() {
@@ -16,13 +17,13 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="min-h-screen bg-background text-foreground">
-        <section className="mx-auto grid min-h-[calc(100vh-72px)] max-w-[1500px] grid-cols-1 gap-16 px-5 pb-10 pt-16 lg:grid-cols-[1.35fr_.65fr] lg:items-center lg:px-10">
+        <section className="mx-auto grid max-w-[1500px] grid-cols-1 gap-14 px-5 py-16 lg:min-h-[720px] lg:grid-cols-[1.28fr_.72fr] lg:items-center lg:gap-20 lg:px-10 lg:py-20">
           <div>
-            <p className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.16em]">
+            <p className="mb-7 flex max-w-full items-center gap-3 text-xs font-bold uppercase tracking-[.14em] sm:tracking-[.16em]">
               <span className="size-2 rounded-full bg-[#405fe0] shadow-[0_0_0_6px_rgba(23,133,108,.12)]" />
-              企业 AI 落地 · Forward Deployed Engineering
+              <span>企业 AI 落地 · <span className="sm:hidden">FDE</span><span className="hidden sm:inline">Forward Deployed Engineering</span></span>
             </p>
-            <h1 className="max-w-5xl text-[clamp(3.7rem,8vw,8.7rem)] font-black leading-[.92] tracking-[-.075em]">
+            <h1 className="max-w-5xl text-[clamp(3.55rem,7.2vw,7.7rem)] font-black leading-[.93] tracking-[-.07em]">
               别再做
               <br />
               <em className="not-italic text-[#3657d6]">“看起来能用”</em>
@@ -55,8 +56,8 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="self-end lg:pb-16">
-            <div className="border border-foreground/15 p-7">
+          <aside className="border border-foreground/15 bg-white/45" aria-label="蓝旗鱼交付边界">
+            <div className="p-7 lg:p-9">
               <p className="text-xs uppercase tracking-[.18em] text-muted-foreground">
                 我们交付的不是
               </p>
@@ -72,7 +73,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="bg-[#cdd5ff] p-7 text-[#0b1238]">
+            <div className="border-t border-foreground/10 bg-[#cdd5ff] p-7 text-[#0b1238] lg:p-9">
               <p className="text-xs uppercase tracking-[.18em] opacity-60">
                 而是一条可验证路径
               </p>
@@ -80,15 +81,39 @@ export default function Home() {
                 问题 → 真实数据 → MVD → 生产采用
               </p>
             </div>
-          </div>
+          </aside>
         </section>
-        <section className="border-y border-foreground/10 bg-[#e7eaff] px-5 py-12 lg:px-10">
-          <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
-            <Link href="/brand" className="block py-4 transition hover:opacity-80">
-              <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼Ai，探索、实践、共创" className="w-full max-w-[500px]" />
-            </Link>
-            <div className="grid gap-6 sm:grid-cols-3">
-              {[["品类","企业 AI 落地 / FDE"],["方法","诊断 → MVD → 生产部署 → 采用 → 复制"],["原则","先核验证据，再公开结果"]].map(([label,value])=><div key={label} className="border-t border-foreground/20 pt-4"><span className="text-xs font-bold text-[#3657d6]">{label}</span><p className="mt-3 font-bold leading-6">{value}</p></div>)}
+        <section className="border-y border-foreground/10 bg-[#e7eaff] px-5 py-14 lg:px-10 lg:py-16">
+          <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[320px_1fr] lg:gap-16">
+            <div>
+              <Link href="/brand" className="block transition hover:opacity-80">
+                <Image src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼 AI，探索、实践、共创" width={1800} height={524} sizes="(max-width: 1024px) 300px, 300px" className="h-auto w-full max-w-[300px]" />
+              </Link>
+              <p className="mt-5 max-w-xs text-sm leading-6 text-muted-foreground">
+                企业 AI 落地 / Forward Deployed Engineering
+              </p>
+              <p className="mt-4 border-l-2 border-[#3657d6] pl-4 text-sm font-bold leading-6">
+                先核验证据，再公开结果。
+              </p>
+            </div>
+            <div>
+              <p className="eyebrow text-[#3657d6]">FDE 五步交付路径</p>
+              <ol className="mt-7 grid gap-3 sm:grid-cols-5" aria-label="诊断、MVD、生产部署、采用与复制">
+                {steps.map((step, index) => (
+                  <li key={step.number} className="relative border-t border-foreground/25 pt-5 sm:pr-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="grid size-8 place-items-center bg-[#3657d6] text-xs font-black text-white">
+                        {step.number}
+                      </span>
+                      {index < steps.length - 1 && (
+                        <ArrowRight className="hidden size-4 text-[#3657d6]/55 sm:block" aria-hidden="true" />
+                      )}
+                    </div>
+                    <h2 className="mt-5 text-xl font-black tracking-[-.025em]">{step.title}</h2>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{step.short}</p>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </section>
@@ -110,18 +135,18 @@ export default function Home() {
             >
               查看分阶段服务与交付边界 <ArrowRight className="size-4" />
             </Link>
-            <div className="mt-16 grid border-t border-white/20 sm:grid-cols-2 lg:grid-cols-5">
-              {steps.map(([n, t, d]) => (
-                <article
-                  key={n}
-                  className="min-h-64 border-b border-white/20 py-7 sm:border-r lg:border-b-0 lg:px-6 first:pl-0"
+            <ol className="mt-16 grid border-t border-white/20 sm:grid-cols-2 lg:grid-cols-5" aria-label="蓝旗鱼 FDE 交付方法">
+              {steps.map((step) => (
+                <li
+                  key={step.number}
+                  className="min-h-60 border-b border-white/20 py-7 sm:border-r lg:border-b-0 lg:px-6 first:pl-0"
                 >
-                  <span className="text-xs text-[#cdd5ff]">{n}</span>
-                  <h3 className="mt-16 text-2xl font-bold">{t}</h3>
-                  <p className="mt-3 leading-7 text-white/55">{d}</p>
-                </article>
+                  <span className="grid size-8 place-items-center border border-[#cdd5ff]/45 text-xs font-bold text-[#cdd5ff]">{step.number}</span>
+                  <h3 className="mt-10 text-2xl font-bold">{step.title}</h3>
+                  <p className="mt-3 leading-7 text-white/60">{step.description}</p>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
         <section className="bg-white px-5 py-24 lg:px-10">
