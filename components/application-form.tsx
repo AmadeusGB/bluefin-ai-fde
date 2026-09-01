@@ -10,11 +10,11 @@ type State='idle'|'submitting'|'success'|'error';
 export function ApplicationForm(){
   const [state,setState]=useState<State>('idle');
   const [message,setMessage]=useState('');
-  const [diagnostic,setDiagnostic]=useState({score:'',decision:''});
-  useEffect(()=>{const p=new URLSearchParams(window.location.search);setDiagnostic({score:p.get('score')||'',decision:p.get('decision')||''})},[]);
+  const [diagnostic,setDiagnostic]=useState({score:'',decision:'',source:'website'});
+  useEffect(()=>{const p=new URLSearchParams(window.location.search);setDiagnostic({score:p.get('score')||'',decision:p.get('decision')||'',source:p.get('source')||'website'})},[]);
   async function submit(event:FormEvent<HTMLFormElement>){
     event.preventDefault();setState('submitting');setMessage('');
-    const data=new FormData(event.currentTarget);const payload=Object.fromEntries(data.entries()) as Record<string,unknown>;payload.consent=data.get('consent')==='on';payload.diagnosticScore=diagnostic.score;payload.decision=diagnostic.decision;
+    const data=new FormData(event.currentTarget);const payload=Object.fromEntries(data.entries()) as Record<string,unknown>;payload.consent=data.get('consent')==='on';payload.diagnosticScore=diagnostic.score;payload.decision=diagnostic.decision;payload.source=diagnostic.source;
     try{const response=await fetch('/api/diagnostic-applications',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});const result=await response.json() as {error?:string};if(!response.ok) throw new Error(result.error||'提交失败');setState('success')}catch(error){setState('error');setMessage(error instanceof Error?error.message:'提交失败，请稍后重试。')}
   }
   if(state==='success') return <div className="bg-[#dff6e6] p-10"><CheckCircle2 className="size-12 text-[#147e66]"/><h2 className="mt-6 text-3xl font-black">申请已收到</h2><p className="mt-4 max-w-2xl leading-7 text-muted-foreground">蓝旗鱼会先核验问题价值、数据与负责人条件。符合资格时，再联系确认 30 分钟沟通；不适合启动的项目，也会明确说明主要缺口。</p></div>;
