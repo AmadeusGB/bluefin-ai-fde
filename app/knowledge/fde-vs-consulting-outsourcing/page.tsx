@@ -1,0 +1,9 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ArticleMeta } from '@/components/article-meta';
+import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
+export const metadata:Metadata={title:'FDE 与咨询、外包有什么区别',description:'FDE 同时承担问题诊断、系统开发、生产上线、采用与交接；咨询和外包通常只覆盖其中一部分。',alternates:{canonical:'/knowledge/fde-vs-consulting-outsourcing'}};
+const rows=[['起点','管理或战略问题','需求与功能清单','可量化业务损失'],['主要产出','建议、报告、路线图','约定功能和系统','真实数据上的生产闭环'],['工程责任','通常不直接开发','负责按范围开发','诊断、开发、上线和采用一体'],['结果责任','建议是否被采纳','功能是否按约交付','业务基线是否改善、系统是否被使用'],['边界','可覆盖广泛议题','范围由合同定义','必须聚焦高价值问题并设置决策门']];
+export default function Page(){return <><SiteHeader/><main><PageHero eyebrow="比较 · 直接回答" title="FDE 不是咨询加外包。" intro="咨询主要提供判断，外包主要按需求交付功能；FDE 从真实业务损失出发，让工程师同时参与诊断、开发、生产上线、采用和交接，并用可核验结果决定是否继续。"/><ArticleMeta title="FDE 与咨询、外包有什么区别" description="FDE 同时承担问题诊断、开发、上线、采用与交接。" path="/knowledge/fde-vs-consulting-outsourcing"/><section className="px-5 py-20 lg:px-10"><div className="mx-auto max-w-[1200px] overflow-x-auto"><table className="w-full min-w-4xl text-left"><thead><tr className="border-b-2 border-foreground"><th className="py-4">维度</th><th>咨询</th><th>定制外包</th><th>FDE</th></tr></thead><tbody>{rows.map(r=><tr key={r[0]} className="border-b border-foreground/15"><th className="py-5">{r[0]}</th><td>{r[1]}</td><td>{r[2]}</td><td className="font-semibold">{r[3]}</td></tr>)}</tbody></table><p className="mt-12 max-w-3xl text-lg leading-8 text-muted-foreground">FDE 也不是万能方案。如果问题不够贵、无法提供真实数据、没有业务负责人，咨询式澄清或标准软件往往更合适。</p><Button nativeButton={false} render={<Link href="/diagnostic"/>} size="lg" className="mt-6 h-12 rounded-none">判断是否适合 FDE <ArrowRight/></Button></div></section></main><SiteFooter/></>}
