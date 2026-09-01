@@ -8,11 +8,9 @@ export function SiteHeader() {
       <div className="mx-auto flex h-18 max-w-[1500px] items-center justify-between px-5 lg:px-10">
         <Link
           href="/"
-          className="flex items-center gap-3 font-black tracking-tight"
+          className="flex items-center font-black tracking-tight"
         >
-          <span className="flex h-12 w-[188px] items-center overflow-hidden">
-            <img src="/brand/bluefin-logo.png" alt="蓝旗鱼 AI" className="w-[188px] max-w-none origin-left scale-[1.42]" />
-          </span>
+          <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼 AI" className="h-auto w-[168px] sm:w-[184px]" />
         </Link>
         <nav
           aria-label="主导航"
@@ -88,11 +86,9 @@ export function SiteFooter() {
           <div>
             <Link
               href="/"
-              className="flex items-center gap-3 text-lg font-black"
+              className="inline-flex items-center bg-[#bff5d1] px-5 py-3 text-lg font-black"
             >
-              <span className="inline-flex bg-white px-3 py-2">
-                <img src="/brand/bluefin-logo.png" alt="蓝旗鱼 AI" className="h-16 w-auto scale-125" />
-              </span>
+              <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼 AI" className="h-auto w-[230px]" />
             </Link>
             <p className="mt-4 text-white/55">探索 · 实践 · 共创｜面向中国企业的 FDE 落地团队</p>
             <div className="mt-4 flex flex-col gap-2 text-sm text-white/60">

@@ -25,7 +25,7 @@ export function buildKnowledgeGraph() {
         url: siteUrl,
         logo: {
           "@type": "ImageObject",
-          url: `${siteUrl}/brand/bluefin-logo.png`,
+          url: `${siteUrl}/brand/bluefin-logo-lockup.png`,
           caption: "蓝旗鱼Ai｜探索 · 实践 · 共创",
         },
         slogan: "探索 · 实践 · 共创",
