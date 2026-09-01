@@ -199,6 +199,12 @@ export const siteContent: SiteContentItem[] = [
     kind: "工具",
   },
   {
+    path: "/tools/30-60-90-review",
+    title: "企业 AI 项目 30/60/90 天复查工具",
+    summary: "检查真实采用、业务结果、生产风险与交接条件，生成阶段决策报告。",
+    kind: "工具",
+  },
+  {
     path: "/knowledge",
     title: "FDE 知识库",
     summary: "企业 AI 落地定义、决策、方法、比较与风险的直接答案。",
