@@ -94,6 +94,48 @@ const entries = [
     '/knowledge/adoption-handover',
   ],
   [
+    '什么企业适合 FDE？',
+    '决策',
+    '昂贵问题、真实数据、明确负责人、可控范围和结果压力需要同时成立。',
+    '/knowledge/fde-readiness',
+  ],
+  [
+    '企业 AI 业务诊断怎么做？',
+    '方法',
+    '从真实异常事件和损失事实出发，核验流程、数据、责任、风险与最小部署边界。',
+    '/knowledge/ai-business-diagnostic',
+  ],
+  [
+    '企业 AI 项目如何建立业务基线？',
+    '方法',
+    '固定任务单位、时间窗、样本和指标口径，使部署前后结果可重复比较。',
+    '/knowledge/ai-project-baseline',
+  ],
+  [
+    '企业 AI 项目如何衡量 TTV？',
+    '决策',
+    'TTV 从项目启动计算到真实使用者产生首个可核验业务价值，而不是首次 Demo。',
+    '/knowledge/time-to-value',
+  ],
+  [
+    '企业 AI 项目如何划分人机边界？',
+    '风险',
+    '按读取、起草、建议、写回和执行动作分级，明确审批、拒绝与升级。',
+    '/knowledge/human-ai-boundary',
+  ],
+  [
+    '企业 AI 项目如何做生产验收？',
+    '方法',
+    '同时验收业务结果、真实任务、系统运行、风险红线、采用和交接。',
+    '/knowledge/production-acceptance',
+  ],
+  [
+    '企业如何管理 AI 项目组合？',
+    '决策',
+    '按统一证据排序、分阶段投入，并用 GO、ADJUST、HOLD、STOP 停止低价值项目。',
+    '/knowledge/ai-project-portfolio',
+  ],
+  [
     '跨境电商先做什么 AI 场景？',
     '行业',
     '优先选择损失可计算、数据可取得的询盘、退货或经营判断闭环。',
@@ -110,12 +152,6 @@ const entries = [
     '场景',
     '先连接客户上下文、知识依据、下一步动作与结果写回。',
     '/solutions/customer-service-sales',
-  ],
-  [
-    '什么企业适合 FDE？',
-    '决策',
-    '有真实流程、真实数据、明确负责人和结果压力，并愿意从小范围开始。',
-    '/diagnostic',
   ],
 ];
 export default function Knowledge() {

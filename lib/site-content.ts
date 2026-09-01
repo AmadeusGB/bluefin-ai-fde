@@ -235,6 +235,48 @@ export const siteContent: SiteContentItem[] = [
     kind: '知识',
   },
   {
+    path: '/knowledge/fde-readiness',
+    title: '什么企业适合 FDE',
+    summary: '用昂贵问题、真实数据、负责人、范围和结果压力判断 FDE 适配度。',
+    kind: '知识',
+  },
+  {
+    path: '/knowledge/ai-business-diagnostic',
+    title: '企业 AI 业务诊断怎么做',
+    summary: '从真实损失核验流程、数据、责任、风险和最小部署边界。',
+    kind: '知识',
+  },
+  {
+    path: '/knowledge/ai-project-baseline',
+    title: '企业 AI 项目如何建立业务基线',
+    summary: '固定任务、周期、质量、成本与结果口径，使改善可比较。',
+    kind: '知识',
+  },
+  {
+    path: '/knowledge/time-to-value',
+    title: '企业 AI 项目如何衡量 TTV',
+    summary: '从项目启动计算到首个可核验业务价值，并拆解等待时间。',
+    kind: '知识',
+  },
+  {
+    path: '/knowledge/human-ai-boundary',
+    title: '企业 AI 项目如何划分人机边界',
+    summary: '按动作与错误代价定义自动、审核、拒绝、升级与禁止边界。',
+    kind: '知识',
+  },
+  {
+    path: '/knowledge/production-acceptance',
+    title: '企业 AI 项目如何做生产验收',
+    summary: '同时验收业务结果、任务、运行、护栏、采用与交接。',
+    kind: '知识',
+  },
+  {
+    path: '/knowledge/ai-project-portfolio',
+    title: '企业如何管理 AI 项目组合',
+    summary: '统一项目排序、阶段投入、停止机制和资产复用指标。',
+    kind: '知识',
+  },
+  {
     path: '/research',
     title: '企业 AI / FDE 公开研究',
     summary: '原创问题集、测量协议、公开数据与方法研究目录。',
