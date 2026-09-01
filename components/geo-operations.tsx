@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FileUp, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { OperationsNav } from '@/components/operations-nav';
 type Metric = {
   dimension: string;
   observations: number;
@@ -127,7 +128,8 @@ export function GeoOperations() {
     ['品类关联度', percent(selected?.fdeAssociation || 0)],
   ];
   return (
-    <div className="mx-auto max-w-[1500px] px-5 py-12 lg:px-10">
+    <div className="mx-auto max-w-[1500px] px-5 py-8 lg:px-10">
+      <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="eyebrow text-[#147e66]">GEO 持续衡量</p>

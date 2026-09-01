@@ -4,6 +4,7 @@ import { FilePlus2, Loader2, RefreshCw, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { OperationsNav } from '@/components/operations-nav';
 import {
   evidenceLevels,
   evidenceSections,
@@ -139,7 +140,8 @@ export function EvidenceOperations() {
       </div>
     );
   return (
-    <div className="mx-auto max-w-[1500px] px-5 py-12 lg:px-10">
+    <div className="mx-auto max-w-[1500px] px-5 py-8 lg:px-10">
+      <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="eyebrow text-[#147e66]">交付资产系统</p>

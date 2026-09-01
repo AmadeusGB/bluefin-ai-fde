@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { diagnosticDimensionScores } from '@/lib/diagnostic';
+import { OperationsNav } from '@/components/operations-nav';
 
 type Lead = {
   id: string;
@@ -148,7 +149,8 @@ export function LeadOperations() {
       </div>
     );
   return (
-    <div className="mx-auto max-w-[1500px] px-5 py-12 lg:px-10">
+    <div className="mx-auto max-w-[1500px] px-5 py-8 lg:px-10">
+      <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="eyebrow text-[#147e66]">商业转化运营</p>
