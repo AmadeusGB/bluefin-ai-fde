@@ -156,6 +156,87 @@ export function ApplicationForm() {
           className="mt-2 min-h-36 rounded-none bg-white"
         />
       </div>
+      <div>
+        <label className="text-sm font-bold" htmlFor="problemFrequency">
+          问题发生频率 *
+        </label>
+        <select
+          id="problemFrequency"
+          name="problemFrequency"
+          required
+          defaultValue=""
+          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+        >
+          <option value="" disabled>
+            请选择
+          </option>
+          <option value="daily">每天或持续发生</option>
+          <option value="weekly">每周发生</option>
+          <option value="monthly">每月发生</option>
+          <option value="occasional">偶发或尚未确认</option>
+        </select>
+      </div>
+      <div>
+        <label className="text-sm font-bold" htmlFor="annualLossRange">
+          估算年度损失 / 机会规模 *
+        </label>
+        <select
+          id="annualLossRange"
+          name="annualLossRange"
+          required
+          defaultValue=""
+          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+        >
+          <option value="" disabled>
+            请选择
+          </option>
+          <option value="over_200w">超过 200 万元</option>
+          <option value="50w_200w">50–200 万元</option>
+          <option value="10w_50w">10–50 万元</option>
+          <option value="under_10w">低于 10 万元</option>
+          <option value="unknown">尚未测算</option>
+        </select>
+      </div>
+      <div>
+        <label className="text-sm font-bold" htmlFor="dataReadiness">
+          真实数据准备度 *
+        </label>
+        <select
+          id="dataReadiness"
+          name="dataReadiness"
+          required
+          defaultValue=""
+          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+        >
+          <option value="" disabled>
+            请选择
+          </option>
+          <option value="ready">可提供脱敏样本并明确权限</option>
+          <option value="partial">有数据，仍需整理或审批</option>
+          <option value="unknown">不确定数据位置或质量</option>
+          <option value="unavailable">当前无法提供真实数据</option>
+        </select>
+      </div>
+      <div>
+        <label className="text-sm font-bold" htmlFor="ownerReadiness">
+          业务负责人投入度 *
+        </label>
+        <select
+          id="ownerReadiness"
+          name="ownerReadiness"
+          required
+          defaultValue=""
+          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+        >
+          <option value="" disabled>
+            请选择
+          </option>
+          <option value="committed">负责人可参与诊断、验收与决策</option>
+          <option value="identified">已明确负责人，投入待确认</option>
+          <option value="candidate">只有候选负责人</option>
+          <option value="none">尚无业务负责人</option>
+        </select>
+      </div>
       <input
         name="website"
         tabIndex={-1}

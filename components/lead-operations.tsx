@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState } from 'react';
-import { Download, Loader2, RefreshCw, Save, Search } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { diagnosticDimensionScores } from '@/lib/diagnostic';
-import { OperationsNav } from '@/components/operations-nav';
+import { useEffect, useMemo, useState } from "react";
+import { Download, Loader2, RefreshCw, Save, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { diagnosticDimensionScores } from "@/lib/diagnostic";
+import { OperationsNav } from "@/components/operations-nav";
 
 type Lead = {
   id: string;
@@ -18,6 +18,12 @@ type Lead = {
   role: string;
   industry: string;
   problem: string;
+  problem_frequency: string | null;
+  annual_loss_range: string | null;
+  data_readiness: string | null;
+  owner_readiness: string | null;
+  qualification_score: number | null;
+  qualification_tier: string | null;
   diagnostic_score: number | null;
   decision: string | null;
   diagnostic_profile: string | null;
@@ -38,48 +44,66 @@ type Payload = {
   leads: Lead[];
 };
 const stages = [
-  ['new', '新申请'],
-  ['reviewing', '审查中'],
-  ['qualified', '符合资格'],
-  ['diagnostic_paid', '付费诊断'],
-  ['mvd', 'MVD'],
-  ['won', '已成交'],
-  ['not_fit', '不适合'],
-  ['closed', '已关闭'],
+  ["new", "新申请"],
+  ["reviewing", "审查中"],
+  ["qualified", "符合资格"],
+  ["diagnostic_paid", "付费诊断"],
+  ["mvd", "MVD"],
+  ["won", "已成交"],
+  ["not_fit", "不适合"],
+  ["closed", "已关闭"],
 ];
+const qualificationLabels: Record<string, string> = {
+  daily: "每天或持续发生",
+  weekly: "每周发生",
+  monthly: "每月发生",
+  occasional: "偶发或未确认",
+  over_200w: "年度规模 > 200 万",
+  "50w_200w": "年度规模 50–200 万",
+  "10w_50w": "年度规模 10–50 万",
+  under_10w: "年度规模 < 10 万",
+  unknown: "尚未确认",
+  ready: "数据可提供",
+  partial: "数据待整理 / 审批",
+  unavailable: "数据当前不可用",
+  committed: "负责人可投入",
+  identified: "负责人已明确",
+  candidate: "只有候选负责人",
+  none: "尚无负责人",
+};
 const formatDate = (value: number | null) =>
   value
-    ? new Intl.DateTimeFormat('zh-CN', {
-        dateStyle: 'medium',
-        timeStyle: 'short',
+    ? new Intl.DateTimeFormat("zh-CN", {
+        dateStyle: "medium",
+        timeStyle: "short",
       }).format(value)
-    : '—';
+    : "—";
 const inputDate = (value: number | null) =>
   value
     ? new Date(value - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .slice(0, 16)
-    : '';
+    : "";
 
 export function LeadOperations() {
   const [data, setData] = useState<Payload | null>(null),
-    [error, setError] = useState(''),
+    [error, setError] = useState(""),
     [loading, setLoading] = useState(true),
-    [query, setQuery] = useState(''),
-    [filter, setFilter] = useState('open'),
-    [saving, setSaving] = useState('');
+    [query, setQuery] = useState(""),
+    [filter, setFilter] = useState("open"),
+    [saving, setSaving] = useState("");
   async function load() {
     setLoading(true);
-    setError('');
+    setError("");
     try {
-      const response = await fetch('/api/operations/leads', {
-        cache: 'no-store',
+      const response = await fetch("/api/operations/leads", {
+        cache: "no-store",
       });
       const body = (await response.json()) as Payload & { error?: string };
-      if (!response.ok) throw new Error(body.error || '读取失败');
+      if (!response.ok) throw new Error(body.error || "读取失败");
       setData(body);
     } catch (reason) {
-      setError(reason instanceof Error ? reason.message : '读取失败');
+      setError(reason instanceof Error ? reason.message : "读取失败");
     } finally {
       setLoading(false);
     }
@@ -90,44 +114,54 @@ export function LeadOperations() {
   }, []);
   const leads = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return (data?.leads || []).filter(
-      (lead) =>
-        (filter === 'all' ||
-          (filter === 'open' && !['closed', 'not_fit'].includes(lead.status)) ||
-          lead.status === filter) &&
-        (!needle ||
-          [
-            lead.name,
-            lead.company,
-            lead.contact,
-            lead.industry,
-            lead.problem,
-            lead.source,
-            lead.acquisition_channel,
-          ].some((value) => value?.toLowerCase().includes(needle))),
-    );
+    return (data?.leads || [])
+      .filter(
+        (lead) =>
+          (filter === "all" ||
+            (filter === "open" &&
+              !["closed", "not_fit"].includes(lead.status)) ||
+            lead.status === filter) &&
+          (!needle ||
+            [
+              lead.name,
+              lead.company,
+              lead.contact,
+              lead.industry,
+              lead.problem,
+              lead.source,
+              lead.acquisition_channel,
+            ].some((value) => value?.toLowerCase().includes(needle))),
+      )
+      .sort((a, b) => {
+        if (a.source === "privacy-request") return -1;
+        if (b.source === "privacy-request") return 1;
+        return (
+          (b.qualification_score ?? -1) - (a.qualification_score ?? -1) ||
+          b.created_at - a.created_at
+        );
+      });
   }, [data, filter, query]);
   async function save(lead: Lead) {
     setSaving(lead.id);
-    setError('');
+    setError("");
     try {
-      const response = await fetch('/api/operations/leads', {
-        method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
+      const response = await fetch("/api/operations/leads", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
         body: JSON.stringify({
           id: lead.id,
           status: lead.status,
-          ownerNotes: lead.owner_notes || '',
+          ownerNotes: lead.owner_notes || "",
           nextActionAt: lead.next_action_at,
         }),
       });
       const body = (await response.json()) as { error?: string };
-      if (!response.ok) throw new Error(body.error || '保存失败');
+      if (!response.ok) throw new Error(body.error || "保存失败");
       await load();
     } catch (reason) {
-      setError(reason instanceof Error ? reason.message : '保存失败');
+      setError(reason instanceof Error ? reason.message : "保存失败");
     } finally {
-      setSaving('');
+      setSaving("");
     }
   }
   function update(id: string, changes: Partial<Lead>) {
@@ -172,7 +206,7 @@ export function LeadOperations() {
           </Button>
           <Button
             onClick={() =>
-              window.location.assign('/api/operations/leads?format=csv')
+              window.location.assign("/api/operations/leads?format=csv")
             }
             className="rounded-none"
           >
@@ -194,7 +228,7 @@ export function LeadOperations() {
           <button
             key={key}
             onClick={() => setFilter(key)}
-            className={`bg-background p-5 text-left hover:bg-[#dff6e6] ${filter === key ? 'ring-2 ring-inset ring-[#147e66]' : ''}`}
+            className={`bg-background p-5 text-left hover:bg-[#dff6e6] ${filter === key ? "ring-2 ring-inset ring-[#147e66]" : ""}`}
           >
             <span className="text-3xl font-black">
               {data?.summary[key] || 0}
@@ -247,6 +281,14 @@ export function LeadOperations() {
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <h2 className="text-xl font-black">{lead.company}</h2>
+                  {lead.qualification_tier && (
+                    <span
+                      className={`px-2 py-1 text-xs font-black ${lead.qualification_tier === "A" ? "bg-[#147e66] text-white" : lead.qualification_tier === "B" ? "bg-[#dff6e6] text-[#147e66]" : "bg-[#fff3ef] text-[#a63e2d]"}`}
+                    >
+                      {lead.qualification_tier} 级 · {lead.qualification_score}
+                      /100
+                    </span>
+                  )}
                   <span className="bg-[#dff6e6] px-2 py-1 text-xs font-bold text-[#147e66]">
                     {lead.acquisition_channel}
                   </span>
@@ -266,12 +308,27 @@ export function LeadOperations() {
               <div>
                 <p className="leading-7">{lead.problem}</p>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                  {[
+                    lead.problem_frequency,
+                    lead.annual_loss_range,
+                    lead.data_readiness,
+                    lead.owner_readiness,
+                  ]
+                    .filter(Boolean)
+                    .map((value, index) => (
+                      <span
+                        key={`${value}-${index}`}
+                        className="border px-2 py-1"
+                      >
+                        {qualificationLabels[value as string] || value}
+                      </span>
+                    ))}
                   {lead.decision && (
                     <span>
                       诊断：{lead.decision} · {lead.diagnostic_score}/100
                       {lead.diagnostic_profile
                         ? ` · #${lead.diagnostic_profile.toUpperCase()}`
-                        : ''}
+                        : ""}
                     </span>
                   )}
                   {lead.diagnostic_profile &&
@@ -330,7 +387,7 @@ export function LeadOperations() {
                 >
                   负责人备注
                   <Textarea
-                    value={lead.owner_notes || ''}
+                    value={lead.owner_notes || ""}
                     id={`notes-${lead.id}`}
                     onChange={(event) =>
                       update(lead.id, { owner_notes: event.target.value })

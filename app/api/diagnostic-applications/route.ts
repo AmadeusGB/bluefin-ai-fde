@@ -34,6 +34,23 @@ function acquisitionChannel(utmSource: string, referrer: string) {
     return "referral";
   }
 }
+const qualificationPoints = {
+  problemFrequency: { daily: 20, weekly: 15, monthly: 8, occasional: 0 },
+  annualLossRange: {
+    over_200w: 30,
+    "50w_200w": 25,
+    "10w_50w": 15,
+    under_10w: 5,
+    unknown: 0,
+  },
+  dataReadiness: { ready: 25, partial: 15, unknown: 5, unavailable: 0 },
+  ownerReadiness: { committed: 25, identified: 15, candidate: 8, none: 0 },
+} as const;
+
+function validOption<T extends Record<string, number>>(value: string, map: T) {
+  return value in map ? (value as keyof T) : null;
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, unknown>;
@@ -55,6 +72,38 @@ export async function POST(request: Request) {
       ? clean(body.decision, 12)
       : null;
     const source = clean(body.source, 40) || "website";
+    const problemFrequency = validOption(
+        clean(body.problemFrequency, 20),
+        qualificationPoints.problemFrequency,
+      ),
+      annualLossRange = validOption(
+        clean(body.annualLossRange, 20),
+        qualificationPoints.annualLossRange,
+      ),
+      dataReadiness = validOption(
+        clean(body.dataReadiness, 20),
+        qualificationPoints.dataReadiness,
+      ),
+      ownerReadiness = validOption(
+        clean(body.ownerReadiness, 20),
+        qualificationPoints.ownerReadiness,
+      );
+    const qualificationComplete =
+      problemFrequency && annualLossRange && dataReadiness && ownerReadiness;
+    const qualificationScore = qualificationComplete
+      ? qualificationPoints.problemFrequency[problemFrequency] +
+        qualificationPoints.annualLossRange[annualLossRange] +
+        qualificationPoints.dataReadiness[dataReadiness] +
+        qualificationPoints.ownerReadiness[ownerReadiness]
+      : null;
+    const qualificationTier =
+      qualificationScore == null
+        ? null
+        : qualificationScore >= 75
+          ? "A"
+          : qualificationScore >= 50
+            ? "B"
+            : "C";
     const profileCandidate = clean(body.diagnosticProfile, 3);
     const diagnosticProfile = /^[0-9a-f]{1,3}$/i.test(profileCandidate)
       ? profileCandidate.toLowerCase()
@@ -81,7 +130,8 @@ export async function POST(request: Request) {
       !role ||
       !industry ||
       problem.length < 20 ||
-      !consent
+      !consent ||
+      (source !== "privacy-request" && !qualificationComplete)
     )
       return Response.json(
         { error: "请完整填写必填项并确认隐私授权。" },
@@ -91,7 +141,7 @@ export async function POST(request: Request) {
     const id = crypto.randomUUID();
     await getD1()
       .prepare(
-        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,consent_at,privacy_policy_version,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+        `INSERT INTO diagnostic_applications (id,created_at,name,company,contact,role,industry,problem,problem_frequency,annual_loss_range,data_readiness,owner_readiness,qualification_score,qualification_tier,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,utm_content,utm_term,acquisition_channel,consent_at,privacy_policy_version,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
       )
       .bind(
         id,
@@ -102,6 +152,12 @@ export async function POST(request: Request) {
         role,
         industry,
         problem,
+        problemFrequency,
+        annualLossRange,
+        dataReadiness,
+        ownerReadiness,
+        qualificationScore,
+        qualificationTier,
         diagnosticScore,
         decision,
         diagnosticProfile,

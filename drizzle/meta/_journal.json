@@ -64,6 +64,13 @@
       "when": 1788242480893,
       "tag": "0008_chunky_war_machine",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1788244702626,
+      "tag": "0009_lazy_spectrum",
+      "breakpoints": true
     }
   ]
 }
