@@ -51,3 +51,50 @@ export function captureFirstTouch(): Attribution {
     return emptyAttribution();
   }
 }
+
+export function attributionSource(attribution: Attribution) {
+  const explicit = attribution.utmSource.trim().toLowerCase();
+  if (explicit) {
+    const known = [
+      'chatgpt',
+      'google',
+      'bing',
+      'perplexity',
+      'baidu',
+      'doubao',
+      'kimi',
+      'deepseek',
+      'tongyi',
+      'qwen',
+    ].find((source) => explicit.includes(source));
+    return known === 'qwen' ? 'tongyi' : known || 'utm';
+  }
+  if (!attribution.referrer) return 'direct';
+  try {
+    const hostname = new URL(attribution.referrer).hostname.toLowerCase();
+    const channels: [string, string][] = [
+      ['chatgpt.com', 'chatgpt'],
+      ['openai.com', 'chatgpt'],
+      ['google.', 'google'],
+      ['bing.com', 'bing'],
+      ['perplexity.ai', 'perplexity'],
+      ['baidu.com', 'baidu'],
+      ['doubao.com', 'doubao'],
+      ['kimi.com', 'kimi'],
+      ['moonshot.cn', 'kimi'],
+      ['deepseek.com', 'deepseek'],
+      ['tongyi.com', 'tongyi'],
+      ['qwen.ai', 'tongyi'],
+    ];
+    return (
+      channels.find(
+        ([domain]) =>
+          hostname === domain ||
+          hostname.endsWith(`.${domain}`) ||
+          hostname.includes(domain),
+      )?.[1] || 'referral'
+    );
+  } catch {
+    return 'referral';
+  }
+}

@@ -1,24 +1,25 @@
-import { ensureSchema, getD1 } from "@/db";
+import { ensureSchema, getD1 } from '@/db';
 
 const events = new Set([
-  "diagnostic_started",
-  "diagnostic_apply_clicked",
-  "application_viewed",
+  'page_view',
+  'diagnostic_started',
+  'diagnostic_apply_clicked',
+  'application_viewed',
 ]);
 const clean = (value: unknown, max: number) =>
-  typeof value === "string" ? value.trim().slice(0, max) : "";
+  typeof value === 'string' ? value.trim().slice(0, max) : '';
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, unknown>;
     const event = clean(body.event, 40),
-      source = clean(body.source, 40) || "website",
+      source = clean(body.source, 40) || 'website',
       pathCandidate = clean(body.landingPath, 200),
-      landingPath = pathCandidate.startsWith("/")
-        ? pathCandidate.split("?")[0]
-        : "/";
+      landingPath = pathCandidate.startsWith('/')
+        ? pathCandidate.split('?')[0]
+        : '/';
     if (!events.has(event))
-      return Response.json({ error: "事件无效。" }, { status: 400 });
+      return Response.json({ error: '事件无效。' }, { status: 400 });
     await ensureSchema();
     const now = Date.now(),
       eventDate = new Date(now).toISOString().slice(0, 10);
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
       .run();
     return Response.json({ ok: true }, { status: 202 });
   } catch (error) {
-    console.error("funnel event failed", error);
-    return Response.json({ error: "暂时无法记录。" }, { status: 500 });
+    console.error('funnel event failed', error);
+    return Response.json({ error: '暂时无法记录。' }, { status: 500 });
   }
 }

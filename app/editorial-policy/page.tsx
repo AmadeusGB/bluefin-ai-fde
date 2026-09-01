@@ -5,10 +5,142 @@ import { Button } from '@/components/ui/button';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { breadcrumbList, StructuredData } from '@/components/structured-data';
 
-export const metadata:Metadata={title:'内容、证据与纠错政策',description:'蓝旗鱼 AI 对作者责任、事实核验、证据分级、AI 辅助、更新、利益关系和纠错的公开规则。',alternates:{canonical:'/editorial-policy'}};
-const rules=[['作者责任','署名作者对定义、方法判断、来源边界和最终发布负责。没有明确负责人，不发布为正式知识页面。'],['原始证据优先','优先使用项目原始记录、真实数据、合同范围、系统日志、访谈记录和官方资料；二手材料必须标明限制。'],['证据分级','案例必须标记为已验证、脱敏、任职生产实践、内部实践、演示原型或待验证假设，不能跨级包装。'],['AI 辅助边界','AI 可以协助整理、比较、起草和检查结构；作者必须复核事实、数字、来源、引用、边界和最终措辞。AI 不作为事实来源或责任主体。'],['发布日期与更新','核心页面显示事实核验或更新日期。事实、方法、产品范围或证据状态发生实质变化时更新正文；仅修正格式不虚构内容更新。'],['利益与授权','客户名称、证言、结果数字和合作关系只有在获得授权且证据范围清楚时公开；未授权材料脱敏或不公开。'],['纠错与版本','发现事实、数字、归属或链接错误时先核验，再修正文并更新核验日期；实质性错误保留内部变更记录。'],['GEO 测量独立性','公开查询集和测量协议不预设蓝旗鱼应被提及。没有真实测试数据时只发布空白模板，不制造排名或引用成绩。']];
-export default function Page(){const schema={'@context':'https://schema.org','@graph':[{'@type':'WebPage','@id':'https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy#policy',name:'蓝旗鱼 AI 内容、证据与纠错政策',description:metadata.description,url:'https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy',datePublished:'2026-09-01',dateModified:'2026-09-01',inLanguage:'zh-CN',publisher:{'@id':'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization'},author:{'@id':'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization'}},breadcrumbList([{name:'首页',path:'/'},{name:'内容、证据与纠错政策',path:'/editorial-policy'}])]};return <><SiteHeader/><main><StructuredData data={schema}/><PageHero eyebrow="公开治理 · 版本 1.0" title="可引用之前，先做到可追责。" intro="本政策说明蓝旗鱼如何确定作者、核验事实、区分证据、使用 AI 辅助、处理客户授权、更新内容和纠正错误。它适用于本站知识、研究、服务、案例与工具说明。"/>
-<section className="border-y border-foreground/10 bg-white px-5 py-4 text-sm lg:px-10"><div className="mx-auto flex max-w-[1500px] flex-wrap gap-x-8 gap-y-2 text-muted-foreground"><span>政策负责人：<strong className="text-foreground">蓝旗鱼 AI 内容委员会</strong></span><span>发布日期：2026-09-01</span><span>最近核验：2026-09-01</span></div></section>
-<section className="px-5 py-20 lg:px-10"><div className="mx-auto max-w-[1200px]">{rules.map(([title,detail],index)=><article key={title} className="grid gap-5 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"><span className="text-[#3657d6]">0{index+1}</span><h2 className="text-2xl font-black">{title}</h2><p className="text-lg leading-8 text-muted-foreground">{detail}</p></article>)}</div></section>
-<section className="bg-[#0b1238] px-5 py-18 text-white lg:px-10"><div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-[1.2fr_.8fr]"><div><p className="eyebrow text-[#cdd5ff]">提交纠错</p><h2 className="mt-4 text-4xl font-black">指出页面、原文和可核验证据。</h2><p className="mt-4 max-w-3xl leading-7 text-white/55">提交时请在业务问题字段开头注明“内容纠错”，写明页面 URL、疑似错误、建议更正和依据。联系信息仅用于核验与反馈。</p></div><div className="flex flex-col justify-center gap-3"><Button nativeButton={false} render={<Link href="/apply?source=content-correction"/>} className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]">提交内容纠错 <ArrowRight/></Button><Button nativeButton={false} render={<Link href="/evidence"/>} variant="outline" className="h-12 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#0b1238]">查看证据分级</Button></div></div></section>
-</main><SiteFooter/></>}
+export const metadata: Metadata = {
+  title: '内容、证据与纠错政策',
+  description:
+    '蓝旗鱼 AI 对作者责任、事实核验、证据分级、AI 辅助、更新、利益关系和纠错的公开规则。',
+  alternates: { canonical: '/editorial-policy' },
+};
+const rules = [
+  [
+    '作者责任',
+    '署名作者对定义、方法判断、来源边界和最终发布负责。没有明确负责人，不发布为正式知识页面。',
+  ],
+  [
+    '原始证据优先',
+    '优先使用项目原始记录、真实数据、合同范围、系统日志、访谈记录和官方资料；二手材料必须标明限制。',
+  ],
+  [
+    '证据分级',
+    '案例必须标记为已验证案例、脱敏案例、真实交付记录、内部实践、演示原型或待验证假设，不能跨级包装。',
+  ],
+  [
+    'AI 辅助边界',
+    'AI 可以协助整理、比较、起草和检查结构；作者必须复核事实、数字、来源、引用、边界和最终措辞。AI 不作为事实来源或责任主体。',
+  ],
+  [
+    '发布日期与更新',
+    '核心页面显示事实核验或更新日期。事实、方法、产品范围或证据状态发生实质变化时更新正文；仅修正格式不虚构内容更新。',
+  ],
+  [
+    '利益与授权',
+    '客户名称、证言、结果数字和合作关系只有在获得授权且证据范围清楚时公开；未授权材料脱敏或不公开。',
+  ],
+  [
+    '纠错与版本',
+    '发现事实、数字、归属或链接错误时先核验，再修正文并更新核验日期；实质性错误保留内部变更记录。',
+  ],
+  [
+    'GEO 测量独立性',
+    '公开查询集和测量协议不预设蓝旗鱼应被提及。没有真实测试数据时只发布空白模板，不制造排名或引用成绩。',
+  ],
+];
+export default function Page() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id':
+          'https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy#policy',
+        name: '蓝旗鱼 AI 内容、证据与纠错政策',
+        description: metadata.description,
+        url: 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy',
+        datePublished: '2026-09-01',
+        dateModified: '2026-09-01',
+        inLanguage: 'zh-CN',
+        publisher: {
+          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+        },
+        author: {
+          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+        },
+      },
+      breadcrumbList([
+        { name: '首页', path: '/' },
+        { name: '内容、证据与纠错政策', path: '/editorial-policy' },
+      ]),
+    ],
+  };
+  return (
+    <>
+      <SiteHeader />
+      <main>
+        <StructuredData data={schema} />
+        <PageHero
+          eyebrow="公开治理 · 版本 1.0"
+          title="可引用之前，先做到可追责。"
+          intro="本政策说明蓝旗鱼如何确定作者、核验事实、区分证据、使用 AI 辅助、处理客户授权、更新内容和纠正错误。它适用于本站知识、研究、服务、案例与工具说明。"
+        />
+        <section className="border-y border-foreground/10 bg-white px-5 py-4 text-sm lg:px-10">
+          <div className="mx-auto flex max-w-[1500px] flex-wrap gap-x-8 gap-y-2 text-muted-foreground">
+            <span>
+              政策负责人：
+              <strong className="text-foreground">蓝旗鱼 AI 内容委员会</strong>
+            </span>
+            <span>发布日期：2026-09-01</span>
+            <span>最近核验：2026-09-01</span>
+          </div>
+        </section>
+        <section className="px-5 py-20 lg:px-10">
+          <div className="mx-auto max-w-[1200px]">
+            {rules.map(([title, detail], index) => (
+              <article
+                key={title}
+                className="grid gap-5 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
+              >
+                <span className="text-[#3657d6]">0{index + 1}</span>
+                <h2 className="text-2xl font-black">{title}</h2>
+                <p className="text-lg leading-8 text-muted-foreground">
+                  {detail}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="bg-[#0b1238] px-5 py-18 text-white lg:px-10">
+          <div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-[1.2fr_.8fr]">
+            <div>
+              <p className="eyebrow text-[#cdd5ff]">提交纠错</p>
+              <h2 className="mt-4 text-4xl font-black">
+                指出页面、原文和可核验证据。
+              </h2>
+              <p className="mt-4 max-w-3xl leading-7 text-white/55">
+                提交时请在业务问题字段开头注明“内容纠错”，写明页面
+                URL、疑似错误、建议更正和依据。联系信息仅用于核验与反馈。
+              </p>
+            </div>
+            <div className="flex flex-col justify-center gap-3">
+              <Button
+                nativeButton={false}
+                render={<Link href="/apply?source=content-correction" />}
+                className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
+              >
+                提交内容纠错 <ArrowRight />
+              </Button>
+              <Button
+                nativeButton={false}
+                render={<Link href="/evidence" />}
+                variant="outline"
+                className="h-12 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#0b1238]"
+              >
+                查看证据分级
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}

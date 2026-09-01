@@ -1,5 +1,5 @@
-import { ensureSchema, getD1 } from "@/db";
-import { authenticatedSiteUser } from "@/lib/site-auth";
+import { ensureSchema, getD1 } from '@/db';
+import { authenticatedSiteUser } from '@/lib/site-auth';
 type LeadSummary = {
   total: number;
   open_count: number;
@@ -19,43 +19,59 @@ type GeoSummary = {
   platforms: number;
 };
 type FunnelSummary = {
+  page_views: number;
+  ai_referrals: number;
   diagnostic_starts: number;
   diagnostic_apply_clicks: number;
   application_views: number;
   applications_submitted: number;
 };
+type TrafficDimension = { dimension: string; total: number };
 export async function GET(request: Request) {
   const user = authenticatedSiteUser(request.headers);
   if (!user)
-    return Response.json({ error: "需要管理员登录后访问。" }, { status: 401 });
+    return Response.json({ error: '需要管理员登录后访问。' }, { status: 401 });
   await ensureSchema();
   const db = getD1(),
     since = Date.now() - 30 * 24 * 60 * 60 * 1000,
     sinceDate = new Date(since).toISOString().slice(0, 10);
-  const [leads, evidence, geo, funnel] = await Promise.all([
-    db
-      .prepare(
-        "SELECT COUNT(*) total,SUM(CASE WHEN status NOT IN ('closed','not_fit') THEN 1 ELSE 0 END) open_count,SUM(CASE WHEN status IN ('qualified','diagnostic_paid','mvd','won') THEN 1 ELSE 0 END) qualified_count,SUM(CASE WHEN created_at>=? THEN 1 ELSE 0 END) recent_count FROM diagnostic_applications",
-      )
-      .bind(since)
-      .first<LeadSummary>(),
-    db
-      .prepare(
-        "SELECT COUNT(*) total,SUM(CASE WHEN publication_status='review' THEN 1 ELSE 0 END) review_count,SUM(CASE WHEN publication_status='approved' THEN 1 ELSE 0 END) approved_count,COALESCE(AVG(completeness),0) average_completeness FROM evidence_records",
-      )
-      .first<EvidenceSummary>(),
-    db
-      .prepare(
-        "SELECT COUNT(*) observations,MAX(test_date) latest_date,COUNT(DISTINCT test_date) measurement_dates,COUNT(DISTINCT platform) platforms FROM geo_measurements",
-      )
-      .first<GeoSummary>(),
-    db
-      .prepare(
-        "SELECT COALESCE(SUM(CASE WHEN event_name='diagnostic_started' THEN count ELSE 0 END),0) diagnostic_starts,COALESCE(SUM(CASE WHEN event_name='diagnostic_apply_clicked' THEN count ELSE 0 END),0) diagnostic_apply_clicks,COALESCE(SUM(CASE WHEN event_name='application_viewed' THEN count ELSE 0 END),0) application_views,COALESCE(SUM(CASE WHEN event_name='application_submitted' THEN count ELSE 0 END),0) applications_submitted FROM funnel_events WHERE event_date>=?",
-      )
-      .bind(sinceDate)
-      .first<FunnelSummary>(),
-  ]);
+  const [leads, evidence, geo, funnel, topSources, topPages] =
+    await Promise.all([
+      db
+        .prepare(
+          "SELECT COUNT(*) total,SUM(CASE WHEN status NOT IN ('closed','not_fit') THEN 1 ELSE 0 END) open_count,SUM(CASE WHEN status IN ('qualified','diagnostic_paid','mvd','won') THEN 1 ELSE 0 END) qualified_count,SUM(CASE WHEN created_at>=? THEN 1 ELSE 0 END) recent_count FROM diagnostic_applications",
+        )
+        .bind(since)
+        .first<LeadSummary>(),
+      db
+        .prepare(
+          "SELECT COUNT(*) total,SUM(CASE WHEN publication_status='review' THEN 1 ELSE 0 END) review_count,SUM(CASE WHEN publication_status='approved' THEN 1 ELSE 0 END) approved_count,COALESCE(AVG(completeness),0) average_completeness FROM evidence_records",
+        )
+        .first<EvidenceSummary>(),
+      db
+        .prepare(
+          'SELECT COUNT(*) observations,MAX(test_date) latest_date,COUNT(DISTINCT test_date) measurement_dates,COUNT(DISTINCT platform) platforms FROM geo_measurements',
+        )
+        .first<GeoSummary>(),
+      db
+        .prepare(
+          "SELECT COALESCE(SUM(CASE WHEN event_name='page_view' THEN count ELSE 0 END),0) page_views,COALESCE(SUM(CASE WHEN event_name='page_view' AND source IN ('chatgpt','perplexity','doubao','kimi','deepseek','tongyi') THEN count ELSE 0 END),0) ai_referrals,COALESCE(SUM(CASE WHEN event_name='diagnostic_started' THEN count ELSE 0 END),0) diagnostic_starts,COALESCE(SUM(CASE WHEN event_name='diagnostic_apply_clicked' THEN count ELSE 0 END),0) diagnostic_apply_clicks,COALESCE(SUM(CASE WHEN event_name='application_viewed' THEN count ELSE 0 END),0) application_views,COALESCE(SUM(CASE WHEN event_name='application_submitted' THEN count ELSE 0 END),0) applications_submitted FROM funnel_events WHERE event_date>=?",
+        )
+        .bind(sinceDate)
+        .first<FunnelSummary>(),
+      db
+        .prepare(
+          "SELECT source dimension,SUM(count) total FROM funnel_events WHERE event_name='page_view' AND event_date>=? GROUP BY source ORDER BY total DESC LIMIT 6",
+        )
+        .bind(sinceDate)
+        .all<TrafficDimension>(),
+      db
+        .prepare(
+          "SELECT landing_path dimension,SUM(count) total FROM funnel_events WHERE event_name='page_view' AND event_date>=? GROUP BY landing_path ORDER BY total DESC LIMIT 6",
+        )
+        .bind(sinceDate)
+        .all<TrafficDimension>(),
+    ]);
   const diagnosticStarts = Number(funnel?.diagnostic_starts || 0),
     diagnosticApplyClicks = Number(funnel?.diagnostic_apply_clicks || 0),
     applicationViews = Number(funnel?.application_views || 0),
@@ -97,7 +113,14 @@ export async function GET(request: Request) {
           ? Math.round((applicationsSubmitted / applicationViews) * 100)
           : 0,
       },
+      traffic: {
+        windowDays: 30,
+        pageViews: Number(funnel?.page_views || 0),
+        aiReferrals: Number(funnel?.ai_referrals || 0),
+        topSources: topSources.results || [],
+        topPages: topPages.results || [],
+      },
     },
-    { headers: { "cache-control": "no-store" } },
+    { headers: { 'cache-control': 'no-store' } },
   );
 }

@@ -5,6 +5,7 @@ import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { Button } from '@/components/ui/button';
 type Section = { title: string; detail: string; output?: string };
 type Related = { label: string; href: string };
+type Source = { label: string; href: string; note: string };
 export function MethodKnowledgePage({
   eyebrow,
   title,
@@ -16,6 +17,7 @@ export function MethodKnowledgePage({
   bad,
   verification,
   related,
+  sources = [],
 }: {
   eyebrow: string;
   title: string;
@@ -27,6 +29,7 @@ export function MethodKnowledgePage({
   bad: string[];
   verification: string[];
   related: Related[];
+  sources?: Source[];
 }) {
   return (
     <>
@@ -112,6 +115,30 @@ export function MethodKnowledgePage({
             </div>
           </div>
         </section>
+        {sources.length > 0 && (
+          <section className="border-t border-foreground/10 bg-[#f1eee5] px-5 py-16 lg:px-10">
+            <div className="mx-auto max-w-[1200px]">
+              <p className="eyebrow text-[#3657d6]">原始依据</p>
+              <h2 className="mt-4 text-3xl font-black">优先引用官方原文。</h2>
+              <div className="mt-7 grid gap-4 lg:grid-cols-3">
+                {sources.map((source) => (
+                  <a
+                    key={source.href}
+                    href={source.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="border border-foreground/15 bg-white p-6 hover:border-[#3657d6]"
+                  >
+                    <h3 className="font-black">{source.label}</h3>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {source.note}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
         <section className="px-5 py-16 lg:px-10">
           <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-7 lg:flex-row lg:items-center">
             <div>

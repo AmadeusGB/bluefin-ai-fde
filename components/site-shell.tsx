@@ -1,16 +1,17 @@
-import Link from "@/components/safe-link";
-import { ArrowRight, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from '@/components/safe-link';
+import { ArrowRight, Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-[1500px] items-center justify-between px-5 lg:px-10">
-        <Link
-          href="/"
-          className="flex items-center font-black tracking-tight"
-        >
-          <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼 AI" className="h-auto w-[168px] sm:w-[184px]" />
+        <Link href="/" className="flex items-center font-black tracking-tight">
+          <img
+            src="/brand/bluefin-logo-lockup.png"
+            alt="蓝旗鱼 AI"
+            className="h-auto w-[168px] sm:w-[184px]"
+          />
         </Link>
         <nav
           aria-label="主导航"
@@ -38,16 +39,16 @@ export function SiteHeader() {
           >
             <div className="grid grid-cols-2 gap-px bg-foreground/10">
               {[
-                ["什么是 FDE", "/fde"],
-                ["交付方法", "/#method"],
-                ["行业场景", "/solutions"],
-                ["FDE 服务", "/services"],
-                ["案例与证据", "/evidence"],
-                ["工具与模板", "/tools"],
-                ["FDE 知识库", "/knowledge"],
-                ["公开研究", "/research"],
-                ["关于蓝旗鱼", "/about"],
-                ["隐私政策", "/privacy"],
+                ['什么是 FDE', '/fde'],
+                ['交付方法', '/#method'],
+                ['行业场景', '/solutions'],
+                ['FDE 服务', '/services'],
+                ['案例与证据', '/evidence'],
+                ['工具与模板', '/tools'],
+                ['FDE 知识库', '/knowledge'],
+                ['公开研究', '/research'],
+                ['关于蓝旗鱼', '/about'],
+                ['隐私政策', '/privacy'],
               ].map(([label, href]) => (
                 <Link
                   key={href}
@@ -88,9 +89,15 @@ export function SiteFooter() {
               href="/"
               className="inline-flex items-center bg-[#cdd5ff] px-5 py-3 text-lg font-black"
             >
-              <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼 AI" className="h-auto w-[230px]" />
+              <img
+                src="/brand/bluefin-logo-lockup.png"
+                alt="蓝旗鱼 AI"
+                className="h-auto w-[230px]"
+              />
             </Link>
-            <p className="mt-4 text-white/55">探索 · 实践 · 共创｜面向中国企业的 FDE 落地团队</p>
+            <p className="mt-4 text-white/55">
+              探索 · 实践 · 共创｜面向中国企业的 FDE 落地团队
+            </p>
             <div className="mt-4 flex flex-col gap-2 text-sm text-white/60">
               <Link href="/about">关于蓝旗鱼 AI</Link>
               <Link href="/brand">品牌与媒体资料</Link>
@@ -120,7 +127,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-16 flex flex-wrap justify-between gap-3 border-t border-white/15 pt-6 text-xs text-white/35">
-          <span>© 2026 蓝旗鱼 AI</span>
+          <span>© 2026 深圳市蓝旗鱼科技有限公司 · 蓝旗鱼 AI</span>
           <span>内容核验日期：2026-09-01</span>
         </div>
       </div>

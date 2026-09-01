@@ -1,17 +1,18 @@
-"use client";
-import Link from "@/components/safe-link";
-import { useEffect, useState } from "react";
+'use client';
+import Link from '@/components/safe-link';
+import { useEffect, useState } from 'react';
 import {
   ArrowRight,
   BarChart3,
   FileCheck2,
+  Globe2,
   Loader2,
   RefreshCw,
   TrendingUp,
   UsersRound,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { OperationsNav } from "@/components/operations-nav";
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { OperationsNav } from '@/components/operations-nav';
 type Payload = {
   user: { email: string };
   generatedAt: number;
@@ -37,23 +38,30 @@ type Payload = {
     diagnosticToApplyRate: number;
     applicationCompletionRate: number;
   };
+  traffic: {
+    windowDays: number;
+    pageViews: number;
+    aiReferrals: number;
+    topSources: { dimension: string; total: number }[];
+    topPages: { dimension: string; total: number }[];
+  };
 };
 export function OperationsOverview() {
   const [data, setData] = useState<Payload | null>(null),
     [loading, setLoading] = useState(true),
-    [error, setError] = useState("");
+    [error, setError] = useState('');
   async function load() {
     setLoading(true);
-    setError("");
+    setError('');
     try {
-      const response = await fetch("/api/operations/summary", {
-          cache: "no-store",
+      const response = await fetch('/api/operations/summary', {
+          cache: 'no-store',
         }),
         body = (await response.json()) as Payload & { error?: string };
-      if (!response.ok) throw new Error(body.error || "读取失败");
+      if (!response.ok) throw new Error(body.error || '读取失败');
       setData(body);
     } catch (reason) {
-      setError(reason instanceof Error ? reason.message : "读取失败");
+      setError(reason instanceof Error ? reason.message : '读取失败');
     } finally {
       setLoading(false);
     }
@@ -70,51 +78,63 @@ export function OperationsOverview() {
     );
   const systems = [
     {
-      title: "诊断与申请漏斗",
-      href: "/operations/leads",
+      title: '页面与 AI 引荐',
+      href: '/operations',
+      icon: Globe2,
+      primary: data?.traffic.pageViews || 0,
+      primaryLabel: '近 30 天页面访问',
+      metrics: [
+        [data?.traffic.aiReferrals || 0, 'AI 引荐访问'],
+        [data?.traffic.topSources.length || 0, '已识别来源'],
+        [data?.traffic.topPages.length || 0, '活跃落地页'],
+      ],
+    },
+    {
+      title: '诊断与申请漏斗',
+      href: '/operations/leads',
       icon: TrendingUp,
       primary: `${data?.funnel.diagnosticToApplyRate || 0}%`,
-      primaryLabel: "近 30 天诊断 → 携带报告申请",
+      primaryLabel: '近 30 天诊断 → 携带报告申请',
       metrics: [
-        [data?.funnel.diagnosticStarts || 0, "诊断开始"],
-        [data?.funnel.applicationViews || 0, "申请页打开"],
-        [`${data?.funnel.applicationCompletionRate || 0}%`, "申请完成率"],
+        [data?.funnel.diagnosticStarts || 0, '诊断开始'],
+        [data?.funnel.applicationViews || 0, '申请页打开'],
+        [`${data?.funnel.applicationCompletionRate || 0}%`, '申请完成率'],
       ],
     },
     {
-      title: "线索与商业转化",
-      href: "/operations/leads",
+      title: '线索与商业转化',
+      href: '/operations/leads',
       icon: UsersRound,
       primary: data?.leads.open || 0,
-      primaryLabel: "条待推进线索",
+      primaryLabel: '条待推进线索',
       metrics: [
-        [data?.leads.recent || 0, "近 30 天新增"],
-        [data?.leads.qualified || 0, "已进入资格或交付"],
-        [data?.leads.total || 0, "累计申请"],
+        [data?.leads.recent || 0, '近 30 天新增'],
+        [data?.leads.qualified || 0, '已进入资格或交付'],
+        [data?.leads.total || 0, '累计申请'],
       ],
     },
     {
-      title: "GEO 持续测量",
-      href: "/operations/geo",
+      title: 'GEO 持续测量',
+      href: '/operations/geo',
       icon: BarChart3,
       primary: data?.geo.observations || 0,
-      primaryLabel: "条有效观测",
+      primaryLabel: '条有效观测',
       metrics: [
-        [data?.geo.platforms || 0, "覆盖平台"],
-        [data?.geo.measurementDates || 0, "测量日期"],
-        [data?.geo.latestDate || "—", "最近测量"],
+        [data?.geo.platforms || 0, '覆盖平台'],
+        [data?.geo.measurementDates || 0, '测量日期'],
+        [data?.geo.latestDate || '—', '最近测量'],
       ],
     },
     {
-      title: "案例证据资产",
-      href: "/operations/evidence",
+      title: '案例证据资产',
+      href: '/operations/evidence',
       icon: FileCheck2,
       primary: data?.evidence.review || 0,
-      primaryLabel: "项等待复核",
+      primaryLabel: '项等待复核',
       metrics: [
-        [data?.evidence.approved || 0, "已批准"],
-        [`${data?.evidence.averageCompleteness || 0}%`, "平均完整度"],
-        [data?.evidence.total || 0, "累计记录"],
+        [data?.evidence.approved || 0, '已批准'],
+        [`${data?.evidence.averageCompleteness || 0}%`, '平均完整度'],
+        [data?.evidence.total || 0, '累计记录'],
       ],
     },
   ];
@@ -131,12 +151,18 @@ export function OperationsOverview() {
       ? `有 ${data.evidence.review} 项案例证据等待复核。`
       : null,
     data && data.geo.observations === 0
-      ? "尚未导入首批真实 GEO 测量结果。"
+      ? '尚未导入首批真实 GEO 测量结果。'
       : null,
     data && data.geo.latestDate
       ? `最近一次 GEO 测量日期为 ${data.geo.latestDate}。`
       : null,
   ].filter(Boolean);
+  const trafficSections: Array<
+    [string, { dimension: string; total: number }[]]
+  > = [
+    ['近 30 天来源', data?.traffic.topSources || []],
+    ['近 30 天落地页', data?.traffic.topPages || []],
+  ];
   return (
     <div className="mx-auto max-w-[1500px] px-5 py-8 lg:px-10">
       <OperationsNav />
@@ -167,7 +193,7 @@ export function OperationsOverview() {
           {error}
         </p>
       )}
-      <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
         {systems.map((system) => (
           <article
             key={system.href}
@@ -202,6 +228,34 @@ export function OperationsOverview() {
           </article>
         ))}
       </div>
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
+        {trafficSections.map(([title, rows]) => (
+          <article
+            key={title}
+            className="border border-foreground/15 bg-white p-7"
+          >
+            <h2 className="text-2xl font-black">{title}</h2>
+            <div className="mt-5 divide-y divide-foreground/10">
+              {rows.map((row) => (
+                <div
+                  key={row.dimension}
+                  className="flex items-center justify-between gap-5 py-3 text-sm"
+                >
+                  <span className="min-w-0 truncate text-muted-foreground">
+                    {row.dimension}
+                  </span>
+                  <b>{row.total}</b>
+                </div>
+              ))}
+              {!rows.length && (
+                <p className="py-6 text-sm text-muted-foreground">
+                  新版本上线后开始累计，不回填历史访问。
+                </p>
+              )}
+            </div>
+          </article>
+        ))}
+      </section>
       <section className="mt-8 grid gap-6 bg-[#0b1238] p-7 text-white lg:grid-cols-[.7fr_1.3fr]">
         <div>
           <p className="eyebrow text-[#cdd5ff]">优先事项</p>
@@ -226,11 +280,11 @@ export function OperationsOverview() {
       <p className="mt-6 text-xs text-muted-foreground">
         摘要生成时间：
         {data?.generatedAt
-          ? new Intl.DateTimeFormat("zh-CN", {
-              dateStyle: "medium",
-              timeStyle: "short",
+          ? new Intl.DateTimeFormat('zh-CN', {
+              dateStyle: 'medium',
+              timeStyle: 'short',
             }).format(data.generatedAt)
-          : "—"}
+          : '—'}
       </p>
     </div>
   );

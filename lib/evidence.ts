@@ -75,7 +75,7 @@ export const evidenceSections = [
 export const evidenceLevels = [
   ['verified', '已验证案例'],
   ['anonymized', '脱敏案例'],
-  ['employment', '任职生产实践'],
+  ['delivery', '真实交付记录'],
   ['internal', '内部实践'],
   ['prototype', '演示原型'],
   ['hypothesis', '待验证假设'],

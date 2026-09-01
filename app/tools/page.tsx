@@ -1,49 +1,55 @@
-import type { Metadata } from "next";
-import Link from "@/components/safe-link";
-import { ArrowUpRight } from "lucide-react";
-import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
+import type { Metadata } from 'next';
+import Link from '@/components/safe-link';
+import { ArrowUpRight } from 'lucide-react';
+import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 export const metadata: Metadata = {
-  title: "FDE 工具与模板",
+  title: 'FDE 工具与模板',
   description:
-    "在线 FDE 适配度评估、项目决策评分器、五张地图、MVD 设计器、30/60/90 天复查与案例证据模板。",
-  alternates: { canonical: "/tools" },
+    '在线 FDE 适配度评估、项目决策评分器、五张地图、MVD 设计器、30/60/90 天复查与案例证据模板。',
+  alternates: { canonical: '/tools' },
 };
 const tools = [
   [
-    "FDE 适配度评估",
-    "12 项条件、四个维度，生成 GO / ADJUST / HOLD 初步报告。",
-    "/diagnostic",
-    "资格初筛",
+    'FDE 适配度评估',
+    '12 项条件、四个维度，生成 GO / ADJUST / HOLD 初步报告。',
+    '/diagnostic',
+    '资格初筛',
   ],
   [
-    "AI 项目决策评分器",
-    "16 项生产条件与三项关键红线，生成 GO / ADJUST / HOLD / STOP 决策。",
-    "/tools/project-decision-scorer",
-    "决策工具",
+    'AI 项目决策评分器',
+    '16 项生产条件与三项关键红线，生成 GO / ADJUST / HOLD / STOP 决策。',
+    '/tools/project-decision-scorer',
+    '决策工具',
   ],
   [
-    "五张地图模板",
-    "用问题、流程、数据、责任与风险五张地图完成现场初筛。",
-    "/tools/five-maps",
-    "诊断模板",
+    '五张地图模板',
+    '用问题、流程、数据、责任与风险五张地图完成现场初筛。',
+    '/tools/five-maps',
+    '诊断模板',
   ],
   [
-    "MVD 设计器",
-    "把最贵的问题、真实数据、人机边界与成功条件写成一页草案。",
-    "/tools/mvd-designer",
-    "设计工具",
+    'MVD 设计器',
+    '把最贵的问题、真实数据、人机边界与成功条件写成一页草案。',
+    '/tools/mvd-designer',
+    '设计工具',
   ],
   [
-    "30/60/90 天复查工具",
-    "按上线 30、60、90 天检查采用、结果、风险和交接，生成阶段决策报告。",
-    "/tools/30-60-90-review",
-    "采用复查",
+    '30/60/90 天复查工具',
+    '按上线 30、60、90 天检查采用、结果、风险和交接，生成阶段决策报告。',
+    '/tools/30-60-90-review',
+    '采用复查',
   ],
   [
-    "案例证据模板",
-    "按统一结构公开背景、基线、结果、限制与客户接管方式。",
-    "/evidence/case-template",
-    "公开标准",
+    '企业 AI 生产验收清单',
+    '28 项检查覆盖业务、任务、运行、安全、人机边界、采用与交接，可下载 CSV。',
+    '/tools/production-acceptance-checklist',
+    '生产验收',
+  ],
+  [
+    '案例证据模板',
+    '按统一结构公开背景、基线、结果、限制与客户接管方式。',
+    '/evidence/case-template',
+    '公开标准',
   ],
 ];
 export default function Tools() {

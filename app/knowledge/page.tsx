@@ -88,6 +88,24 @@ const entries = [
     '/knowledge/production-guardrails',
   ],
   [
+    '企业数据进入大模型前要检查什么？',
+    '风险',
+    '检查处理目的、数据分类、模型供应链、权限、日志、保留、删除和退出机制。',
+    '/knowledge/enterprise-ai-data-security',
+  ],
+  [
+    '企业 AI 项目如何计算价值与 ROI？',
+    '决策',
+    '从可复算损失基线、可归因改善、完整成本和证据强度逐步计算价值。',
+    '/knowledge/ai-project-value-roi',
+  ],
+  [
+    '企业如何选择 FDE 服务商？',
+    '选择',
+    '核验现场诊断、真实数据、生产责任、案例证据、交接资产和停止机制。',
+    '/knowledge/how-to-choose-fde-provider',
+  ],
+  [
     '企业 AI 项目如何推动采用与交接？',
     '方法',
     '把系统放进真实工作流，交付可运营资产，并执行 30/60/90 天复查。',

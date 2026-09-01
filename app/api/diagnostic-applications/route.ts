@@ -1,26 +1,26 @@
-import { ensureSchema, getD1 } from "@/db";
-import { decodeDiagnosticProfile, diagnosticResult } from "@/lib/diagnostic";
+import { ensureSchema, getD1 } from '@/db';
+import { decodeDiagnosticProfile, diagnosticResult } from '@/lib/diagnostic';
 
 const clean = (value: unknown, max: number) =>
-  typeof value === "string" ? value.trim().slice(0, max) : "";
+  typeof value === 'string' ? value.trim().slice(0, max) : '';
 function acquisitionChannel(utmSource: string, referrer: string) {
-  if (utmSource) return "utm";
-  if (!referrer) return "direct";
+  if (utmSource) return 'utm';
+  if (!referrer) return 'direct';
   try {
     const hostname = new URL(referrer).hostname.toLowerCase();
     const channels: [string, string][] = [
-      ["chatgpt.com", "chatgpt"],
-      ["openai.com", "chatgpt"],
-      ["google.", "google"],
-      ["bing.com", "bing"],
-      ["perplexity.ai", "perplexity"],
-      ["baidu.com", "baidu"],
-      ["doubao.com", "doubao"],
-      ["kimi.com", "kimi"],
-      ["moonshot.cn", "kimi"],
-      ["deepseek.com", "deepseek"],
-      ["tongyi.com", "tongyi"],
-      ["qwen.ai", "tongyi"],
+      ['chatgpt.com', 'chatgpt'],
+      ['openai.com', 'chatgpt'],
+      ['google.', 'google'],
+      ['bing.com', 'bing'],
+      ['perplexity.ai', 'perplexity'],
+      ['baidu.com', 'baidu'],
+      ['doubao.com', 'doubao'],
+      ['kimi.com', 'kimi'],
+      ['moonshot.cn', 'kimi'],
+      ['deepseek.com', 'deepseek'],
+      ['tongyi.com', 'tongyi'],
+      ['qwen.ai', 'tongyi'],
     ];
     return (
       channels.find(
@@ -28,18 +28,18 @@ function acquisitionChannel(utmSource: string, referrer: string) {
           hostname === domain ||
           hostname.endsWith(`.${domain}`) ||
           hostname.includes(domain),
-      )?.[1] || "referral"
+      )?.[1] || 'referral'
     );
   } catch {
-    return "referral";
+    return 'referral';
   }
 }
 const qualificationPoints = {
   problemFrequency: { daily: 20, weekly: 15, monthly: 8, occasional: 0 },
   annualLossRange: {
     over_200w: 30,
-    "50w_200w": 25,
-    "10w_50w": 15,
+    '50w_200w': 25,
+    '10w_50w': 15,
     under_10w: 5,
     unknown: 0,
   },
@@ -66,12 +66,12 @@ export async function POST(request: Request) {
     let diagnosticScore = Number.isFinite(Number(body.diagnosticScore))
       ? Math.max(0, Math.min(100, Math.round(Number(body.diagnosticScore))))
       : null;
-    let decision = ["GO", "ADJUST", "HOLD", "STOP"].includes(
+    let decision = ['GO', 'ADJUST', 'HOLD', 'STOP'].includes(
       clean(body.decision, 12),
     )
       ? clean(body.decision, 12)
       : null;
-    const source = clean(body.source, 40) || "website";
+    const source = clean(body.source, 40) || 'website';
     const problemFrequency = validOption(
         clean(body.problemFrequency, 20),
         qualificationPoints.problemFrequency,
@@ -100,10 +100,10 @@ export async function POST(request: Request) {
       qualificationScore == null
         ? null
         : qualificationScore >= 75
-          ? "A"
+          ? 'A'
           : qualificationScore >= 50
-            ? "B"
-            : "C";
+            ? 'B'
+            : 'C';
     const profileCandidate = clean(body.diagnosticProfile, 3);
     const diagnosticProfile = /^[0-9a-f]{1,3}$/i.test(profileCandidate)
       ? profileCandidate.toLowerCase()
@@ -131,10 +131,10 @@ export async function POST(request: Request) {
       !industry ||
       problem.length < 20 ||
       !consent ||
-      (source !== "privacy-request" && !qualificationComplete)
+      (source !== 'privacy-request' && !qualificationComplete)
     )
       return Response.json(
-        { error: "请完整填写必填项并确认隐私授权。" },
+        { error: '请完整填写必填项并确认隐私授权。' },
         { status: 400 },
       );
     await ensureSchema();
@@ -174,15 +174,15 @@ export async function POST(request: Request) {
           utmTerm || null,
           channel,
           now,
-          "2026-09-01-v1.1",
-          "new",
+          '2026-09-01-v1.2',
+          'new',
         ),
     ];
-    if (source !== "privacy-request") {
+    if (source !== 'privacy-request') {
       const eventDate = new Date(now).toISOString().slice(0, 10),
-        eventLandingPath = landingPath.startsWith("/")
-          ? landingPath.split("?")[0]
-          : "/apply";
+        eventLandingPath = landingPath.startsWith('/')
+          ? landingPath.split('?')[0]
+          : '/apply';
       statements.push(
         db
           .prepare(
@@ -195,9 +195,9 @@ export async function POST(request: Request) {
     await db.batch(statements);
     return Response.json({ ok: true, id }, { status: 201 });
   } catch (error) {
-    console.error("diagnostic application failed", error);
+    console.error('diagnostic application failed', error);
     return Response.json(
-      { error: "暂时无法提交，请稍后重试。" },
+      { error: '暂时无法提交，请稍后重试。' },
       { status: 500 },
     );
   }

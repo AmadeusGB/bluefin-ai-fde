@@ -1,11 +1,19 @@
 'use client';
 
 import { useEffect } from 'react';
-import { captureFirstTouch } from '@/lib/attribution';
+import { usePathname } from 'next/navigation';
+import { attributionSource, captureFirstTouch } from '@/lib/attribution';
+import { trackFunnelEvent } from '@/lib/funnel-events';
 
 export function AttributionCapture() {
+  const pathname = usePathname();
   useEffect(() => {
-    captureFirstTouch();
-  }, []);
+    const attribution = captureFirstTouch();
+    trackFunnelEvent(
+      'page_view',
+      attributionSource(attribution),
+      pathname || '/',
+    );
+  }, [pathname]);
   return null;
 }
