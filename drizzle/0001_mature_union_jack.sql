@@ -1,0 +1,2 @@
+CREATE INDEX `idx_diagnostic_applications_created_at` ON `diagnostic_applications` (`created_at`);--> statement-breakpoint
+CREATE INDEX `idx_diagnostic_applications_open_status` ON `diagnostic_applications` (`status`) WHERE "diagnostic_applications"."status" != 'closed';
