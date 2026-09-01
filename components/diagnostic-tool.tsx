@@ -1,20 +1,20 @@
-'use client';
-import { useMemo, useState } from 'react';
+"use client";
+import { useMemo, useState } from "react";
 import {
   ArrowRight,
   Check,
   Printer,
   RotateCcw,
   TriangleAlert,
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Progress, ProgressLabel } from '@/components/ui/progress';
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Progress, ProgressLabel } from "@/components/ui/progress";
 import {
   diagnosticGroups,
   diagnosticQuestions,
   diagnosticResult,
   encodeDiagnosticProfile,
-} from '@/lib/diagnostic';
+} from "@/lib/diagnostic";
 export function DiagnosticTool() {
   const [selected, setSelected] = useState<boolean[]>(
     diagnosticQuestions.map(() => false),
@@ -105,10 +105,10 @@ export function DiagnosticTool() {
                             ),
                           )
                         }
-                        className={`flex w-full gap-4 border p-5 text-left transition ${selected[index] ? 'border-[#147e66] bg-[#dff6e6]' : 'border-foreground/15 bg-white hover:border-foreground/35'}`}
+                        className={`flex w-full gap-4 border p-5 text-left transition ${selected[index] ? "border-[#147e66] bg-[#dff6e6]" : "border-foreground/15 bg-white hover:border-foreground/35"}`}
                       >
                         <span
-                          className={`mt-0.5 grid size-6 shrink-0 place-items-center border ${selected[index] ? 'border-[#147e66] bg-[#147e66] text-white' : 'border-foreground/30'}`}
+                          className={`mt-0.5 grid size-6 shrink-0 place-items-center border ${selected[index] ? "border-[#147e66] bg-[#147e66] text-white" : "border-foreground/30"}`}
                         >
                           {selected[index] && <Check className="size-4" />}
                         </span>
@@ -131,7 +131,7 @@ export function DiagnosticTool() {
             </h2>
           </div>
           <p className="max-w-xl text-sm leading-6 text-muted-foreground">
-            {checked} / {diagnosticQuestions.length}{' '}
+            {checked} / {diagnosticQuestions.length}{" "}
             项条件已具备。此结果是资格初筛，不是项目承诺；正式结论仍需核验流程、数据、风险与组织条件。
           </p>
         </div>
@@ -139,7 +139,7 @@ export function DiagnosticTool() {
           {dimensions.map((dimension) => (
             <article
               key={dimension.key}
-              className={`border p-6 ${dimension.missing.length ? 'border-[#ff735d]/40 bg-[#fff3ef]' : 'border-[#147e66]/35 bg-[#dff6e6]'}`}
+              className={`border p-6 ${dimension.missing.length ? "border-[#ff735d]/40 bg-[#fff3ef]" : "border-[#147e66]/35 bg-[#dff6e6]"}`}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-black">{dimension.label}</h3>
@@ -180,7 +180,7 @@ export function DiagnosticTool() {
             size="lg"
             className="h-12 rounded-none px-5"
           >
-            附带报告，申请资格确认 <ArrowRight />
+            附带报告，申请 30 分钟资格确认 <ArrowRight />
           </Button>
           <Button
             variant="outline"
@@ -201,6 +201,12 @@ export function DiagnosticTool() {
             重新评估
           </Button>
         </div>
+        <p className="mt-5 text-sm text-muted-foreground print:hidden">
+          资格确认通过后，才会书面确认付费现场诊断的范围、周期和报价。{' '}
+          <a href="/field-diagnostic" className="font-bold text-[#147e66] underline underline-offset-4">
+            查看现场诊断交付物与边界
+          </a>
+        </p>
         <p className="mt-5 text-xs text-muted-foreground">
           报告版本 1.0 · 诊断编号 {profile.toUpperCase()} · 编号只记录 12
           项是/否结果，不包含企业名称、联系人或业务描述。

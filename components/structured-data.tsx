@@ -27,10 +27,12 @@ export function ServiceStructuredData({
   title,
   description,
   path,
+  parent = { name: "行业与业务场景", path: "/solutions" },
 }: {
   title: string;
   description: string;
   path: string;
+  parent?: Breadcrumb;
 }) {
   const data = {
     "@context": "https://schema.org",
@@ -51,7 +53,7 @@ export function ServiceStructuredData({
       },
       breadcrumbList([
         { name: "首页", path: "/" },
-        { name: "行业与业务场景", path: "/solutions" },
+        parent,
         { name: title, path },
       ]),
     ],
