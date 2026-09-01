@@ -29,6 +29,20 @@
       "when": 1788237478231,
       "tag": "0003_military_cyclops",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788237854789,
+      "tag": "0004_busy_master_mold",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1788237957745,
+      "tag": "0005_numerous_stellaris",
+      "breakpoints": true
     }
   ]
 }

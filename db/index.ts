@@ -71,6 +71,21 @@ export function ensureSchema() {
               ),
             ),
           );
+        await db.batch([
+          db.prepare(`CREATE TABLE IF NOT EXISTS geo_measurements (
+            id TEXT PRIMARY KEY NOT NULL, query_id TEXT NOT NULL, category TEXT NOT NULL, query TEXT NOT NULL, platform TEXT NOT NULL,
+            test_date TEXT NOT NULL, model_or_mode TEXT NOT NULL DEFAULT '', location TEXT NOT NULL DEFAULT '', web_enabled TEXT, fresh_session TEXT,
+            response_archive TEXT, brand_mentioned INTEGER NOT NULL DEFAULT 0, fde_association INTEGER NOT NULL DEFAULT 0, citation_present INTEGER NOT NULL DEFAULT 0,
+            citation_url TEXT, citation_position TEXT, semantic_accuracy INTEGER, independent_sources INTEGER NOT NULL DEFAULT 0,
+            reviewer TEXT, notes TEXT, imported_at INTEGER NOT NULL, updated_at INTEGER NOT NULL
+          )`),
+          db.prepare(
+            'CREATE UNIQUE INDEX IF NOT EXISTS idx_geo_measurements_observation ON geo_measurements(query_id,platform,test_date,model_or_mode,location)',
+          ),
+          db.prepare(
+            'CREATE INDEX IF NOT EXISTS idx_geo_measurements_date_platform ON geo_measurements(test_date,platform)',
+          ),
+        ]);
       });
   }
   return ready;
