@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/safe-link";
 import { ApplicationForm } from "@/components/application-form";
 import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
 export const metadata: Metadata = {

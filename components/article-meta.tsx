@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/safe-link";
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
 
 export function ArticleMeta({

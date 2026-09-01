@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/components/safe-link';
 import { ArrowUpRight } from 'lucide-react';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 export const metadata: Metadata = {

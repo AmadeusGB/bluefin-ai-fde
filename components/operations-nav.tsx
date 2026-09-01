@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/safe-link';
 const items = [
   ['运营总览', '/operations'],
   ['线索与转化', '/operations/leads'],

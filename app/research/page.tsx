@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/components/safe-link';
 import { ArrowUpRight } from 'lucide-react';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 export const metadata:Metadata={title:'企业 AI / FDE 公开研究',description:'蓝旗鱼 AI 围绕中文企业 AI 落地、FDE、GEO 可见度与真实交付证据发布的公开研究、数据和测量方法。',alternates:{canonical:'/research'}};

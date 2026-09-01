@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/safe-link';
 import { ArrowRight, Check, X } from 'lucide-react';
 import { ArticleMeta } from '@/components/article-meta';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';

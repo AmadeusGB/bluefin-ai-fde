@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/components/safe-link';
 import { ArrowUpRight } from 'lucide-react';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 export const metadata:Metadata={title:'脱敏交付记录',description:'蓝旗鱼 AI 公开的脱敏 FDE 交付记录，明确问题、流程、系统边界、验收指标和证据限制。',alternates:{canonical:'/evidence/cases'}};

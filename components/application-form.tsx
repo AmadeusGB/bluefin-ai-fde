@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { captureFirstTouch } from "@/lib/attribution";
 import { trackFunnelEvent } from "@/lib/funnel-events";
-import Link from "next/link";
+import Link from "@/components/safe-link";
 
 type State = "idle" | "submitting" | "success" | "error";
 export function ApplicationForm() {

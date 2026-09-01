@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/safe-link";
 import { ArrowDownToLine, ArrowRight } from "lucide-react";
 import { QueryBenchmark } from "@/components/query-benchmark";
 import { Button } from "@/components/ui/button";

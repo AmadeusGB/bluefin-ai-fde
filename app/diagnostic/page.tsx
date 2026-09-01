@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/safe-link";
 import { ArrowRight } from "lucide-react";
 import { DiagnosticTool } from "@/components/diagnostic-tool";
 import { Button } from "@/components/ui/button";

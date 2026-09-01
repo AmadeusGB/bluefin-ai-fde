@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/safe-link";
 import { ArrowRight, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
