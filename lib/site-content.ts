@@ -25,6 +25,18 @@ export const siteContent: SiteContentItem[] = [
     kind: "品牌",
   },
   {
+    path: "/about",
+    title: "关于蓝旗鱼 AI",
+    summary: "蓝旗鱼的品类定位、服务对象、交付方法、公开边界与负责人。",
+    kind: "品牌",
+  },
+  {
+    path: "/editorial-policy",
+    title: "内容、证据与纠错政策",
+    summary: "作者责任、事实核验、证据分级、AI 辅助、更新、授权与纠错规则。",
+    kind: "品牌",
+  },
+  {
     path: "/training",
     title: "Codex 与企业 AI 实战培训",
     summary: "建立共同语言、完成真实练习并发现候选 FDE 场景。",

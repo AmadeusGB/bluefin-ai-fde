@@ -1,6 +1,6 @@
 import { siteContent, siteContentUpdatedAt } from "@/lib/site-content";
 export async function GET() {
-  const groups = ["方法", "方案", "证据", "工具", "知识", "研究", "转化"] as const;
+  const groups = ["品牌", "方法", "方案", "证据", "工具", "知识", "研究", "转化"] as const;
   const sections = groups
     .map(
       (kind) =>

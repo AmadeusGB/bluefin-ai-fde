@@ -52,9 +52,11 @@ export default function RootLayout({
         '@id': 'https://bluefin-ai.cn/#organization',
         name: '蓝旗鱼 AI',
         url: 'https://bluefin-ai.cn',
+        mainEntityOfPage: 'https://bluefin-ai.cn/about',
         description: '面向中国企业的 Forward Deployed Engineering 落地团队',
         founder: {
           '@type': 'Person',
+          '@id': 'https://bluefin-ai.cn/about/arthur-guo#person',
           name: '郭斌 Arthur',
           url: 'https://bluefin-ai.cn/about/arthur-guo',
         },
@@ -64,6 +66,7 @@ export default function RootLayout({
           '最小可行部署',
           '企业 AI 现场诊断',
         ],
+        publishingPrinciples: 'https://bluefin-ai.cn/editorial-policy',
       },
       {
         '@type': 'WebSite',

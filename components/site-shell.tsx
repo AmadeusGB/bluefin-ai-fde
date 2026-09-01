@@ -55,12 +55,11 @@ export function SiteFooter() {
               蓝旗鱼 AI
             </Link>
             <p className="mt-4 text-white/55">面向中国企业的 FDE 落地团队</p>
-            <Link
-              href="/about/arthur-guo"
-              className="mt-4 block text-sm text-white/60"
-            >
-              关于郭斌 Arthur
-            </Link>
+            <div className="mt-4 flex flex-col gap-2 text-sm text-white/60">
+              <Link href="/about">关于蓝旗鱼 AI</Link>
+              <Link href="/about/arthur-guo">关于郭斌 Arthur</Link>
+              <Link href="/editorial-policy">内容、证据与纠错政策</Link>
+            </div>
           </div>
           <div className="flex flex-col gap-3 text-sm text-white/60">
             <b className="text-[#bff5d1]">开始判断</b>
