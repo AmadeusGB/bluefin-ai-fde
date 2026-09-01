@@ -1,0 +1,7 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
+export const metadata:Metadata={title:'企业 AI / FDE 公开研究',description:'蓝旗鱼 AI 围绕中文企业 AI 落地、FDE、GEO 可见度与真实交付证据发布的公开研究、数据和测量方法。',alternates:{canonical:'/research'}};
+const research=[['中文企业 AI / FDE 基准查询集','120 个问题 · 10 个类别','固定“测什么”，覆盖定义、决策、方法、场景、行业、比较、工具、证据、风险与采用。','/research/fde-query-benchmark'],['GEO 月度测量协议与空白模板','9 个平台 · 1080 行','固定“怎么测”，记录环境、完整回答、品牌提及、引用、语义准确性与人工复核。','/research/geo-measurement-protocol']];
+export default function Page(){return <><SiteHeader/><main><PageHero eyebrow="公开研究与原创数据" title="把企业 AI 落地的可见度，变成可复查的研究。" intro="蓝旗鱼公开问题集、记录格式、指标定义和限制。没有真实测试数据时只发布空白模板，不制造排名；未来发布结果时保留原始回答与人工复核证据。"/><section className="px-5 py-20 lg:px-10"><div className="mx-auto max-w-[1200px]">{research.map(([title,meta,detail,href],index)=><Link key={href} href={href} className="group grid gap-5 border-t border-foreground/20 py-9 md:grid-cols-[70px_1.3fr_.7fr_1.6fr_30px]"><span className="text-[#147e66]">0{index+1}</span><h2 className="text-2xl font-black">{title}</h2><b className="text-sm text-[#147e66]">{meta}</b><p className="leading-7 text-muted-foreground">{detail}</p><ArrowUpRight className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"/></Link>)}</div></section></main><SiteFooter/></>}

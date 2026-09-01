@@ -34,5 +34,7 @@ export const siteContent:SiteContentItem[]=[
   {path:'/knowledge/general-saas-vs-fde',title:'通用 SaaS 与 FDE 怎么选',summary:'高共性流程优先 SaaS，高价值个性流程考虑 FDE。',kind:'知识'},
   {path:'/knowledge/how-to-choose-ai-project',title:'企业如何选择第一个 AI 项目',summary:'按问题价值、数据、负责人、范围和可核验结果选择。',kind:'知识'},
   {path:'/knowledge/why-ai-projects-fail',title:'企业 AI 项目为什么失败',summary:'问题不贵、数据不真、无人负责与无人采用是常见原因。',kind:'知识'},
-  {path:'/research/fde-query-benchmark',title:'中文企业 AI / FDE 基准查询集',summary:'120 个公开问题与可重复的 GEO 测量方法。',kind:'研究'}
+  {path:'/research',title:'企业 AI / FDE 公开研究',summary:'原创问题集、测量协议、公开数据与方法研究目录。',kind:'研究'},
+  {path:'/research/fde-query-benchmark',title:'中文企业 AI / FDE 基准查询集',summary:'120 个公开问题与可重复的 GEO 测量方法。',kind:'研究'},
+  {path:'/research/geo-measurement-protocol',title:'GEO 月度测量协议与空白模板',summary:'9 个平台、1080 行记录和公开指标定义。',kind:'研究'}
 ];
