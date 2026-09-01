@@ -128,10 +128,10 @@ export function ProjectDecisionScorer() {
   }
   return (
     <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
-      <aside className="self-start bg-[#071817] p-8 text-white lg:sticky lg:top-24 print:static">
-        <p className="eyebrow text-[#bff5d1]">实时决策报告</p>
+      <aside className="self-start bg-[#0b1238] p-8 text-white lg:sticky lg:top-24 print:static">
+        <p className="eyebrow text-[#cdd5ff]">实时决策报告</p>
         <div className="mt-7 flex items-end gap-2">
-          <strong className="text-7xl font-black text-[#bff5d1]">
+          <strong className="text-7xl font-black text-[#cdd5ff]">
             {score}
           </strong>
           <span className="pb-3 text-white/45">/ 100</span>
@@ -153,7 +153,7 @@ export function ProjectDecisionScorer() {
           ))}
         </div>
         <div className="mt-7 border-t border-white/15 pt-6">
-          <p className="text-xs font-bold uppercase tracking-[.12em] text-[#bff5d1]">
+          <p className="text-xs font-bold uppercase tracking-[.12em] text-[#cdd5ff]">
             优先补齐
           </p>
           <p className="mt-2 font-black">{weakest.label}</p>
@@ -177,7 +177,7 @@ export function ProjectDecisionScorer() {
           <section key={group.key} className="mb-12">
             <div className="mb-5 flex items-end justify-between">
               <div>
-                <span className="text-xs font-bold text-[#147e66]">
+                <span className="text-xs font-bold text-[#3657d6]">
                   0{groupIndex + 1}
                 </span>
                 <h2 className="mt-1 text-2xl font-black">{group.label}</h2>
@@ -215,11 +215,11 @@ export function ProjectDecisionScorer() {
                               ),
                             )
                           }
-                          className={`border p-3 text-left transition ${answers[index] === option.value ? "border-[#147e66] bg-[#dff6e6]" : "border-foreground/15 hover:border-foreground/40"}`}
+                          className={`border p-3 text-left transition ${answers[index] === option.value ? "border-[#3657d6] bg-[#e7eaff]" : "border-foreground/15 hover:border-foreground/40"}`}
                         >
                           <span className="flex items-center gap-2 font-bold">
                             {answers[index] === option.value && (
-                              <Check className="size-4 text-[#147e66]" />
+                              <Check className="size-4 text-[#3657d6]" />
                             )}
                             {option.label}
                           </span>

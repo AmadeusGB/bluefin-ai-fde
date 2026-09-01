@@ -41,8 +41,8 @@ export function PrivacyRequestForm() {
   }
   if (state === "success")
     return (
-      <div className="bg-[#dff6e6] p-8">
-        <CheckCircle2 className="size-10 text-[#147e66]" />
+      <div className="bg-[#e7eaff] p-8">
+        <CheckCircle2 className="size-10 text-[#3657d6]" />
         <h2 className="mt-5 text-2xl font-black">请求已收到</h2>
         <p className="mt-3 leading-7 text-muted-foreground">
           蓝旗鱼会先核验请求人与相关记录的关系，再处理访问、更正或删除请求。为保护数据，不会在无法确认身份时披露记录。
@@ -95,7 +95,7 @@ export function PrivacyRequestForm() {
           type="checkbox"
           name="consent"
           required
-          className="mt-1 size-4 accent-[#147e66]"
+          className="mt-1 size-4 accent-[#3657d6]"
         />
         <span>
           我同意蓝旗鱼保存本次请求和联系方式，用于身份核验、处理请求与留存处理记录。

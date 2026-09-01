@@ -30,43 +30,43 @@
 }
 :root {
   --background: #f5f3eb;
-  --foreground: #071817;
+  --foreground: #0b1238;
   --card: #fff;
-  --card-foreground: #071817;
+  --card-foreground: #0b1238;
   --popover: #fff;
-  --popover-foreground: #071817;
-  --primary: #071817;
+  --popover-foreground: #0b1238;
+  --primary: #0b1238;
   --primary-foreground: #fff;
-  --secondary: #dff6e6;
-  --secondary-foreground: #071817;
+  --secondary: #e7eaff;
+  --secondary-foreground: #0b1238;
   --muted: #e9e8e1;
   --muted-foreground: #60706c;
-  --accent: #bff5d1;
-  --accent-foreground: #071817;
+  --accent: #cdd5ff;
+  --accent-foreground: #0b1238;
   --destructive: #cf392f;
   --border: #d6dad2;
   --input: #c9cec5;
-  --ring: #147e66;
+  --ring: #3657d6;
 }
 .dark {
-  --background: #071817;
+  --background: #0b1238;
   --foreground: #f5f3eb;
   --card: #0e2b27;
   --card-foreground: #f5f3eb;
   --popover: #0e2b27;
   --popover-foreground: #f5f3eb;
-  --primary: #bff5d1;
-  --primary-foreground: #071817;
+  --primary: #cdd5ff;
+  --primary-foreground: #0b1238;
   --secondary: #133d36;
   --secondary-foreground: #fff;
   --muted: #16362f;
   --muted-foreground: #a8bbb6;
-  --accent: #147e66;
+  --accent: #3657d6;
   --accent-foreground: #fff;
   --destructive: #ff735d;
   --border: #2b4944;
   --input: #365650;
-  --ring: #bff5d1;
+  --ring: #cdd5ff;
 }
 @layer base {
   * {
@@ -79,8 +79,8 @@
     @apply bg-background text-foreground antialiased;
   }
   ::selection {
-    background: #bff5d1;
-    color: #071817;
+    background: #cdd5ff;
+    color: #0b1238;
   }
 }
 a:focus-visible,

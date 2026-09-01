@@ -12,7 +12,7 @@ export function OperationsNav() {
       className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-foreground/15 pb-5"
     >
       <Link href="/operations" className="flex items-center gap-3 font-black">
-        <span className="grid size-9 place-items-center rounded-full bg-[#071817] text-xs text-[#bff5d1]">
+        <span className="grid size-9 place-items-center rounded-full bg-[#0b1238] text-xs text-[#cdd5ff]">
           BF
         </span>
         蓝旗鱼运营中枢
@@ -22,7 +22,7 @@ export function OperationsNav() {
           <Link
             key={href}
             href={href}
-            className="border border-foreground/15 bg-white px-3 py-2 text-sm font-bold hover:border-[#147e66] hover:text-[#147e66]"
+            className="border border-foreground/15 bg-white px-3 py-2 text-sm font-bold hover:border-[#3657d6] hover:text-[#3657d6]"
           >
             {label}
           </Link>

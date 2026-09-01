@@ -36,14 +36,14 @@ export function MethodKnowledgePage({
         <ArticleMeta title={title} description={description} path={path} />
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1200px]">
-            <p className="eyebrow text-[#147e66]">方法步骤</p>
+            <p className="eyebrow text-[#3657d6]">方法步骤</p>
             <div className="mt-8">
               {sections.map((section, index) => (
                 <article
                   key={section.title}
                   className="grid gap-4 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
                 >
-                  <span className="text-[#147e66]">
+                  <span className="text-[#3657d6]">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <h2 className="text-2xl font-black">{section.title}</h2>
@@ -52,7 +52,7 @@ export function MethodKnowledgePage({
                       {section.detail}
                     </p>
                     {section.output && (
-                      <p className="mt-4 border-l-2 border-[#147e66] pl-4 text-sm font-bold leading-6">
+                      <p className="mt-4 border-l-2 border-[#3657d6] pl-4 text-sm font-bold leading-6">
                         可核验产出：{section.output}
                       </p>
                     )}
@@ -62,10 +62,10 @@ export function MethodKnowledgePage({
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-20 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#147e66]">适用边界</p>
+              <p className="eyebrow text-[#3657d6]">适用边界</p>
               <h2 className="mt-4 text-4xl font-black">什么时候应该使用？</h2>
               <div className="mt-7 space-y-3">
                 {good.map((item) => (
@@ -73,7 +73,7 @@ export function MethodKnowledgePage({
                     key={item}
                     className="flex gap-3 border-t border-foreground/15 py-4 leading-7"
                   >
-                    <Check className="mt-1 size-5 shrink-0 text-[#147e66]" />
+                    <Check className="mt-1 size-5 shrink-0 text-[#3657d6]" />
                     {item}
                   </p>
                 ))}
@@ -96,16 +96,16 @@ export function MethodKnowledgePage({
             </div>
           </div>
         </section>
-        <section className="bg-[#071817] px-5 py-20 text-white lg:px-10">
+        <section className="bg-[#0b1238] px-5 py-20 text-white lg:px-10">
           <div className="mx-auto max-w-[1200px]">
-            <p className="eyebrow text-[#bff5d1]">完成标准</p>
+            <p className="eyebrow text-[#cdd5ff]">完成标准</p>
             <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-.04em] lg:text-6xl">
               产出必须能被检查，而不是只有一张漂亮图。
             </h2>
             <div className="mt-10 grid gap-px bg-white/15 md:grid-cols-3">
               {verification.map((item, index) => (
-                <article key={item} className="bg-[#071817] p-7">
-                  <span className="text-xs text-[#bff5d1]">0{index + 1}</span>
+                <article key={item} className="bg-[#0b1238] p-7">
+                  <span className="text-xs text-[#cdd5ff]">0{index + 1}</span>
                   <p className="mt-5 font-bold leading-7">{item}</p>
                 </article>
               ))}
@@ -115,7 +115,7 @@ export function MethodKnowledgePage({
         <section className="px-5 py-16 lg:px-10">
           <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-7 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#147e66]">继续推进</p>
+              <p className="eyebrow text-[#3657d6]">继续推进</p>
               <h2 className="mt-3 text-3xl font-black">
                 从方法进入真实项目判断。
               </h2>

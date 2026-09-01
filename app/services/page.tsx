@@ -77,16 +77,16 @@ export default function Page() {
                 href={href}
                 className="group grid gap-5 border-t border-foreground/20 py-9 lg:grid-cols-[70px_1fr_1.5fr_1.5fr_30px]"
               >
-                <span className="text-[#147e66]">{n}</span>
+                <span className="text-[#3657d6]">{n}</span>
                 <h2 className="text-2xl font-black">{title}</h2>
                 <p className="leading-7 text-muted-foreground">{detail}</p>
                 <p className="font-semibold leading-7">交付：{output}</p>
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
               </Link>
             ))}
-            <div className="mt-14 grid gap-8 bg-[#071817] p-8 text-white lg:grid-cols-[1fr_auto] lg:items-center">
+            <div className="mt-14 grid gap-8 bg-[#0b1238] p-8 text-white lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
-                <p className="eyebrow text-[#bff5d1]">共同规则</p>
+                <p className="eyebrow text-[#cdd5ff]">共同规则</p>
                 <h2 className="mt-4 text-3xl font-black">
                   阶段报价、阶段验收、阶段停止。
                 </h2>
@@ -97,7 +97,7 @@ export default function Page() {
               <Button
                 nativeButton={false}
                 render={<Link href="/diagnostic" />}
-                className="h-12 rounded-none bg-[#bff5d1] text-[#071817] hover:bg-[#d4f9e1]"
+                className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
               >
                 先做适配度评估 <ArrowRight />
               </Button>

@@ -69,8 +69,8 @@ export function ApplicationForm() {
   }
   if (state === "success")
     return (
-      <div className="bg-[#dff6e6] p-10">
-        <CheckCircle2 className="size-12 text-[#147e66]" />
+      <div className="bg-[#e7eaff] p-10">
+        <CheckCircle2 className="size-12 text-[#3657d6]" />
         <h2 className="mt-6 text-3xl font-black">申请已收到</h2>
         <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
           蓝旗鱼会先核验问题价值、数据与负责人条件。符合资格时，再联系确认 30
@@ -251,13 +251,13 @@ export function ApplicationForm() {
             type="checkbox"
             name="consent"
             required
-            className="mt-1 size-4 accent-[#147e66]"
+            className="mt-1 size-4 accent-[#3657d6]"
           />
           <span>
             我已阅读并同意
             <Link
               href="/privacy"
-              className="font-bold text-[#147e66] underline underline-offset-4"
+              className="font-bold text-[#3657d6] underline underline-offset-4"
             >
               《隐私与数据处理政策》
             </Link>
@@ -265,7 +265,7 @@ export function ApplicationForm() {
           </span>
         </label>
         {diagnostic.score && (
-          <p className="mt-4 text-sm text-[#147e66]">
+          <p className="mt-4 text-sm text-[#3657d6]">
             已附带诊断结果：{diagnostic.decision} · {diagnostic.score}/100
           </p>
         )}

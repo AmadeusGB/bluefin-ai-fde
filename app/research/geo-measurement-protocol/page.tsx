@@ -64,18 +64,18 @@ export default function Page() {
         <section className="px-5 py-18 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-10 lg:grid-cols-[1.1fr_.9fr]">
             <div>
-              <p className="eyebrow text-[#147e66]">覆盖平台</p>
+              <p className="eyebrow text-[#3657d6]">覆盖平台</p>
               <div className="mt-7 grid gap-px bg-foreground/15 sm:grid-cols-3">
                 {geoPlatforms.map((platform, index) => (
                   <div key={platform} className="bg-background p-5">
-                    <span className="text-xs text-[#147e66]">0{index + 1}</span>
+                    <span className="text-xs text-[#3657d6]">0{index + 1}</span>
                     <p className="mt-4 font-black">{platform}</p>
                   </div>
                 ))}
               </div>
             </div>
-            <aside className="bg-[#dff6e6] p-8">
-              <p className="eyebrow text-[#147e66]">空白模板</p>
+            <aside className="bg-[#e7eaff] p-8">
+              <p className="eyebrow text-[#3657d6]">空白模板</p>
               <strong className="mt-6 block text-6xl font-black">
                 {geoQuerySet.length * geoPlatforms.length}
               </strong>
@@ -114,9 +114,9 @@ export default function Page() {
             </aside>
           </div>
         </section>
-        <section className="bg-[#071817] px-5 py-20 text-white lg:px-10">
+        <section className="bg-[#0b1238] px-5 py-20 text-white lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#bff5d1]">执行协议</p>
+            <p className="eyebrow text-[#cdd5ff]">执行协议</p>
             <div className="mt-10 grid gap-px bg-white/15 md:grid-cols-4">
               {[
                 [
@@ -136,8 +136,8 @@ export default function Page() {
                   "一人记录，一人复核品牌、引用与语义评分；争议保留说明。",
                 ],
               ].map(([title, detail]) => (
-                <article key={title} className="bg-[#071817] p-7">
-                  <h2 className="text-xl font-black text-[#bff5d1]">{title}</h2>
+                <article key={title} className="bg-[#0b1238] p-7">
+                  <h2 className="text-xl font-black text-[#cdd5ff]">{title}</h2>
                   <p className="mt-4 leading-7 text-white/55">{detail}</p>
                 </article>
               ))}
@@ -146,7 +146,7 @@ export default function Page() {
         </section>
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#147e66]">核心指标定义</p>
+            <p className="eyebrow text-[#3657d6]">核心指标定义</p>
             <div className="mt-8">
               {metrics.map(([title, detail]) => (
                 <article

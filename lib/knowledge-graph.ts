@@ -3,8 +3,7 @@ import { siteContent, siteContentUpdatedAt } from "@/lib/site-content";
 export const siteUrl = "https://bluefin-ai-fde.liuxiangth.chatgpt.site";
 export const organizationId = `${siteUrl}/#organization`;
 export const websiteId = `${siteUrl}/#website`;
-export const authorId = `${siteUrl}/about/arthur-guo#person`;
-export const founderId = `${siteUrl}/about#liu-xiang`;
+export const authorId = organizationId;
 export const fdeTermId = `${siteUrl}/fde#term`;
 export const fdeMethodId = `${siteUrl}/fde#method`;
 
@@ -31,8 +30,6 @@ export function buildKnowledgeGraph() {
         slogan: "探索 · 实践 · 共创",
         description:
           "面向中国企业的 Forward Deployed Engineering 落地团队：从业务诊断、MVD 到生产部署、采用与交接。",
-        founder: { "@id": founderId },
-        employee: { "@id": authorId },
         areaServed: { "@type": "Country", name: "中国" },
         knowsAbout: [
           { "@id": fdeTermId },
@@ -42,23 +39,6 @@ export function buildKnowledgeGraph() {
           "生产部署与采用",
         ],
         publishingPrinciples: `${siteUrl}/editorial-policy`,
-      },
-      {
-        "@type": "Person",
-        "@id": founderId,
-        name: "刘向",
-        alternateName: "大向",
-        jobTitle: "创始人、CEO",
-        worksFor: { "@id": organizationId },
-      },
-      {
-        "@type": "Person",
-        "@id": authorId,
-        name: "郭斌",
-        alternateName: "Arthur Guo",
-        url: `${siteUrl}/about/arthur-guo`,
-        jobTitle: "企业 AI 系统设计与 FDE 落地实践者",
-        affiliation: { "@id": organizationId },
       },
       {
         "@type": "WebSite",

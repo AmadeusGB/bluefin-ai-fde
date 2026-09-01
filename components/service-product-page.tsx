@@ -46,7 +46,7 @@ export function ServiceProductPage({
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-12 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="eyebrow text-[#147e66]">进入条件</p>
+              <p className="eyebrow text-[#3657d6]">进入条件</p>
               <h2 className="mt-5 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                 上一阶段的证据必须先通过。
               </h2>
@@ -60,23 +60,23 @@ export function ServiceProductPage({
                   key={item}
                   className="flex gap-3 border-t border-foreground/15 py-5 text-lg"
                 >
-                  <Check className="mt-1 size-5 shrink-0 text-[#147e66]" />
+                  <Check className="mt-1 size-5 shrink-0 text-[#3657d6]" />
                   {item}
                 </p>
               ))}
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-20 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#147e66]">合同目标与交付物</p>
+            <p className="eyebrow text-[#3657d6]">合同目标与交付物</p>
             <div className="mt-10 grid md:grid-cols-4">
               {outputs.map((item, index) => (
                 <article
                   key={item.title}
                   className="border-t border-foreground/20 py-7 md:border-r md:px-6 first:pl-0"
                 >
-                  <span className="text-xs text-[#147e66]">0{index + 1}</span>
+                  <span className="text-xs text-[#3657d6]">0{index + 1}</span>
                   <h2 className="mt-8 text-2xl font-black">{item.title}</h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
                     {item.detail}
@@ -86,13 +86,13 @@ export function ServiceProductPage({
             </div>
           </div>
         </section>
-        <section className="bg-[#071817] px-5 py-20 text-white lg:px-10">
+        <section className="bg-[#0b1238] px-5 py-20 text-white lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#bff5d1]">交付步骤</p>
+            <p className="eyebrow text-[#cdd5ff]">交付步骤</p>
             <div className="mt-10 grid gap-px bg-white/15 md:grid-cols-4">
               {steps.map((item, index) => (
-                <article key={item.title} className="bg-[#071817] p-7">
-                  <span className="text-xs text-[#bff5d1]">0{index + 1}</span>
+                <article key={item.title} className="bg-[#0b1238] p-7">
+                  <span className="text-xs text-[#cdd5ff]">0{index + 1}</span>
                   <h2 className="mt-8 text-2xl font-black">{item.title}</h2>
                   <p className="mt-3 leading-7 text-white/55">{item.detail}</p>
                 </article>
@@ -103,14 +103,14 @@ export function ServiceProductPage({
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-8 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#147e66]">企业需要投入</p>
+              <p className="eyebrow text-[#3657d6]">企业需要投入</p>
               <div className="mt-6 space-y-3">
                 {customerInputs.map((item) => (
                   <p
                     key={item}
                     className="flex gap-3 border-t border-foreground/15 py-4 leading-7"
                   >
-                    <Check className="mt-1 size-5 shrink-0 text-[#147e66]" />
+                    <Check className="mt-1 size-5 shrink-0 text-[#3657d6]" />
                     {item}
                   </p>
                 ))}
@@ -132,10 +132,10 @@ export function ServiceProductPage({
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-18 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-18 lg:px-10">
           <div className="mx-auto flex max-w-[1300px] flex-col justify-between gap-8 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#147e66]">阶段决策门</p>
+              <p className="eyebrow text-[#3657d6]">阶段决策门</p>
               <h2 className="mt-4 max-w-3xl text-4xl font-black">{decision}</h2>
               <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
                 范围、周期和费用在资格与证据核验后书面确认，不用统一套餐替代真实项目边界。

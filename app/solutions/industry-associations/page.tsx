@@ -43,7 +43,7 @@ export default function Page() {
           <div className="mx-auto max-w-[1300px]">
             <div className="grid gap-10 lg:grid-cols-2">
               <div>
-                <p className="eyebrow text-[#147e66]">直接回答</p>
+                <p className="eyebrow text-[#3657d6]">直接回答</p>
                 <h2 className="mt-4 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                   协会最先应该做什么？
                 </h2>
@@ -59,7 +59,7 @@ export default function Page() {
                     key={x}
                     className="flex gap-3 border-t border-foreground/15 py-4 text-lg"
                   >
-                    <Check className="shrink-0 text-[#147e66]" />
+                    <Check className="shrink-0 text-[#3657d6]" />
                     {x}
                   </p>
                 ))}
@@ -71,7 +71,7 @@ export default function Page() {
                   key={t}
                   className="border-t border-foreground/20 py-7 md:border-r md:px-7 first:pl-0"
                 >
-                  <span className="text-xs text-[#147e66]">0{i + 1}</span>
+                  <span className="text-xs text-[#3657d6]">0{i + 1}</span>
                   <h3 className="mt-9 text-2xl font-black">{t}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">{d}</p>
                 </article>
@@ -79,10 +79,10 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-20 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-10 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#147e66]">证据状态</p>
+              <p className="eyebrow text-[#3657d6]">证据状态</p>
               <h2 className="mt-4 text-4xl font-black">
                 真实交付方案，不是成功案例。
               </h2>

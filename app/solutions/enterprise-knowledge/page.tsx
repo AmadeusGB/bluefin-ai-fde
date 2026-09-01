@@ -42,15 +42,15 @@ export default function Page() {
                   key={t}
                   className="border-t border-foreground/20 py-7 md:border-r md:px-6 first:pl-0"
                 >
-                  <span className="text-xs text-[#147e66]">0{i + 1}</span>
+                  <span className="text-xs text-[#3657d6]">0{i + 1}</span>
                   <h3 className="mt-9 text-2xl font-black">{t}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">{d}</p>
                 </article>
               ))}
             </div>
-            <div className="mt-20 grid gap-10 bg-[#071817] p-8 text-white lg:grid-cols-2 lg:p-12">
+            <div className="mt-20 grid gap-10 bg-[#0b1238] p-8 text-white lg:grid-cols-2 lg:p-12">
               <div>
-                <p className="eyebrow text-[#bff5d1]">回答规则</p>
+                <p className="eyebrow text-[#cdd5ff]">回答规则</p>
                 <h2 className="mt-4 text-4xl font-black">
                   系统必须知道，什么时候不该回答。
                 </h2>
@@ -64,7 +64,7 @@ export default function Page() {
                   nativeButton={false}
                   render={<Link href="/apply" />}
                   size="lg"
-                  className="mt-4 h-12 rounded-none bg-[#bff5d1] text-[#071817] hover:bg-[#d4f9e1]"
+                  className="mt-4 h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
                 >
                   申请知识现场诊断 <ArrowRight />
                 </Button>

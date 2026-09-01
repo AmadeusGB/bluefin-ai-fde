@@ -179,7 +179,7 @@ export function LeadOperations() {
   if (loading && !data)
     return (
       <div className="grid min-h-64 place-items-center">
-        <Loader2 className="size-8 animate-spin text-[#147e66]" />
+        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
       </div>
     );
   return (
@@ -187,7 +187,7 @@ export function LeadOperations() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#147e66]">商业转化运营</p>
+          <p className="eyebrow text-[#3657d6]">商业转化运营</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-6xl">
             线索资格与推进
           </h1>
@@ -228,7 +228,7 @@ export function LeadOperations() {
           <button
             key={key}
             onClick={() => setFilter(key)}
-            className={`bg-background p-5 text-left hover:bg-[#dff6e6] ${filter === key ? "ring-2 ring-inset ring-[#147e66]" : ""}`}
+            className={`bg-background p-5 text-left hover:bg-[#e7eaff] ${filter === key ? "ring-2 ring-inset ring-[#3657d6]" : ""}`}
           >
             <span className="text-3xl font-black">
               {data?.summary[key] || 0}
@@ -283,13 +283,13 @@ export function LeadOperations() {
                   <h2 className="text-xl font-black">{lead.company}</h2>
                   {lead.qualification_tier && (
                     <span
-                      className={`px-2 py-1 text-xs font-black ${lead.qualification_tier === "A" ? "bg-[#147e66] text-white" : lead.qualification_tier === "B" ? "bg-[#dff6e6] text-[#147e66]" : "bg-[#fff3ef] text-[#a63e2d]"}`}
+                      className={`px-2 py-1 text-xs font-black ${lead.qualification_tier === "A" ? "bg-[#3657d6] text-white" : lead.qualification_tier === "B" ? "bg-[#e7eaff] text-[#3657d6]" : "bg-[#fff3ef] text-[#a63e2d]"}`}
                     >
                       {lead.qualification_tier} 级 · {lead.qualification_score}
                       /100
                     </span>
                   )}
-                  <span className="bg-[#dff6e6] px-2 py-1 text-xs font-bold text-[#147e66]">
+                  <span className="bg-[#e7eaff] px-2 py-1 text-xs font-bold text-[#3657d6]">
                     {lead.acquisition_channel}
                   </span>
                 </div>

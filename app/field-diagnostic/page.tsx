@@ -52,7 +52,7 @@ export default function Page() {
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-12 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="eyebrow text-[#147e66]">进入条件</p>
+              <p className="eyebrow text-[#3657d6]">进入条件</p>
               <h2 className="mt-5 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                 先通过 30 分钟资格确认。
               </h2>
@@ -77,8 +77,8 @@ export default function Page() {
                 </Button>
               </div>
             </div>
-            <div className="bg-[#071817] p-8 text-white lg:p-10">
-              <p className="eyebrow text-[#bff5d1]">标准诊断范围</p>
+            <div className="bg-[#0b1238] p-8 text-white lg:p-10">
+              <p className="eyebrow text-[#cdd5ff]">标准诊断范围</p>
               <div className="mt-7 grid gap-5 sm:grid-cols-2">
                 <div>
                   <span className="text-sm text-white/45">问题范围</span>
@@ -105,9 +105,9 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-20 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#147e66]">交付物</p>
+            <p className="eyebrow text-[#3657d6]">交付物</p>
             <h2 className="mt-5 max-w-4xl text-4xl font-black tracking-[-.04em] lg:text-6xl">
               不是一份 PPT，而是一组可进入决策的证据。
             </h2>
@@ -117,7 +117,7 @@ export default function Page() {
                   key={title}
                   className="border-t border-foreground/20 py-7 md:border-r md:px-5 first:pl-0"
                 >
-                  <span className="text-xs text-[#147e66]">0{index + 1}</span>
+                  <span className="text-xs text-[#3657d6]">0{index + 1}</span>
                   <h3 className="mt-8 text-xl font-black">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     {detail}
@@ -149,7 +149,7 @@ export default function Page() {
                 ["04", "决策评审", "交付证据包，决定继续、调整、暂停或停止。"],
               ].map(([n, t, d]) => (
                 <article key={n} className="bg-background p-7">
-                  <span className="text-xs text-[#147e66]">{n}</span>
+                  <span className="text-xs text-[#3657d6]">{n}</span>
                   <h3 className="mt-8 text-2xl font-black">{t}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">{d}</p>
                 </article>
@@ -157,14 +157,14 @@ export default function Page() {
             </div>
             <div className="mt-16 grid gap-8 lg:grid-cols-2">
               <div>
-                <p className="eyebrow text-[#147e66]">企业需要投入</p>
+                <p className="eyebrow text-[#3657d6]">企业需要投入</p>
                 <div className="mt-6 space-y-3">
                   {customerInputs.map((item) => (
                     <p
                       key={item}
                       className="flex gap-3 border-t border-foreground/15 py-4 leading-7"
                     >
-                      <Check className="mt-1 size-5 shrink-0 text-[#147e66]" />
+                      <Check className="mt-1 size-5 shrink-0 text-[#3657d6]" />
                       {item}
                     </p>
                   ))}
@@ -187,10 +187,10 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section className="bg-[#071817] px-5 py-18 text-white lg:px-10">
+        <section className="bg-[#0b1238] px-5 py-18 text-white lg:px-10">
           <div className="mx-auto flex max-w-[1300px] flex-col justify-between gap-8 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#bff5d1]">开始之前</p>
+              <p className="eyebrow text-[#cdd5ff]">开始之前</p>
               <h2 className="mt-4 text-4xl font-black">带着一个真实问题来。</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/55">
                 先完成适配度评估，或直接提交问题、损失、负责人和数据条件。资格确认不会承诺项目一定启动。
@@ -200,7 +200,7 @@ export default function Page() {
               <Button
                 nativeButton={false}
                 render={<Link href="/apply?source=field-diagnostic" />}
-                className="h-13 rounded-none bg-[#bff5d1] px-6 text-[#071817] hover:bg-[#d4f9e1]"
+                className="h-13 rounded-none bg-[#cdd5ff] px-6 text-[#0b1238] hover:bg-[#e4e8ff]"
               >
                 申请 30 分钟资格确认 <ArrowRight />
               </Button>
@@ -208,7 +208,7 @@ export default function Page() {
                 nativeButton={false}
                 render={<Link href="/services/mvd" />}
                 variant="outline"
-                className="h-13 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#071817]"
+                className="h-13 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#0b1238]"
               >
                 了解下一阶段 MVD
               </Button>

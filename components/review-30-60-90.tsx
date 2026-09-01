@@ -80,8 +80,8 @@ export function Review306090() {
   }
   return (
     <div className="grid gap-12 lg:grid-cols-[.78fr_1.22fr]">
-      <aside className="self-start bg-[#071817] p-8 text-white lg:sticky lg:top-24 print:static">
-        <p className="eyebrow text-[#bff5d1]">阶段复查报告</p>
+      <aside className="self-start bg-[#0b1238] p-8 text-white lg:sticky lg:top-24 print:static">
+        <p className="eyebrow text-[#cdd5ff]">阶段复查报告</p>
         <label
           htmlFor="review-project"
           className="mt-6 block text-xs font-bold text-white/60"
@@ -97,7 +97,7 @@ export function Review306090() {
           className="mt-2 rounded-none border-white/25 bg-white/5 text-white placeholder:text-white/30"
         />
         <div className="mt-8 flex items-end gap-2">
-          <strong className="text-7xl font-black text-[#bff5d1]">
+          <strong className="text-7xl font-black text-[#cdd5ff]">
             {score}
           </strong>
           <span className="pb-3 text-white/45">/ 100</span>
@@ -140,9 +140,9 @@ export function Review306090() {
               type="button"
               aria-pressed={active === item.key}
               onClick={() => setActive(item.key)}
-              className={`p-5 text-left ${active === item.key ? "bg-[#dff6e6] ring-2 ring-inset ring-[#147e66]" : "bg-white hover:bg-[#f1eee5]"}`}
+              className={`p-5 text-left ${active === item.key ? "bg-[#e7eaff] ring-2 ring-inset ring-[#3657d6]" : "bg-white hover:bg-[#f1eee5]"}`}
             >
-              <span className="text-xs font-bold text-[#147e66]">
+              <span className="text-xs font-bold text-[#3657d6]">
                 第 {item.key} 天
               </span>
               <span className="mt-2 block font-black">{item.label}</span>
@@ -150,7 +150,7 @@ export function Review306090() {
           ))}
         </div>
         <section className="mt-9">
-          <p className="eyebrow text-[#147e66]">{phase.label} · 复查重点</p>
+          <p className="eyebrow text-[#3657d6]">{phase.label} · 复查重点</p>
           <h2 className="mt-3 text-3xl font-black">{phase.focus}</h2>
           <div className="mt-8 space-y-5">
             {phase.questions.map((question, index) => (
@@ -183,11 +183,11 @@ export function Review306090() {
                           ),
                         }))
                       }
-                      className={`border p-3 text-left ${current[index] === option.value ? "border-[#147e66] bg-[#dff6e6]" : "border-foreground/15 hover:border-foreground/40"}`}
+                      className={`border p-3 text-left ${current[index] === option.value ? "border-[#3657d6] bg-[#e7eaff]" : "border-foreground/15 hover:border-foreground/40"}`}
                     >
                       <span className="flex items-center gap-2 font-bold">
                         {current[index] === option.value && (
-                          <Check className="size-4 text-[#147e66]" />
+                          <Check className="size-4 text-[#3657d6]" />
                         )}
                         {option.label}
                       </span>

@@ -51,7 +51,7 @@ export function QueryBenchmark({
           </div>
         </div>
       </div>
-      <p className="py-6 text-sm font-bold text-[#147e66]">
+      <p className="py-6 text-sm font-bold text-[#3657d6]">
         当前显示 {visible.length} / {queries.length} 个问题
       </p>
       <div className="grid gap-px bg-foreground/15 md:grid-cols-2">

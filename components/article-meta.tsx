@@ -1,4 +1,3 @@
-import Link from "@/components/safe-link";
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
 
 export function ArticleMeta({
@@ -31,12 +30,7 @@ export function ArticleMeta({
         dateModified: date,
         inLanguage: "zh-CN",
         mainEntityOfPage: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${path}`,
-        author: {
-          "@type": "Person",
-          "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo#person",
-          name: "郭斌 Arthur",
-          url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo",
-        },
+        author: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
         publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
       },
       breadcrumbList([
@@ -50,15 +44,7 @@ export function ArticleMeta({
     <>
       <div className="border-y border-foreground/10 bg-white px-5 py-4 text-sm lg:px-10">
         <div className="mx-auto flex max-w-[1500px] flex-wrap gap-x-8 gap-y-2 text-muted-foreground">
-          <span>
-            作者：
-            <Link
-              href="/about/arthur-guo"
-              className="font-semibold text-foreground"
-            >
-              郭斌 Arthur
-            </Link>
-          </span>
+          <span>作者：<strong className="text-foreground">蓝旗鱼 AI FDE 研究与交付团队</strong></span>
           <span>事实核验：{date}</span>
           <span>证据状态：{status}</span>
         </div>

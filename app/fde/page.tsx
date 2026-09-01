@@ -45,9 +45,7 @@ export default function FdePage() {
         inLanguage: "zh-CN",
         mainEntity: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#term" },
         mainEntityOfPage: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde",
-        author: {
-          "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about/arthur-guo#person",
-        },
+        author: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
         publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
       },
       breadcrumbList([
@@ -70,7 +68,7 @@ export default function FdePage() {
           <div className="mx-auto max-w-[1500px]">
             <div className="grid gap-10 lg:grid-cols-2">
               <div>
-                <p className="eyebrow text-[#147e66]">适用条件</p>
+                <p className="eyebrow text-[#3657d6]">适用条件</p>
                 <h2 className="mt-4 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                   什么时候应该选择 FDE？
                 </h2>
@@ -86,7 +84,7 @@ export default function FdePage() {
                     key={x}
                     className="flex gap-3 border-t border-foreground/15 py-4 text-lg"
                   >
-                    <Check className="shrink-0 text-[#147e66]" />
+                    <Check className="shrink-0 text-[#3657d6]" />
                     {x}
                   </p>
                 ))}
@@ -114,10 +112,10 @@ export default function FdePage() {
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-22 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-22 lg:px-10">
           <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#147e66]">不适用边界</p>
+              <p className="eyebrow text-[#3657d6]">不适用边界</p>
               <h2 className="mt-4 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                 这些情况，先不要做。
               </h2>

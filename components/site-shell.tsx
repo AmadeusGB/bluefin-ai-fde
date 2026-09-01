@@ -80,13 +80,13 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#061311] px-5 pb-8 pt-18 text-white lg:px-10">
+    <footer className="bg-[#070d2d] px-5 pb-8 pt-18 text-white lg:px-10">
       <div className="mx-auto max-w-[1500px]">
         <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr]">
           <div>
             <Link
               href="/"
-              className="inline-flex items-center bg-[#bff5d1] px-5 py-3 text-lg font-black"
+              className="inline-flex items-center bg-[#cdd5ff] px-5 py-3 text-lg font-black"
             >
               <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼 AI" className="h-auto w-[230px]" />
             </Link>
@@ -94,13 +94,13 @@ export function SiteFooter() {
             <div className="mt-4 flex flex-col gap-2 text-sm text-white/60">
               <Link href="/about">关于蓝旗鱼 AI</Link>
               <Link href="/brand">品牌与媒体资料</Link>
-              <Link href="/about/arthur-guo">关于郭斌 Arthur</Link>
+              <Link href="/answers">企业 AI 问题答案库</Link>
               <Link href="/editorial-policy">内容、证据与纠错政策</Link>
               <Link href="/privacy">隐私与数据处理政策</Link>
             </div>
           </div>
           <div className="flex flex-col gap-3 text-sm text-white/60">
-            <b className="text-[#bff5d1]">开始判断</b>
+            <b className="text-[#cdd5ff]">开始判断</b>
             <Link href="/diagnostic">FDE 适配度评估</Link>
             <Link href="/services">FDE 服务阶梯</Link>
             <Link href="/field-diagnostic">付费现场诊断</Link>
@@ -109,7 +109,7 @@ export function SiteFooter() {
             <Link href="/apply">申请资格确认</Link>
           </div>
           <div className="flex flex-col gap-3 text-sm text-white/60">
-            <b className="text-[#bff5d1]">方法与证据</b>
+            <b className="text-[#cdd5ff]">方法与证据</b>
             <Link href="/fde">FDE 方法</Link>
             <Link href="/training">Codex / 企业 AI 培训</Link>
             <Link href="/partners">合作伙伴与城市 FDE</Link>
@@ -140,7 +140,7 @@ export function PageHero({
   return (
     <section className="border-b border-foreground/10 px-5 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1500px]">
-        <p className="eyebrow text-[#147e66]">{eyebrow}</p>
+        <p className="eyebrow text-[#3657d6]">{eyebrow}</p>
         <h1 className="mt-6 max-w-5xl text-5xl font-black leading-[1.02] tracking-[-.06em] lg:text-8xl">
           {title}
         </h1>

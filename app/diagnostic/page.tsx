@@ -34,7 +34,7 @@ export default function DiagnosticPage() {
             <DiagnosticTool />
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-18 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-18 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-8 md:grid-cols-3">
             <div>
               <b className="text-2xl">GO</b>
@@ -56,10 +56,10 @@ export default function DiagnosticPage() {
             </div>
           </div>
         </section>
-        <section className="bg-[#071817] px-5 py-16 text-white lg:px-10">
+        <section className="bg-[#0b1238] px-5 py-16 text-white lg:px-10">
           <div className="mx-auto flex max-w-[1300px] flex-col justify-between gap-8 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#bff5d1]">需要更严格的项目判断？</p>
+              <p className="eyebrow text-[#cdd5ff]">需要更严格的项目判断？</p>
               <h2 className="mt-4 text-3xl font-black">
                 继续检查生产红线与 STOP 条件。
               </h2>
@@ -68,7 +68,7 @@ export default function DiagnosticPage() {
               <Button
                 nativeButton={false}
                 render={<Link href="/tools/project-decision-scorer" />}
-                className="h-12 rounded-none bg-[#bff5d1] text-[#071817] hover:bg-[#d4f9e1]"
+                className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
               >
                 进入项目决策评分器 <ArrowRight />
               </Button>
@@ -76,7 +76,7 @@ export default function DiagnosticPage() {
                 nativeButton={false}
                 render={<Link href="/field-diagnostic" />}
                 variant="outline"
-                className="h-12 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#071817]"
+                className="h-12 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#0b1238]"
               >
                 查看付费现场诊断
               </Button>

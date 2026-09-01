@@ -91,8 +91,8 @@ export function FiveMapsDesigner() {
   }
   return (
     <div className="grid gap-12 lg:grid-cols-[.78fr_1.22fr]">
-      <aside className="self-start bg-[#071817] p-8 text-white lg:sticky lg:top-24 print:static">
-        <p className="eyebrow text-[#bff5d1]">实时诊断草案</p>
+      <aside className="self-start bg-[#0b1238] p-8 text-white lg:sticky lg:top-24 print:static">
+        <p className="eyebrow text-[#cdd5ff]">实时诊断草案</p>
         <label
           htmlFor="five-maps-project"
           className="mt-6 block text-xs font-bold text-white/60"
@@ -108,7 +108,7 @@ export function FiveMapsDesigner() {
           className="mt-2 rounded-none border-white/25 bg-white/5 text-white placeholder:text-white/30"
         />
         <div className="mt-8 flex items-end gap-2">
-          <strong className="text-7xl font-black text-[#bff5d1]">
+          <strong className="text-7xl font-black text-[#cdd5ff]">
             {completed}
           </strong>
           <span className="pb-3 text-white/45">/ {fields.length}</span>
@@ -127,7 +127,7 @@ export function FiveMapsDesigner() {
               <span
                 className={
                   map.completed === map.fields.length
-                    ? "text-[#bff5d1]"
+                    ? "text-[#cdd5ff]"
                     : "text-white/45"
                 }
               >
@@ -158,9 +158,9 @@ export function FiveMapsDesigner() {
               type="button"
               aria-pressed={active === map.key}
               onClick={() => setActive(map.key)}
-              className={`p-4 text-left ${active === map.key ? "bg-[#dff6e6] ring-2 ring-inset ring-[#147e66]" : "bg-white hover:bg-[#f1eee5]"}`}
+              className={`p-4 text-left ${active === map.key ? "bg-[#e7eaff] ring-2 ring-inset ring-[#3657d6]" : "bg-white hover:bg-[#f1eee5]"}`}
             >
-              <span className="text-xs font-bold text-[#147e66]">
+              <span className="text-xs font-bold text-[#3657d6]">
                 0{index + 1}
               </span>
               <span className="mt-2 block font-black">{map.title}</span>
@@ -168,14 +168,14 @@ export function FiveMapsDesigner() {
           ))}
         </div>
         <section className="mt-9">
-          <p className="eyebrow text-[#147e66]">{currentMap.title}</p>
+          <p className="eyebrow text-[#3657d6]">{currentMap.title}</p>
           <h2 className="mt-3 text-3xl font-black">{currentMap.question}</h2>
           <div className="mt-8 space-y-7">
             {currentMap.fields.map((field, index) => {
               const key = `${currentMap.key}.${field.key}`;
               return (
                 <label key={key} className="block">
-                  <span className="text-xs font-bold text-[#147e66]">
+                  <span className="text-xs font-bold text-[#3657d6]">
                     0{index + 1}
                   </span>
                   <span className="mt-1 block text-xl font-black">

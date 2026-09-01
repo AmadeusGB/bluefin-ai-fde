@@ -136,7 +136,7 @@ export function EvidenceOperations() {
   if (loading && !data)
     return (
       <div className="grid min-h-64 place-items-center">
-        <Loader2 className="size-8 animate-spin text-[#147e66]" />
+        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
       </div>
     );
   return (
@@ -144,7 +144,7 @@ export function EvidenceOperations() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#147e66]">交付资产系统</p>
+          <p className="eyebrow text-[#3657d6]">交付资产系统</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-6xl">
             案例证据工作台
           </h1>
@@ -170,7 +170,7 @@ export function EvidenceOperations() {
         </p>
       )}
       {message && (
-        <p className="mt-6 border border-[#147e66]/30 bg-[#dff6e6] p-4 text-sm text-[#147e66]">
+        <p className="mt-6 border border-[#3657d6]/30 bg-[#e7eaff] p-4 text-sm text-[#3657d6]">
           {message}
         </p>
       )}
@@ -180,7 +180,7 @@ export function EvidenceOperations() {
       >
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="eyebrow text-[#147e66]">
+            <p className="eyebrow text-[#3657d6]">
               {form.id ? '编辑记录' : '新建记录'}
             </p>
             <h2 className="mt-2 text-3xl font-black">先保留证据，再写案例。</h2>
@@ -276,7 +276,7 @@ export function EvidenceOperations() {
             type="checkbox"
             checked={Boolean(form.clientAuthorized)}
             onChange={(event) => set('clientAuthorized', event.target.checked)}
-            className="mt-1 size-4 accent-[#147e66]"
+            className="mt-1 size-4 accent-[#3657d6]"
           />
           <span>
             <b>已取得客户公开授权</b>
@@ -356,10 +356,10 @@ export function EvidenceOperations() {
             <button
               key={record.id}
               onClick={() => edit(record)}
-              className="border border-foreground/15 bg-white p-6 text-left hover:border-[#147e66]"
+              className="border border-foreground/15 bg-white p-6 text-left hover:border-[#3657d6]"
             >
               <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="bg-[#dff6e6] px-2 py-1 font-bold text-[#147e66]">
+                <span className="bg-[#e7eaff] px-2 py-1 font-bold text-[#3657d6]">
                   {
                     evidenceLevels.find(
                       ([key]) => key === record.evidence_level,
@@ -384,7 +384,7 @@ export function EvidenceOperations() {
               </p>
               <div className="mt-5 h-2 bg-foreground/10">
                 <span
-                  className="block h-full bg-[#147e66]"
+                  className="block h-full bg-[#3657d6]"
                   style={{ width: `${record.completeness}%` }}
                 />
               </div>

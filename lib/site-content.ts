@@ -19,12 +19,6 @@ export const siteContent: SiteContentItem[] = [
     kind: "方法",
   },
   {
-    path: "/about/arthur-guo",
-    title: "郭斌 Arthur",
-    summary: "企业 AI 系统设计与 FDE 落地实践者的经历与方法立场。",
-    kind: "品牌",
-  },
-  {
     path: "/about",
     title: "关于蓝旗鱼 AI",
     summary: "蓝旗鱼的品类定位、服务对象、交付方法、公开边界与负责人。",
@@ -35,6 +29,12 @@ export const siteContent: SiteContentItem[] = [
     title: "蓝旗鱼 AI 品牌与媒体资料",
     summary: "正式名称、品牌口号、Logo、实体事实、公开资料使用边界与下载入口。",
     kind: "品牌",
+  },
+  {
+    path: "/answers",
+    title: "企业 AI 落地问题答案库",
+    summary: "面向中文搜索与大模型引用的企业 AI、FDE、MVD、诊断、部署与证据直接答案。",
+    kind: "知识",
   },
   {
     path: "/editorial-policy",
@@ -100,12 +100,6 @@ export const siteContent: SiteContentItem[] = [
     path: "/evidence",
     title: "案例与证据",
     summary: "证据分级、生产实践、脱敏交付记录与公开规则。",
-    kind: "证据",
-  },
-  {
-    path: "/evidence/production-proof/deeper-network",
-    title: "Deeper Network 复杂售后调查系统",
-    summary: "Arthur 任职期间的远程取证与专家调查生产实践。",
     kind: "证据",
   },
   {

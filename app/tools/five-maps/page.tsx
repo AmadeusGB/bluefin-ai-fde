@@ -59,7 +59,7 @@ export default function Page() {
         <section className="bg-[#f1eee5] px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1300px]">
             <div className="mb-10 max-w-3xl">
-              <p className="eyebrow text-[#147e66]">方法与核验口径</p>
+              <p className="eyebrow text-[#3657d6]">方法与核验口径</p>
               <h2 className="mt-3 text-4xl font-black">
                 每张地图都必须留下可核验的内容。
               </h2>
@@ -72,16 +72,16 @@ export default function Page() {
                 key={map.key}
                 className="grid gap-5 border-t border-foreground/20 py-8 lg:grid-cols-[80px_1fr_1.5fr_1.5fr]"
               >
-                <span className="text-[#147e66]">0{i + 1}</span>
+                <span className="text-[#3657d6]">0{i + 1}</span>
                 <h3 className="text-2xl font-black">{map.title}</h3>
                 <div>
-                  <b className="text-sm text-[#147e66]">核心问题</b>
+                  <b className="text-sm text-[#3657d6]">核心问题</b>
                   <p className="mt-2 leading-7 text-muted-foreground">
                     {map.question}
                   </p>
                 </div>
                 <div>
-                  <b className="text-sm text-[#147e66]">必须产出</b>
+                  <b className="text-sm text-[#3657d6]">必须产出</b>
                   <p className="mt-2 leading-7">{map.output}</p>
                   <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                     {map.fields.map((field) => (
@@ -96,7 +96,7 @@ export default function Page() {
                 </div>
               </article>
             ))}
-            <div className="mt-12 bg-[#dff6e6] p-8">
+            <div className="mt-12 bg-[#e7eaff] p-8">
               <h2 className="text-3xl font-black">完成五张地图之后</h2>
               <p className="mt-4 max-w-3xl leading-7 text-muted-foreground">
                 只有当问题值得解决、数据可以验证、负责人能够决策、风险可控时，才进入

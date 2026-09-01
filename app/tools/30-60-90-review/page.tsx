@@ -50,7 +50,7 @@ export default function Page() {
         </section>
         <section className="bg-[#f1eee5] px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#147e66]">
+            <p className="eyebrow text-[#3657d6]">
               静态证据清单 · 无需运行工具
             </p>
             <h2 className="mt-4 max-w-4xl text-4xl font-black tracking-[-.04em] lg:text-6xl">
@@ -59,7 +59,7 @@ export default function Page() {
             <div className="mt-12 grid gap-8 lg:grid-cols-3">
               {reviewPhases.map((phase) => (
                 <article key={phase.key} className="bg-white p-7">
-                  <p className="text-xs font-bold text-[#147e66]">
+                  <p className="text-xs font-bold text-[#3657d6]">
                     第 {phase.key} 天
                   </p>
                   <h3 className="mt-3 text-2xl font-black">{phase.label}</h3>

@@ -14,7 +14,7 @@ export default async function Page() {
     return (
       <main className="grid min-h-screen place-items-center bg-[#f5f2e9] px-5">
         <div className="max-w-lg border border-foreground/15 bg-white p-10">
-          <p className="eyebrow text-[#147e66]">内部运营页面</p>
+          <p className="eyebrow text-[#3657d6]">内部运营页面</p>
           <h1 className="mt-4 text-4xl font-black">需要管理员登录</h1>
           <p className="mt-4 leading-7 text-muted-foreground">
             案例原始证据只向指定运营管理员开放。

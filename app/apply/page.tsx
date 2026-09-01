@@ -20,7 +20,7 @@ export default function Page() {
         />
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1000px]">
-            <div className="mb-10 border-l-4 border-[#147e66] bg-[#dff6e6] p-6 text-sm leading-7">
+            <div className="mb-10 border-l-4 border-[#3657d6] bg-[#e7eaff] p-6 text-sm leading-7">
               提交后先进行资格判断；30 分钟资格确认不等于完整方案咨询。通过后再书面确认付费现场诊断的范围、周期与报价。{' '}
               <Link href="/field-diagnostic" className="font-bold underline underline-offset-4">
                 查看交付物与合作边界

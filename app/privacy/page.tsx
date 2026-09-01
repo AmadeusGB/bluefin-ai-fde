@@ -93,7 +93,7 @@ export default function Page() {
                 key={title}
                 className="grid gap-5 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
               >
-                <span className="text-[#147e66]">
+                <span className="text-[#3657d6]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h2 className="text-2xl font-black">{title}</h2>
@@ -104,10 +104,10 @@ export default function Page() {
             ))}
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-20 lg:px-10">
+        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="eyebrow text-[#147e66]">数据权利请求</p>
+              <p className="eyebrow text-[#3657d6]">数据权利请求</p>
               <h2 className="mt-4 text-4xl font-black">
                 访问、更正或删除已提交的信息。
               </h2>

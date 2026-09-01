@@ -19,13 +19,13 @@ export default function Home() {
         <section className="mx-auto grid min-h-[calc(100vh-72px)] max-w-[1500px] grid-cols-1 gap-16 px-5 pb-10 pt-16 lg:grid-cols-[1.35fr_.65fr] lg:items-center lg:px-10">
           <div>
             <p className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.16em]">
-              <span className="size-2 rounded-full bg-[#17856c] shadow-[0_0_0_6px_rgba(23,133,108,.12)]" />
+              <span className="size-2 rounded-full bg-[#405fe0] shadow-[0_0_0_6px_rgba(23,133,108,.12)]" />
               企业 AI 落地 · Forward Deployed Engineering
             </p>
             <h1 className="max-w-5xl text-[clamp(3.7rem,8vw,8.7rem)] font-black leading-[.92] tracking-[-.075em]">
               别再做
               <br />
-              <em className="not-italic text-[#147e66]">“看起来能用”</em>
+              <em className="not-italic text-[#3657d6]">“看起来能用”</em>
               <br />的 AI。
             </h1>
             <p className="mt-9 max-w-3xl text-lg leading-8 text-muted-foreground lg:text-xl">
@@ -49,7 +49,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/field-diagnostic"
-                className="font-bold text-[#147e66]"
+                className="font-bold text-[#3657d6]"
               >
                 查看付费现场诊断
               </Link>
@@ -72,7 +72,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="bg-[#bff5d1] p-7 text-[#071817]">
+            <div className="bg-[#cdd5ff] p-7 text-[#0b1238]">
               <p className="text-xs uppercase tracking-[.18em] opacity-60">
                 而是一条可验证路径
               </p>
@@ -82,22 +82,22 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="border-y border-foreground/10 bg-[#dff6e6] px-5 py-12 lg:px-10">
+        <section className="border-y border-foreground/10 bg-[#e7eaff] px-5 py-12 lg:px-10">
           <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
             <Link href="/brand" className="block py-4 transition hover:opacity-80">
               <img src="/brand/bluefin-logo-lockup.png" alt="蓝旗鱼Ai，探索、实践、共创" className="w-full max-w-[500px]" />
             </Link>
             <div className="grid gap-6 sm:grid-cols-3">
-              {[["品类","企业 AI 落地 / FDE"],["方法","诊断 → MVD → 生产部署 → 采用 → 复制"],["原则","先核验证据，再公开结果"]].map(([label,value])=><div key={label} className="border-t border-foreground/20 pt-4"><span className="text-xs font-bold text-[#147e66]">{label}</span><p className="mt-3 font-bold leading-6">{value}</p></div>)}
+              {[["品类","企业 AI 落地 / FDE"],["方法","诊断 → MVD → 生产部署 → 采用 → 复制"],["原则","先核验证据，再公开结果"]].map(([label,value])=><div key={label} className="border-t border-foreground/20 pt-4"><span className="text-xs font-bold text-[#3657d6]">{label}</span><p className="mt-3 font-bold leading-6">{value}</p></div>)}
             </div>
           </div>
         </section>
         <section
           id="method"
-          className="bg-[#071817] px-5 py-24 text-white lg:px-10 lg:py-30"
+          className="bg-[#0b1238] px-5 py-24 text-white lg:px-10 lg:py-30"
         >
           <div className="mx-auto max-w-[1500px]">
-            <p className="eyebrow text-[#bff5d1]">蓝旗鱼方法</p>
+            <p className="eyebrow text-[#cdd5ff]">蓝旗鱼方法</p>
             <h2 className="mt-5 max-w-4xl text-5xl font-black tracking-[-.055em] lg:text-7xl">
               从现场到系统，五步闭环
             </h2>
@@ -106,7 +106,7 @@ export default function Home() {
             </p>
             <Link
               href="/services"
-              className="mt-6 inline-flex items-center gap-2 font-bold text-[#bff5d1]"
+              className="mt-6 inline-flex items-center gap-2 font-bold text-[#cdd5ff]"
             >
               查看分阶段服务与交付边界 <ArrowRight className="size-4" />
             </Link>
@@ -116,7 +116,7 @@ export default function Home() {
                   key={n}
                   className="min-h-64 border-b border-white/20 py-7 sm:border-r lg:border-b-0 lg:px-6 first:pl-0"
                 >
-                  <span className="text-xs text-[#bff5d1]">{n}</span>
+                  <span className="text-xs text-[#cdd5ff]">{n}</span>
                   <h3 className="mt-16 text-2xl font-bold">{t}</h3>
                   <p className="mt-3 leading-7 text-white/55">{d}</p>
                 </article>
@@ -128,7 +128,7 @@ export default function Home() {
           <div className="mx-auto max-w-[1500px]">
             <div className="grid gap-10 lg:grid-cols-2">
               <div>
-                <p className="eyebrow text-[#147e66]">在线 FDE 工具</p>
+                <p className="eyebrow text-[#3657d6]">在线 FDE 工具</p>
                 <h2 className="mt-5 text-5xl font-black tracking-[-.055em] lg:text-7xl">
                   把模糊需求，变成可判断的项目。
                 </h2>
@@ -161,7 +161,7 @@ export default function Home() {
                   href={h}
                   className="group border-t border-foreground/20 py-7 md:border-r md:px-7 first:pl-0"
                 >
-                  <span className="text-xs text-[#147e66]">0{i + 1}</span>
+                  <span className="text-xs text-[#3657d6]">0{i + 1}</span>
                   <h3 className="mt-10 text-2xl font-black">{t}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">{d}</p>
                   <span className="mt-6 inline-flex items-center gap-2 font-bold">
@@ -173,10 +173,18 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="bg-[#dff6e6] px-5 py-24 lg:px-10">
+        <section className="border-y border-foreground/10 px-5 py-24 lg:px-10">
+          <div className="mx-auto max-w-[1500px]">
+            <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
+              <div><p className="eyebrow text-[#3657d6]">可直接引用的答案</p><h2 className="mt-5 text-5xl font-black tracking-[-.055em] lg:text-7xl">先回答问题，再证明答案。</h2><p className="mt-5 max-w-xl leading-8 text-muted-foreground">适合搜索摘要与大模型深度阅读的中文答案入口。每个结论都连接定义、边界、方法和证据。</p><Link href="/answers" className="mt-7 inline-flex items-center gap-2 font-bold text-[#3657d6]">查看完整问题答案库 <ArrowRight className="size-4"/></Link></div>
+              <div>{[["蓝旗鱼 AI 是做什么的？","面向中国企业的 FDE 落地团队，从现场诊断、MVD 到生产部署、采用与交接。"],["什么企业适合 FDE？","问题昂贵、数据真实、负责人明确、范围可控且结果可以核验的企业。"],["PoC 和 MVD 有什么区别？","PoC 证明技术可行；MVD 用真实数据证明最小业务闭环值得进入生产。"],["培训能代替 AI 落地吗？","不能。培训解决会不会用，落地解决流程、系统、风险、采用与业务结果。"]].map(([q,a],i)=><article key={q} className="grid gap-4 border-t border-foreground/20 py-6 sm:grid-cols-[42px_1fr]"><span className="text-sm font-bold text-[#3657d6]">0{i+1}</span><div><h3 className="text-xl font-black">{q}</h3><p className="mt-2 leading-7 text-muted-foreground">{a}</p></div></article>)}</div>
+            </div>
+          </div>
+        </section>
+        <section className="bg-[#e7eaff] px-5 py-24 lg:px-10">
           <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#147e66]">合作边界</p>
+              <p className="eyebrow text-[#3657d6]">合作边界</p>
               <h2 className="mt-5 text-5xl font-black tracking-[-.055em] lg:text-7xl">
                 先证明值得做，
                 <br />
@@ -194,7 +202,7 @@ export default function Home() {
                   key={x}
                   className="flex gap-4 border-t border-foreground/20 py-4"
                 >
-                  <Check className="text-[#147e66]" />
+                  <Check className="text-[#3657d6]" />
                   {x}
                 </p>
               ))}
@@ -202,7 +210,7 @@ export default function Home() {
                 nativeButton={false}
                 render={<Link href="/diagnostic" />}
                 size="lg"
-                className="mt-5 h-13 rounded-none bg-[#ff735d] px-6 text-[#071817] hover:bg-[#ff826f]"
+                className="mt-5 h-13 rounded-none bg-[#ff735d] px-6 text-[#0b1238] hover:bg-[#ff826f]"
               >
                 5 分钟适配度自检 <ArrowRight />
               </Button>

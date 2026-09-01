@@ -65,7 +65,7 @@ export function MvdDesigner() {
       <div className="space-y-8">
         {fields.map((f, i) => (
           <label key={f.key} className="block">
-            <span className="text-xs font-bold text-[#147e66]">0{i + 1}</span>
+            <span className="text-xs font-bold text-[#3657d6]">0{i + 1}</span>
             <span className="mt-1 block text-xl font-black">{f.label}</span>
             <span className="mt-1 block text-sm text-muted-foreground">
               {f.hint}
@@ -92,15 +92,15 @@ export function MvdDesigner() {
           </label>
         ))}
       </div>
-      <aside className="self-start bg-[#071817] p-8 text-white lg:sticky lg:top-24">
-        <p className="eyebrow text-[#bff5d1]">实时草案 · {complete}/5</p>
+      <aside className="self-start bg-[#0b1238] p-8 text-white lg:sticky lg:top-24">
+        <p className="eyebrow text-[#cdd5ff]">实时草案 · {complete}/5</p>
         <pre className="mt-7 whitespace-pre-wrap font-sans text-sm leading-7 text-white/70">
           {summary}
         </pre>
         <div className="mt-7 flex flex-wrap gap-3 border-t border-white/15 pt-6">
           <Button
             onClick={copy}
-            className="rounded-none bg-[#bff5d1] text-[#071817] hover:bg-[#d4f9e1]"
+            className="rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
           >
             {copied ? <Check /> : <Copy />}
             {copied ? "已复制" : "复制草案"}

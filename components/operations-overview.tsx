@@ -65,7 +65,7 @@ export function OperationsOverview() {
   if (loading && !data)
     return (
       <div className="grid min-h-screen place-items-center bg-[#f5f2e9]">
-        <Loader2 className="size-8 animate-spin text-[#147e66]" />
+        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
       </div>
     );
   const systems = [
@@ -142,7 +142,7 @@ export function OperationsOverview() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#147e66]">品牌 · 获客 · GEO · 证据</p>
+          <p className="eyebrow text-[#3657d6]">品牌 · 获客 · GEO · 证据</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-7xl">
             今天最该推进什么？
           </h1>
@@ -173,7 +173,7 @@ export function OperationsOverview() {
             key={system.href}
             className="border border-foreground/15 bg-white p-7"
           >
-            <system.icon className="size-7 text-[#147e66]" />
+            <system.icon className="size-7 text-[#3657d6]" />
             <h2 className="mt-5 text-2xl font-black">{system.title}</h2>
             <div className="mt-8">
               <strong className="text-6xl font-black tracking-[-.05em]">
@@ -195,23 +195,23 @@ export function OperationsOverview() {
             </div>
             <Link
               href={system.href}
-              className="mt-7 inline-flex items-center gap-2 font-bold text-[#147e66]"
+              className="mt-7 inline-flex items-center gap-2 font-bold text-[#3657d6]"
             >
               进入工作台 <ArrowRight className="size-4" />
             </Link>
           </article>
         ))}
       </div>
-      <section className="mt-8 grid gap-6 bg-[#071817] p-7 text-white lg:grid-cols-[.7fr_1.3fr]">
+      <section className="mt-8 grid gap-6 bg-[#0b1238] p-7 text-white lg:grid-cols-[.7fr_1.3fr]">
         <div>
-          <p className="eyebrow text-[#bff5d1]">优先事项</p>
+          <p className="eyebrow text-[#cdd5ff]">优先事项</p>
           <h2 className="mt-4 text-3xl font-black">从信号转成行动。</h2>
         </div>
         <div className="divide-y divide-white/15">
           {attention.length ? (
             attention.map((item, index) => (
               <p key={String(item)} className="py-4 text-lg font-semibold">
-                <span className="mr-4 text-[#bff5d1]">0{index + 1}</span>
+                <span className="mr-4 text-[#cdd5ff]">0{index + 1}</span>
                 {item}
               </p>
             ))

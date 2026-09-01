@@ -64,7 +64,7 @@ export default function Tools() {
                 href={href}
                 className="group grid gap-4 border-t border-foreground/20 py-8 md:grid-cols-[140px_1fr_1.5fr_30px]"
               >
-                <span className="text-xs font-bold uppercase tracking-[.12em] text-[#147e66]">
+                <span className="text-xs font-bold uppercase tracking-[.12em] text-[#3657d6]">
                   {kind}
                 </span>
                 <h2 className="text-2xl font-black">{title}</h2>
