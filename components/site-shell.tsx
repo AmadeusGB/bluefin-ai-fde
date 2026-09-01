@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function SiteHeader() {
@@ -17,7 +17,10 @@ export function SiteHeader() {
             蓝旗鱼 <b className="text-[#147e66]">AI</b>
           </span>
         </Link>
-        <nav className="hidden items-center gap-5 text-sm font-semibold lg:flex">
+        <nav
+          aria-label="主导航"
+          className="hidden items-center gap-5 text-sm font-semibold lg:flex"
+        >
           <Link href="/fde">什么是 FDE</Link>
           <Link href="/#method">交付方法</Link>
           <Link href="/solutions">行业场景</Link>
@@ -27,10 +30,51 @@ export function SiteHeader() {
           <Link href="/knowledge">知识库</Link>
           <Link href="/research">研究</Link>
         </nav>
+        <details className="group relative ml-auto lg:hidden">
+          <summary
+            className="grid size-11 cursor-pointer list-none place-items-center border border-foreground/20 bg-background transition hover:bg-muted [&::-webkit-details-marker]:hidden"
+            aria-label="打开主导航"
+          >
+            <Menu className="size-5" aria-hidden="true" />
+          </summary>
+          <nav
+            aria-label="移动端主导航"
+            className="absolute right-0 top-[calc(100%+.75rem)] w-[min(88vw,22rem)] border border-foreground/15 bg-background p-3 shadow-2xl"
+          >
+            <div className="grid grid-cols-2 gap-px bg-foreground/10">
+              {[
+                ["什么是 FDE", "/fde"],
+                ["交付方法", "/#method"],
+                ["行业场景", "/solutions"],
+                ["FDE 服务", "/services"],
+                ["案例与证据", "/evidence"],
+                ["工具与模板", "/tools"],
+                ["FDE 知识库", "/knowledge"],
+                ["公开研究", "/research"],
+                ["关于蓝旗鱼", "/about"],
+                ["隐私政策", "/privacy"],
+              ].map(([label, href]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="bg-background px-4 py-4 text-sm font-bold hover:bg-muted"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/apply"
+              className="mt-3 flex min-h-11 items-center justify-between bg-foreground px-4 py-3 text-sm font-bold text-background"
+            >
+              申请资格确认 <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </nav>
+        </details>
         <Button
           nativeButton={false}
           render={<Link href="/apply" />}
-          className="h-10 rounded-none px-4 font-bold"
+          className="ml-3 hidden h-10 rounded-none px-4 font-bold sm:inline-flex"
         >
           申请资格确认 <ArrowRight />
         </Button>

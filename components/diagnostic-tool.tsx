@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   Check,
@@ -202,10 +203,13 @@ export function DiagnosticTool() {
           </Button>
         </div>
         <p className="mt-5 text-sm text-muted-foreground print:hidden">
-          资格确认通过后，才会书面确认付费现场诊断的范围、周期和报价。{' '}
-          <a href="/field-diagnostic" className="font-bold text-[#147e66] underline underline-offset-4">
+          资格确认通过后，才会书面确认付费现场诊断的范围、周期和报价。{" "}
+          <Link
+            href="/field-diagnostic"
+            className="font-bold text-[#147e66] underline underline-offset-4"
+          >
             查看现场诊断交付物与边界
-          </a>
+          </Link>
         </p>
         <p className="mt-5 text-xs text-muted-foreground">
           报告版本 1.0 · 诊断编号 {profile.toUpperCase()} · 编号只记录 12
