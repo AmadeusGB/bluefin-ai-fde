@@ -9,3 +9,4 @@
 .dark { --background:#071817; --foreground:#f5f3eb; --card:#0e2b27; --card-foreground:#f5f3eb; --popover:#0e2b27; --popover-foreground:#f5f3eb; --primary:#bff5d1; --primary-foreground:#071817; --secondary:#133d36; --secondary-foreground:#fff; --muted:#16362f; --muted-foreground:#a8bbb6; --accent:#147e66; --accent-foreground:#fff; --destructive:#ff735d; --border:#2b4944; --input:#365650; --ring:#bff5d1; }
 @layer base { * { @apply border-border outline-ring/50; } html { @apply scroll-smooth; } body { @apply bg-background text-foreground antialiased; } ::selection { background:#bff5d1; color:#071817; } }
 .eyebrow { font-size:.72rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+@media print { header, footer, button, a[href^="mailto:"] { display:none!important; } body { background:white!important; } main, section { padding:0!important; } }
