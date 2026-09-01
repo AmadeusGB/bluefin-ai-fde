@@ -1,3 +1,9 @@
 import type { MetadataRoute } from 'next';
-const paths=['','/fde','/about/arthur-guo','/training','/partners','/solutions','/solutions/industry-associations','/solutions/cross-border-ecommerce','/solutions/manufacturing-supply-chain','/solutions/customer-service-sales','/solutions/enterprise-knowledge','/evidence','/evidence/production-proof/deeper-network','/evidence/case-template','/evidence/cases','/evidence/cases/return-root-cause','/evidence/cases/product-intelligence','/evidence/cases/sales-follow-up','/evidence/cases/quotation-approval','/diagnostic','/apply','/tools','/tools/project-decision-scorer','/tools/five-maps','/tools/mvd-designer','/knowledge','/knowledge/fde-vs-consulting-outsourcing','/knowledge/poc-vs-mvd','/knowledge/rag-vs-agent','/knowledge/training-vs-delivery','/knowledge/general-saas-vs-fde','/knowledge/how-to-choose-ai-project','/knowledge/why-ai-projects-fail','/research/fde-query-benchmark'];
-export default function sitemap():MetadataRoute.Sitemap{return paths.map((path,index)=>({url:`https://bluefin-ai.cn${path}`,lastModified:new Date('2026-09-01'),changeFrequency:index===0?'weekly':'monthly',priority:index===0?1:.8}));}
+import { siteContent, siteContentUpdatedAt } from '@/lib/site-content';
+
+export default function sitemap():MetadataRoute.Sitemap {
+  return siteContent.map((item,index)=>{
+    const priority=index===0?1:(item.kind==='知识'||item.kind==='研究')?0.85:0.8;
+    return {url:`https://bluefin-ai.cn${item.path==='/'?'':item.path}`,lastModified:new Date(siteContentUpdatedAt),changeFrequency:index===0?'weekly':'monthly',priority};
+  });
+}
