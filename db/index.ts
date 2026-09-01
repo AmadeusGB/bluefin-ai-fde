@@ -29,8 +29,11 @@ export function ensureSchema() {
       utm_campaign TEXT,
       utm_content TEXT,
       utm_term TEXT,
-      acquisition_channel TEXT NOT NULL DEFAULT 'direct',
-      status TEXT NOT NULL DEFAULT 'new'
+        acquisition_channel TEXT NOT NULL DEFAULT 'direct',
+        owner_notes TEXT,
+        next_action_at INTEGER,
+        updated_at INTEGER,
+        status TEXT NOT NULL DEFAULT 'new'
     )`),
         db.prepare(
           'CREATE INDEX IF NOT EXISTS idx_diagnostic_applications_created_at ON diagnostic_applications(created_at)',
@@ -55,6 +58,9 @@ export function ensureSchema() {
           ['utm_content', 'TEXT'],
           ['utm_term', 'TEXT'],
           ['acquisition_channel', "TEXT NOT NULL DEFAULT 'direct'"],
+          ['owner_notes', 'TEXT'],
+          ['next_action_at', 'INTEGER'],
+          ['updated_at', 'INTEGER'],
         ];
         const missing = additions.filter(([name]) => !columns.has(name));
         if (missing.length)

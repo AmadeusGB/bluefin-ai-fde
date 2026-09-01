@@ -23,6 +23,9 @@ export const diagnosticApplications = sqliteTable(
     utmContent: text('utm_content'),
     utmTerm: text('utm_term'),
     acquisitionChannel: text('acquisition_channel').notNull().default('direct'),
+    ownerNotes: text('owner_notes'),
+    nextActionAt: integer('next_action_at'),
+    updatedAt: integer('updated_at'),
     status: text('status').notNull().default('new'),
   },
   (table) => [
