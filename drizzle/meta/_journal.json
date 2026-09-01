@@ -15,6 +15,13 @@
       "when": 1788234166518,
       "tag": "0001_mature_union_jack",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788237137825,
+      "tag": "0002_complete_kingpin",
+      "breakpoints": true
     }
   ]
 }
