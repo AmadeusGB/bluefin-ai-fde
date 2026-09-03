@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
 import { fiveMaps } from "@/lib/five-maps";
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 
 export const metadata: Metadata = {
   title: "企业 AI 诊断五张地图",
@@ -20,15 +21,15 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebApplication",
-        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/five-maps#app",
+        "@id": `${absoluteUrl('/tools/five-maps')}#app`,
         name: "蓝旗鱼 AI 企业 AI 诊断五张地图",
         description: metadata.description,
-        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/five-maps",
+        url: absoluteUrl('/tools/five-maps'),
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         inLanguage: "zh-CN",
         offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
-        provider: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
+        provider: { "@id": organizationId },
       },
       breadcrumbList([
         { name: "首页", path: "/" },

@@ -4,6 +4,7 @@ import { ArrowRight, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { breadcrumbList, StructuredData } from '@/components/structured-data';
+import { absoluteUrl, organizationId, siteUrl } from '@/lib/knowledge-graph';
 
 export const metadata: Metadata = {
   title: '关于蓝旗鱼 AI',
@@ -24,13 +25,12 @@ export default function Page() {
     '@graph': [
       {
         '@type': ['Organization', 'ProfessionalService'],
-        '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+        '@id': organizationId,
         name: '蓝旗鱼 AI',
         alternateName: '蓝旗鱼Ai',
         legalName: '深圳市蓝旗鱼科技有限公司',
-        url: 'https://bluefin-ai-fde.liuxiangth.chatgpt.site',
-        mainEntityOfPage:
-          'https://bluefin-ai-fde.liuxiangth.chatgpt.site/about',
+        url: siteUrl,
+        mainEntityOfPage: absoluteUrl('/about'),
         description: metadata.description,
         areaServed: { '@type': 'Country', name: '中国' },
         knowsAbout: [

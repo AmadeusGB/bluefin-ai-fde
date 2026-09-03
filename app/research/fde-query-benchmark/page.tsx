@@ -10,6 +10,7 @@ import {
   geoQuerySetUpdatedAt,
   geoQuerySetVersion,
 } from "@/lib/geo-query-set";
+import { absoluteUrl, siteUrl } from '@/lib/knowledge-graph';
 export const metadata: Metadata = {
   title: "中文企业 AI / FDE 基准查询集（120 题）",
   description:
@@ -35,18 +36,18 @@ export default function FdeQueryBenchmarkPage() {
     creator: {
       "@type": "Organization",
       name: "蓝旗鱼 AI",
-      url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site",
+      url: siteUrl,
     },
     distribution: [
       {
         "@type": "DataDownload",
         encodingFormat: "application/json",
-        contentUrl: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-query-set",
+        contentUrl: absoluteUrl('/api/geo-query-set'),
       },
       {
         "@type": "DataDownload",
         encodingFormat: "text/csv",
-        contentUrl: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-query-set?format=csv",
+        contentUrl: absoluteUrl('/api/geo-query-set?format=csv'),
       },
     ],
   };

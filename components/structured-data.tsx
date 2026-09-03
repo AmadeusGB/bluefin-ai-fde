@@ -1,4 +1,4 @@
-const siteUrl = "https://bluefin-ai-fde.liuxiangth.chatgpt.site";
+import { siteUrl } from '@/lib/knowledge-graph';
 
 type Breadcrumb = { name: string; path: string };
 

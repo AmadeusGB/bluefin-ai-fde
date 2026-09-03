@@ -1,4 +1,4 @@
-import { ensureSchema, getD1 } from '@/db';
+import { ensureSchema, getDatabase } from '@/db';
 import { geoPlatforms } from '@/lib/geo-measurement';
 import { geoQuerySet } from '@/lib/geo-query-set';
 import { authenticatedSiteUser } from '@/lib/site-auth';
@@ -48,7 +48,7 @@ export async function GET(request: Request) {
   if (!user)
     return Response.json({ error: '需要管理员登录后访问。' }, { status: 401 });
   await ensureSchema();
-  const db = getD1(),
+  const db = getDatabase(),
     selectedDate = clean(new URL(request.url).searchParams.get('date'), 10),
     where = selectedDate ? ' WHERE test_date=?' : '';
   const statement = (sql: string) =>
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
   if (!rows.length || rows.length > 1200)
     return Response.json({ error: '每次应导入 1—1200 行。' }, { status: 400 });
   await ensureSchema();
-  const db = getD1(),
+  const db = getDatabase(),
     now = Date.now();
   let skipped = 0;
   const statements = [];

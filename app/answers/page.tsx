@@ -3,6 +3,7 @@ import Link from '@/components/safe-link';
 import { ArrowRight } from 'lucide-react';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { breadcrumbList, StructuredData } from '@/components/structured-data';
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 
 export const metadata: Metadata = {
   title: '企业 AI 落地问题答案库',
@@ -100,17 +101,17 @@ export default function AnswersPage() {
     '@graph': [
       {
         '@type': 'FAQPage',
-        '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/answers#faq',
+        '@id': `${absoluteUrl('/answers')}#faq`,
         name: '企业 AI 落地问题答案库',
-        url: 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/answers',
+        url: absoluteUrl('/answers'),
         datePublished: '2026-09-01',
         dateModified: '2026-09-01',
         inLanguage: 'zh-CN',
         author: {
-          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+          '@id': organizationId,
         },
         publisher: {
-          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+          '@id': organizationId,
         },
         mainEntity: answers.map(([q, a]) => ({
           '@type': 'Question',

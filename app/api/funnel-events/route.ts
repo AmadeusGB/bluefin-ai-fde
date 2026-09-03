@@ -1,4 +1,4 @@
-import { ensureSchema, getD1 } from '@/db';
+import { ensureSchema, getDatabase } from '@/db';
 
 const events = new Set([
   'page_view',
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     await ensureSchema();
     const now = Date.now(),
       eventDate = new Date(now).toISOString().slice(0, 10);
-    await getD1()
+    await getDatabase()
       .prepare(
         `INSERT INTO funnel_events (event_date,event_name,source,landing_path,count,updated_at) VALUES (?,?,?,?,1,?)
          ON CONFLICT(event_date,event_name,source,landing_path) DO UPDATE SET count=count+1,updated_at=excluded.updated_at`,

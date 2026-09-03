@@ -1,4 +1,5 @@
 import { siteContent, siteContentUpdatedAt } from "@/lib/site-content";
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const kind = url.searchParams.get("kind");
@@ -14,25 +15,25 @@ export async function GET(request: Request) {
       updatedAt: siteContentUpdatedAt,
       publisher: {
         name: "蓝旗鱼 AI",
-        id: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization",
-        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about",
+        id: organizationId,
+        url: absoluteUrl('/about'),
       },
       author: {
         name: "蓝旗鱼 AI FDE 研究与交付团队",
-        id: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization",
-        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/about",
+        id: organizationId,
+        url: absoluteUrl('/about'),
       },
-      license: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy",
-      knowledgeGraph: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/knowledge-graph",
+      license: absoluteUrl('/editorial-policy'),
+      knowledgeGraph: absoluteUrl('/api/knowledge-graph'),
       count: items.length,
       items: items.map((item) => ({
         ...item,
-        id: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${item.path === "/" ? "" : item.path}#content`,
-        url: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${item.path === "/" ? "" : item.path}`,
+        id: `${absoluteUrl(item.path)}#content`,
+        url: absoluteUrl(item.path),
         language: "zh-CN",
         dateModified: siteContentUpdatedAt,
-        publisherId: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization",
-        authorId: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization",
+        publisherId: organizationId,
+        authorId: organizationId,
       })),
     },
     { headers: { "cache-control": "public, max-age=3600" } },

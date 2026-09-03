@@ -10,6 +10,7 @@ import {
   geoPlatforms,
 } from "@/lib/geo-measurement";
 import { geoQuerySet } from "@/lib/geo-query-set";
+import { absoluteUrl } from '@/lib/knowledge-graph';
 export const metadata: Metadata = {
   title: "GEO 月度测量协议与空白模板",
   description:
@@ -44,8 +45,7 @@ export default function Page() {
     distribution: {
       "@type": "DataDownload",
       encodingFormat: "text/csv",
-      contentUrl:
-        "https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-measurement-template?format=csv",
+      contentUrl: absoluteUrl('/api/geo-measurement-template?format=csv'),
     },
   };
   return (

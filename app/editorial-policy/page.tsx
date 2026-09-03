@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { breadcrumbList, StructuredData } from '@/components/structured-data';
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 
 export const metadata: Metadata = {
   title: '内容、证据与纠错政策',
@@ -51,19 +52,18 @@ export default function Page() {
     '@graph': [
       {
         '@type': 'WebPage',
-        '@id':
-          'https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy#policy',
+        '@id': `${absoluteUrl('/editorial-policy')}#policy`,
         name: '蓝旗鱼 AI 内容、证据与纠错政策',
         description: metadata.description,
-        url: 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/editorial-policy',
+        url: absoluteUrl('/editorial-policy'),
         datePublished: '2026-09-01',
         dateModified: '2026-09-01',
         inLanguage: 'zh-CN',
         publisher: {
-          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+          '@id': organizationId,
         },
         author: {
-          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+          '@id': organizationId,
         },
       },
       breadcrumbList([

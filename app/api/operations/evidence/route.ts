@@ -1,4 +1,4 @@
-import { ensureSchema, getD1 } from '@/db';
+import { ensureSchema, getDatabase } from '@/db';
 import {
   evidenceLevels,
   evidenceSections,
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
   if (!user)
     return Response.json({ error: '需要管理员登录后访问。' }, { status: 401 });
   await ensureSchema();
-  const rows = await getD1()
+  const rows = await getDatabase()
     .prepare(
       'SELECT * FROM evidence_records ORDER BY updated_at DESC LIMIT 200',
     )
@@ -103,7 +103,7 @@ async function save(request: Request, updating: boolean) {
       { status: 400 },
     );
   await ensureSchema();
-  const db = getD1(),
+  const db = getDatabase(),
     now = Date.now();
   if (updating) {
     const sql = `UPDATE evidence_records SET updated_at=?,title=?,client_label=?,industry=?,project_period=?,evidence_level=?,publication_status=?,client_authorized=?,${evidenceSections.map((section) => `${section.column}=?`).join(',')},source_references=?,reviewer=?,completeness=? WHERE id=?`,

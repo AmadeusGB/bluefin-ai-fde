@@ -1,4 +1,4 @@
-import { ensureSchema, getD1 } from '@/db';
+import { ensureSchema, getDatabase } from '@/db';
 import { decodeDiagnosticProfile, diagnosticResult } from '@/lib/diagnostic';
 
 const clean = (value: unknown, max: number) =>
@@ -140,7 +140,7 @@ export async function POST(request: Request) {
     await ensureSchema();
     const id = crypto.randomUUID(),
       now = Date.now(),
-      db = getD1();
+      db = getDatabase();
     const statements = [
       db
         .prepare(

@@ -1,4 +1,4 @@
-import { ensureSchema, getD1 } from '@/db';
+import { ensureSchema, getDatabase } from '@/db';
 import { authenticatedSiteUser } from '@/lib/site-auth';
 type LeadSummary = {
   total: number;
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
   if (!user)
     return Response.json({ error: '需要管理员登录后访问。' }, { status: 401 });
   await ensureSchema();
-  const db = getD1(),
+  const db = getDatabase(),
     since = Date.now() - 30 * 24 * 60 * 60 * 1000,
     sinceDate = new Date(since).toISOString().slice(0, 10);
   const [leads, evidence, geo, funnel, topSources, topPages] =

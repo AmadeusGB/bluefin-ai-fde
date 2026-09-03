@@ -1,4 +1,5 @@
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 
 export function ArticleMeta({
   title,
@@ -23,15 +24,15 @@ export function ArticleMeta({
     "@graph": [
       {
         "@type": "Article",
-        "@id": `https://bluefin-ai-fde.liuxiangth.chatgpt.site${path}#article`,
+        "@id": `${absoluteUrl(path)}#article`,
         headline: title,
         description,
         datePublished: date,
         dateModified: date,
         inLanguage: "zh-CN",
-        mainEntityOfPage: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${path}`,
-        author: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
-        publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
+        mainEntityOfPage: absoluteUrl(path),
+        author: { "@id": organizationId },
+        publisher: { "@id": organizationId },
       },
       breadcrumbList([
         { name: "首页", path: "/" },

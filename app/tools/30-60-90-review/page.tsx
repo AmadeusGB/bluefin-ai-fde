@@ -3,6 +3,7 @@ import { Review306090 } from "@/components/review-30-60-90";
 import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
 import { reviewPhases } from "@/lib/review-phases";
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 
 export const metadata: Metadata = {
   title: "企业 AI 项目 30/60/90 天复查工具",
@@ -17,14 +18,14 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebApplication",
-        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/30-60-90-review#app",
+        "@id": `${absoluteUrl('/tools/30-60-90-review')}#app`,
         name: "蓝旗鱼企业 AI 项目 30/60/90 天复查工具",
         description: metadata.description,
-        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/tools/30-60-90-review",
+        url: absoluteUrl('/tools/30-60-90-review'),
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         inLanguage: "zh-CN",
-        provider: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
+        provider: { "@id": organizationId },
       },
       breadcrumbList([
         { name: "首页", path: "/" },

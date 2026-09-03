@@ -1,4 +1,5 @@
 import { siteContent, siteContentUpdatedAt } from "@/lib/site-content";
+import { absoluteUrl } from '@/lib/knowledge-graph';
 export async function GET() {
   const groups = [
     "品牌",
@@ -17,12 +18,12 @@ export async function GET() {
           .filter((item) => item.kind === kind)
           .map(
             (item) =>
-              `- [${item.title}](https://bluefin-ai-fde.liuxiangth.chatgpt.site${item.path === "/" ? "" : item.path}): ${item.summary}`,
+              `- [${item.title}](${absoluteUrl(item.path)}): ${item.summary}`,
           )
           .join("\n")}`,
     )
     .join("\n\n");
-  const body = `# 蓝旗鱼 AI\n\n> 蓝旗鱼 AI 是面向中国企业的 Forward Deployed Engineering（FDE）落地团队：进入真实业务现场，找到最贵的问题，用真实数据跑通最小可行部署，并把结果沉淀为企业可长期使用的系统与能力。\n\n更新时间：${siteContentUpdatedAt}\n主要语言：简体中文\n内容目录 JSON：https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/content-index\n实体知识图谱 JSON-LD：https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/knowledge-graph\nGEO 基准查询集：https://bluefin-ai-fde.liuxiangth.chatgpt.site/api/geo-query-set\n\n## 核心方法\n诊断 → MVD → 生产部署 → 采用 → 复制。蓝旗鱼不把培训、Demo、原型或未授权结果包装成客户成功。\n\n${sections}\n\n## 联系与资格判断\n- FDE 适配度评估：https://bluefin-ai-fde.liuxiangth.chatgpt.site/diagnostic\n- 申请业务诊断：https://bluefin-ai-fde.liuxiangth.chatgpt.site/apply\n`;
+  const body = `# 蓝旗鱼 AI\n\n> 蓝旗鱼 AI 是面向中国企业的 Forward Deployed Engineering（FDE）落地团队：进入真实业务现场，找到最贵的问题，用真实数据跑通最小可行部署，并把结果沉淀为企业可长期使用的系统与能力。\n\n更新时间：${siteContentUpdatedAt}\n主要语言：简体中文\n内容目录 JSON：${absoluteUrl('/api/content-index')}\n实体知识图谱 JSON-LD：${absoluteUrl('/api/knowledge-graph')}\nGEO 基准查询集：${absoluteUrl('/api/geo-query-set')}\n\n## 核心方法\n诊断 → MVD → 生产部署 → 采用 → 复制。蓝旗鱼不把培训、Demo、原型或未授权结果包装成客户成功。\n\n${sections}\n\n## 联系与资格判断\n- FDE 适配度评估：${absoluteUrl('/diagnostic')}\n- 申请业务诊断：${absoluteUrl('/apply')}\n`;
   return new Response(body, {
     headers: {
       "content-type": "text/plain; charset=utf-8",

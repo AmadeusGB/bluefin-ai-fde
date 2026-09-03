@@ -1,4 +1,4 @@
-import { ensureSchema, getD1 } from "@/db";
+import { ensureSchema, getDatabase } from "@/db";
 import { authenticatedSiteUser } from "@/lib/site-auth";
 
 const statuses = [
@@ -55,7 +55,7 @@ export async function GET(request: Request) {
   if (!user)
     return Response.json({ error: "需要登录后访问。" }, { status: 401 });
   await ensureSchema();
-  const db = getD1();
+  const db = getDatabase();
   const leads = await db
     .prepare(
       `SELECT id,created_at,updated_at,name,company,contact,role,industry,problem,problem_frequency,annual_loss_range,data_readiness,owner_readiness,qualification_score,qualification_tier,diagnostic_score,decision,diagnostic_profile,source,landing_path,referrer,utm_source,utm_medium,utm_campaign,acquisition_channel,status,owner_notes,next_action_at FROM diagnostic_applications ORDER BY created_at DESC LIMIT 500`,
@@ -132,7 +132,7 @@ export async function PATCH(request: Request) {
   if (!id || !statuses.includes(status as (typeof statuses)[number]))
     return Response.json({ error: "线索或阶段无效。" }, { status: 400 });
   await ensureSchema();
-  const result = await getD1()
+  const result = await getDatabase()
     .prepare(
       "UPDATE diagnostic_applications SET status=?,owner_notes=?,next_action_at=?,updated_at=? WHERE id=?",
     )

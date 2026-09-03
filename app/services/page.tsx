@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
+import { absoluteUrl } from '@/lib/knowledge-graph';
 export const metadata: Metadata = {
   title: "蓝旗鱼 FDE 服务",
   description:
@@ -39,17 +40,17 @@ export default function Page() {
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/services#collection",
+        "@id": `${absoluteUrl('/services')}#collection`,
         name: "蓝旗鱼 FDE 服务",
         description: metadata.description,
-        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/services",
+        url: absoluteUrl('/services'),
         mainEntity: {
           "@type": "ItemList",
           itemListElement: services.map((item, index) => ({
             "@type": "ListItem",
             position: index + 1,
             name: item[1],
-            url: `https://bluefin-ai-fde.liuxiangth.chatgpt.site${item[4]}`,
+            url: absoluteUrl(item[4]),
           })),
         },
       },

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { PrivacyRequestForm } from '@/components/privacy-request-form';
 import { breadcrumbList, StructuredData } from '@/components/structured-data';
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 export const metadata: Metadata = {
   title: '隐私与数据处理政策',
   description:
@@ -60,15 +61,15 @@ export default function Page() {
     '@graph': [
       {
         '@type': 'WebPage',
-        '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/privacy#policy',
+        '@id': `${absoluteUrl('/privacy')}#policy`,
         name: '蓝旗鱼 AI 隐私与数据处理政策',
         description: metadata.description,
-        url: 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/privacy',
+        url: absoluteUrl('/privacy'),
         datePublished: '2026-09-01',
         dateModified: '2026-09-01',
         inLanguage: 'zh-CN',
         publisher: {
-          '@id': 'https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization',
+          '@id': organizationId,
         },
         about: '隐私与个人信息处理',
       },

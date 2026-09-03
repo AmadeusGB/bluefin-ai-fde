@@ -1,14 +1,97 @@
-import { getCloudflareContext } from '@opennextjs/cloudflare';
+import { mkdirSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
 
-let ready: Promise<void> | undefined;
-export function getD1() {
-  const { env } = getCloudflareContext();
-  if (!env.DB) throw new Error('Cloudflare D1 binding `DB` is unavailable.');
-  return env.DB;
+type Row = Record<string, unknown>;
+
+export type DatabaseResult<T = Row> = {
+  results: T[];
+  success: true;
+  meta: { changes: number };
+};
+
+export class PreparedQuery {
+  private values: SQLInputValue[] = [];
+
+  constructor(
+    private readonly database: DatabaseSync,
+    private readonly sql: string,
+  ) {}
+
+  bind(...values: SQLInputValue[]) {
+    this.values = values;
+    return this;
+  }
+
+  async run(): Promise<DatabaseResult> {
+    return this.runSync();
+  }
+
+  runSync(): DatabaseResult {
+    const result = this.database.prepare(this.sql).run(...this.values);
+    return {
+      results: [],
+      success: true,
+      meta: { changes: Number(result.changes) },
+    };
+  }
+
+  async all<T>(): Promise<DatabaseResult<T>> {
+    const results = this.database.prepare(this.sql).all(
+      ...this.values,
+    ) as unknown as T[];
+    return { results, success: true, meta: { changes: 0 } };
+  }
+
+  async first<T>(): Promise<T | null> {
+    const row = this.database.prepare(this.sql).get(...this.values);
+    return (row as unknown as T | undefined) ?? null;
+  }
 }
+
+export class LocalDatabase {
+  constructor(private readonly database: DatabaseSync) {}
+
+  prepare(sql: string) {
+    return new PreparedQuery(this.database, sql);
+  }
+
+  async batch(statements: PreparedQuery[]) {
+    this.database.exec('BEGIN IMMEDIATE');
+    try {
+      const results = [];
+      for (const statement of statements) results.push(statement.runSync());
+      this.database.exec('COMMIT');
+      return results;
+    } catch (error) {
+      this.database.exec('ROLLBACK');
+      throw error;
+    }
+  }
+}
+
+let database: LocalDatabase | undefined;
+let ready: Promise<void> | undefined;
+
+export function getDatabase() {
+  if (!database) {
+    const configuredPath =
+      process.env.DATABASE_PATH?.trim() || './data/bluefin.db';
+    const databasePath = resolve(configuredPath);
+    mkdirSync(dirname(databasePath), { recursive: true });
+    const sqlite = new DatabaseSync(databasePath);
+    sqlite.exec('PRAGMA journal_mode=WAL');
+    sqlite.exec('PRAGMA synchronous=NORMAL');
+    sqlite.exec('PRAGMA busy_timeout=5000');
+    sqlite.exec('PRAGMA foreign_keys=ON');
+    database = new LocalDatabase(sqlite);
+  }
+  return database;
+}
+
 export function ensureSchema() {
   if (!ready) {
-    const db = getD1();
+    const db = getDatabase();
     ready = db
       .batch([
         db.prepare(`CREATE TABLE IF NOT EXISTS diagnostic_applications (
@@ -37,13 +120,13 @@ export function ensureSchema() {
       utm_campaign TEXT,
       utm_content TEXT,
       utm_term TEXT,
-        acquisition_channel TEXT NOT NULL DEFAULT 'direct',
-        consent_at INTEGER,
-        privacy_policy_version TEXT,
-        owner_notes TEXT,
-        next_action_at INTEGER,
-        updated_at INTEGER,
-        status TEXT NOT NULL DEFAULT 'new'
+      acquisition_channel TEXT NOT NULL DEFAULT 'direct',
+      consent_at INTEGER,
+      privacy_policy_version TEXT,
+      owner_notes TEXT,
+      next_action_at INTEGER,
+      updated_at INTEGER,
+      status TEXT NOT NULL DEFAULT 'new'
     )`),
         db.prepare(
           'CREATE INDEX IF NOT EXISTS idx_diagnostic_applications_created_at ON diagnostic_applications(created_at)',
@@ -56,9 +139,7 @@ export function ensureSchema() {
         const result = await db
           .prepare('PRAGMA table_info(diagnostic_applications)')
           .all<{ name: string }>();
-        const columns = new Set(
-          (result.results || []).map((column) => column.name),
-        );
+        const columns = new Set(result.results.map((column) => column.name));
         const additions: [string, string][] = [
           ['landing_path', 'TEXT'],
           ['problem_frequency', 'TEXT'],
@@ -99,7 +180,6 @@ export function ensureSchema() {
             'CREATE UNIQUE INDEX IF NOT EXISTS idx_funnel_events_daily_source_path ON funnel_events(event_date,event_name,source,landing_path)',
           ),
         ]);
-        await db.prepare('PRAGMA optimize').run();
         await db.batch([
           db.prepare(`CREATE TABLE IF NOT EXISTS geo_measurements (
             id TEXT PRIMARY KEY NOT NULL, query_id TEXT NOT NULL, category TEXT NOT NULL, query TEXT NOT NULL, platform TEXT NOT NULL,
@@ -130,6 +210,7 @@ export function ensureSchema() {
             "UPDATE evidence_records SET evidence_level='delivery' WHERE evidence_level='employment'",
           ),
         ]);
+        await db.prepare('PRAGMA optimize').run();
       });
   }
   return ready;

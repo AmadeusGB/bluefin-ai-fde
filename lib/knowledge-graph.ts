@@ -1,6 +1,19 @@
 import { siteContent, siteContentUpdatedAt } from '@/lib/site-content';
 
-export const siteUrl = 'https://bluefin-ai-fde.liuxiangth.chatgpt.site';
+const defaultSiteUrl = 'https://bluefin-ai-fde.liuxiangth.chatgpt.site';
+
+function configuredSiteUrl() {
+  const candidate = process.env.SITE_URL?.trim() || defaultSiteUrl;
+  try {
+    const url = new URL(candidate);
+    if (!['http:', 'https:'].includes(url.protocol)) return defaultSiteUrl;
+    return url.origin;
+  } catch {
+    return defaultSiteUrl;
+  }
+}
+
+export const siteUrl = configuredSiteUrl();
 export const organizationId = `${siteUrl}/#organization`;
 export const websiteId = `${siteUrl}/#website`;
 export const authorId = organizationId;

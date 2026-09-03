@@ -4,6 +4,7 @@ import { ArrowRight, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
 import { breadcrumbList, StructuredData } from "@/components/structured-data";
+import { absoluteUrl, fdeTermId, organizationId } from '@/lib/knowledge-graph';
 
 export const metadata: Metadata = {
   title: "什么是 FDE",
@@ -27,26 +28,26 @@ export default function FdePage() {
     "@graph": [
       {
         "@type": "DefinedTerm",
-        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#term",
+        "@id": fdeTermId,
         name: "Forward Deployed Engineering",
         alternateName: ["FDE", "前线部署工程", "前向部署工程"],
         description:
           "由工程师直接进入客户真实业务现场，与业务人员共同发现问题、接触数据、构建系统并推动采用，并以可核验业务结果为交付证据的工作方式。",
-        inDefinedTermSet: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/knowledge",
-        url: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde",
+        inDefinedTermSet: absoluteUrl('/knowledge'),
+        url: absoluteUrl('/fde'),
       },
       {
         "@type": "Article",
-        "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#article",
+        "@id": `${absoluteUrl('/fde')}#article`,
         headline: "什么是 FDE",
         description: metadata.description,
         datePublished: "2026-09-01",
         dateModified: "2026-09-01",
         inLanguage: "zh-CN",
-        mainEntity: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde#term" },
-        mainEntityOfPage: "https://bluefin-ai-fde.liuxiangth.chatgpt.site/fde",
-        author: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
-        publisher: { "@id": "https://bluefin-ai-fde.liuxiangth.chatgpt.site/#organization" },
+        mainEntity: { "@id": fdeTermId },
+        mainEntityOfPage: absoluteUrl('/fde'),
+        author: { "@id": organizationId },
+        publisher: { "@id": organizationId },
       },
       breadcrumbList([
         { name: "首页", path: "/" },
