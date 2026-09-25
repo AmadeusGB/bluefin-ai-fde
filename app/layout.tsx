@@ -2,15 +2,17 @@ import type { Metadata } from 'next';
 import { AttributionCapture } from '@/components/attribution-capture';
 import { buildSiteGraph, siteUrl } from '@/lib/knowledge-graph';
 import './globals.css';
+import './world.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  robots: process.env.PREVIEW_MODE === 'true' ? {index:false,follow:false} : {index:true,follow:true},
   title: {
-    default: '蓝旗鱼 AI｜企业 AI 落地与 FDE',
-    template: '%s｜蓝旗鱼 AI',
+    default: '蓝旗鱼科技｜企业AI内训与AI方案落地',
+    template: '%s｜蓝旗鱼科技',
   },
   description:
-    '蓝旗鱼 AI 是面向中国企业的 FDE 落地团队：进入真实业务现场，用真实数据完成最小可行部署。',
+    '蓝旗鱼科技专注企业AI内训与企业AI方案落地（FDE），连接AI爱好者、FDE实践者与企业负责人。',
   alternates: {
     canonical: '/',
     types: {
@@ -20,10 +22,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: '蓝旗鱼 AI｜企业 AI 落地 · FDE',
+    title: '蓝旗鱼科技｜企业AI内训与AI方案落地',
     description: '让 AI 在真实业务里产生结果。',
     url: '/',
-    siteName: '蓝旗鱼 AI',
+    siteName: '蓝旗鱼科技',
     locale: 'zh_CN',
     type: 'website',
     images: [
@@ -31,13 +33,13 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1536,
         height: 1024,
-        alt: '蓝旗鱼 AI｜企业 AI 落地 · FDE',
+        alt: '蓝旗鱼科技｜企业AI内训与AI方案落地',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '蓝旗鱼 AI｜企业 AI 落地 · FDE',
+    title: '蓝旗鱼科技｜企业AI内训与AI方案落地',
     description: '让 AI 在真实业务里产生结果。',
     images: ['/og.png'],
   },
@@ -50,6 +52,8 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body>
+        <a href="#main-content" className="skip-link">跳转到正文</a>
+        {process.env.PREVIEW_MODE === "true" && <div className="preview-strip">蓝旗鱼 · 新版体验站 <span>部分成员与案例为演示数据</span></div>}
         <AttributionCapture />
         {children}
         <script

@@ -4,12 +4,24 @@ export type SiteContentItem = {
   summary: string;
   kind: '品牌' | '方法' | '方案' | '证据' | '工具' | '知识' | '研究' | '转化';
 };
-export const siteContentUpdatedAt = '2026-09-01';
+export const siteContentUpdatedAt = '2026-09-25';
 export const siteContent: SiteContentItem[] = [
+  { path: '/world', title: '蓝旗鱼AI世界', summary: '蓝旗鱼AI世界的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/community/club', title: 'AI俱乐部', summary: 'AI俱乐部的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/community/fde', title: 'FDE联盟', summary: 'FDE联盟的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/community/enterprise', title: 'AI企业家联盟', summary: 'AI企业家联盟的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/founders', title: '创始团队', summary: '创始团队的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/founders/liuxiang', title: '刘向', summary: '刘向的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/founders/guobin', title: '郭斌', summary: '郭斌的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/events', title: '往期活动', summary: '往期活动的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/events/foundation-0912', title: '9.12初阶课程', summary: '9.12初阶课程的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/events/advanced-0913', title: '9.13高阶课程', summary: '9.13高阶课程的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/events/salon-0919', title: '9.19线下沙龙', summary: '9.19线下沙龙的公开介绍与实践记录。', kind: '品牌' },
+
   {
     path: '/',
-    title: '蓝旗鱼 AI｜企业 AI 落地与 FDE',
-    summary: '面向中国企业的 FDE 落地团队：诊断、MVD、生产部署、采用与复制。',
+    title: '蓝旗鱼科技｜企业AI内训与AI方案落地',
+    summary: '专注企业AI内训与AI方案落地（FDE）。',
     kind: '品牌',
   },
   {

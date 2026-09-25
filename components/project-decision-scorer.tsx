@@ -177,7 +177,7 @@ export function ProjectDecisionScorer() {
           <section key={group.key} className="mb-12">
             <div className="mb-5 flex items-end justify-between">
               <div>
-                <span className="text-xs font-bold text-[#3657d6]">
+                <span className="text-xs font-bold text-primary">
                   0{groupIndex + 1}
                 </span>
                 <h2 className="mt-1 text-2xl font-black">{group.label}</h2>
@@ -192,7 +192,7 @@ export function ProjectDecisionScorer() {
                 return (
                   <fieldset
                     key={question.text}
-                    className="border border-foreground/15 bg-white p-5"
+                    className="border border-foreground/15 bg-card p-5"
                   >
                     <legend className="px-2 font-bold leading-7">
                       {question.text}
@@ -215,11 +215,11 @@ export function ProjectDecisionScorer() {
                               ),
                             )
                           }
-                          className={`border p-3 text-left transition ${answers[index] === option.value ? "border-[#3657d6] bg-[#e7eaff]" : "border-foreground/15 hover:border-foreground/40"}`}
+                          className={`border p-3 text-left transition ${answers[index] === option.value ? "border-[#3657d6] bg-secondary" : "border-foreground/15 hover:border-foreground/40"}`}
                         >
                           <span className="flex items-center gap-2 font-bold">
                             {answers[index] === option.value && (
-                              <Check className="size-4 text-[#3657d6]" />
+                              <Check className="size-4 text-primary" />
                             )}
                             {option.label}
                           </span>

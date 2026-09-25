@@ -1,6 +1,6 @@
 import { siteContent, siteContentUpdatedAt } from '@/lib/site-content';
 
-const defaultSiteUrl = 'https://bluefin-ai-fde.liuxiangth.chatgpt.site';
+const defaultSiteUrl = 'https://lqy-ai.com';
 
 function configuredSiteUrl() {
   const candidate = process.env.SITE_URL?.trim() || defaultSiteUrl;
@@ -28,7 +28,7 @@ const coreEntities = [
   {
     '@type': ['Organization', 'ProfessionalService'],
     '@id': organizationId,
-    name: '蓝旗鱼 AI',
+    name: '蓝旗鱼科技',
     alternateName: '蓝旗鱼Ai',
     legalName: '深圳市蓝旗鱼科技有限公司',
     url: siteUrl,
@@ -39,7 +39,7 @@ const coreEntities = [
     },
     slogan: '探索 · 实践 · 共创',
     description:
-      '面向中国企业的 Forward Deployed Engineering 落地团队：从业务诊断、MVD 到生产部署、采用与交接。',
+      '蓝旗鱼科技专注企业AI内训与企业AI方案落地（FDE）：从团队学习、业务诊断到方案实施与交接。',
     areaServed: { '@type': 'Country', name: '中国' },
     knowsAbout: [
       { '@id': fdeTermId },
@@ -53,7 +53,7 @@ const coreEntities = [
   {
     '@type': 'WebSite',
     '@id': websiteId,
-    name: '蓝旗鱼 AI',
+    name: '蓝旗鱼科技',
     url: siteUrl,
     inLanguage: 'zh-CN',
     publisher: { '@id': organizationId },
