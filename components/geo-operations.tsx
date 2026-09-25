@@ -116,7 +116,7 @@ export function GeoOperations() {
   if (loading && !data)
     return (
       <div className="grid min-h-64 place-items-center">
-        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     );
   const cards = [
@@ -132,7 +132,7 @@ export function GeoOperations() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#3657d6]">GEO 持续衡量</p>
+          <p className="eyebrow text-primary">GEO 持续衡量</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-6xl">
             引用与品类关联看板
           </h1>
@@ -175,7 +175,7 @@ export function GeoOperations() {
         </p>
       )}
       {message && (
-        <p className="mt-6 border border-[#3657d6]/30 bg-[#e7eaff] p-4 text-sm text-[#3657d6]">
+        <p className="mt-6 border border-[#3657d6]/30 bg-secondary p-4 text-sm text-primary">
           {message}
         </p>
       )}
@@ -211,7 +211,7 @@ export function GeoOperations() {
       </div>
       <section className="mt-12">
         <h2 className="text-3xl font-black">平台表现</h2>
-        <div className="mt-6 overflow-x-auto border border-foreground/15 bg-white">
+        <div className="mt-6 overflow-x-auto border border-foreground/15 bg-card">
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead className="bg-[#0b1238] text-white">
               <tr>
@@ -260,7 +260,7 @@ export function GeoOperations() {
           {data?.categories.map((item) => (
             <article key={item.dimension} className="bg-background p-5">
               <h3 className="font-black">{item.dimension}</h3>
-              <p className="mt-4 text-2xl font-black text-[#3657d6]">
+              <p className="mt-4 text-2xl font-black text-primary">
                 {percent(item.citationRate)}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">

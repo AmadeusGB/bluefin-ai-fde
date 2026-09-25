@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 const sections = [
+  ['会员资料与展示', '会员报名按板块收集姓名、联系电话、城市、性别（可选择不透露）、行业、AI使用情况、活动意愿，以及FDE案例与协作意向、企业规模与AI应用情况。电话、经营数据、案例截图与诊断报告仅本人及授权管理员可见。展示昵称、行业、城市与身份由会员主动选择，可在会员空间关闭。'],
+  ['账号与诊断', '密码以加盐摘要保存；必要的登录Cookie用于维持最长7天的会话。当前手机号用于登录和联系，并未进行短信认证。企业初步诊断由问卷规则生成，未经现场核验，不构成实施或收益承诺。'],
+  ['草稿与访问限制', '主动保存的报名草稿仅存于本次浏览会话的sessionStorage，不保存密码，提交成功后清除。登录与邀请码尝试次数按短期哈希键统计，15分钟到期后清理。'],
   [
     '收集哪些信息',
     '申请表收集姓名、企业或组织、联系方式、角色、行业或场景、业务问题、问题频率、年度损失或机会区间、数据准备度和负责人投入度，并由后四项生成 A/B/C 资格优先级；如果从适配度评估进入，还会保存分数、决定和 12 项是/否编码。资格优先级只用于人工审查排序，不会自动接受或拒绝项目。',
@@ -52,7 +55,7 @@ const sections = [
   ],
   [
     '政策版本',
-    '当前版本：2026-09-01-v1.2。表单会记录同意时间和政策版本。收集目的、字段或共享方式实质变化时，将更新本页和版本号。',
+    '当前版本：2026-09-25-v2。表单会记录同意时间和政策版本。收集目的、字段或共享方式实质变化时，将更新本页和版本号。',
   ],
 ];
 export default function Page() {
@@ -66,7 +69,7 @@ export default function Page() {
         description: metadata.description,
         url: absoluteUrl('/privacy'),
         datePublished: '2026-09-01',
-        dateModified: '2026-09-01',
+        dateModified: '2026-09-25',
         inLanguage: 'zh-CN',
         publisher: {
           '@id': organizationId,
@@ -85,7 +88,7 @@ export default function Page() {
       <main>
         <StructuredData data={schema} />
         <PageHero
-          eyebrow="数据治理 · 版本 2026-09-01-v1.2"
+          eyebrow="数据治理 · 版本 2026-09-25-v2"
           title="只收集资格判断真正需要的数据。"
           intro="本政策说明蓝旗鱼在适配度评估、诊断申请、隐私请求和后续沟通中处理哪些信息、为什么处理、保存在哪里、谁能访问，以及申请人如何请求访问、更正或删除。"
         />
@@ -96,7 +99,7 @@ export default function Page() {
                 key={title}
                 className="grid gap-5 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
               >
-                <span className="text-[#3657d6]">
+                <span className="text-primary">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <h2 className="text-2xl font-black">{title}</h2>
@@ -107,10 +110,10 @@ export default function Page() {
             ))}
           </div>
         </section>
-        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
+        <section className="bg-secondary px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="eyebrow text-[#3657d6]">数据权利请求</p>
+              <p className="eyebrow text-primary">数据权利请求</p>
               <h2 className="mt-4 text-4xl font-black">
                 访问、更正或删除已提交的信息。
               </h2>
