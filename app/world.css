@@ -1334,6 +1334,12 @@ input::placeholder {
   color: var(--world-muted);
   line-height: 1.8;
 }
+.header-account-actions { display: flex; align-items: center; gap: 14px; }
+.header-register { color: var(--primary); font-size: 14px; padding: 12px 0; }
+.auth-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; margin: 24px 0; }
+.auth-links a { color: #a3d9ff; }
+.auth-links .primary-button { color: #07111c; }
+@media(max-width: 440px) { .header-account-actions { gap: 10px; } }
 .login-panel {
   max-width: 440px;
   margin: 35px auto 60px;

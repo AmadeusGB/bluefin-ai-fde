@@ -81,6 +81,8 @@ export function Entrance() {
           <Link href="/world">三大社群</Link>
           <Link href="/knowledge">实践知识库</Link>
           <Link href="/login">会员登录</Link>
+          <Link href="/register">注册</Link>
+          <Link href="/guest">游客访问</Link>
         </nav>
         <span className="micro">SHENZHEN · CHINA</span>
       </div>

@@ -174,6 +174,49 @@ export async function POST(req: Request, ctx: Context) {
     const raw = await req.text();
     if (raw.length > 30000) throw new Error('表单内容过长');
     const body = JSON.parse(raw);
+    if (action[0] === 'signup') {
+      throttle('signup:' + ip, 10);
+      const account = String(body.account || '').trim();
+      const password = String(body.password || '');
+      if (!/^[A-Za-z0-9_.@-]{4,64}$/.test(account))
+        throw new Error('账号需为4—64位字母、数字或 _ . @ -，也可使用手机号');
+      if (password.length < 10 || password.length > 128)
+        throw new Error('密码需要10—128个字符');
+      const db = communityDB();
+      if (
+        db
+          .prepare('SELECT id FROM community_members WHERE phone=?')
+          .get(account)
+      )
+        return json({ error: '此账号已注册，请直接登录' }, 409);
+      const id = randomUUID();
+      const answers = {
+        name: '',
+        displayName: '新成员',
+        phone: /^1\d{10}$/.test(account) ? account : '',
+        city: '',
+        industry: '',
+        role: '',
+        registrationMethod: 'simple',
+        registeredAt: new Date().toISOString(),
+        policyVersion: '2026-09-28-v3',
+      };
+      const inserted = db
+        .prepare(
+          "INSERT INTO community_members(id,section,phone,password,answers,visible,created_at) VALUES(?,'club',?,?,?,0,?) ON CONFLICT(phone) DO NOTHING",
+        )
+        .run(
+          id,
+          account,
+          passwordHash(password),
+          JSON.stringify(answers),
+          Date.now(),
+        );
+      if (!inserted.changes)
+        return json({ error: '此账号已注册，请直接登录' }, 409);
+      await createSession(id);
+      return json({ ok: true, id });
+    }
     if (action[0] === 'invite') {
       throttle('invite:' + ip, 25);
       const inv = communityDB()
@@ -239,7 +282,7 @@ export async function POST(req: Request, ctx: Context) {
       return json({ ok: true, id });
     }
     if (action[0] === 'login') {
-      const phone = String(body.phone || '').replace(/[ -]/g, '');
+      const phone = String(body.account ?? body.phone ?? '').trim();
       throttle('login:' + ip, 25);
       throttle('account:' + phone, 12);
       const m = communityDB()
@@ -251,7 +294,7 @@ export async function POST(req: Request, ctx: Context) {
         !m ||
         !passwordMatches(String(body.password || '').slice(0, 128), m.password)
       )
-        return json({ error: '手机号或密码不正确，或账号已停用' }, 401);
+        return json({ error: '账号或密码不正确，或账号已停用' }, 401);
       await createSession(m.id);
       return json({ ok: true });
     }

@@ -49,6 +49,9 @@ export async function GET(req: Request) {
         { header: '会员ID', key: 'id', width: 38 },
         { header: '加入时间', key: 'date', width: 23 },
         { header: '状态', key: 'status', width: 15 },
+        ...(scope === 'public'
+          ? []
+          : [{ header: '登录账号', key: 'account', width: 25 }]),
         ...fields.map((f) => ({
           header: f.label,
           key: f.key,
@@ -64,6 +67,7 @@ export async function GET(req: Request) {
           id: row.id,
           date: new Date(row.created_at).toISOString(),
           status: row.status,
+          ...(scope === 'public' ? {} : { account: row.phone }),
           ...Object.fromEntries(
             fields.map((f) => [
               f.key,
@@ -101,7 +105,7 @@ export async function GET(req: Request) {
                   ['displayName', 'city', 'industry', 'role'].includes(f.key),
                 )
               : [...commonFields, ...roleFields[r.section]];
-        return `# ${a.displayName}\n\n板块：${sections[r.section].name}\n会员ID：${r.id}\n\n${fields.map((f) => `- ${f.label}：${Array.isArray(a[f.key]) ? a[f.key].join('、') : a[f.key] || '未填写'}`).join('\n')}\n\n${scope !== 'public' && r.report ? r.report : ''}`;
+        return `# ${a.displayName}\n\n板块：${sections[r.section].name}\n会员ID：${r.id}\n${scope === 'public' ? '' : `登录账号：${r.phone}\n`}\n${fields.map((f) => `- ${f.label}：${Array.isArray(a[f.key]) ? a[f.key].join('、') : a[f.key] || '未填写'}`).join('\n')}\n\n${scope !== 'public' && r.report ? r.report : ''}`;
       })
       .join('\n\n---\n\n');
     return new Response(md || '# 暂无匹配会员\n', {

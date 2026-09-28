@@ -22,9 +22,14 @@ export function WorldHeader() {
           </Link>
         ))}
       </nav>
-      <Link className="header-login" href="/members">
-        会员空间 <ArrowUpRight size={15} />
-      </Link>
+      <div className="header-account-actions">
+        <Link className="header-register" href="/register">
+          注册
+        </Link>
+        <Link className="header-login" href="/members">
+          会员空间 <ArrowUpRight size={15} />
+        </Link>
+      </div>
       <details className="mobile-nav">
         <summary aria-label="打开导航">
           <Menu size={21} />
@@ -36,6 +41,7 @@ export function WorldHeader() {
             </Link>
           ))}
           <Link href="/world">三大社群</Link>
+          <Link href="/guest">游客访问</Link>
         </nav>
       </details>
     </header>
