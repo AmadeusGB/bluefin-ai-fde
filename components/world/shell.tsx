@@ -62,6 +62,7 @@ export function WorldFooter() {
       <span>企业AI内训 · 企业AI方案落地（FDE）</span>
       <nav>
         <Link href="/events">往期活动</Link>
+        <Link href="/evidence/cases">项目摘要</Link>
         <Link href="/privacy">隐私说明</Link>
         <Link href="/editorial-policy">内容政策</Link>
       </nav>

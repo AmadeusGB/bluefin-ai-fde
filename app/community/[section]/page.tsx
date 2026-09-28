@@ -40,15 +40,23 @@ export default async function Page({
           <h2>{s.line}</h2>
           <p className="intro">{s.intro}</p>
           <div className="button-row">
-            <Link href={`/join?section=${section}`} className="primary-button">
-              凭邀请码加入 <ArrowRight size={18} />
+            <Link
+              href={
+                section === 'club' ? '/register' : `/join?section=${section}`
+              }
+              className="primary-button"
+            >
+              {section === 'club' ? '注册加入AI俱乐部' : '凭邀请码加入'}{' '}
+              <ArrowRight size={18} />
             </Link>
             <Link href="/login" className="text-link">
               已经加入？登录
             </Link>
           </div>
           <p className="quiet">
-            加入后可访问会员空间、活动相册和对应板块资料。
+            {section === 'club'
+              ? '账号与密码即可注册。游客可直接看公开活动，会员可访问俱乐部空间与课件。'
+              : '公开活动无需登录；加入后可访问会员空间和对应板块资料。'}
           </p>
         </div>
         <div
@@ -100,9 +108,15 @@ export default async function Page({
           <p>{s.intro}</p>
         </details>
         <details>
-          <summary>为什么需要邀请码？</summary>
+          <summary>
+            {section === 'club'
+              ? '加入AI俱乐部需要邀请码吗？'
+              : '为什么需要邀请码？'}
+          </summary>
           <p>
-            邀请码用于确认加入的板块与来源。填写资料后可以进入对应会员空间。请向蓝旗鱼团队或活动组织者获取邀请码。
+            {section === 'club'
+              ? '目前快捷注册不需要邀请码，填写账号与密码即可默认加入AI俱乐部。原有详细报名入口保留，供需要填写完整资料的受邀成员使用。FDE联盟与AI企业家联盟仍需各自的邀请码。'
+              : '邀请码用于确认加入的板块与来源。填写资料后可以进入对应会员空间。请向蓝旗鱼团队或活动组织者获取邀请码。'}
           </p>
         </details>
         <details>

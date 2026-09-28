@@ -835,6 +835,21 @@ input::placeholder {
   line-height: 2;
   margin-bottom: 22px;
 }
+.public-reading { max-width: 960px; margin: 60px auto; }
+.public-reading h2 { font-size: clamp(24px, 3vw, 36px); line-height: 1.5; font-weight: 400; margin: 30px 0 20px; }
+.public-reading p, .public-reading li { color: var(--world-muted); font-size: 15px; line-height: 2; margin: 12px 0; }
+.public-reading strong { color: var(--world-ink); }
+.public-reading ul, .public-reading ol { padding-left: 24px; }
+.public-reading ul { list-style: disc; }
+.public-reading ol { list-style: decimal; }
+.public-reading .quiet { font-size: 12px; }
+.album-heading { font-size: 25px; margin: 40px 0 24px; }
+.case-summary { padding: 32px 0; border-top: 1px solid var(--world-line); }
+.case-summary h2 { font-size: 28px; margin-top: 10px; }
+.case-summary dl { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px 24px; margin: 24px 0; font-size: 14px; line-height: 1.9; }
+.case-summary dt { color: var(--world-ink); }
+.case-summary dd { color: var(--world-muted); }
+@media(max-width: 600px) { .case-summary dl { grid-template-columns: minmax(0, 1fr); gap: 6px; } .case-summary dd { margin-bottom: 14px; } }
 .faq-block {
   max-width: 850px;
   margin: 90px auto 0;

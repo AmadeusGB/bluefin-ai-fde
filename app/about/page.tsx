@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { WorldShell } from '@/components/world/shell';
 import { ArrowUpRight } from 'lucide-react';
+import { companyDescription } from '@/lib/public-copy';
 export const metadata = {
   title: '关于蓝旗鱼科技',
   description: '蓝旗鱼科技专注企业AI内训与企业AI方案落地（FDE）。',
@@ -27,9 +28,7 @@ export default function Page() {
             <br />
             到业务用起来。
           </h2>
-          <p>
-            深圳市蓝旗鱼科技有限公司围绕企业真实需求，提供企业AI内训与企业AI方案落地（FDE）服务，帮助团队建立应用能力，推进方案设计、实施与应用。
-          </p>
+          <p>{companyDescription}</p>
           <p>
             我们同时通过AI俱乐部、FDE联盟和AI企业家联盟，连接学习者、实践者与企业负责人，开展学习交流、实践协作和企业应用探索。
           </p>

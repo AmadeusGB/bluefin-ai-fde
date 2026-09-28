@@ -7,7 +7,7 @@ export type SiteContentItem = {
 export const siteContentUpdatedAt = '2026-09-28';
 export const siteContent: SiteContentItem[] = [
   { path: '/world', title: '蓝旗鱼AI世界', summary: '蓝旗鱼AI世界的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/community/club', title: 'AI俱乐部', summary: 'AI俱乐部的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/community/club', title: 'AI俱乐部', summary: '面向AI爱好者与学习者，账号密码即可注册加入，公开活动无需登录。', kind: '品牌' },
   { path: '/community/fde', title: 'FDE联盟', summary: 'FDE联盟的公开介绍与实践记录。', kind: '品牌' },
   { path: '/community/enterprise', title: 'AI企业家联盟', summary: 'AI企业家联盟的公开介绍与实践记录。', kind: '品牌' },
   { path: '/founders', title: '创始团队', summary: '创始团队的公开介绍与实践记录。', kind: '品牌' },
@@ -16,9 +16,9 @@ export const siteContent: SiteContentItem[] = [
   { path: '/founders/zouyingpeng', title: '邹英鹏', summary: '蓝旗鱼科技联合创始人，拥有12年实体企业经营与商务实战经验，专注企业合作、企业AI应用与FDE实践。', kind: '品牌' },
   { path: '/guest', title: '游客空间', summary: '无需注册即可浏览蓝旗鱼往期公开活动与照片。', kind: '品牌' },
   { path: '/events', title: '往期活动', summary: '往期活动的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/events/foundation-0912', title: '9.12初阶课程', summary: '9.12初阶课程的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/events/advanced-0913', title: '9.13高阶课程', summary: '9.13高阶课程的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/events/salon-0919', title: '9.19线下沙龙', summary: '9.19线下沙龙的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/events/foundation-0912', title: '9.12初阶课程回顾', summary: '根据三张现场照片整理的课堂讲解、电脑实操记录与延伸学习建议。', kind: '品牌' },
+  { path: '/events/advanced-0913', title: '9.13高阶课程回顾', summary: '根据四张现场照片整理的AI应用、Second Myself与智能体主题分享记录。', kind: '品牌' },
+  { path: '/events/salon-0919', title: '9.19线下沙龙回顾', summary: '蓝旗鱼AI俱乐部线下分享沙龙的活动合影、操作演示与小组交流记录。', kind: '品牌' },
 
   {
     path: '/',
@@ -34,7 +34,7 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/about',
-    title: '关于蓝旗鱼 AI',
+    title: '关于蓝旗鱼科技',
     summary: '蓝旗鱼的法定主体、品类定位、服务对象、交付方法与公开边界。',
     kind: '品牌',
   },
@@ -125,8 +125,8 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/evidence/cases',
-    title: '脱敏交付记录',
-    summary: '四项真实项目的交付路径、验收指标与证据限制。',
+    title: '企业AI项目摘要与交付路径',
+    summary: '四篇既有脱敏记录的问题、实施路径、验收指标与证据限制，不将历史数据或演示材料作为改善结果。',
     kind: '证据',
   },
   {
@@ -167,8 +167,8 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/services',
-    title: '蓝旗鱼 FDE 服务',
-    summary: '从现场诊断、MVD 到生产部署、采用与交接的分阶段服务阶梯。',
+    title: '企业AI内训与企业AI方案落地（FDE）',
+    summary: '两项核心业务的适用人群、定制方式、准备条件、交付流程、周期费用因素与常见问题。',
     kind: '方案',
   },
   {

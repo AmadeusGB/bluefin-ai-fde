@@ -1,4 +1,5 @@
 import { siteContent, siteContentUpdatedAt } from '@/lib/site-content';
+import { companyDescription } from '@/lib/public-copy';
 
 const defaultSiteUrl = 'https://lqy-ai.com';
 
@@ -38,12 +39,12 @@ const coreEntities = [
       caption: '蓝旗鱼Ai｜探索 · 实践 · 共创',
     },
     slogan: '探索 · 实践 · 共创',
-    description:
-      '蓝旗鱼科技专注企业AI内训与企业AI方案落地（FDE）：从团队学习、业务诊断到方案实施与交接。',
+    description: companyDescription,
     areaServed: { '@type': 'Country', name: '中国' },
     knowsAbout: [
       { '@id': fdeTermId },
       '企业 AI 落地',
+      '企业AI内训',
       '最小可行部署 MVD',
       '企业 AI 现场诊断',
       '生产部署与采用',
@@ -88,8 +89,8 @@ const coreEntities = [
   {
     '@type': 'Service',
     '@id': `${siteUrl}/services#service`,
-    name: '企业 AI 落地 / Forward Deployed Engineering',
-    serviceType: '企业 AI 落地 / Forward Deployed Engineering',
+    name: '企业AI方案落地（FDE）',
+    serviceType: '企业AI方案落地（FDE）',
     url: `${siteUrl}/services`,
     provider: { '@id': organizationId },
     areaServed: { '@type': 'Country', name: '中国' },
@@ -99,9 +100,23 @@ const coreEntities = [
     },
   },
   {
+    '@type': 'Service',
+    '@id': `${siteUrl}/training#service`,
+    name: '企业AI内训',
+    serviceType: '企业AI内训',
+    description:
+      '围绕团队岗位与业务场景，建立AI认知、工具使用和实践能力。具体课程范围与产出以确认的课程方案为准。',
+    url: `${siteUrl}/training`,
+    provider: { '@id': organizationId },
+    audience: {
+      '@type': 'BusinessAudience',
+      audienceType: '企业管理者与业务骨干',
+    },
+  },
+  {
     '@type': 'CollectionPage',
     '@id': `${siteUrl}/api/content-index#catalog`,
-    name: '蓝旗鱼 AI 内容目录',
+    name: '蓝旗鱼科技内容目录',
     url: `${siteUrl}/api/content-index`,
     inLanguage: 'zh-CN',
     dateModified: siteContentUpdatedAt,
@@ -124,7 +139,7 @@ const coreEntities = [
 export function buildSiteGraph() {
   return {
     '@context': 'https://schema.org',
-    '@graph': coreEntities.slice(0, 5),
+    '@graph': coreEntities.slice(0, 6),
   };
 }
 

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { WorldShell } from '@/components/world/shell';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { companyDescription, serviceQuestions } from '@/lib/public-copy';
 export const metadata = {
   title: '企业AI内训与AI方案落地',
+  description: companyDescription,
   alternates: { canonical: '/services' },
 };
 export default function Page() {
@@ -15,7 +17,7 @@ export default function Page() {
           <br />
           到用AI做成事。
         </h1>
-        <p className="intro">两项核心服务，围绕同一个出发点：企业真实业务。</p>
+        <p className="intro">{companyDescription}</p>
       </div>
       <div className="service-editorial">
         <article>
@@ -47,6 +49,41 @@ export default function Page() {
           </Link>
         </article>
       </div>
+      <section className="public-reading">
+        <p className="micro accent">HOW WE WORK</p>
+        <h2>从业务问题，到可确认的交付。</h2>
+        <ol>
+          <li>
+            <strong>说明现状。</strong>
+            明确团队岗位、重复任务、现有流程和希望改善的问题。
+          </li>
+          <li>
+            <strong>确认路径。</strong>
+            以能力建设为主时先做内训；涉及企业数据、系统与流程时进入FDE需求梳理。
+          </li>
+          <li>
+            <strong>约定范围。</strong>
+            确认课程或试点范围、交付物、双方责任、费用与验收方式。
+          </li>
+          <li>
+            <strong>实施与复查。</strong>
+            对照约定目标检查学习产出或试点结果，再决定下一阶段。
+          </li>
+        </ol>
+        <div className="auth-links">
+          <Link href="/evidence/cases">查看公开项目摘要 →</Link>
+          <Link href="/events">查看课程与沙龙记录 →</Link>
+        </div>
+      </section>
+      <section className="faq-block">
+        <h2>企业开始之前，常问的八个问题</h2>
+        {serviceQuestions.map(([q, a]) => (
+          <details key={q}>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </section>
       <div className="diagnostic-callout">
         <div>
           <h2>先找到适合你的第一步。</h2>
