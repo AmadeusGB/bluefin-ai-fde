@@ -50,16 +50,21 @@ export default function Page() {
             </h2>
           </div>
         </Link>
-        <div className="founder-card founder-placeholder pending-founder">
+        <Link
+          href="/founders/zouyingpeng"
+          className="founder-card founder-placeholder"
+        >
           <div className="portrait-placeholder">
-            <span>＋</span>
-            <p>第三位创始人资料待补充</p>
+            <span>ZYP</span>
+            <p>肖像待补充</p>
           </div>
           <div>
-            <span>团队档案</span>
-            <h2>敬请期待</h2>
+            <span>联合创始人 · 企业合作与业务落地</span>
+            <h2>
+              邹英鹏 <ArrowUpRight />
+            </h2>
           </div>
-        </div>
+        </Link>
       </div>
     </WorldShell>
   );

@@ -4,7 +4,7 @@ export type SiteContentItem = {
   summary: string;
   kind: '品牌' | '方法' | '方案' | '证据' | '工具' | '知识' | '研究' | '转化';
 };
-export const siteContentUpdatedAt = '2026-09-25';
+export const siteContentUpdatedAt = '2026-09-28';
 export const siteContent: SiteContentItem[] = [
   { path: '/world', title: '蓝旗鱼AI世界', summary: '蓝旗鱼AI世界的公开介绍与实践记录。', kind: '品牌' },
   { path: '/community/club', title: 'AI俱乐部', summary: 'AI俱乐部的公开介绍与实践记录。', kind: '品牌' },
@@ -13,6 +13,7 @@ export const siteContent: SiteContentItem[] = [
   { path: '/founders', title: '创始团队', summary: '创始团队的公开介绍与实践记录。', kind: '品牌' },
   { path: '/founders/liuxiang', title: '刘向', summary: '刘向的公开介绍与实践记录。', kind: '品牌' },
   { path: '/founders/guobin', title: '郭斌', summary: '郭斌的公开介绍与实践记录。', kind: '品牌' },
+  { path: '/founders/zouyingpeng', title: '邹英鹏', summary: '蓝旗鱼科技联合创始人，拥有12年实体企业经营与商务实战经验，专注企业合作、企业AI应用与FDE实践。', kind: '品牌' },
   { path: '/events', title: '往期活动', summary: '往期活动的公开介绍与实践记录。', kind: '品牌' },
   { path: '/events/foundation-0912', title: '9.12初阶课程', summary: '9.12初阶课程的公开介绍与实践记录。', kind: '品牌' },
   { path: '/events/advanced-0913', title: '9.13高阶课程', summary: '9.13高阶课程的公开介绍与实践记录。', kind: '品牌' },
