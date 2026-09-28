@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, Menu, ArrowLeft } from 'lucide-react';
 export function WorldHeader() {
   const links = [
@@ -9,11 +10,18 @@ export function WorldHeader() {
   ];
   return (
     <header className="world-header">
-      <Link href="/world" className="brand-word">
-        <span className="brand-fin">↗</span>
-        <span>
-          蓝旗鱼科技<small>BLUEFIN TECHNOLOGY</small>
-        </span>
+      <Link
+        href="/world"
+        className="brand-logo"
+        aria-label="蓝旗鱼科技，返回AI世界"
+      >
+        <Image
+          src="/world/logo.png"
+          alt="蓝旗鱼AI · 探索 · 实践 · 共创"
+          width={500}
+          height={205}
+          priority
+        />
       </Link>
       <nav className="desktop-nav">
         {links.map(([title, url]) => (
