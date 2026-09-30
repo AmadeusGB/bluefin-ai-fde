@@ -143,10 +143,19 @@ export function throttle(key: string, max = 12) {
 }
 export function publicCard(m: Member) {
   const a = JSON.parse(m.answers);
+  const name = Array.from(String(a.displayName || a.name || '').trim());
+  const displayName =
+    name.length === 0
+      ? '新成员'
+      : name.length === 1
+        ? name[0] + '*'
+        : name.length === 2
+          ? name[0] + '*'
+          : name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
   return {
     id: m.id,
     section: m.section,
-    display_name: a.displayName || a.name || '新成员',
+    display_name: displayName,
     city: a.city || '城市待补充',
     industry: a.industry || '行业待补充',
     role: a.role || sections[m.section].name + '会员',
@@ -154,5 +163,8 @@ export function publicCard(m: Member) {
       ? '关注' + a.industry + '的AI应用'
       : '一起学习与交流AI应用。',
     is_demo: false,
+    avatar_url: /^[a-f0-9]{64}\.webp$/.test(a.avatarFile || '')
+      ? `/api/community/avatar/${encodeURIComponent(m.id)}`
+      : null,
   };
 }

@@ -50,16 +50,18 @@
     "oxfmt": "0.61.0",
     "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001",
+    "sharp": "0.35.5",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3"
   },
   "type": "module",
   "overrides": {
+    "brace-expansion@>=4.0.0": "5.0.12",
     "exceljs": {
       "uuid": "11.1.1"
     },
     "@dotenvx/dotenvx": {
-      "undici": "7.29.0"
+      "undici": "7.29.1"
     }
   }
 }

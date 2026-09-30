@@ -32,6 +32,42 @@ export async function GET(req: Request, ctx: Context) {
   const { action } = await ctx.params;
   const me = await memberSession();
   if (!me) return json({ error: '请先登录会员账号' }, 401);
+  if (action[0] === 'avatar' && action.length === 2) {
+    const db = communityDB();
+    const target = (db
+      .prepare('SELECT * FROM community_members WHERE id=?')
+      .get(action[1]) ||
+      db
+        .prepare('SELECT * FROM community_directory WHERE id=?')
+        .get(action[1])) as Member | undefined;
+    if (
+      !target ||
+      target.status !== 'active' ||
+      (target.id !== me.id &&
+        (!target.visible || target.section !== me.section))
+    )
+      return json({ error: '头像未找到' }, 404);
+    const filename = JSON.parse(target.answers).avatarFile;
+    if (typeof filename !== 'string' || !/^[a-f0-9]{64}\.webp$/.test(filename))
+      return json({ error: '头像未找到' }, 404);
+    try {
+      return new Response(
+        await readFile(
+          resolve(process.env.AVATAR_DIR || './data/avatars', filename),
+        ),
+        {
+          headers: {
+            'Content-Type': 'image/webp',
+            'Cache-Control': 'private, no-store',
+            'X-Content-Type-Options': 'nosniff',
+            'X-Robots-Tag': 'noindex',
+          },
+        },
+      );
+    } catch {
+      return json({ error: '头像未找到' }, 404);
+    }
+  }
   if (action[0] === 'me')
     return json({
       member: {

@@ -26,7 +26,33 @@ type Card = {
   role: string;
   bio: string;
   is_demo: boolean;
+  avatar_url?: string | null;
 };
+function MemberAvatar({
+  card,
+  className = '',
+}: {
+  card: Card;
+  className?: string;
+}) {
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  return (
+    <span className={`member-avatar ${className}`}>
+      {card.avatar_url && failedUrl !== card.avatar_url ? (
+        <Image
+          src={card.avatar_url}
+          alt={`${card.display_name}的头像`}
+          width={320}
+          height={320}
+          unoptimized
+          onError={() => setFailedUrl(card.avatar_url || null)}
+        />
+      ) : (
+        card.display_name.replace('演示·', '').slice(0, 1)
+      )}
+    </span>
+  );
+}
 type Self = Card & {
   answers: Record<string, string | string[]>;
   visible: boolean;
@@ -191,8 +217,7 @@ export function MemberSpace({
           )}
           {loaded && (
             <p className="quiet" aria-live="polite">
-              找到 {shown.length} 位会员 ·
-              头像暂用姓名首字，行业与城市由已有资料整理。
+              找到 {shown.length} 位会员 · 行业与城市由已有资料整理。
             </p>
           )}
           {!loaded && !error && (
@@ -227,11 +252,7 @@ export function MemberSpace({
                   dialog.current?.showModal();
                 }}
               >
-                <span className={`member-avatar avatar-${i % 4}`}>
-                  {m.is_demo
-                    ? String(i + 1).padStart(2, '0')
-                    : m.display_name.slice(0, 1)}
-                </span>
+                <MemberAvatar card={m} className={`avatar-${i % 4}`} />
                 <span className="member-node-info">
                   <strong>{m.display_name}</strong>
                   <small>{cardSummary(m)}</small>
@@ -274,9 +295,7 @@ export function MemberSpace({
             </button>
             {selected && (
               <>
-                <span className="member-avatar large-avatar">
-                  {selected.display_name.replace('演示·', '').slice(0, 1)}
-                </span>
+                <MemberAvatar card={selected} className="large-avatar" />
                 <h2>{selected.display_name}</h2>
                 <p>
                   {selected.role} · {selected.industry}
@@ -450,7 +469,7 @@ export function MemberSpace({
             在所属板块会员空间展示我的卡片
           </label>
           <div className="profile-preview">
-            <span className="member-avatar">{me.display_name.slice(0, 1)}</span>
+            <MemberAvatar card={me} />
             <div>
               <h3>{me.display_name}</h3>
               <p>
