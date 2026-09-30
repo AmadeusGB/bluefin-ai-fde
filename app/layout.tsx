@@ -3,10 +3,14 @@ import { AttributionCapture } from '@/components/attribution-capture';
 import { buildSiteGraph, siteUrl } from '@/lib/knowledge-graph';
 import './globals.css';
 import './world.css';
+import './typography.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  robots: process.env.PREVIEW_MODE === 'true' ? {index:false,follow:false} : {index:true,follow:true},
+  robots:
+    process.env.PREVIEW_MODE === 'true'
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
   title: {
     default: '蓝旗鱼科技｜企业AI内训与AI方案落地',
     template: '%s｜蓝旗鱼科技',
@@ -52,8 +56,14 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body>
-        <a href="#main-content" className="skip-link">跳转到正文</a>
-        {process.env.PREVIEW_MODE === "true" && <div className="preview-strip">蓝旗鱼 · 新版体验站 <span>部分成员与案例为演示数据</span></div>}
+        <a href="#main-content" className="skip-link">
+          跳转到正文
+        </a>
+        {process.env.PREVIEW_MODE === 'true' && (
+          <div className="preview-strip">
+            蓝旗鱼 · 新版体验站 <span>部分成员与案例为演示数据</span>
+          </div>
+        )}
         <AttributionCapture />
         {children}
         <script

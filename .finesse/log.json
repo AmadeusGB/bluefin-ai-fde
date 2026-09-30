@@ -29,5 +29,13 @@
       "member authentication and forms"
     ],
     "verification": "Next build, scoped oxlint, Edge desktop/mobile 320/390/768/1440, no-JS headings and reduced-motion passed"
+  },
+  {
+    "date": "2026-09-30",
+    "scope": "site typography",
+    "approval": "user accepted specimen A",
+    "font": "Alimama FangYuanTi VF, BEVL 70",
+    "scale": "navigation17 / body18 / card16 / label14; mobile body16",
+    "verification": "Build and scoped lint; 13 public routes at 320/390/768/1440 without horizontal overflow; signed-in member space inspected at same widths."
   }
 ]

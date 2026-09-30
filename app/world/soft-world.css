@@ -1,16 +1,4 @@
 /* Selected reference: Superlist. Scope: /world only; original brand assets retained. */
-@font-face {
-  font-family: 'Bluefin Display';
-  src: url('/fonts/noto-display.woff2') format('woff2');
-  font-weight: 800;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Bluefin Latin';
-  src: url('/fonts/manrope.woff2') format('woff2');
-  font-weight: 400 800;
-  font-display: swap;
-}
 .soft-world {
   --soft-bg: #10121f;
   --soft-panel: #191e31;
@@ -18,10 +6,8 @@
   --soft-muted: #adb7ce;
   --soft-blue: #89bcff;
   --soft-line: rgba(179, 197, 242, 0.13);
-  --soft-display:
-    'Bluefin Latin', 'Bluefin Display', 'PingFang SC', 'Microsoft YaHei',
-    sans-serif;
-  --soft-body: 'Bluefin Latin', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --soft-display: var(--brand-font);
+  --soft-body: var(--brand-font);
   background:
     radial-gradient(
       ellipse 44% 34% at 37% 40%,
@@ -228,7 +214,7 @@
 .soft-world .portal-object {
   left: 50%;
   top: 36%;
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: translate(-50%, -50%) scale(1.06);
   animation: soft-orbit 8s ease-in-out infinite;
   filter: drop-shadow(0 12px 18px rgba(2, 8, 25, 0.25));
 }
@@ -287,7 +273,7 @@
   right: 25px;
 }
 .soft-world .portal-index {
-  font-family: 'Bluefin Latin', sans-serif;
+  font-family: var(--brand-font);
   color: rgba(var(--card-light), 0.85);
   font-size: 9px;
   letter-spacing: 0.12em;
@@ -341,10 +327,10 @@
 @keyframes soft-orbit {
   0%,
   100% {
-    transform: translate(-50%, -50%) scale(1.2) rotate(-3deg);
+    transform: translate(-50%, -50%) scale(1.06) rotate(-3deg);
   }
   50% {
-    transform: translate(-50%, -55%) scale(1.2) rotate(3deg);
+    transform: translate(-50%, -55%) scale(1.06) rotate(3deg);
   }
 }
 @media (hover: hover) and (pointer: fine) {

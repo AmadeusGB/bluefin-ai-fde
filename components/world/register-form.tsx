@@ -29,7 +29,10 @@ export function RegisterForm() {
       }}
     >
       <p className="micro accent">JOIN BLUEFIN</p>
-      <h1>从这里，开始探索。</h1>
+      <h1>
+        <span>从这里，</span>
+        <span>开始探索。</span>
+      </h1>
       <p>账号与密码即可注册，默认加入 AI 俱乐部。</p>
       <label className="question">
         账号

@@ -10,3 +10,5 @@ Motion: real WebGL ring scene around DOM logo; pointer orientation on fine point
 Images: official logo, source-linked Liu Xiang portrait, 12 chosen NAS event photos; other portraits deliberately absent pending materials. Demo avatars are numbered placeholders.
 
 2026-09-30 visual direction: user selected Superlist as reference. First pass scoped to /world: centered heavy Chinese heading, floating rounded navigation, pill CTAs, rounded portal deck and low-chroma dimensional cards. Preserve official logo, black-blue identity, independent routes and form layouts. Display fonts self-hosted; motion respects reduced-motion.
+
+2026-09-30 typography: user accepted option A (Alimama FangYuanTi VF, BEVL 70). Apply rounded font across public pages, membership and forms. Desktop navigation 17px, hero intro 18px, card descriptions 16px, labels 14px; mobile body around 16px. Lift small-text contrast and preserve original logo and motion.
