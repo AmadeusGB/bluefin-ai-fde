@@ -1,1 +1,33 @@
-[{"date":"2026-09-25","register":"brand+product","axes":{"A":"abyss+ice-blue","B":"Chinese-500-body-400","C":"independent-spatial-pages","D":"WebGL-orbit+CSS-depth","E":"brushed-metal"},"motion":"logo portal plus member float","images":"official logo, 12 NAS photos, founder source portrait","status":"build and browser verification passed; legacy lint issues documented"}]
+[
+  {
+    "date": "2026-09-25",
+    "register": "brand+product",
+    "axes": {
+      "A": "abyss+ice-blue",
+      "B": "Chinese-500-body-400",
+      "C": "independent-spatial-pages",
+      "D": "WebGL-orbit+CSS-depth",
+      "E": "brushed-metal"
+    },
+    "motion": "logo portal plus member float",
+    "images": "official logo, 12 NAS photos, founder source portrait",
+    "status": "build and browser verification passed; legacy lint issues documented"
+  },
+  {
+    "date": "2026-09-30",
+    "reference": "Superlist, selected by user",
+    "scope": "/world only",
+    "changes": [
+      "self-hosted 800-weight Chinese display and variable Latin font",
+      "centered hero and pill actions",
+      "rounded floating navigation and portal deck",
+      "soft blue/cyan/violet dimensional objects"
+    ],
+    "preserved": [
+      "official logo",
+      "independent routes",
+      "member authentication and forms"
+    ],
+    "verification": "Next build, scoped oxlint, Edge desktop/mobile 320/390/768/1440, no-JS headings and reduced-motion passed"
+  }
+]

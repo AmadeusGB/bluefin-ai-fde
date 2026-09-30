@@ -8,3 +8,5 @@ Existing public knowledge URLs and admin lead data preserved. Keep source HTML a
 Layout: dedicated entrance; 3 independent portals; human-readable public company/service/founder/activity pages; functional forms/admin use restrained product styling.
 Motion: real WebGL ring scene around DOM logo; pointer orientation on fine pointers; CSS dimensional portal objects; CSS floating member nodes; composed still for reduced motion; phone layout replaces wide universe with compact floating grid.
 Images: official logo, source-linked Liu Xiang portrait, 12 chosen NAS event photos; other portraits deliberately absent pending materials. Demo avatars are numbered placeholders.
+
+2026-09-30 visual direction: user selected Superlist as reference. First pass scoped to /world: centered heavy Chinese heading, floating rounded navigation, pill CTAs, rounded portal deck and low-chroma dimensional cards. Preserve official logo, black-blue identity, independent routes and form layouts. Display fonts self-hosted; motion respects reduced-motion.

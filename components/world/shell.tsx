@@ -72,12 +72,14 @@ export function WorldFooter() {
 export function WorldShell({
   children,
   back = true,
+  variant = 'default',
 }: {
   children: React.ReactNode;
   back?: boolean;
+  variant?: 'default' | 'soft';
 }) {
   return (
-    <div className="world-page">
+    <div className={`world-page${variant === 'soft' ? ' soft-world' : ''}`}>
       <WorldHeader />
       <main id="main-content" className="world-main">
         {back && (

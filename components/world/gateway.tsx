@@ -6,7 +6,9 @@ export function Gateway() {
     <div className="gateway">
       <div className="gateway-title">
         <div>
-          <p className="micro accent">WELCOME TO BLUEFIN</p>
+          <p className="gateway-eyebrow">
+            <span /> BLUEFIN · 一起探索 AI 的可能
+          </p>
           <h1>
             每一种探索，
             <br />
@@ -14,65 +16,79 @@ export function Gateway() {
           </h1>
         </div>
         <p>
-          从学习AI，到交付价值。
+          从第一次尝试 AI，到让它进入真实业务。
           <br />
-          找到属于你的入口，
-          <br />
-          一起把可能变成现实。
+          和一群同路人，把想法做成现实。
         </p>
-      </div>
-      <div className="portal-grid">
-        {Object.entries(sections).map(([key, s], i) => (
-          <Link
-            href={`/community/${key}`}
-            className={`portal-card portal-${key}`}
-            key={key}
-          >
-            <div className="portal-card-top">
-              <span className="micro">{s.en}</span>
-              <ArrowUpRight size={20} />
-            </div>
-            <div className={`portal-object object-${key}`} aria-hidden="true">
-              {key === 'club' ? (
-                <>
-                  <i />
-                  <i />
-                  <i />
-                  <b />
-                </>
-              ) : key === 'fde' ? (
-                <>
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                </>
-              ) : (
-                <>
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                </>
-              )}
-            </div>
-            <div className="portal-card-copy">
-              <span className="portal-index">
-                {
-                  ['LEARN & CREATE', 'BUILD & DELIVER', 'CONNECT & TRANSFORM'][
-                    i
-                  ]
-                }
-              </span>
-              <h2>{s.name}</h2>
-              <p>{s.line}</p>
-              <span className="portal-action">
-                进入探索 <ArrowRight size={17} />
-              </span>
-            </div>
+        <div className="gateway-cta">
+          <Link className="primary-button" href="/register">
+            加入 AI 俱乐部 <ArrowUpRight size={18} />
           </Link>
-        ))}
+          <Link className="guest-link" href="/guest">
+            先以游客探索 <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+      <div className="portal-deck">
+        <div className="portal-grid">
+          {Object.entries(sections).map(([key, s], i) => (
+            <Link
+              href={`/community/${key}`}
+              className={`portal-card portal-${key}`}
+              key={key}
+            >
+              <div className="portal-card-top">
+                <span className="portal-audience">
+                  {['AI 爱好者', 'FDE 学习者与实践者', '企业负责人'][i]}
+                </span>
+                <span className="portal-corner-arrow">
+                  <ArrowUpRight size={20} />
+                </span>
+              </div>
+              <div className={`portal-object object-${key}`} aria-hidden="true">
+                {key === 'club' ? (
+                  <>
+                    <i />
+                    <i />
+                    <i />
+                    <b />
+                  </>
+                ) : key === 'fde' ? (
+                  <>
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </>
+                ) : (
+                  <>
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </>
+                )}
+              </div>
+              <div className="portal-card-copy">
+                <span className="portal-index">
+                  {
+                    [
+                      'LEARN & CREATE',
+                      'BUILD & DELIVER',
+                      'CONNECT & TRANSFORM',
+                    ][i]
+                  }
+                </span>
+                <h2>{s.name}</h2>
+                <p>{s.line}</p>
+                <span className="portal-action">
+                  进入探索 <ArrowRight size={17} />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="gateway-service">
         <span className="status-dot" />

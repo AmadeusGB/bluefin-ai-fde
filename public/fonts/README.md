@@ -1,0 +1,1 @@
+Self-hosted display fonts: Noto Sans SC (800, Chinese headline subset) and Manrope (400-800, Latin subset). Source: Google Fonts. SIL Open Font License files included. Body copy uses system Chinese fonts; missing headline glyphs fall back to system fonts.
