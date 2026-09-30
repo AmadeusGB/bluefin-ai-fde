@@ -60,11 +60,6 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           跳转到正文
         </a>
-        {process.env.PREVIEW_MODE === 'true' && (
-          <div className="preview-strip">
-            蓝旗鱼 · 新版体验站 <span>部分成员与案例为演示数据</span>
-          </div>
-        )}
         <AttributionCapture />
         {children}
         <script
