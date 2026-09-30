@@ -299,10 +299,10 @@ export function JoinForm({ section }: { section: Section }) {
                 type="password"
                 autoComplete="new-password"
                 value={password}
-                minLength={10}
+                minLength={8}
                 maxLength={128}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="至少10个字符"
+                placeholder="至少8个字符"
               />
             </label>
             <p className="quiet">

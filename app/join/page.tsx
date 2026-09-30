@@ -1,5 +1,6 @@
 import { WorldShell } from '@/components/world/shell';
 import { JoinForm } from '@/components/world/join-form';
+import { RegisterForm } from '@/components/world/register-form';
 import { isSection } from '@/lib/community-fields';
 export const metadata = {
   title: '加入蓝旗鱼',
@@ -13,7 +14,11 @@ export default async function Page({
   const { section } = await searchParams;
   return (
     <WorldShell>
-      <JoinForm section={isSection(section) ? section : 'club'} />
+      {isSection(section) && section !== 'club' ? (
+        <JoinForm section={section} />
+      ) : (
+        <RegisterForm />
+      )}
     </WorldShell>
   );
 }

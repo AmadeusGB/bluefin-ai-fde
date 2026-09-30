@@ -17,6 +17,7 @@ type Row = {
   visible: number;
   report: string | null;
   attachment: string | null;
+  record_kind?: 'account' | 'directory';
 };
 type Invite = {
   id: number;
@@ -106,7 +107,7 @@ export function MembersAdmin() {
           <div key={k}>
             <span>{s.name}</span>
             <strong>{rows.filter((r) => r.section === k).length}</strong>
-            <small>已登记账号</small>
+            <small>会员档案</small>
           </div>
         ))}
       </div>
@@ -209,7 +210,7 @@ export function MembersAdmin() {
                   {r.answers.industry}
                   <small>{r.answers.city}</small>
                 </td>
-                <td>{r.phone}</td>
+                <td>{r.phone || '待补手机号'}</td>
                 <td>{r.status === 'active' ? '正常' : '已停用'}</td>
                 <td>
                   <button className="text-link" onClick={() => setDetail(r)}>
@@ -238,7 +239,14 @@ export function MembersAdmin() {
             </button>
           </div>
           <dl>
-            {[...commonFields, ...roleFields[detail.section]].map((f) => (
+            {(detail.section === 'club'
+              ? commonFields.filter((f) =>
+                  ['name', 'displayName', 'phone', 'industry', 'city'].includes(
+                    f.key,
+                  ),
+                )
+              : [...commonFields, ...roleFields[detail.section]]
+            ).map((f) => (
               <div key={f.key}>
                 <dt>{f.label}</dt>
                 <dd>
@@ -266,12 +274,13 @@ export function MembersAdmin() {
               void mutate({
                 action: 'status',
                 id: detail.id,
+                recordKind: detail.record_kind,
                 status: detail.status === 'active' ? 'suspended' : 'active',
               });
               setDetail(null);
             }}
           >
-            {detail.status === 'active' ? '停用账号' : '恢复账号'}
+            {detail.status === 'active' ? '停用会员' : '恢复会员'}
           </button>
         </section>
       )}

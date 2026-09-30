@@ -213,7 +213,7 @@ for (const fields of [commonFields, roleFields.enterprise]) {
   }
   await page.getByRole('button', { name: '继续', exact: true }).click();
 }
-await page.getByPlaceholder('至少10个字符').fill(password);
+await page.getByPlaceholder('至少8个字符').fill(password);
 await page.getByRole('checkbox').last().check();
 await page.getByRole('button', { name: '确认加入', exact: true }).click();
 await page.waitForURL('**/members');

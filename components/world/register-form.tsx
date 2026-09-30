@@ -10,6 +10,7 @@ export function RegisterForm() {
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [basic, setBasic] = useState({ name: '', industry: '', city: '' });
   return (
     <form
       className="login-panel"
@@ -18,7 +19,7 @@ export function RegisterForm() {
         setBusy(true);
         setError('');
         try {
-          await post('signup', { account, password });
+          await post('signup', { account, password, basic });
           router.push('/members');
           router.refresh();
         } catch (err) {
@@ -47,15 +48,31 @@ export function RegisterForm() {
           onChange={(e) => setAccount(e.target.value)}
         />
       </label>
+      {(
+        [
+          ['name', '姓名／昵称（选填）'],
+          ['industry', '行业（选填）'],
+          ['city', '城市（选填）'],
+        ] as const
+      ).map(([key, label]) => (
+        <label className="question" key={key}>
+          {label}
+          <input
+            maxLength={120}
+            value={basic[key]}
+            onChange={(e) => setBasic({ ...basic, [key]: e.target.value })}
+          />
+        </label>
+      ))}
       <label className="question">
         密码
         <input
           type="password"
           autoComplete="new-password"
           required
-          minLength={10}
+          minLength={8}
           maxLength={128}
-          placeholder="至少10个字符"
+          placeholder="至少8个字符"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

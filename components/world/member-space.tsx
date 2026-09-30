@@ -34,6 +34,13 @@ type Self = Card & {
   attachment: boolean;
 };
 type Resource = { id: string; title: string; type: string; demo: boolean };
+function cardSummary(card: Card) {
+  return (
+    [card.industry, card.city]
+      .filter((value) => value && !value.endsWith('待补充'))
+      .join(' · ') || '基本资料待补充'
+  );
+}
 export function MemberSpace({
   initial,
   preview,
@@ -52,6 +59,17 @@ export function MemberSpace({
     [error, setError] = useState(''),
     [loaded, setLoaded] = useState(false),
     [uploading, setUploading] = useState(false);
+  const [page, setPage] = useState(0);
+  const [basic, setBasic] = useState({
+    name: String(initial.answers.name || ''),
+    displayName: String(initial.answers.displayName || ''),
+    city: String(initial.answers.city || ''),
+    industry: String(initial.answers.industry || ''),
+  });
+  const [saving, setSaving] = useState(false),
+    [saved, setSaved] = useState('');
+  const [currentPassword, setCurrentPassword] = useState(''),
+    [newPassword, setNewPassword] = useState('');
   const dialog = useRef<HTMLDialogElement>(null),
     router = useRouter();
   useEffect(() => {
@@ -77,6 +95,13 @@ export function MemberSpace({
       (!industry || m.industry === industry) &&
       (!search ||
         [m.display_name, m.industry, m.city].some((x) => x.includes(search))),
+  );
+  const pageSize = list ? 24 : 12;
+  const pageCount = Math.max(1, Math.ceil(shown.length / pageSize));
+  const currentPage = Math.min(page, pageCount - 1);
+  const pageMembers = shown.slice(
+    currentPage * pageSize,
+    (currentPage + 1) * pageSize,
   );
   return (
     <>
@@ -129,27 +154,45 @@ export function MemberSpace({
                 aria-label="搜索会员"
                 placeholder="搜索昵称、行业或城市"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(0);
+                }}
               />
             </label>
             <select
               aria-label="筛选行业"
               value={industry}
-              onChange={(e) => setIndustry(e.target.value)}
+              onChange={(e) => {
+                setIndustry(e.target.value);
+                setPage(0);
+              }}
             >
               <option value="">全部行业</option>
               {[...new Set(members.map((m) => m.industry))].map((i) => (
                 <option key={i}>{i}</option>
               ))}
             </select>
-            <button className="secondary-button" onClick={() => setList(!list)}>
+            <button
+              className="secondary-button"
+              onClick={() => {
+                setList(!list);
+                setPage(0);
+              }}
+            >
               {list ? <Orbit size={17} /> : <List size={17} />}{' '}
               {list ? '空间视图' : '列表视图'}
             </button>
           </div>
-          {preview && (
+          {preview && members.some((m) => m.is_demo) && (
             <p className="quiet">
               标有“演示”的成员是虚拟测试资料，不代表真实会员。头像暂用编号占位。
+            </p>
+          )}
+          {loaded && (
+            <p className="quiet" aria-live="polite">
+              找到 {shown.length} 位会员 ·
+              头像暂用姓名首字，行业与城市由已有资料整理。
             </p>
           )}
           {!loaded && !error && (
@@ -160,18 +203,14 @@ export function MemberSpace({
               暂时没有匹配的会员。试试其他行业或关键词。
             </p>
           )}
-          <div
-            className={
-              list || shown.length > 12 ? 'member-list' : 'member-universe'
-            }
-          >
+          <div className={list ? 'member-list' : 'member-universe'}>
             {!list && (
               <div className="universe-center" aria-hidden="true">
                 <span>BLUEFIN</span>
                 <p>CONNECTED BY CURIOSITY</p>
               </div>
             )}
-            {shown.map((m, i) => (
+            {pageMembers.map((m, i) => (
               <button
                 className="member-node"
                 key={m.id}
@@ -195,14 +234,36 @@ export function MemberSpace({
                 </span>
                 <span className="member-node-info">
                   <strong>{m.display_name}</strong>
-                  <small>
-                    {m.industry} · {m.city}
-                  </small>
+                  <small>{cardSummary(m)}</small>
                   {m.is_demo && <em>演示</em>}
                 </span>
               </button>
             ))}
           </div>
+          {loaded && pageCount > 1 && (
+            <nav
+              className="space-toolbar member-pagination"
+              aria-label="会员名录翻页"
+            >
+              <button
+                className="secondary-button"
+                disabled={currentPage === 0}
+                onClick={() => setPage(currentPage - 1)}
+              >
+                上一页
+              </button>
+              <span aria-live="polite">
+                第 {currentPage + 1} / {pageCount} 页
+              </span>
+              <button
+                className="secondary-button"
+                disabled={currentPage + 1 >= pageCount}
+                onClick={() => setPage(currentPage + 1)}
+              >
+                下一页
+              </button>
+            </nav>
+          )}
           <dialog ref={dialog} className="profile-dialog">
             <button
               className="dialog-close"
@@ -317,8 +378,61 @@ export function MemberSpace({
         <div className="profile-settings">
           <h2>资料由你掌控。</h2>
           <p>
-            详细报名信息仅本人和管理员可见。会员空间仅展示昵称、行业、城市与身份。
+            基本资料只需姓名／昵称、手机号、行业和城市。手机号仅本人和管理员可见。
           </p>
+          <form
+            className="member-basic-form"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setSaving(true);
+              setSaved('');
+              setError('');
+              try {
+                await post('profile', { basic });
+                const response = await fetch('/api/community/me');
+                if (!response.ok) throw new Error('资料已保存，请刷新查看');
+                const { member } = await response.json();
+                setMe(member);
+                setMembers((rows) =>
+                  rows.map((m) => (m.id === member.id ? member : m)),
+                );
+                setSaved('基本资料已保存');
+              } catch (err) {
+                setError((err as Error).message);
+              } finally {
+                setSaving(false);
+              }
+            }}
+          >
+            {(
+              [
+                ['name', '姓名或昵称'],
+                ['displayName', '展示昵称（选填）'],
+                ['industry', '行业（选填）'],
+                ['city', '城市（选填）'],
+              ] as const
+            ).map(([key, label]) => (
+              <label className="question" key={key}>
+                {label}
+                <input
+                  required={key === 'name'}
+                  maxLength={120}
+                  value={basic[key]}
+                  onChange={(e) =>
+                    setBasic({ ...basic, [key]: e.target.value })
+                  }
+                />
+              </label>
+            ))}
+            <p className="quiet">
+              手机号：{String(me.answers.phone || '未填写')}
+              。更换手机号请联系管理员。
+            </p>
+            <button className="primary-button" disabled={saving}>
+              保存基本资料
+            </button>
+          </form>
+          {saved && <output>{saved}</output>}
           <label className="check-line">
             <input
               type="checkbox"
@@ -348,6 +462,54 @@ export function MemberSpace({
           <p className="quiet">
             更正报名资料、账号恢复或删除请求，请联系蓝旗鱼团队。
           </p>
+          <form
+            className="member-basic-form"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setSaving(true);
+              setSaved('');
+              setError('');
+              try {
+                await post('password', { currentPassword, newPassword });
+                setCurrentPassword('');
+                setNewPassword('');
+                setSaved('密码已更新');
+              } catch (err) {
+                setError((err as Error).message);
+              } finally {
+                setSaving(false);
+              }
+            }}
+          >
+            <h3>修改密码</h3>
+            <label className="question">
+              当前密码
+              <input
+                required
+                type="password"
+                autoComplete="current-password"
+                maxLength={128}
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+              />
+            </label>
+            <label className="question">
+              新密码
+              <input
+                required
+                type="password"
+                autoComplete="new-password"
+                minLength={8}
+                maxLength={128}
+                placeholder="至少8个字符"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </label>
+            <button className="secondary-button" disabled={saving}>
+              更新密码
+            </button>
+          </form>
           {me.section === 'fde' && (
             <>
               <h3>过往案例截图</h3>

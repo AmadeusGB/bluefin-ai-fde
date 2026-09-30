@@ -23,6 +23,9 @@ export function communityDB() {
  CREATE TABLE IF NOT EXISTS community_sessions(hash TEXT PRIMARY KEY,member_id TEXT NOT NULL REFERENCES community_members(id),expires INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS community_invites(hash TEXT PRIMARY KEY,label TEXT NOT NULL,section TEXT NOT NULL,uses INTEGER NOT NULL DEFAULT 0,max_uses INTEGER NOT NULL,expires INTEGER NOT NULL,disabled INTEGER NOT NULL DEFAULT 0);
  CREATE TABLE IF NOT EXISTS community_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,until INTEGER NOT NULL);`);
+  db.exec(
+    `CREATE TABLE IF NOT EXISTS community_directory(id TEXT PRIMARY KEY,section TEXT NOT NULL,answers TEXT NOT NULL,visible INTEGER NOT NULL DEFAULT 1,status TEXT NOT NULL DEFAULT 'active',created_at INTEGER NOT NULL);`,
+  );
   const codes = (process.env.COMMUNITY_INVITES || '')
     .split(',')
     .filter(Boolean);
@@ -46,7 +49,8 @@ export function passwordHash(v: string) {
 export function passwordMatches(v: string, stored: string) {
   const [salt, key] = stored.split(':');
   if (!salt || !key) return false;
-  return timingSafeEqual(Buffer.from(key, 'hex'), scryptSync(v, salt, 64));
+  const bytes = Buffer.from(key, 'hex');
+  return bytes.length === 64 && timingSafeEqual(bytes, scryptSync(v, salt, 64));
 }
 export type Member = {
   id: string;
@@ -59,7 +63,21 @@ export type Member = {
   created_at: number;
   report: string | null;
   attachment: string | null;
+  record_kind?: 'account' | 'directory';
 };
+export function directoryMembers(): Member[] {
+  return communityDB()
+    .prepare('SELECT * FROM community_directory ORDER BY created_at DESC')
+    .all()
+    .map((row) => ({
+      ...row,
+      phone: '',
+      password: '',
+      report: null,
+      attachment: null,
+      record_kind: 'directory',
+    })) as Member[];
+}
 export async function memberSession() {
   const token = (await cookies()).get('bluefin_session')?.value;
   if (!token) return null;
@@ -128,11 +146,13 @@ export function publicCard(m: Member) {
   return {
     id: m.id,
     section: m.section,
-    display_name: a.displayName,
-    city: a.city,
-    industry: a.industry,
-    role: a.role,
-    bio: '关注' + a.industry + '的AI应用',
+    display_name: a.displayName || a.name || '新成员',
+    city: a.city || '城市待补充',
+    industry: a.industry || '行业待补充',
+    role: a.role || 'AI俱乐部会员',
+    bio: a.industry
+      ? '关注' + a.industry + '的AI应用'
+      : '一起学习与交流AI应用。',
     is_demo: false,
   };
 }

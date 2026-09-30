@@ -4,6 +4,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
   communityDB,
+  directoryMembers,
   memberSession,
   hash,
   passwordHash,
@@ -47,10 +48,26 @@ export async function GET(req: Request, ctx: Context) {
         "SELECT * FROM community_members WHERE visible=1 AND status='active' AND section=? ORDER BY created_at DESC LIMIT 300",
       )
       .all(me.section) as Member[];
+    const directory = directoryMembers().filter(
+      (m) => m.visible && m.status === 'active' && m.section === me.section,
+    );
+    const visible = [...real, ...directory].sort((a, b) => {
+      const left = JSON.parse(a.answers),
+        right = JSON.parse(b.answers);
+      const score = (v: Record<string, unknown>) =>
+        Number(Boolean(v.industry)) * 2 + Number(Boolean(v.city));
+      return (
+        score(right) - score(left) ||
+        String(left.displayName || left.name || '').localeCompare(
+          String(right.displayName || right.name || ''),
+          'zh-CN',
+        )
+      );
+    });
     return json({
       members: [
-        ...real.map(publicCard),
-        ...(process.env.PREVIEW_MODE === 'true'
+        ...visible.map(publicCard),
+        ...(process.env.PREVIEW_MODE === 'true' && me.section !== 'club'
           ? demos
               .filter((m) => m.section === me.section)
               .map((m) => ({
@@ -180,8 +197,8 @@ export async function POST(req: Request, ctx: Context) {
       const password = String(body.password || '');
       if (!/^[A-Za-z0-9_.@-]{4,64}$/.test(account))
         throw new Error('账号需为4—64位字母、数字或 _ . @ -，也可使用手机号');
-      if (password.length < 10 || password.length > 128)
-        throw new Error('密码需要10—128个字符');
+      if (password.length < 8 || password.length > 128)
+        throw new Error('密码需要8—128个字符');
       const db = communityDB();
       if (
         db
@@ -190,12 +207,19 @@ export async function POST(req: Request, ctx: Context) {
       )
         return json({ error: '此账号已注册，请直接登录' }, 409);
       const id = randomUUID();
+      const basic: Record<string, string> = {};
+      for (const key of ['name', 'industry', 'city']) {
+        const value = body.basic?.[key] ?? '';
+        if (typeof value !== 'string' || value.trim().length > 120)
+          throw new Error('基本资料每项最多120个字符');
+        basic[key] = value.trim();
+      }
       const answers = {
-        name: '',
-        displayName: '新成员',
+        name: basic.name,
+        displayName: basic.name || '新成员',
         phone: /^1\d{10}$/.test(account) ? account : '',
-        city: '',
-        industry: '',
+        city: basic.city,
+        industry: basic.industry,
         role: '',
         registrationMethod: 'simple',
         registeredAt: new Date().toISOString(),
@@ -236,8 +260,8 @@ export async function POST(req: Request, ctx: Context) {
       if (!body.consent) throw new Error('请阅读并同意资料处理说明');
       const a = validateAnswers(body.section, body.answers || {}),
         password = String(body.password || '');
-      if (password.length < 10 || password.length > 128)
-        throw new Error('密码需要10—128个字符');
+      if (password.length < 8 || password.length > 128)
+        throw new Error('密码需要8—128个字符');
       const db = communityDB(),
         id = randomUUID(),
         phone = String(a.phone).replace(/[ -]/g, ''),
@@ -301,9 +325,53 @@ export async function POST(req: Request, ctx: Context) {
     if (action[0] === 'profile') {
       const me = await memberSession();
       if (!me) return json({ error: '请先登录' }, 401);
+      const answers = JSON.parse(me.answers);
+      if (body.basic) {
+        for (const key of ['name', 'displayName', 'city', 'industry']) {
+          if (
+            typeof body.basic[key] !== 'string' ||
+            body.basic[key].trim().length > 120
+          )
+            throw new Error('请填写有效的基本资料，每项最多120个字符');
+          answers[key] = body.basic[key].trim();
+        }
+        if (!answers.name) throw new Error('请填写姓名或昵称');
+        answers.displayName ||= answers.name;
+      }
       communityDB()
-        .prepare('UPDATE community_members SET visible=? WHERE id=?')
-        .run(body.visible === true ? 1 : 0, me.id);
+        .prepare('UPDATE community_members SET visible=?,answers=? WHERE id=?')
+        .run(
+          typeof body.visible === 'boolean' ? Number(body.visible) : me.visible,
+          JSON.stringify(answers),
+          me.id,
+        );
+      return json({ ok: true });
+    }
+    if (action[0] === 'password') {
+      const me = await memberSession();
+      if (!me) return json({ error: '请先登录' }, 401);
+      throttle('password:' + me.id, 8);
+      if (!passwordMatches(String(body.currentPassword || ''), me.password))
+        return json({ error: '当前密码不正确' }, 400);
+      const next = String(body.newPassword || '');
+      if (next.length < 8 || next.length > 128)
+        throw new Error('密码需要8—128个字符');
+      const db = communityDB();
+      db.exec('BEGIN IMMEDIATE');
+      try {
+        db.prepare('UPDATE community_members SET password=? WHERE id=?').run(
+          passwordHash(next),
+          me.id,
+        );
+        db.prepare('DELETE FROM community_sessions WHERE member_id=?').run(
+          me.id,
+        );
+        db.exec('COMMIT');
+      } catch (error) {
+        db.exec('ROLLBACK');
+        throw error;
+      }
+      await createSession(me.id);
       return json({ ok: true });
     }
     return json({ error: '没有找到此功能' }, 404);

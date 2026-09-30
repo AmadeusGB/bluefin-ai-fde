@@ -1,6 +1,7 @@
 import { authenticatedSiteUser } from '@/lib/site-auth';
 import {
   communityDB,
+  directoryMembers,
   guardMutation,
   hash,
   type Member,
@@ -27,6 +28,7 @@ export async function GET(req: Request) {
   let rows = communityDB()
     .prepare('SELECT * FROM community_members ORDER BY created_at DESC')
     .all() as Member[];
+  rows = [...rows, ...directoryMembers()];
   rows = rows.filter(
     (r) =>
       (!isSection(s) || r.section === s) &&
@@ -44,11 +46,18 @@ export async function GET(req: Request) {
           ? commonFields.filter((f) =>
               ['displayName', 'city', 'industry', 'role'].includes(f.key),
             )
-          : [...commonFields, ...roleFields[section]];
+          : section === 'club'
+            ? commonFields.filter((f) =>
+                ['name', 'displayName', 'phone', 'city', 'industry'].includes(
+                  f.key,
+                ),
+              )
+            : [...commonFields, ...roleFields[section]];
       sh.columns = [
         { header: '会员ID', key: 'id', width: 38 },
-        { header: '加入时间', key: 'date', width: 23 },
+        { header: '登记时间', key: 'date', width: 23 },
         { header: '状态', key: 'status', width: 15 },
+        { header: '档案类型', key: 'kind', width: 20 },
         ...(scope === 'public'
           ? []
           : [{ header: '登录账号', key: 'account', width: 25 }]),
@@ -67,6 +76,7 @@ export async function GET(req: Request) {
           id: row.id,
           date: new Date(row.created_at).toISOString(),
           status: row.status,
+          kind: row.record_kind === 'directory' ? '待补手机号' : '已开通账号',
           ...(scope === 'public' ? {} : { account: row.phone }),
           ...Object.fromEntries(
             fields.map((f) => [
@@ -104,7 +114,17 @@ export async function GET(req: Request) {
               ? commonFields.filter((f) =>
                   ['displayName', 'city', 'industry', 'role'].includes(f.key),
                 )
-              : [...commonFields, ...roleFields[r.section]];
+              : r.section === 'club'
+                ? commonFields.filter((f) =>
+                    [
+                      'name',
+                      'displayName',
+                      'phone',
+                      'city',
+                      'industry',
+                    ].includes(f.key),
+                  )
+                : [...commonFields, ...roleFields[r.section]];
         return `# ${a.displayName}\n\n板块：${sections[r.section].name}\n会员ID：${r.id}\n${scope === 'public' ? '' : `登录账号：${r.phone}\n`}\n${fields.map((f) => `- ${f.label}：${Array.isArray(a[f.key]) ? a[f.key].join('、') : a[f.key] || '未填写'}`).join('\n')}\n\n${scope !== 'public' && r.report ? r.report : ''}`;
       })
       .join('\n\n---\n\n');
@@ -157,7 +177,11 @@ export async function POST(req: Request) {
     }
     if (b.action === 'status' && ['active', 'suspended'].includes(b.status)) {
       communityDB()
-        .prepare('UPDATE community_members SET status=? WHERE id=?')
+        .prepare(
+          b.recordKind === 'directory'
+            ? 'UPDATE community_directory SET status=? WHERE id=?'
+            : 'UPDATE community_members SET status=? WHERE id=?',
+        )
         .run(b.status, String(b.id));
       return json({ ok: true });
     }
