@@ -67,7 +67,9 @@ export async function GET(req: Request, ctx: Context) {
     return json({
       members: [
         ...visible.map(publicCard),
-        ...(process.env.PREVIEW_MODE === 'true' && me.section !== 'club'
+        ...(process.env.PREVIEW_MODE === 'true' &&
+        me.section !== 'club' &&
+        visible.length === 0
           ? demos
               .filter((m) => m.section === me.section)
               .map((m) => ({

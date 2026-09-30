@@ -8,7 +8,7 @@ import {
   timingSafeEqual,
 } from 'node:crypto';
 import { cookies } from 'next/headers';
-import type { Section } from './community-fields';
+import { sections, type Section } from './community-fields';
 
 let connection: DatabaseSync | undefined;
 export function communityDB() {
@@ -149,7 +149,7 @@ export function publicCard(m: Member) {
     display_name: a.displayName || a.name || '新成员',
     city: a.city || '城市待补充',
     industry: a.industry || '行业待补充',
-    role: a.role || 'AI俱乐部会员',
+    role: a.role || sections[m.section].name + '会员',
     bio: a.industry
       ? '关注' + a.industry + '的AI应用'
       : '一起学习与交流AI应用。',
