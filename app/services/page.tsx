@@ -73,10 +73,12 @@ export default function Page() {
         <div className="auth-links">
           <Link href="/evidence/cases">查看公开项目摘要 →</Link>
           <Link href="/events">查看课程与沙龙记录 →</Link>
+          <Link href="/solutions">查看行业解决方案 →</Link>
+          <Link href="/contact">添加企业微信咨询 →</Link>
         </div>
       </section>
       <section className="faq-block">
-        <h2>企业开始之前，常问的八个问题</h2>
+        <h2>企业开始之前，常问的问题</h2>
         {serviceQuestions.map(([q, a]) => (
           <details key={q}>
             <summary>{q}</summary>

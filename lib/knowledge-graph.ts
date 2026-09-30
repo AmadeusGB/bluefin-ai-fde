@@ -1,5 +1,6 @@
 import { siteContent, siteContentUpdatedAt } from '@/lib/site-content';
 import { companyDescription } from '@/lib/public-copy';
+import { company } from '@/lib/company';
 
 const defaultSiteUrl = 'https://lqy-ai.com';
 
@@ -40,7 +41,18 @@ const coreEntities = [
     },
     slogan: '探索 · 实践 · 共创',
     description: companyDescription,
-    areaServed: { '@type': 'Country', name: '中国' },
+    telephone: company.phone,
+    email: company.email,
+    location: company.offices.map((name) => ({ '@type': 'Place', name })),
+    areaServed: company.regions.map((name) => ({ '@type': 'Place', name })),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: company.phone,
+      email: company.email,
+      contactType: '企业AI内训与FDE咨询',
+      availableLanguage: 'zh-CN',
+      url: `${siteUrl}/contact`,
+    },
     knowsAbout: [
       { '@id': fdeTermId },
       '企业 AI 落地',
@@ -93,7 +105,7 @@ const coreEntities = [
     serviceType: '企业AI方案落地（FDE）',
     url: `${siteUrl}/services`,
     provider: { '@id': organizationId },
-    areaServed: { '@type': 'Country', name: '中国' },
+    areaServed: company.regions.map((name) => ({ '@type': 'Place', name })),
     audience: {
       '@type': 'BusinessAudience',
       audienceType: '有真实数据、真实流程、负责人和结果压力的企业',

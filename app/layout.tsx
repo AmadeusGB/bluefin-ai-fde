@@ -4,6 +4,7 @@ import { buildSiteGraph, siteUrl } from '@/lib/knowledge-graph';
 import './globals.css';
 import './world.css';
 import './typography.css';
+import './company.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

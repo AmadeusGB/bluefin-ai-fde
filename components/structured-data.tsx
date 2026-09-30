@@ -1,12 +1,13 @@
 import { siteUrl } from '@/lib/knowledge-graph';
+import { company } from '@/lib/company';
 
 type Breadcrumb = { name: string; path: string };
 
 export function breadcrumbList(items: Breadcrumb[]) {
   return {
-    "@type": "BreadcrumbList",
+    '@type': 'BreadcrumbList',
     itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
+      '@type': 'ListItem',
       position: index + 1,
       name: item.name,
       item: `${siteUrl}${item.path}`,
@@ -27,7 +28,7 @@ export function ServiceStructuredData({
   title,
   description,
   path,
-  parent = { name: "行业与业务场景", path: "/solutions" },
+  parent = { name: '行业与业务场景', path: '/solutions' },
 }: {
   title: string;
   description: string;
@@ -35,24 +36,24 @@ export function ServiceStructuredData({
   parent?: Breadcrumb;
 }) {
   const data = {
-    "@context": "https://schema.org",
-    "@graph": [
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        "@type": "Service",
-        "@id": `${siteUrl}${path}#service`,
+        '@type': 'Service',
+        '@id': `${siteUrl}${path}#service`,
         name: title,
         description,
         url: `${siteUrl}${path}`,
-        serviceType: "企业 AI 落地 / Forward Deployed Engineering",
-        provider: { "@id": `${siteUrl}/#organization` },
-        areaServed: { "@type": "Country", name: "中国" },
+        serviceType: '企业 AI 落地 / Forward Deployed Engineering',
+        provider: { '@id': `${siteUrl}/#organization` },
+        areaServed: company.regions.map((name) => ({ '@type': 'Place', name })),
         audience: {
-          "@type": "BusinessAudience",
-          audienceType: "有真实数据、真实流程和结果责任人的中国企业",
+          '@type': 'BusinessAudience',
+          audienceType: '有真实数据、真实流程和结果责任人的中国企业',
         },
       },
       breadcrumbList([
-        { name: "首页", path: "/" },
+        { name: '首页', path: '/' },
         parent,
         { name: title, path },
       ]),

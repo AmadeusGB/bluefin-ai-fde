@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { WorldShell } from '@/components/world/shell';
+import { ReportList } from '@/components/world/report-list';
+import { founders } from '@/lib/company';
 import { ArrowUpRight } from 'lucide-react';
 export const metadata = {
   title: '创始团队',
+  description:
+    '认识蓝旗鱼科技的刘向、郭斌与邹英鹏，连接企业经营、技术实施与商务实践。',
   alternates: { canonical: '/founders' },
 };
 export default function Page() {
@@ -19,53 +23,36 @@ export default function Page() {
         <p className="intro">连接企业经营经验与技术实践。</p>
       </div>
       <div className="founder-grid">
-        <Link href="/founders/liuxiang" className="founder-card">
-          <Image
-            src="/world/founder.webp"
-            alt="刘向的讲师介绍照片"
-            width="700"
-            height="930"
-          />
-          <div>
-            <span>创始人 · 企业AI内训与业务落地</span>
-            <h2>
-              刘向 <small>大向</small>
-              <ArrowUpRight />
-            </h2>
-          </div>
-        </Link>
-        <Link
-          href="/founders/guobin"
-          className="founder-card founder-placeholder"
-        >
-          <div className="portrait-placeholder">
-            <span>GB</span>
-            <p>肖像待补充</p>
-          </div>
-          <div>
-            <span>技术总监 · FDE技术落地</span>
-            <h2>
-              郭斌 <small>Arthur</small>
-              <ArrowUpRight />
-            </h2>
-          </div>
-        </Link>
-        <Link
-          href="/founders/zouyingpeng"
-          className="founder-card founder-placeholder"
-        >
-          <div className="portrait-placeholder">
-            <span>ZYP</span>
-            <p>肖像待补充</p>
-          </div>
-          <div>
-            <span>联合创始人 · 企业合作与业务落地</span>
-            <h2>
-              邹英鹏 <ArrowUpRight />
-            </h2>
-          </div>
-        </Link>
+        {founders.map((p) => (
+          <Link
+            href={`/founders/${p.slug}`}
+            className="founder-card"
+            key={p.slug}
+          >
+            <Image
+              className={`portrait-${p.slug}`}
+              src={p.image}
+              alt={`${p.name}，${p.role}`}
+              width={p.width}
+              height={p.height}
+              sizes="(max-width: 700px) 90vw, 30vw"
+            />
+            <div>
+              <span>{p.role}</span>
+              <h2>
+                {p.name} {p.alias && <small>{p.alias}</small>}
+                <ArrowUpRight />
+              </h2>
+            </div>
+          </Link>
+        ))}
       </div>
+      <section className="content-section">
+        <div className="section-heading">
+          <h2>把实践带到现场。</h2>
+        </div>
+        <ReportList />
+      </section>
     </WorldShell>
   );
 }

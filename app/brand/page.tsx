@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from '@/components/safe-link';
 import { ArrowRight, Download, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,11 +15,14 @@ export const metadata: Metadata = {
 };
 
 const identity = [
-  ['公开品牌', '蓝旗鱼 AI'],
+  ['公开品牌', '蓝旗鱼科技 / 蓝旗鱼 AI'],
   ['Logo 字样', '蓝旗鱼Ai'],
   ['法定主体', '深圳市蓝旗鱼科技有限公司'],
   ['品牌口号', '探索 · 实践 · 共创'],
-  ['核心品类', '企业 AI 落地 / Forward Deployed Engineering'],
+  ['核心业务', '企业AI内训 / 企业AI方案落地（FDE）'],
+  ['办公城市', '深圳、北京'],
+  ['服务区域', '粤港澳大湾区、北京'],
+  ['商标状态', '蓝旗鱼商标注册申请中'],
 ];
 
 export default function BrandPage() {
@@ -55,10 +59,12 @@ export default function BrandPage() {
         <section className="bg-secondary px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
             <div>
-              <img
+              <Image
                 src="/brand/bluefin-logo-lockup.png"
                 alt="蓝旗鱼Ai 正式 Logo，口号为探索、实践、共创"
                 className="w-full"
+                width={1500}
+                height={615}
               />
               <p className="mt-7 border-t border-foreground/15 pt-5 text-sm leading-7 text-muted-foreground">
                 正式旗鱼图形、中文主标题与高对比度口号来自《蓝旗鱼Ai-旗鱼版-logo-交付包-v2》。本站展示的是按透明像素边界裁切的网页锁定版，图形、文字和色彩关系没有改变。
@@ -120,7 +126,13 @@ export default function BrandPage() {
               </p>
               <Button
                 nativeButton={false}
-                render={<a href="/brand/bluefin-logo.png" download />}
+                render={
+                  <a
+                    href="/brand/bluefin-logo.png"
+                    download
+                    aria-label="下载网页版蓝旗鱼Logo PNG"
+                  />
+                }
                 className="mt-7 rounded-none"
               >
                 下载网页版 PNG <Download />

@@ -4,21 +4,121 @@ export type SiteContentItem = {
   summary: string;
   kind: '品牌' | '方法' | '方案' | '证据' | '工具' | '知识' | '研究' | '转化';
 };
-export const siteContentUpdatedAt = '2026-09-28';
+export const siteContentUpdatedAt = '2026-09-30';
 export const siteContent: SiteContentItem[] = [
-  { path: '/world', title: '蓝旗鱼AI世界', summary: '蓝旗鱼AI世界的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/community/club', title: 'AI俱乐部', summary: '面向AI爱好者与学习者，账号密码即可注册加入，公开活动无需登录。', kind: '品牌' },
-  { path: '/community/fde', title: 'FDE联盟', summary: 'FDE联盟的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/community/enterprise', title: 'AI企业家联盟', summary: 'AI企业家联盟的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/founders', title: '创始团队', summary: '创始团队的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/founders/liuxiang', title: '刘向', summary: '刘向的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/founders/guobin', title: '郭斌', summary: '郭斌的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/founders/zouyingpeng', title: '邹英鹏', summary: '蓝旗鱼科技联合创始人，拥有12年实体企业经营与商务实战经验，专注企业合作、企业AI应用与FDE实践。', kind: '品牌' },
-  { path: '/guest', title: '游客空间', summary: '无需注册即可浏览蓝旗鱼往期公开活动与照片。', kind: '品牌' },
-  { path: '/events', title: '往期活动', summary: '往期活动的公开介绍与实践记录。', kind: '品牌' },
-  { path: '/events/foundation-0912', title: '9.12初阶课程回顾', summary: '根据三张现场照片整理的课堂讲解、电脑实操记录与延伸学习建议。', kind: '品牌' },
-  { path: '/events/advanced-0913', title: '9.13高阶课程回顾', summary: '根据四张现场照片整理的AI应用、Second Myself与智能体主题分享记录。', kind: '品牌' },
-  { path: '/events/salon-0919', title: '9.19线下沙龙回顾', summary: '蓝旗鱼AI俱乐部线下分享沙龙的活动合影、操作演示与小组交流记录。', kind: '品牌' },
+  {
+    path: '/solutions/retail-chains',
+    title: '连锁门店AI应用与FDE方案',
+    summary: '门店内容、客户跟进与经营看板的试点构想，明确数据授权和验证方法。',
+    kind: '方案',
+  },
+  {
+    path: '/solutions/beauty-business',
+    title: '美业企业AI应用与FDE方案',
+    summary: '通过知识沉淀、员工培训和销售协作开展单岗位试点，当前为方案构想。',
+    kind: '方案',
+  },
+  {
+    path: '/contact',
+    title: '联系我们与官方渠道',
+    summary:
+      '深圳、北京办公，服务粤港澳大湾区与北京；企业微信、小程序、公众号及个人内容渠道。',
+    kind: '品牌',
+  },
+  {
+    path: '/news/agic-2026',
+    title: 'AGIC 2026：企业知识治理与AI场景落地',
+    summary:
+      '依据深圳市人工智能产业协会2026年8月27日报道，整理刘向的主题分享记录。',
+    kind: '证据',
+  },
+  {
+    path: '/news/kaiping-2026',
+    title: '青企大课堂：AI商业化与企业FDE升级',
+    summary:
+      '2026年9月5日蓝旗鱼科技协办开平青企课程，刘向与郭斌授课，附主办方原文来源。',
+    kind: '证据',
+  },
+  {
+    path: '/world',
+    title: '蓝旗鱼AI世界',
+    summary: '蓝旗鱼AI世界的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/community/club',
+    title: 'AI俱乐部',
+    summary: '面向AI爱好者与学习者，账号密码即可注册加入，公开活动无需登录。',
+    kind: '品牌',
+  },
+  {
+    path: '/community/fde',
+    title: 'FDE联盟',
+    summary: 'FDE联盟的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/community/enterprise',
+    title: 'AI企业家联盟',
+    summary: 'AI企业家联盟的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders',
+    title: '创始团队',
+    summary: '创始团队的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders/liuxiang',
+    title: '刘向',
+    summary: '刘向的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders/guobin',
+    title: '郭斌',
+    summary: '郭斌的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders/zouyingpeng',
+    title: '邹英鹏',
+    summary:
+      '蓝旗鱼科技联合创始人，拥有12年实体企业经营与商务实战经验，专注企业合作、企业AI应用与FDE实践。',
+    kind: '品牌',
+  },
+  {
+    path: '/guest',
+    title: '游客空间',
+    summary: '无需注册即可浏览蓝旗鱼往期公开活动与照片。',
+    kind: '品牌',
+  },
+  {
+    path: '/events',
+    title: '往期活动',
+    summary: '往期活动的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/events/foundation-0912',
+    title: '9.12初阶课程回顾',
+    summary: '根据三张现场照片整理的课堂讲解、电脑实操记录与延伸学习建议。',
+    kind: '品牌',
+  },
+  {
+    path: '/events/advanced-0913',
+    title: '9.13高阶课程回顾',
+    summary:
+      '根据四张现场照片整理的AI应用、Second Myself与智能体主题分享记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/events/salon-0919',
+    title: '9.19线下沙龙回顾',
+    summary: '蓝旗鱼AI俱乐部线下分享沙龙的活动合影、操作演示与小组交流记录。',
+    kind: '品牌',
+  },
 
   {
     path: '/',
@@ -126,7 +226,8 @@ export const siteContent: SiteContentItem[] = [
   {
     path: '/evidence/cases',
     title: '企业AI项目摘要与交付路径',
-    summary: '四篇既有脱敏记录的问题、实施路径、验收指标与证据限制，不将历史数据或演示材料作为改善结果。',
+    summary:
+      '四篇既有脱敏记录的问题、实施路径、验收指标与证据限制，不将历史数据或演示材料作为改善结果。',
     kind: '证据',
   },
   {
@@ -168,7 +269,8 @@ export const siteContent: SiteContentItem[] = [
   {
     path: '/services',
     title: '企业AI内训与企业AI方案落地（FDE）',
-    summary: '两项核心业务的适用人群、定制方式、准备条件、交付流程、周期费用因素与常见问题。',
+    summary:
+      '两项核心业务的适用人群、定制方式、准备条件、交付流程、周期费用因素与常见问题。',
     kind: '方案',
   },
   {

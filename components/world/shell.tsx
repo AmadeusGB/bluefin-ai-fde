@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Menu, ArrowLeft } from 'lucide-react';
+import { company } from '@/lib/company';
 export function WorldHeader() {
   const links = [
     ['企业服务', '/services'],
@@ -50,6 +51,7 @@ export function WorldHeader() {
           ))}
           <Link href="/world">三大社群</Link>
           <Link href="/guest">游客访问</Link>
+          <Link href="/contact">联系我们</Link>
         </nav>
       </details>
     </header>
@@ -59,8 +61,12 @@ export function WorldFooter() {
   return (
     <footer className="world-footer">
       <span>© 2026 深圳市蓝旗鱼科技有限公司</span>
-      <span>企业AI内训 · 企业AI方案落地（FDE）</span>
+      <div className="footer-contact">
+        <span>深圳 · 北京｜企业AI内训 · FDE</span>
+        <a href={`tel:${company.phone}`}>{company.phone}</a>
+      </div>
       <nav>
+        <Link href="/contact">联系我们</Link>
         <Link href="/events">往期活动</Link>
         <Link href="/evidence/cases">项目摘要</Link>
         <Link href="/privacy">隐私说明</Link>

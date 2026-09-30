@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { WorldShell } from '@/components/world/shell';
 import { ArrowUpRight } from 'lucide-react';
 import { companyDescription } from '@/lib/public-copy';
+import { company } from '@/lib/company';
+import { ReportList } from '@/components/world/report-list';
 export const metadata = {
   title: '关于蓝旗鱼科技',
-  description: '蓝旗鱼科技专注企业AI内训与企业AI方案落地（FDE）。',
+  description: companyDescription,
   alternates: { canonical: '/about' },
 };
 export default function Page() {
@@ -30,13 +32,43 @@ export default function Page() {
           </h2>
           <p>{companyDescription}</p>
           <p>
-            我们同时通过AI俱乐部、FDE联盟和AI企业家联盟，连接学习者、实践者与企业负责人，开展学习交流、实践协作和企业应用探索。
+            面向工厂、实体门店、电商等企业的管理者与业务骨干，从一项具体任务出发，连接学习、试点与实际使用。
           </p>
           <Link href="/services" className="text-link">
             了解两项核心服务 <ArrowUpRight size={17} />
           </Link>
         </div>
       </div>
+      <dl className="company-facts">
+        <div>
+          <dt>公司全称</dt>
+          <dd>{company.legalName}</dd>
+        </div>
+        <div>
+          <dt>成立时间</dt>
+          <dd>{company.founded}</dd>
+        </div>
+        <div>
+          <dt>办公城市</dt>
+          <dd>{company.offices.join(' · ')}</dd>
+        </div>
+        <div>
+          <dt>服务区域</dt>
+          <dd>{company.regions.join(' · ')}</dd>
+        </div>
+        <div>
+          <dt>业务咨询</dt>
+          <dd>
+            <a href={`tel:${company.phone}`}>{company.phone}</a>
+          </dd>
+        </div>
+        <div>
+          <dt>联系邮箱</dt>
+          <dd>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
+          </dd>
+        </div>
+      </dl>
       <div className="photo-strip">
         <Image
           src="/world/salon-0919-0.webp"
@@ -62,6 +94,16 @@ export default function Page() {
       </div>
       <Link href="/founders" className="wide-link">
         认识创始团队 <ArrowUpRight />
+      </Link>
+      <section className="content-section">
+        <div className="section-heading">
+          <p className="micro accent">公开报道</p>
+          <h2>在交流中，推动实践。</h2>
+        </div>
+        <ReportList />
+      </section>
+      <Link href="/contact" className="wide-link">
+        联系我们与官方渠道 <ArrowUpRight />
       </Link>
     </WorldShell>
   );
