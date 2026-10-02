@@ -1,6 +1,7 @@
 import Link from '@/components/safe-link';
 const items = [
   ['运营总览', '/operations'],
+  ['会员与邀请', '/operations/members'],
   ['线索与转化', '/operations/leads'],
   ['GEO 测量', '/operations/geo'],
   ['案例证据', '/operations/evidence'],
@@ -22,7 +23,7 @@ export function OperationsNav() {
           <Link
             key={href}
             href={href}
-            className="border border-foreground/15 bg-white px-3 py-2 text-sm font-bold hover:border-[#3657d6] hover:text-[#3657d6]"
+            className="border border-foreground/15 bg-card px-3 py-2 text-sm font-bold hover:border-[#3657d6] hover:text-primary"
           >
             {label}
           </Link>

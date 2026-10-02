@@ -65,7 +65,7 @@ export function MvdDesigner() {
       <div className="space-y-8">
         {fields.map((f, i) => (
           <label key={f.key} className="block">
-            <span className="text-xs font-bold text-[#3657d6]">0{i + 1}</span>
+            <span className="text-xs font-bold text-primary">0{i + 1}</span>
             <span className="mt-1 block text-xl font-black">{f.label}</span>
             <span className="mt-1 block text-sm text-muted-foreground">
               {f.hint}
@@ -77,7 +77,7 @@ export function MvdDesigner() {
                   setValues((v) => ({ ...v, [f.key]: e.target.value }))
                 }
                 placeholder={f.placeholder}
-                className="mt-3 h-12 rounded-none bg-white"
+                className="mt-3 h-12 rounded-none bg-card"
               />
             ) : (
               <Textarea
@@ -86,7 +86,7 @@ export function MvdDesigner() {
                   setValues((v) => ({ ...v, [f.key]: e.target.value }))
                 }
                 placeholder={f.placeholder}
-                className="mt-3 min-h-24 rounded-none bg-white"
+                className="mt-3 min-h-24 rounded-none bg-card"
               />
             )}
           </label>
@@ -100,7 +100,7 @@ export function MvdDesigner() {
         <div className="mt-7 flex flex-wrap gap-3 border-t border-white/15 pt-6">
           <Button
             onClick={copy}
-            className="rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
+            className="rounded-none bg-secondary text-foreground hover:bg-secondary"
           >
             {copied ? <Check /> : <Copy />}
             {copied ? "已复制" : "复制草案"}
@@ -109,7 +109,7 @@ export function MvdDesigner() {
             nativeButton={false}
             render={<Link href="/apply?source=mvd" />}
             variant="outline"
-            className="rounded-none border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            className="rounded-none border-white/30 bg-transparent text-white hover:bg-card/10 hover:text-white"
           >
             申请讨论 <ArrowRight />
           </Button>

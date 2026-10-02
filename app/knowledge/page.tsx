@@ -190,7 +190,7 @@ export default function Knowledge() {
                 href={href}
                 className="group grid gap-4 border-t border-foreground/20 py-8 lg:grid-cols-[140px_1fr_1.5fr_30px]"
               >
-                <span className="text-xs font-bold uppercase tracking-[.12em] text-[#3657d6]">
+                <span className="text-xs font-bold uppercase tracking-[.12em] text-primary">
                   {kind}
                 </span>
                 <h2 className="text-2xl font-black">{question}</h2>

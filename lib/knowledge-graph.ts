@@ -1,6 +1,8 @@
 import { siteContent, siteContentUpdatedAt } from '@/lib/site-content';
+import { companyDescription } from '@/lib/public-copy';
+import { company } from '@/lib/company';
 
-const defaultSiteUrl = 'https://bluefin-ai-fde.liuxiangth.chatgpt.site';
+const defaultSiteUrl = 'https://lqy-ai.com';
 
 function configuredSiteUrl() {
   const candidate = process.env.SITE_URL?.trim() || defaultSiteUrl;
@@ -28,7 +30,7 @@ const coreEntities = [
   {
     '@type': ['Organization', 'ProfessionalService'],
     '@id': organizationId,
-    name: '蓝旗鱼 AI',
+    name: '蓝旗鱼科技',
     alternateName: '蓝旗鱼Ai',
     legalName: '深圳市蓝旗鱼科技有限公司',
     url: siteUrl,
@@ -38,12 +40,23 @@ const coreEntities = [
       caption: '蓝旗鱼Ai｜探索 · 实践 · 共创',
     },
     slogan: '探索 · 实践 · 共创',
-    description:
-      '面向中国企业的 Forward Deployed Engineering 落地团队：从业务诊断、MVD 到生产部署、采用与交接。',
-    areaServed: { '@type': 'Country', name: '中国' },
+    description: companyDescription,
+    telephone: company.phone,
+    email: company.email,
+    location: company.offices.map((name) => ({ '@type': 'Place', name })),
+    areaServed: company.regions.map((name) => ({ '@type': 'Place', name })),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: company.phone,
+      email: company.email,
+      contactType: '企业AI内训与FDE咨询',
+      availableLanguage: 'zh-CN',
+      url: `${siteUrl}/contact`,
+    },
     knowsAbout: [
       { '@id': fdeTermId },
       '企业 AI 落地',
+      '企业AI内训',
       '最小可行部署 MVD',
       '企业 AI 现场诊断',
       '生产部署与采用',
@@ -53,7 +66,7 @@ const coreEntities = [
   {
     '@type': 'WebSite',
     '@id': websiteId,
-    name: '蓝旗鱼 AI',
+    name: '蓝旗鱼科技',
     url: siteUrl,
     inLanguage: 'zh-CN',
     publisher: { '@id': organizationId },
@@ -88,20 +101,34 @@ const coreEntities = [
   {
     '@type': 'Service',
     '@id': `${siteUrl}/services#service`,
-    name: '企业 AI 落地 / Forward Deployed Engineering',
-    serviceType: '企业 AI 落地 / Forward Deployed Engineering',
+    name: '企业AI方案落地（FDE）',
+    serviceType: '企业AI方案落地（FDE）',
     url: `${siteUrl}/services`,
     provider: { '@id': organizationId },
-    areaServed: { '@type': 'Country', name: '中国' },
+    areaServed: company.regions.map((name) => ({ '@type': 'Place', name })),
     audience: {
       '@type': 'BusinessAudience',
       audienceType: '有真实数据、真实流程、负责人和结果压力的企业',
     },
   },
   {
+    '@type': 'Service',
+    '@id': `${siteUrl}/training#service`,
+    name: '企业AI内训',
+    serviceType: '企业AI内训',
+    description:
+      '围绕团队岗位与业务场景，建立AI认知、工具使用和实践能力。具体课程范围与产出以确认的课程方案为准。',
+    url: `${siteUrl}/training`,
+    provider: { '@id': organizationId },
+    audience: {
+      '@type': 'BusinessAudience',
+      audienceType: '企业管理者与业务骨干',
+    },
+  },
+  {
     '@type': 'CollectionPage',
     '@id': `${siteUrl}/api/content-index#catalog`,
-    name: '蓝旗鱼 AI 内容目录',
+    name: '蓝旗鱼科技内容目录',
     url: `${siteUrl}/api/content-index`,
     inLanguage: 'zh-CN',
     dateModified: siteContentUpdatedAt,
@@ -124,7 +151,7 @@ const coreEntities = [
 export function buildSiteGraph() {
   return {
     '@context': 'https://schema.org',
-    '@graph': coreEntities.slice(0, 5),
+    '@graph': coreEntities.slice(0, 6),
   };
 }
 

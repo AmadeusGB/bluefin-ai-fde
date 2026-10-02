@@ -43,7 +43,7 @@ export function ArticleMeta({
   };
   return (
     <>
-      <div className="border-y border-foreground/10 bg-white px-5 py-4 text-sm lg:px-10">
+      <div className="border-y border-foreground/10 bg-card px-5 py-4 text-sm lg:px-10">
         <div className="mx-auto flex max-w-[1500px] flex-wrap gap-x-8 gap-y-2 text-muted-foreground">
           <span>作者：<strong className="text-foreground">蓝旗鱼 AI FDE 研究与交付团队</strong></span>
           <span>事实核验：{date}</span>

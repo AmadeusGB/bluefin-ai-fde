@@ -61,9 +61,9 @@ export default function Page() {
           intro="这份 28 项清单同时检查业务结果、真实任务、运行、安全、人机边界、采用和交接。任何关键红线缺少证据时，都不应仅凭 Demo 或功能完成度宣布生产验收。"
         />
         <section className="px-5 py-18 lg:px-10">
-          <div className="mx-auto flex max-w-[1300px] flex-col justify-between gap-7 border border-foreground/15 bg-[#e7eaff] p-7 lg:flex-row lg:items-center">
+          <div className="mx-auto flex max-w-[1300px] flex-col justify-between gap-7 border border-foreground/15 bg-secondary p-7 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#3657d6]">公开可复用资产</p>
+              <p className="eyebrow text-primary">公开可复用资产</p>
               <h2 className="mt-3 text-3xl font-black">
                 {productionAcceptanceItems.length} 项 · 7 个验收维度
               </h2>
@@ -101,9 +101,9 @@ export default function Page() {
             {productionAcceptanceGroups.map((group, groupIndex) => (
               <article
                 key={group.key}
-                className="border border-foreground/15 bg-white p-7"
+                className="border border-foreground/15 bg-card p-7"
               >
-                <span className="text-xs font-bold text-[#3657d6]">
+                <span className="text-xs font-bold text-primary">
                   0{groupIndex + 1}
                 </span>
                 <h2 className="mt-3 text-3xl font-black">{group.label}</h2>
@@ -137,7 +137,7 @@ export default function Page() {
             <Button
               nativeButton={false}
               render={<Link href="/tools/30-60-90-review" />}
-              className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-white"
+              className="h-12 rounded-none bg-secondary text-foreground hover:bg-card"
             >
               进入复查工具 <ArrowRight />
             </Button>

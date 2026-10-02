@@ -179,7 +179,7 @@ export function LeadOperations() {
   if (loading && !data)
     return (
       <div className="grid min-h-64 place-items-center">
-        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     );
   return (
@@ -187,7 +187,7 @@ export function LeadOperations() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#3657d6]">商业转化运营</p>
+          <p className="eyebrow text-primary">商业转化运营</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-6xl">
             线索资格与推进
           </h1>
@@ -228,7 +228,7 @@ export function LeadOperations() {
           <button
             key={key}
             onClick={() => setFilter(key)}
-            className={`bg-background p-5 text-left hover:bg-[#e7eaff] ${filter === key ? "ring-2 ring-inset ring-[#3657d6]" : ""}`}
+            className={`bg-background p-5 text-left hover:bg-secondary ${filter === key ? "ring-2 ring-inset ring-[#3657d6]" : ""}`}
           >
             <span className="text-3xl font-black">
               {data?.summary[key] || 0}
@@ -275,7 +275,7 @@ export function LeadOperations() {
         {leads.map((lead) => (
           <article
             key={lead.id}
-            className="border border-foreground/15 bg-white p-5 lg:p-7"
+            className="border border-foreground/15 bg-card p-5 lg:p-7"
           >
             <div className="grid gap-6 lg:grid-cols-[1.2fr_1.6fr_1fr]">
               <div>
@@ -283,13 +283,13 @@ export function LeadOperations() {
                   <h2 className="text-xl font-black">{lead.company}</h2>
                   {lead.qualification_tier && (
                     <span
-                      className={`px-2 py-1 text-xs font-black ${lead.qualification_tier === "A" ? "bg-[#3657d6] text-white" : lead.qualification_tier === "B" ? "bg-[#e7eaff] text-[#3657d6]" : "bg-[#fff3ef] text-[#a63e2d]"}`}
+                      className={`px-2 py-1 text-xs font-black ${lead.qualification_tier === "A" ? "bg-[#3657d6] text-white" : lead.qualification_tier === "B" ? "bg-secondary text-primary" : "bg-[#fff3ef] text-[#a63e2d]"}`}
                     >
                       {lead.qualification_tier} 级 · {lead.qualification_score}
                       /100
                     </span>
                   )}
-                  <span className="bg-[#e7eaff] px-2 py-1 text-xs font-bold text-[#3657d6]">
+                  <span className="bg-secondary px-2 py-1 text-xs font-bold text-primary">
                     {lead.acquisition_channel}
                   </span>
                 </div>
