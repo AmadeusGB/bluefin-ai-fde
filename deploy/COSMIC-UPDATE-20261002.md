@@ -47,3 +47,11 @@ bash scripts/deploy-aliyun.sh
 public/world/ocean-night.webp，使用内置 imagegen 生成，后用 sharp 转成 WebP。
 生成提示词：宽幅 3:1 的深蓝紫夜海背景；左侧留暗色文字空间，右侧留品牌标志叠放空间；远山和低对比海面倒影；无文字、无 Logo、无人物。
 品牌标志和会员头像均沿用原资产。
+
+## 注册规则正式发布（2026-10-02）
+
+应用版本 `3a83eb84ba87e318990a37c21ff9fc02516d42d6` 已通过 Workbench 在正式服务器部署，发布脚本输出 RELEASE_OK。手机号作为注册账号，姓名／昵称、行业、城市均必填，新增确认密码；密码仍为 8—128 个字符，默认加入 AI 俱乐部。
+
+线上验证：/register、/api/health、/knowledge、/world 均 200；注册页包含六个必填输入及确认密码，不再出现自定义账号提示。注册 API 拒绝自定义账号、密码不一致、空姓名（均 400）；未在生产创建测试账号。浏览器已验收正式表单。本次未重新验证真实账号密码登录。
+
+数据库备份：`backups/bluefin-db-20261002-113222.tar.gz`。回退镜像：`bluefin-ai-fde-web:rollback-20261002-113102`。发布记录：`/home/admin/bluefin-release-H5olnN7w`。发布前后账号计数均为 club 103、fde 4。保留服务器 package-lock.json 本地改动和数据库持久卷。
