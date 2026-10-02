@@ -18,8 +18,9 @@ grep -Eq '^SITE_URL=https://lqy-ai.com/?[[:space:]]*$' .env || fail 'unexpected 
 test "$(docker inspect bluefin-ai-fde-web --format '{{range .Mounts}}{{if eq .Destination "/app/data"}}{{.Name}}{{end}}{{end}}')" = bluefin-ai-fde-data || fail 'unexpected database volume'
 test "$(df -Pk . | awk 'NR==2 {print $4}')" -gt 8500000 || fail 'insufficient disk space'
 
-mkdir -p backups
-release_dir=$(mktemp -d "$PWD/backups/navigation-XXXXXXXX")
+# Docker owns the database backup directory on this host. Keep admin-written
+# release records outside both that directory and the Docker build context.
+release_dir=$(mktemp -d "${HOME:?}/bluefin-release-XXXXXXXX")
 chmod 700 "$release_dir"
 cp -p .env compose.yaml package-lock.json "$release_dir/"
 git rev-parse HEAD > "$release_dir/previous-commit.txt"
