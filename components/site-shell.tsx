@@ -1,4 +1,16 @@
-export { WorldHeader as SiteHeader, WorldFooter as SiteFooter } from '@/components/world/shell';
+import { WorldHeader, WorldBackLink } from '@/components/world/shell';
+export { WorldFooter as SiteFooter } from '@/components/world/shell';
+
+export function SiteHeader() {
+  return (
+    <div className="site-page-navigation">
+      <WorldHeader />
+      <div className="site-page-return">
+        <WorldBackLink />
+      </div>
+    </div>
+  );
+}
 export function PageHero({
   eyebrow,
   title,

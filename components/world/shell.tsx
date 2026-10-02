@@ -84,6 +84,14 @@ export function WorldFooter() {
     </footer>
   );
 }
+export function WorldBackLink() {
+  return (
+    <Link className="back-link" href="/world">
+      <ArrowLeft size={20} /> 返回AI世界
+    </Link>
+  );
+}
+
 export function WorldShell({
   children,
   back = true,
@@ -99,11 +107,7 @@ export function WorldShell({
     >
       <WorldHeader immersive={variant !== 'default'} />
       <main id="main-content" className="world-main">
-        {back && (
-          <Link className="back-link" href="/world">
-            <ArrowLeft size={15} /> 返回AI世界
-          </Link>
-        )}
+        {back && <WorldBackLink />}
         {children}
       </main>
       <WorldFooter />

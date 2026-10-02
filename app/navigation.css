@@ -1,5 +1,26 @@
-/* Shared navigation sizing for the AI world and every public/member subpage. */
-body .world-page .world-header.site-navigation {
+/* Both page shells share the same navigation and return control sizing. */
+.site-page-return {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 40px;
+}
+
+@media (max-width: 760px) {
+  .site-page-return {
+    padding-inline: 20px;
+  }
+  body .site-page-navigation .brand-logo {
+    width: 112px;
+  }
+}
+
+@media (max-width: 360px) {
+  body .site-page-navigation .brand-logo {
+    width: 92px;
+  }
+}
+
+body :is(.world-page, .site-page-navigation) .world-header.site-navigation {
   width: calc(100% - 48px);
   max-width: 1440px;
   height: auto;
@@ -13,7 +34,7 @@ body .world-page .world-header.site-navigation {
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
 }
 
-body .world-page .site-navigation .desktop-nav {
+body :is(.world-page, .site-page-navigation) .site-navigation .desktop-nav {
   display: flex;
   gap: 6px;
   padding: 5px;
@@ -26,17 +47,23 @@ body .world-page .site-navigation .desktop-nav {
   line-height: 1.4;
 }
 
-body .world-page .site-navigation .desktop-nav a {
+body :is(.world-page, .site-page-navigation) .site-navigation .desktop-nav a {
   min-height: 48px;
   padding: 0 15px;
   border-radius: 13px;
 }
 
-body .world-page .site-navigation .header-account-actions {
+body
+  :is(.world-page, .site-page-navigation)
+  .site-navigation
+  .header-account-actions {
   gap: 10px;
 }
 
-body .world-page .site-navigation :is(.header-register, .header-login) {
+body
+  :is(.world-page, .site-page-navigation)
+  .site-navigation
+  :is(.header-register, .header-login) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -53,19 +80,19 @@ body .world-page .site-navigation :is(.header-register, .header-login) {
   white-space: nowrap;
 }
 
-body .world-page .site-navigation .header-login {
+body :is(.world-page, .site-page-navigation) .site-navigation .header-login {
   background: rgba(106, 159, 255, 0.17);
   border-color: rgba(142, 184, 255, 0.32);
 }
 
-body .world-page .site-navigation .header-login svg,
-body .world-page a.back-link svg {
+body :is(.world-page, .site-page-navigation) .site-navigation .header-login svg,
+body :is(.world-page, .site-page-navigation) a.back-link svg {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
 
-body .world-page a.back-link {
+body :is(.world-page, .site-page-navigation) a.back-link {
   min-height: 52px;
   padding: 12px 20px;
   margin: 26px 0 18px;
@@ -79,39 +106,49 @@ body .world-page a.back-link {
   line-height: 1.4;
 }
 
-body .world-page .site-navigation a,
-body .world-page a.back-link {
+body :is(.world-page, .site-page-navigation) .site-navigation a,
+body :is(.world-page, .site-page-navigation) a.back-link {
   transition:
     background-color 180ms ease,
     border-color 180ms ease,
     color 180ms ease;
 }
 
-body .world-page .site-navigation a:hover,
-body .world-page a.back-link:hover {
+body :is(.world-page, .site-page-navigation) .site-navigation a:hover,
+body :is(.world-page, .site-page-navigation) a.back-link:hover {
   background-color: rgba(137, 183, 255, 0.18);
   color: #fff;
 }
 
-body .world-page .site-navigation a:focus-visible,
-body .world-page a.back-link:focus-visible,
-body .world-page .site-navigation summary:focus-visible {
+body :is(.world-page, .site-page-navigation) .site-navigation a:focus-visible,
+body :is(.world-page, .site-page-navigation) a.back-link:focus-visible,
+body
+  :is(.world-page, .site-page-navigation)
+  .site-navigation
+  summary:focus-visible {
   outline: 2px solid #97caff;
   outline-offset: 4px;
 }
 
 @media (max-width: 1100px) {
-  body .world-page .site-navigation .desktop-nav {
+  body :is(.world-page, .site-page-navigation) .site-navigation .desktop-nav {
     display: none;
   }
-  body .world-page .site-navigation .header-account-actions {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .header-account-actions {
     margin-left: auto;
   }
-  body .world-page .site-navigation .mobile-nav {
+  body :is(.world-page, .site-page-navigation) .site-navigation .mobile-nav {
     display: block;
     position: relative;
   }
-  body .world-page .site-navigation .mobile-nav summary {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .mobile-nav
+    summary {
     display: grid;
     place-items: center;
     width: 48px;
@@ -122,7 +159,11 @@ body .world-page .site-navigation summary:focus-visible {
     background: rgba(135, 169, 228, 0.075);
     cursor: pointer;
   }
-  body .world-page .site-navigation .mobile-nav nav {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .mobile-nav
+    nav {
     position: absolute;
     right: 0;
     top: 60px;
@@ -133,7 +174,12 @@ body .world-page .site-navigation summary:focus-visible {
     background: #141f33;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
   }
-  body .world-page .site-navigation .mobile-nav nav a {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .mobile-nav
+    nav
+    a {
     display: flex;
     align-items: center;
     min-height: 48px;
@@ -145,7 +191,7 @@ body .world-page .site-navigation summary:focus-visible {
 }
 
 @media (max-width: 760px) {
-  body .world-page .world-header.site-navigation {
+  body :is(.world-page, .site-page-navigation) .world-header.site-navigation {
     width: calc(100% - 24px);
     min-height: 80px;
     margin-top: 12px;
@@ -153,32 +199,47 @@ body .world-page .site-navigation summary:focus-visible {
     gap: 8px;
     border-radius: 20px;
   }
-  body .world-page .site-navigation .header-register {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .header-register {
     display: none;
   }
-  body .world-page .site-navigation .header-login {
+  body :is(.world-page, .site-page-navigation) .site-navigation .header-login {
     min-height: 46px;
     padding: 10px;
     font-size: 16px;
     gap: 6px;
     border-radius: 13px;
   }
-  body .world-page .site-navigation .header-login svg {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .header-login
+    svg {
     display: none;
   }
-  body .world-page .site-navigation .mobile-nav summary {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .mobile-nav
+    summary {
     width: 44px;
     height: 46px;
   }
-  body .world-page .site-navigation .cosmic-brand {
+  body :is(.world-page, .site-page-navigation) .site-navigation .cosmic-brand {
     font-size: 16px;
     gap: 6px;
   }
-  body .world-page .site-navigation .cosmic-brand .marlin-mark {
+  body
+    :is(.world-page, .site-page-navigation)
+    .site-navigation
+    .cosmic-brand
+    .marlin-mark {
     width: 34px;
     height: 34px;
   }
-  body .world-page a.back-link {
+  body :is(.world-page, .site-page-navigation) a.back-link {
     font-size: 17px;
     min-height: 48px;
     padding: 11px 16px;
@@ -187,8 +248,8 @@ body .world-page .site-navigation summary:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body .world-page .site-navigation a,
-  body .world-page a.back-link {
+  body :is(.world-page, .site-page-navigation) .site-navigation a,
+  body :is(.world-page, .site-page-navigation) a.back-link {
     transition: none;
   }
 }
