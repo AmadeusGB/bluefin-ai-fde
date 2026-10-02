@@ -233,10 +233,15 @@ export async function POST(req: Request, ctx: Context) {
       throttle('signup:' + ip, 10);
       const account = String(body.account || '').trim();
       const password = String(body.password || '');
-      if (!/^[A-Za-z0-9_.@-]{4,64}$/.test(account))
-        throw new Error('账号需为4—64位字母、数字或 _ . @ -，也可使用手机号');
+      if (!/^1[3-9]\d{9}$/.test(account))
+        throw new Error('请输入11位中国大陆手机号，不支持自定义账号');
       if (password.length < 8 || password.length > 128)
         throw new Error('密码需要8—128个字符');
+      if (
+        typeof body.confirmPassword !== 'string' ||
+        body.confirmPassword !== password
+      )
+        throw new Error('两次输入的密码不一致，请重新确认');
       const db = communityDB();
       if (
         db
@@ -251,11 +256,16 @@ export async function POST(req: Request, ctx: Context) {
         if (typeof value !== 'string' || value.trim().length > 120)
           throw new Error('基本资料每项最多120个字符');
         basic[key] = value.trim();
+        if (!basic[key])
+          throw new Error(
+            '请填写' +
+              { name: '姓名／昵称', industry: '行业', city: '城市' }[key],
+          );
       }
       const answers = {
         name: basic.name,
-        displayName: basic.name || '新成员',
-        phone: /^1\d{10}$/.test(account) ? account : '',
+        displayName: basic.name,
+        phone: account,
         city: basic.city,
         industry: basic.industry,
         role: '',
@@ -298,8 +308,15 @@ export async function POST(req: Request, ctx: Context) {
       if (!body.consent) throw new Error('请阅读并同意资料处理说明');
       const a = validateAnswers(body.section, body.answers || {}),
         password = String(body.password || '');
+      if (!/^1[3-9]\d{9}$/.test(String(a.phone).replace(/[ -]/g, '')))
+        throw new Error('请输入11位中国大陆手机号');
       if (password.length < 8 || password.length > 128)
         throw new Error('密码需要8—128个字符');
+      if (
+        typeof body.confirmPassword !== 'string' ||
+        body.confirmPassword !== password
+      )
+        throw new Error('两次输入的密码不一致，请重新确认');
       const db = communityDB(),
         id = randomUUID(),
         phone = String(a.phone).replace(/[ -]/g, ''),

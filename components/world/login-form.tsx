@@ -31,10 +31,10 @@ export function LoginForm() {
       <h1>欢迎回来。</h1>
       <p>登录，继续你的AI探索。</p>
       <label className="question">
-        账号
+        手机号
         <input
           type="text"
-          placeholder="手机号或自定义账号"
+          placeholder="请输入注册手机号"
           autoComplete="username"
           required
           value={phone}

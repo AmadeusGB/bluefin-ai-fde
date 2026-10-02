@@ -8,6 +8,7 @@ export function RegisterForm() {
   const router = useRouter();
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [basic, setBasic] = useState({ name: '', industry: '', city: '' });
@@ -19,7 +20,16 @@ export function RegisterForm() {
         setBusy(true);
         setError('');
         try {
-          await post('signup', { account, password, basic });
+          if (password !== confirmPassword)
+            throw new Error('两次输入的密码不一致，请重新确认');
+          for (const [key, label] of [
+            ['name', '姓名／昵称'],
+            ['industry', '行业'],
+            ['city', '城市'],
+          ] as const) {
+            if (!basic[key].trim()) throw new Error('请填写' + label);
+          }
+          await post('signup', { account, password, confirmPassword, basic });
           router.push('/members');
           router.refresh();
         } catch (err) {
@@ -34,30 +44,36 @@ export function RegisterForm() {
         <span>从这里，</span>
         <span>开始探索。</span>
       </h1>
-      <p>账号与密码即可注册，默认加入 AI 俱乐部。</p>
+      <p>
+        使用手机号注册，填写基本资料后，默认加入 AI 俱乐部。以下均为必填项。
+      </p>
       <label className="question">
-        账号
+        手机号（账号）
         <input
+          type="tel"
+          inputMode="tel"
           autoComplete="username"
           required
-          minLength={4}
-          maxLength={64}
-          pattern="[A-Za-z0-9_.@\-]+"
-          placeholder="手机号或自定义账号"
+          minLength={11}
+          maxLength={11}
+          pattern="1[3-9][0-9]{9}"
+          title="请输入11位中国大陆手机号"
+          placeholder="请输入11位手机号"
           value={account}
           onChange={(e) => setAccount(e.target.value)}
         />
       </label>
       {(
         [
-          ['name', '姓名／昵称（选填）'],
-          ['industry', '行业（选填）'],
-          ['city', '城市（选填）'],
+          ['name', '姓名／昵称'],
+          ['industry', '行业'],
+          ['city', '城市'],
         ] as const
       ).map(([key, label]) => (
         <label className="question" key={key}>
           {label}
           <input
+            required
             maxLength={120}
             value={basic[key]}
             onChange={(e) => setBasic({ ...basic, [key]: e.target.value })}
@@ -75,6 +91,19 @@ export function RegisterForm() {
           placeholder="至少8个字符"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+      <label className="question">
+        确认密码
+        <input
+          type="password"
+          autoComplete="new-password"
+          required
+          minLength={8}
+          maxLength={128}
+          placeholder="请再次输入密码"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </label>
       <p className="quiet">

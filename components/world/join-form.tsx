@@ -26,6 +26,7 @@ export function JoinForm({ section }: { section: Section }) {
     [answers, setAnswers] = useState<Record<string, string | string[]>>({}),
     [code, setCode] = useState(''),
     [password, setPassword] = useState(''),
+    [confirmPassword, setConfirmPassword] = useState(''),
     [visible, setVisible] = useState(false),
     [consent, setConsent] = useState(false),
     [busy, setBusy] = useState(false),
@@ -81,11 +82,14 @@ export function JoinForm({ section }: { section: Section }) {
     setError('');
     setBusy(true);
     try {
+      if (password !== confirmPassword)
+        throw new Error('两次输入的密码不一致，请重新确认');
       await post('register', {
         section,
         answers,
         code,
         password,
+        confirmPassword,
         visible,
         consent,
       });
@@ -308,6 +312,19 @@ export function JoinForm({ section }: { section: Section }) {
             <p className="quiet">
               以后使用联系电话与此密码登录。目前不提供短信认证。
             </p>
+            <label className="question">
+              确认密码
+              <input
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={8}
+                maxLength={128}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="请再次输入密码"
+              />
+            </label>
             <label className="check-line">
               <input
                 type="checkbox"
