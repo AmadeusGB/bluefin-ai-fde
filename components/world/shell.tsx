@@ -11,7 +11,7 @@ export function WorldHeader({ immersive = false }: { immersive?: boolean }) {
     ['知识库', '/knowledge'],
   ];
   return (
-    <header className="world-header">
+    <header className="world-header site-navigation">
       <Link
         href="/world"
         className={immersive ? 'cosmic-brand' : 'brand-logo'}
@@ -58,6 +58,7 @@ export function WorldHeader({ immersive = false }: { immersive?: boolean }) {
             </Link>
           ))}
           <Link href="/world">三大社群</Link>
+          <Link href="/register">注册账号</Link>
           <Link href="/guest">游客访问</Link>
           <Link href="/contact">联系我们</Link>
         </nav>

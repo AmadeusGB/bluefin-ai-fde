@@ -1,0 +1,194 @@
+/* Shared navigation sizing for the AI world and every public/member subpage. */
+body .world-page .world-header.site-navigation {
+  width: calc(100% - 48px);
+  max-width: 1440px;
+  height: auto;
+  min-height: 96px;
+  margin: 18px auto 0;
+  padding: 14px 24px;
+  gap: 20px;
+  border: 1px solid rgba(164, 192, 241, 0.16);
+  border-radius: 26px;
+  background: rgba(16, 24, 42, 0.94);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+}
+
+body .world-page .site-navigation .desktop-nav {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid rgba(164, 192, 241, 0.12);
+  border-radius: 18px;
+  background: rgba(135, 169, 228, 0.055);
+  color: #e1eafa;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+body .world-page .site-navigation .desktop-nav a {
+  min-height: 48px;
+  padding: 0 15px;
+  border-radius: 13px;
+}
+
+body .world-page .site-navigation .header-account-actions {
+  gap: 10px;
+}
+
+body .world-page .site-navigation :is(.header-register, .header-login) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 11px 17px;
+  gap: 10px;
+  border: 1px solid rgba(164, 192, 241, 0.2);
+  border-radius: 16px;
+  background: rgba(135, 169, 228, 0.075);
+  color: #e8f0ff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+body .world-page .site-navigation .header-login {
+  background: rgba(106, 159, 255, 0.17);
+  border-color: rgba(142, 184, 255, 0.32);
+}
+
+body .world-page .site-navigation .header-login svg,
+body .world-page a.back-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+body .world-page a.back-link {
+  min-height: 52px;
+  padding: 12px 20px;
+  margin: 26px 0 18px;
+  gap: 10px;
+  border: 1px solid rgba(153, 190, 246, 0.26);
+  border-radius: 16px;
+  background: rgba(98, 143, 211, 0.13);
+  color: #dceaff;
+  font-size: 18px;
+  font-weight: 550;
+  line-height: 1.4;
+}
+
+body .world-page .site-navigation a,
+body .world-page a.back-link {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+body .world-page .site-navigation a:hover,
+body .world-page a.back-link:hover {
+  background-color: rgba(137, 183, 255, 0.18);
+  color: #fff;
+}
+
+body .world-page .site-navigation a:focus-visible,
+body .world-page a.back-link:focus-visible,
+body .world-page .site-navigation summary:focus-visible {
+  outline: 2px solid #97caff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 1100px) {
+  body .world-page .site-navigation .desktop-nav {
+    display: none;
+  }
+  body .world-page .site-navigation .header-account-actions {
+    margin-left: auto;
+  }
+  body .world-page .site-navigation .mobile-nav {
+    display: block;
+    position: relative;
+  }
+  body .world-page .site-navigation .mobile-nav summary {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    list-style: none;
+    border: 1px solid rgba(164, 192, 241, 0.2);
+    border-radius: 14px;
+    background: rgba(135, 169, 228, 0.075);
+    cursor: pointer;
+  }
+  body .world-page .site-navigation .mobile-nav nav {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 240px;
+    padding: 10px;
+    border: 1px solid rgba(164, 192, 241, 0.22);
+    border-radius: 20px;
+    background: #141f33;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  }
+  body .world-page .site-navigation .mobile-nav nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 18px;
+    color: #e1eafa;
+  }
+}
+
+@media (max-width: 760px) {
+  body .world-page .world-header.site-navigation {
+    width: calc(100% - 24px);
+    min-height: 80px;
+    margin-top: 12px;
+    padding: 12px;
+    gap: 8px;
+    border-radius: 20px;
+  }
+  body .world-page .site-navigation .header-register {
+    display: none;
+  }
+  body .world-page .site-navigation .header-login {
+    min-height: 46px;
+    padding: 10px;
+    font-size: 16px;
+    gap: 6px;
+    border-radius: 13px;
+  }
+  body .world-page .site-navigation .header-login svg {
+    display: none;
+  }
+  body .world-page .site-navigation .mobile-nav summary {
+    width: 44px;
+    height: 46px;
+  }
+  body .world-page .site-navigation .cosmic-brand {
+    font-size: 16px;
+    gap: 6px;
+  }
+  body .world-page .site-navigation .cosmic-brand .marlin-mark {
+    width: 34px;
+    height: 34px;
+  }
+  body .world-page a.back-link {
+    font-size: 17px;
+    min-height: 48px;
+    padding: 11px 16px;
+    margin: 20px 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .world-page .site-navigation a,
+  body .world-page a.back-link {
+    transition: none;
+  }
+}
