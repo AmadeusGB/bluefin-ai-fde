@@ -3,7 +3,7 @@
 set -euo pipefail
 umask 077
 cd /home/admin/bluefin-ai-fde
-target=4c04d237c24846cf05e0dcccc17379536a26dc00
+target=$(git rev-parse --verify "${1:-4c04d237c24846cf05e0dcccc17379536a26dc00}^{commit}")
 fail() { echo "STOP: $*" >&2; exit 1; }
 command -v flock >/dev/null || fail 'flock is required'
 exec 9>/tmp/bluefin-navigation-release.lock
