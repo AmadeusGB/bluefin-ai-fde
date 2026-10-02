@@ -18,7 +18,13 @@ Next 生产构建、相关文件 oxlint、git diff --check 通过。
 
 ## 发布状态
 
-本次无法连接已登录的阿里云浏览器。本机 Workbench 没有有效配置，GitHub 没有自动部署工作流。因此源码更新不等于生产站更新。
+2026-10-02 已在阿里云正式部署应用版本 `4c04d23`，包含入口、会员空间及两套页面布局的导航修正。正式地址：https://lqy-ai.com/world 。
+
+通过已登录的 Workbench 执行仓库部署脚本。正式域名健康接口返回 200，知识库、文章、企业服务、登录页面返回 200，匿名会员接口仍为 401。浏览器实测知识库导航 20px、返回按钮 18px、底框生效，返回 AI 世界跳转成功。
+
+发布前后会员账号计数一致：club 103、fde 4；本次没有导入、删除或修改会员账号。数据库备份：`backups/bluefin-db-20261002-110202.tar.gz`。回退镜像：`bluefin-ai-fde-web:rollback-20261002-110038`。配置、日志及计数记录：`/home/admin/bluefin-release-uzmMnw7w`。保留服务器原有 package-lock.json 本地改动。
+
+发布辅助脚本曾遇到 root 所有备份目录不可写及旧 curl 不支持参数，均已修正；部署本身成功后通过独立检查完成验证。本次没有重新验证真实账号密码登录。
 
 生产目录：/home/admin/bluefin-ai-fde
 目标分支：codex/bluefin-ai-world

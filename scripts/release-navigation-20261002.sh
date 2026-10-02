@@ -45,7 +45,15 @@ git merge --ff-only "$target"
 test "$(git rev-parse HEAD)" = "$target" || fail 'unexpected release revision'
 echo "Building release; rollback image: $rollback"
 bash scripts/deploy-aliyun.sh 2>&1 | tee "$release_dir/deploy.log"
-curl --fail --silent --show-error --retry 10 --retry-delay 3 --retry-all-errors https://lqy-ai.com/api/health
+healthy=false
+for attempt in {1..10}; do
+  if curl --fail --silent --show-error --connect-timeout 5 --max-time 15 https://lqy-ai.com/api/health; then
+    healthy=true
+    break
+  fi
+  sleep 3
+done
+"$healthy" || fail 'public health check failed'
 curl --fail --silent --show-error https://lqy-ai.com/knowledge -o "$release_dir/knowledge.html"
 grep -q 'site-page-navigation' "$release_dir/knowledge.html" || fail 'new knowledge navigation not visible'
 curl --fail --silent --show-error https://lqy-ai.com/world -o "$release_dir/world.html"
