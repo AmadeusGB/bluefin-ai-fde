@@ -2,7 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Menu, ArrowLeft } from 'lucide-react';
 import { company } from '@/lib/company';
-export function WorldHeader() {
+import { MarlinMark } from './marlin-mark';
+export function WorldHeader({ immersive = false }: { immersive?: boolean }) {
   const links = [
     ['企业服务', '/services'],
     ['关于蓝旗鱼', '/about'],
@@ -13,16 +14,23 @@ export function WorldHeader() {
     <header className="world-header">
       <Link
         href="/world"
-        className="brand-logo"
+        className={immersive ? 'cosmic-brand' : 'brand-logo'}
         aria-label="蓝旗鱼科技，返回AI世界"
       >
-        <Image
-          src="/world/logo.png"
-          alt="蓝旗鱼AI · 探索 · 实践 · 共创"
-          width={500}
-          height={205}
-          priority
-        />
+        {immersive ? (
+          <>
+            <MarlinMark />
+            <span>蓝旗鱼科技</span>
+          </>
+        ) : (
+          <Image
+            src="/world/logo.png"
+            alt="蓝旗鱼AI · 探索 · 实践 · 共创"
+            width={500}
+            height={205}
+            priority
+          />
+        )}
       </Link>
       <nav className="desktop-nav">
         {links.map(([title, url]) => (
@@ -82,11 +90,13 @@ export function WorldShell({
 }: {
   children: React.ReactNode;
   back?: boolean;
-  variant?: 'default' | 'soft';
+  variant?: 'default' | 'soft' | 'members';
 }) {
   return (
-    <div className={`world-page${variant === 'soft' ? ' soft-world' : ''}`}>
-      <WorldHeader />
+    <div
+      className={`world-page${variant === 'soft' ? ' soft-world cosmic-shell' : variant === 'members' ? ' cosmic-members cosmic-shell' : ''}`}
+    >
+      <WorldHeader immersive={variant !== 'default'} />
       <main id="main-content" className="world-main">
         {back && (
           <Link className="back-link" href="/world">

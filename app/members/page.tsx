@@ -11,7 +11,7 @@ export default async function Page() {
   const m = await memberSession();
   if (!m) redirect('/login');
   return (
-    <WorldShell>
+    <WorldShell variant="members">
       <MemberSpace
         initial={{
           ...publicCard(m),

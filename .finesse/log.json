@@ -1,5 +1,22 @@
 [
   {
+    "date": "2026-10-02",
+    "register": "brand+member-directory",
+    "scope": "/world and /members",
+    "reference": "User-approved two-page Bluefin cosmic mockup",
+    "axes": {
+      "A": "midnight+blue-violet",
+      "B": "FangYuan rounded 700/450",
+      "C": "split hero + three entry cards; separate member orbit",
+      "D": "pointer tilt + DOM orbit + dialog transition",
+      "E": "original marlin and member avatars; generated night ocean"
+    },
+    "images": "Original bluefin-logo.png via CSS framing; existing authenticated avatars; generated ocean-night.webp (33KB). No replacement member portraits.",
+    "verification": "Next production build and scoped lint pass. Browser: orbit/pause/dialog/Escape/paging/search/city/list/reduced-motion; both pages at 320/375/414/768/1440 without horizontal overflow. Original club account login + course download; unauthenticated members 401; SSR canonical retained. List transition cleanup fixed and retested.",
+    "exceptions": "Blue-violet gradient heading, glass motifs, and three equal portal cards explicitly approved by user in mockup.",
+    "deployment": "Source prepared for existing GitHub branch. Production update pending restored Alibaba Cloud access; no production database changes."
+  },
+  {
     "date": "2026-09-30",
     "scope": "company identity, founders, contact channels, sourced reports and industry proposals",
     "axes": {

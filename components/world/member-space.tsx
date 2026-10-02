@@ -12,11 +12,15 @@ import {
   Orbit,
   LogOut,
   MapPin,
+  Pause,
+  Play,
 } from 'lucide-react';
 import Link from 'next/link';
 import { sections, type Section } from '@/lib/community-fields';
 import activities from '@/lib/activity-data.json';
 import { post } from './join-form';
+import { MarlinMark } from './marlin-mark';
+import { MemberOrbit } from './member-orbit';
 type Card = {
   id: string;
   section: Section;
@@ -79,6 +83,8 @@ export function MemberSpace({
     [resources, setResources] = useState<Resource[]>([]),
     [search, setSearch] = useState(''),
     [industry, setIndustry] = useState(''),
+    [city, setCity] = useState(''),
+    [paused, setPaused] = useState(false),
     [list, setList] = useState(false),
     [selected, setSelected] = useState<Card | null>(null),
     [me, setMe] = useState(initial),
@@ -119,6 +125,7 @@ export function MemberSpace({
   const shown = members.filter(
     (m) =>
       (!industry || m.industry === industry) &&
+      (!city || m.city === city) &&
       (!search ||
         [m.display_name, m.industry, m.city].some((x) => x.includes(search))),
   );
@@ -133,9 +140,11 @@ export function MemberSpace({
     <>
       <div className="member-heading">
         <div>
-          <p className="micro accent">YOUR BLUEFIN SPACE</p>
-          <h1>{sections[me.section].name}</h1>
-          <p>你好，{me.display_name}。和同路人，一起向前。</p>
+          <p className="member-section-label">{sections[me.section].name}</p>
+          <h1>
+            遇见你的 <span>AI 同路人</span>
+          </h1>
+          <p>你好，{me.display_name}。一起探索，一起把想法变成现实。</p>
         </div>
         <button
           className="secondary-button"
@@ -159,6 +168,7 @@ export function MemberSpace({
         ].map(([id, name]) => (
           <button
             className={tab === id ? 'active' : ''}
+            aria-current={tab === id ? 'page' : undefined}
             onClick={() => setTab(id)}
             key={id}
           >
@@ -199,6 +209,34 @@ export function MemberSpace({
                 <option key={i}>{i}</option>
               ))}
             </select>
+            <select
+              aria-label="筛选城市"
+              value={city}
+              onChange={(e) => {
+                setCity(e.target.value);
+                setPage(0);
+              }}
+            >
+              <option value="">全部城市</option>
+              {[...new Set(members.map((m) => m.city).filter(Boolean))]
+                .sort((a, b) => a.localeCompare(b, 'zh-CN'))
+                .map((value) => (
+                  <option key={value}>{value}</option>
+                ))}
+            </select>
+            {(search || industry || city) && (
+              <button
+                className="secondary-button"
+                onClick={() => {
+                  setSearch('');
+                  setIndustry('');
+                  setCity('');
+                  setPage(0);
+                }}
+              >
+                重置筛选
+              </button>
+            )}
             <button
               className="secondary-button"
               onClick={() => {
@@ -209,6 +247,16 @@ export function MemberSpace({
               {list ? <Orbit size={17} /> : <List size={17} />}{' '}
               {list ? '空间视图' : '列表视图'}
             </button>
+            {!list && (
+              <button
+                className="secondary-button orbit-pause"
+                aria-pressed={paused}
+                onClick={() => setPaused(!paused)}
+              >
+                {paused ? <Play size={17} /> : <Pause size={17} />}
+                {paused ? '继续旋转' : '暂停旋转'}
+              </button>
+            )}
           </div>
           {preview && members.some((m) => m.is_demo) && (
             <p className="quiet">
@@ -228,16 +276,22 @@ export function MemberSpace({
               暂时没有匹配的会员。试试其他行业或关键词。
             </p>
           )}
-          <div className={list ? 'member-list' : 'member-universe'}>
-            {!list && (
+          <MemberOrbit
+            list={list}
+            paused={paused || !!selected}
+            pageKey={pageMembers.map((m) => m.id).join(',')}
+          >
+            {!list && pageMembers.length > 0 && (
               <div className="universe-center" aria-hidden="true">
-                <span>BLUEFIN</span>
-                <p>CONNECTED BY CURIOSITY</p>
+                <MarlinMark />
+                <p>因 AI 相遇，让连接发生</p>
               </div>
             )}
             {pageMembers.map((m, i) => (
               <button
                 className="member-node"
+                aria-label={`查看${m.display_name}的资料，${cardSummary(m)}`}
+                aria-haspopup="dialog"
                 key={m.id}
                 style={
                   {
@@ -260,7 +314,7 @@ export function MemberSpace({
                 </span>
               </button>
             ))}
-          </div>
+          </MemberOrbit>
           {loaded && pageCount > 1 && (
             <nav
               className="space-toolbar member-pagination"
@@ -285,7 +339,12 @@ export function MemberSpace({
               </button>
             </nav>
           )}
-          <dialog ref={dialog} className="profile-dialog">
+          <dialog
+            ref={dialog}
+            className="profile-dialog cosmic-profile"
+            aria-labelledby="member-profile-name"
+            onClose={() => setSelected(null)}
+          >
             <button
               className="dialog-close"
               aria-label="关闭会员资料"
@@ -296,7 +355,7 @@ export function MemberSpace({
             {selected && (
               <>
                 <MemberAvatar card={selected} className="large-avatar" />
-                <h2>{selected.display_name}</h2>
+                <h2 id="member-profile-name">{selected.display_name}</h2>
                 <p>
                   {selected.role} · {selected.industry}
                 </p>

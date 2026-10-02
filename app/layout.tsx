@@ -5,6 +5,7 @@ import './globals.css';
 import './world.css';
 import './typography.css';
 import './company.css';
+import './cosmic.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

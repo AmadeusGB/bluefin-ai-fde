@@ -1,540 +1,382 @@
-/* Selected reference: Superlist. Scope: /world only; original brand assets retained. */
-.soft-world {
-  --soft-bg: #10121f;
-  --soft-panel: #191e31;
-  --soft-ink: #f1f5ff;
-  --soft-muted: #adb7ce;
-  --soft-blue: #89bcff;
-  --soft-line: rgba(179, 197, 242, 0.13);
-  --soft-display: var(--brand-font);
-  --soft-body: var(--brand-font);
-  background:
-    radial-gradient(
-      ellipse 44% 34% at 37% 40%,
-      rgba(64, 83, 167, 0.24),
-      transparent 85%
-    ),
-    radial-gradient(
-      ellipse 30% 25% at 73% 49%,
-      rgba(81, 68, 148, 0.19),
-      transparent 90%
-    ),
-    var(--soft-bg);
-  color: var(--soft-ink);
-  padding-top: 18px;
-  font-family: var(--soft-body);
-}
-.soft-world .world-header {
-  margin: 0 auto;
-  max-width: 1192px;
-  width: calc(100% - 64px);
-  height: 76px;
-  padding: 0 18px;
-  border: 1px solid var(--soft-line);
-  border-radius: 25px;
-  background: rgba(22, 25, 40, 0.84);
-  box-shadow:
-    inset 0 1px 0 rgba(230, 237, 255, 0.03),
-    0 12px 40px rgba(4, 9, 24, 0.14);
-}
-.soft-world .brand-logo {
-  width: 132px;
-  border-radius: 16px;
-  padding: 2px 6px;
-}
-.soft-world .desktop-nav {
-  font-size: 13px;
-  gap: 26px;
-  color: var(--soft-muted);
-}
-.soft-world .header-login {
-  border-radius: 999px;
-  background: rgba(208, 224, 255, 0.055);
-}
-.soft-world .header-register {
-  color: var(--soft-ink);
-}
-.soft-world .world-main {
-  max-width: 1260px;
-  padding: 0 32px 60px;
-}
-.soft-world .gateway-title {
+/* finesse · register=brand · A=midnight+violet · B=FangYuan700/450 · C=split-hero+portal-trio · D=pointer-tilt · E=marlin+night-ocean · approved mockup */
+.soft-world .gateway-hero {
+  min-height: 415px;
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 0;
-  margin: 68px 0 62px;
+  isolation: isolate;
 }
-.gateway-eyebrow {
+.soft-world .gateway-ocean {
+  position: absolute;
+  width: calc(100% + 80px);
+  max-width: none;
+  height: 100%;
+  left: -40px;
+  top: 0;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.72;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #10111b 20%,
+    #10111b 72%,
+    transparent
+  );
+}
+body .soft-world .gateway-title {
+  display: block;
+  text-align: left;
+  margin: 34px 0 24px;
+  width: 58%;
+  position: relative;
+  z-index: 2;
+}
+body .soft-world .gateway-eyebrow {
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  color: var(--cosmic-muted);
+  margin-bottom: 18px;
+}
+body .soft-world .gateway-title h1 {
+  font-size: clamp(44px, 4.8vw, 70px);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+body .soft-world .gateway-title h1 span {
+  background: linear-gradient(120deg, #b5c7ff, #9292ff 80%);
+  background-clip: text;
+  color: var(--cosmic-accent);
+  -webkit-text-fill-color: transparent;
+}
+body .soft-world .gateway-title > p:not(.gateway-eyebrow) {
+  font-size: clamp(18px, 1.6vw, 23px);
+  font-weight: 550;
+  line-height: 1.6;
+  color: var(--cosmic-ink);
+  margin: 0;
+}
+.soft-world .guest-link {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--soft-muted);
-}
-.gateway-eyebrow > span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--soft-blue);
-  box-shadow: 0 0 12px rgba(120, 178, 255, 0.65);
-}
-.soft-world .gateway-title h1 {
-  font-family: var(--soft-display);
-  font-size: clamp(44px, 5.6vw, 78px);
-  font-weight: 800;
-  line-height: 1.22;
-  letter-spacing: -0.045em;
-  margin: 22px 0 24px;
-  text-wrap: balance;
-}
-.soft-world .gateway-title h1 span {
-  color: var(--soft-blue);
-  background: linear-gradient(110deg, #86d5ff 4%, #84acff 62%, #a9a8ff);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.soft-world .gateway-title > p {
-  max-width: 600px;
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--soft-muted);
-  margin: 0;
-}
-.gateway-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 26px;
-  margin-top: 27px;
-}
-.soft-world .gateway-cta .primary-button {
-  border-radius: 999px;
-  min-height: 52px;
-  padding: 0 26px;
-  background: linear-gradient(155deg, #99ccff, #79a8fd);
-  color: #102442;
-  box-shadow:
-    inset 0 1px 0 #c8e7ff,
-    0 8px 30px rgba(79, 127, 236, 0.22);
-  font-size: 14px;
-  font-weight: 600;
-}
-.guest-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   min-height: 44px;
-  color: var(--soft-muted);
-  font-size: 13px;
-  transition: color 0.25s;
+  color: var(--cosmic-muted);
+  font-size: 15px;
+  margin-top: 10px;
 }
-.guest-link:hover {
-  color: var(--soft-ink);
-}
-.portal-deck {
-  padding: 12px;
-  border-radius: 42px;
-  border: 1px solid rgba(188, 205, 247, 0.17);
-  background: linear-gradient(
-    140deg,
-    rgba(195, 209, 255, 0.1),
-    rgba(128, 149, 218, 0.025)
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(226, 235, 255, 0.06),
-    0 25px 75px rgba(4, 8, 23, 0.25);
+.soft-world .gateway-marlin {
+  position: absolute;
+  width: min(43%, 480px);
+  right: 7%;
+  top: 50%;
+  transform: translateY(-47%);
+  filter: drop-shadow(0 0 40px var(--cosmic-glow));
+  pointer-events: none;
 }
 .soft-world .portal-grid {
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  perspective: 1200px;
 }
-.soft-world .portal-card {
-  --card-light: 119, 174, 255;
-  height: 450px;
+body .soft-world .portal-card {
+  --card-light: 136, 183, 255;
+  position: relative;
+  height: 390px;
   border-radius: 30px;
-  border: 1px solid rgba(var(--card-light), 0.12);
+  overflow: clip;
+  border: 1px solid var(--cosmic-line);
   background:
     radial-gradient(
-      ellipse 95% 65% at 65% 30%,
-      rgba(var(--card-light), 0.15),
-      transparent 85%
+      ellipse at 75% 40%,
+      rgba(var(--card-light), 0.18),
+      transparent 70%
     ),
-    linear-gradient(150deg, #1b243b, #161b2b 70%);
-  overflow: hidden;
-  transition:
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.3s,
-    box-shadow 0.45s;
+    linear-gradient(135deg, var(--cosmic-panel), var(--cosmic-bg));
+  box-shadow:
+    inset 0 1px 0 var(--cosmic-shine),
+    0 12px 30px var(--cosmic-shadow);
+  transition: transform 0.25s ease-out;
 }
-.soft-world .portal-club {
-  --card-light: 124, 209, 242;
+body .soft-world .portal-fde {
+  --card-light: 143, 141, 255;
 }
-.soft-world .portal-fde {
-  --card-light: 119, 157, 251;
-}
-.soft-world .portal-enterprise {
-  --card-light: 178, 164, 252;
+body .soft-world .portal-enterprise {
+  --card-light: 181, 151, 255;
 }
 .soft-world .portal-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  pointer-events: none;
   border-radius: inherit;
-  background: linear-gradient(
-    140deg,
-    rgba(217, 231, 255, 0.055),
-    transparent 50%
-  );
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--card-light), 0.8),
+    inset 0 0 35px rgba(var(--card-light), 0.2);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
 }
-.soft-world .portal-card-top {
-  padding: 24px 23px;
-  color: var(--soft-muted);
+body .soft-world .portal-card-top {
+  position: relative;
+  padding: 25px 25px 0;
+  z-index: 2;
+  display: block;
 }
-.portal-audience {
-  font-size: 11px;
-  font-weight: 500;
+body .soft-world .portal-card h2 {
+  color: var(--cosmic-ink);
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.25;
+  font-weight: 700;
+  margin: 0 0 10px;
+  letter-spacing: -0.025em;
 }
-.portal-corner-arrow {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--soft-line);
-  border-radius: 50%;
-  background: rgba(203, 224, 255, 0.04);
-  transition:
-    background 0.3s,
-    color 0.3s;
+.soft-world .portal-card-top p {
+  font-size: 17px;
+  color: var(--cosmic-muted);
+  margin: 0;
 }
-.soft-world .portal-object {
-  left: 50%;
-  top: 36%;
-  transform: translate(-50%, -50%) scale(1.06);
-  animation: soft-orbit 8s ease-in-out infinite;
-  filter: drop-shadow(0 12px 18px rgba(2, 8, 25, 0.25));
+body .soft-world .portal-object {
+  left: 65%;
+  top: 39%;
+  transform: translate(-50%, -50%) scale(1.03);
+  filter: drop-shadow(0 18px 24px var(--cosmic-shadow));
+  animation: none;
 }
-.soft-world .portal-fde .portal-object {
-  animation-delay: -2.5s;
-}
-.soft-world .portal-enterprise .portal-object {
-  animation-delay: -5s;
+body .soft-world .portal-card:hover .portal-object {
+  animation: none;
 }
 .soft-world .object-club b {
-  width: 94px;
-  height: 94px;
-  left: 35px;
-  top: 35px;
+  width: 103px;
+  height: 103px;
+  left: 30px;
+  top: 30px;
   background: radial-gradient(
-    circle at 28% 24%,
-    #e0f5ff 0%,
-    #a6ddf1 14%,
-    #69acd2 38%,
-    #2b588d 66%,
-    #112341 92%
+    circle at 30% 24%,
+    #e5f4ff,
+    #c2d7ff 20%,
+    #839cec 48%,
+    #3e4288 80%
   );
   box-shadow:
-    inset -8px -9px 16px rgba(7, 23, 53, 0.36),
-    0 0 45px rgba(99, 186, 241, 0.12);
+    inset -10px -10px 18px rgb(47 60 151 / 42%),
+    0 0 36px rgb(144 167 255 / 28%);
 }
 .soft-world .object-club i {
-  border: 4px solid rgba(137, 212, 248, 0.55);
-  border-top-color: #c2ebff;
-  box-shadow: 0 3px 8px rgba(32, 83, 135, 0.2);
+  border-width: 4px;
+  border-color: #a2baf3;
+  border-top-color: #dfedff;
+  box-shadow: 0 0 10px rgb(153 183 255 / 40%);
 }
 .soft-world .object-fde i {
-  border-radius: 23px;
-  border-color: rgba(179, 207, 255, 0.6);
+  border-radius: 20px;
+  border-color: #b7beff;
   background: linear-gradient(
     135deg,
-    rgba(164, 199, 255, 0.8),
-    rgba(100, 151, 239, 0.22) 65%,
-    rgba(73, 94, 172, 0.4)
+    rgb(193 201 255 / 80%),
+    rgb(110 107 239 / 22%) 65%,
+    rgb(114 140 253 / 55%)
   );
   box-shadow:
-    inset 2px 2px 2px rgba(203, 224, 255, 0.45),
-    10px 16px 24px rgba(3, 8, 31, 0.3);
+    inset 3px 3px 4px rgb(227 232 255 / 40%),
+    0 8px 16px rgb(90 73 215 / 32%);
+}
+body .soft-world .portal-fde .portal-object {
+  top: 33%;
+  transform: translate(-50%, -50%) scale(0.9);
 }
 .soft-world .object-enterprise i {
-  border-color: #7778ba;
-  border-top-color: #dbd4ff;
-  border-left-color: #b6b2f2;
+  border-width: 10px;
+  border-color: #9080e2;
+  border-top-color: #e4dbff;
+  border-left-color: #bdaaff;
   box-shadow:
-    inset 3px 1px 5px rgba(37, 36, 81, 0.8),
-    5px 14px 20px rgba(9, 9, 30, 0.5);
+    inset 2px 2px 4px #4b397e,
+    5px 10px 22px rgb(134 93 241 / 24%);
 }
-.soft-world .portal-card-copy {
-  bottom: 26px;
+body .soft-world .portal-card-copy {
+  position: absolute;
   left: 25px;
   right: 25px;
+  bottom: 22px;
+  z-index: 2;
 }
-.soft-world .portal-index {
-  font-family: var(--brand-font);
-  color: rgba(var(--card-light), 0.85);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+body .soft-world .portal-card-copy > p {
+  max-width: 78%;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--cosmic-muted);
+  margin: 0;
 }
-.soft-world .portal-card h2 {
-  font-family: var(--soft-display);
-  font-size: clamp(24px, 2.3vw, 30px);
-  line-height: 1.4;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  margin: 9px 0;
-}
-.soft-world .portal-card-copy p {
-  color: var(--soft-muted);
-  font-size: 12px;
-  line-height: 1.8;
-}
-.soft-world .portal-action {
-  display: inline-flex;
+.soft-world .portal-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 20px;
-  padding: 9px 14px;
-  min-height: 38px;
+}
+body .soft-world .portal-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  margin: 0;
+  font-size: 15px;
+  border: 1px solid var(--cosmic-line);
   border-radius: 999px;
-  background: rgba(var(--card-light), 0.09);
-  color: #dceaff;
-  font-size: 11px;
+  color: var(--cosmic-ink);
+  background: var(--cosmic-wash);
 }
-.soft-world .portal-card:active {
-  transform: scale(0.985);
+.soft-world .portal-corner-arrow {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--cosmic-line);
+  background: var(--cosmic-wash);
 }
-.soft-world .gateway-service {
-  margin-top: 24px;
-  border: none;
-  border-radius: 24px;
-  background: rgba(113, 144, 204, 0.045);
-  padding: 22px 26px;
-  font-size: 12px;
-  gap: 14px;
-}
-.soft-world .gateway-service strong {
-  color: var(--soft-muted);
+body .soft-world .gateway-service {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+  border: 0;
+  padding: 28px 0 0;
+  margin: 0;
+  font-size: 15px;
+  background: transparent;
+  color: var(--cosmic-muted);
 }
 .soft-world .gateway-service a {
-  color: var(--soft-blue);
-}
-.soft-world .world-footer {
-  border-color: var(--soft-line);
-  color: var(--soft-muted);
-  background: transparent;
-}
-@keyframes soft-orbit {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1.06) rotate(-3deg);
-  }
-  50% {
-    transform: translate(-50%, -55%) scale(1.06) rotate(3deg);
-  }
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  white-space: nowrap;
+  color: var(--cosmic-accent);
 }
 @media (hover: hover) and (pointer: fine) {
-  .soft-world .portal-card:hover {
-    transform: translateY(-9px);
-    border-color: rgba(var(--card-light), 0.4);
-    box-shadow:
-      0 20px 30px rgba(4, 9, 24, 0.35),
-      inset 0 1px 0 rgba(209, 228, 255, 0.12);
+  body .soft-world .portal-card:hover {
+    transform: translateY(-6px) rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg));
   }
-  .soft-world .portal-card:hover .portal-corner-arrow {
-    background: rgba(var(--card-light), 0.16);
-    color: var(--soft-ink);
-  }
-  .soft-world .portal-card:hover .portal-object {
-    animation-name: soft-orbit;
+  .soft-world .portal-card:hover::after,
+  .soft-world .portal-card:focus-visible::after {
+    opacity: 1;
   }
 }
 @media (max-width: 1000px) {
-  .soft-world .world-header {
-    width: calc(100% - 40px);
-    gap: 14px;
-    padding-inline: 14px;
+  body .soft-world .portal-card {
+    height: 360px;
   }
-  .soft-world .desktop-nav {
-    gap: 16px;
-    font-size: 11px;
+  body .soft-world .portal-card-top {
+    padding: 22px 18px 0;
   }
-  .soft-world .world-main {
-    padding-inline: 20px;
-  }
-  .soft-world .gateway-title {
-    margin-top: 55px;
-  }
-  .soft-world .portal-card-top {
-    padding-inline: 16px;
-  }
-  .soft-world .portal-card-copy {
+  body .soft-world .portal-card-copy {
     left: 18px;
     right: 18px;
   }
-  .soft-world .portal-card h2 {
-    font-size: 23px;
+  body .soft-world .portal-card h2 {
+    font-size: 24px;
+  }
+  body .soft-world .portal-card-top p {
+    font-size: 15px;
+  }
+  body .soft-world .portal-card-copy > p {
+    max-width: 100%;
+    font-size: 15px;
+  }
+  body .soft-world .portal-object {
+    transform: translate(-50%, -50%) scale(0.83);
+    top: 43%;
   }
 }
 @media (max-width: 760px) {
-  .soft-world {
-    padding-top: 12px;
+  .soft-world .gateway-hero {
+    min-height: 500px;
+    align-items: flex-start;
   }
-  .soft-world .world-header {
-    height: 66px;
-    width: calc(100% - 24px);
-    border-radius: 22px;
-    padding-inline: 10px;
-    gap: 8px;
+  body .soft-world .gateway-title {
+    width: 100%;
+    margin: 30px 0 0;
   }
-  .soft-world .brand-logo {
-    width: 113px;
-    border-radius: 12px;
+  body .soft-world .gateway-title h1 {
+    font-size: clamp(35px, 8.9vw, 58px);
+    margin-bottom: 16px;
   }
-  .soft-world .header-account-actions {
-    margin-left: auto;
-    gap: 10px;
-  }
-  .soft-world .header-register {
+  body .soft-world .gateway-eyebrow {
     font-size: 12px;
+    letter-spacing: 0.18em;
+    margin-bottom: 16px;
   }
-  .soft-world .mobile-nav nav {
-    border-radius: 18px;
-    background: var(--soft-panel);
+  body .soft-world .gateway-title > p:not(.gateway-eyebrow) {
+    font-size: 18px;
   }
-  .soft-world .world-main {
-    padding: 0 16px 40px;
+  .soft-world .gateway-marlin {
+    width: 230px;
+    right: 1%;
+    top: auto;
+    bottom: 0;
+    transform: none;
   }
-  .soft-world .gateway-title {
-    margin: 48px 0 38px;
-  }
-  .soft-world .gateway-title h1 {
-    font-size: clamp(36px, 8vw, 56px);
-    line-height: 1.3;
-    margin: 20px 0 19px;
-  }
-  .soft-world .gateway-title > p {
-    max-width: 100%;
-    font-size: 13px;
-    line-height: 1.9;
-  }
-  .gateway-eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.035em;
-  }
-  .gateway-cta {
-    gap: 15px;
-    margin-top: 22px;
-  }
-  .soft-world .gateway-cta .primary-button {
-    min-height: 46px;
-    padding: 0 19px;
-    font-size: 12px;
-  }
-  .guest-link {
-    font-size: 11px;
-  }
-  .portal-deck {
-    border-radius: 33px;
-    padding: 8px;
+  .soft-world .gateway-ocean {
+    width: calc(100% + 36px);
+    left: -18px;
+    object-position: 65% center;
   }
   .soft-world .portal-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 9px;
+    gap: 18px;
   }
-  .soft-world .portal-card {
-    height: 330px;
-    border-radius: 26px;
+  body .soft-world .portal-card {
+    height: 400px;
+    border-radius: 28px;
   }
-  .soft-world .portal-card-top {
-    padding: 19px 20px;
+  body .soft-world .portal-card-top {
+    padding: 24px 24px 0;
   }
-  .soft-world .portal-card-copy {
-    left: 22px;
-    right: 22px;
-    bottom: 21px;
+  body .soft-world .portal-card h2 {
+    font-size: 28px;
   }
-  .soft-world .portal-card h2 {
-    font-size: 27px;
-    margin: 6px 0;
+  body .soft-world .portal-card-top p {
+    font-size: 16px;
   }
-  .soft-world .portal-object {
-    left: 71%;
-    top: 37%;
-    width: 165px;
-    height: 165px;
-    animation: none;
-    transform: translate(-50%, -50%) scale(0.92);
-    opacity: 0.85;
+  body .soft-world .portal-object {
+    left: 70%;
+    top: 39%;
+    transform: translate(-50%, -50%) scale(0.88);
   }
-  .soft-world .portal-card:hover .portal-object {
-    animation: none;
+  body .soft-world .portal-card-copy {
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
   }
-  .soft-world .portal-action {
-    margin-top: 14px;
+  body .soft-world .portal-fde .portal-object {
+    top: 36%;
+    transform: translate(-50%, -50%) scale(0.75);
   }
-  .soft-world .gateway-service {
-    flex-wrap: wrap;
-    padding: 19px;
-    gap: 10px;
-    margin-top: 16px;
+  body .soft-world .portal-card-copy > p {
+    max-width: 80%;
+    font-size: 16px;
   }
-  .soft-world .gateway-service p {
-    font-size: 11px;
+  body .soft-world .gateway-service {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
     line-height: 1.8;
-    flex: 1;
-  }
-  .soft-world .gateway-service strong {
-    display: block;
-    margin-left: 0;
-  }
-  .soft-world .gateway-service a {
-    margin-left: 15px;
-    font-size: 11px;
-  }
-}
-@media (max-width: 360px) {
-  .soft-world .brand-logo {
-    width: 97px;
-  }
-  .soft-world .world-header {
-    gap: 6px;
-    padding-inline: 8px;
-  }
-  .soft-world .header-account-actions {
-    gap: 7px;
-  }
-  .soft-world .mobile-nav summary {
-    width: 30px;
-  }
-  .soft-world .header-login {
-    padding: 9px 7px;
-  }
-  .soft-world .gateway-title h1 {
-    font-size: 33px;
-  }
-  .gateway-cta {
-    gap: 8px;
-  }
-  .soft-world .portal-card h2 {
-    font-size: 24px;
-  }
-  .soft-world .portal-object {
-    top: 37%;
-    left: 74%;
-    transform: translate(-50%, -50%) scale(0.78);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .soft-world .portal-object,
-  .soft-world .portal-card:hover .portal-object {
-    animation: none;
-  }
-  .soft-world .portal-card,
-  .soft-world .portal-action svg {
+  body .soft-world .portal-card,
+  body .soft-world .portal-card:hover {
+    transform: none;
     transition: none;
   }
-  .soft-world .portal-card:hover {
-    transform: none;
+  .soft-world .portal-card::after {
+    transition: none;
   }
 }
