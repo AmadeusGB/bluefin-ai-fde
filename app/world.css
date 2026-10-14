@@ -1127,7 +1127,8 @@ input::placeholder {
 .event-card img {
   width: 100%;
   height: 260px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #080d16;
   border-radius: 8px;
   transition: filter 0.3s;
 }
@@ -1165,7 +1166,8 @@ input::placeholder {
 .gallery-grid img {
   width: 100%;
   height: 390px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #080d16;
   border-radius: 7px;
 }
 .gallery-grid span {

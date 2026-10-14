@@ -1,3 +1,5 @@
+import activities from './activity-data.json';
+
 export type SiteContentItem = {
   path: string;
   title: string;
@@ -10,7 +12,8 @@ export const siteContent: SiteContentItem[] = [
   {
     path: '/library/daxiang-life-guide.html',
     title: '孙宇晨访谈—大向人生指南',
-    summary: '大向整理的访谈学习手册，涵盖认知、记录、AI 辅助决策与持续实践，附互动工具和行动模板。',
+    summary:
+      '大向整理的访谈学习手册，涵盖认知、记录、AI 辅助决策与持续实践，附互动工具和行动模板。',
     kind: '知识',
     updatedAt: '2026-10-14',
   },
@@ -108,25 +111,15 @@ export const siteContent: SiteContentItem[] = [
     summary: '往期活动的公开介绍与实践记录。',
     kind: '品牌',
   },
-  {
-    path: '/events/foundation-0912',
-    title: '9.12初阶课程回顾',
-    summary: '根据三张现场照片整理的课堂讲解、电脑实操记录与延伸学习建议。',
-    kind: '品牌',
-  },
-  {
-    path: '/events/advanced-0913',
-    title: '9.13高阶课程回顾',
-    summary:
-      '根据四张现场照片整理的AI应用、Second Myself与智能体主题分享记录。',
-    kind: '品牌',
-  },
-  {
-    path: '/events/salon-0919',
-    title: '9.19线下沙龙回顾',
-    summary: '蓝旗鱼AI俱乐部线下分享沙龙的活动合影、操作演示与小组交流记录。',
-    kind: '品牌',
-  },
+  ...activities.map(
+    (a): SiteContentItem => ({
+      path: `/events/${a.id}`,
+      title: a.title + '回顾',
+      summary: a.summary,
+      kind: '品牌',
+      updatedAt: a.updated_at,
+    }),
+  ),
 
   {
     path: '/',

@@ -35,7 +35,7 @@ export default function Page() {
               loading={i ? 'lazy' : 'eager'}
             />
             <div>
-              <time>{a.date}</time>
+              <time dateTime={a.date}>{a.date_label}</time>
               <h2>{a.title}</h2>
               <span>
                 查看活动回顾 <ArrowUpRight size={18} />

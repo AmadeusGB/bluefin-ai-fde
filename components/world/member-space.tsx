@@ -378,7 +378,7 @@ export function MemberSpace({
             <Link key={a.id} href={`/events/${a.id}`} className="event-card">
               <Image src={a.cover} alt={a.title} width="800" height="600" />
               <div>
-                <time>{a.date}</time>
+                <time dateTime={a.date}>{a.date_label}</time>
                 <h2>{a.title}</h2>
                 <span>
                   打开相册 <ArrowUpRight size={17} />

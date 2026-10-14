@@ -30,7 +30,15 @@ export default async function Page({
   const { section } = await params;
   if (!isSection(section)) notFound();
   const s = sections[section];
-  const album = activities[section === 'club' ? 0 : section === 'fde' ? 1 : 2];
+  const album = activities.find(
+    (a) =>
+      a.id ===
+      (section === 'club'
+        ? 'salon-0919'
+        : section === 'fde'
+          ? 'advanced-0913'
+          : 'kaiping-0905'),
+  )!;
   return (
     <WorldShell>
       <div className="community-hero">
