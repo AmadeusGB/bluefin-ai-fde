@@ -105,7 +105,7 @@ export function FiveMapsDesigner() {
           onChange={(event) => setProject(event.target.value)}
           maxLength={120}
           placeholder="例如：高价值询盘跟进"
-          className="mt-2 rounded-none border-white/25 bg-white/5 text-white placeholder:text-white/30"
+          className="mt-2 rounded-none border-white/25 bg-card/5 text-white placeholder:text-white/30"
         />
         <div className="mt-8 flex items-end gap-2">
           <strong className="text-7xl font-black text-[#cdd5ff]">
@@ -158,9 +158,9 @@ export function FiveMapsDesigner() {
               type="button"
               aria-pressed={active === map.key}
               onClick={() => setActive(map.key)}
-              className={`p-4 text-left ${active === map.key ? "bg-[#e7eaff] ring-2 ring-inset ring-[#3657d6]" : "bg-white hover:bg-[#f1eee5]"}`}
+              className={`p-4 text-left ${active === map.key ? "bg-secondary ring-2 ring-inset ring-[#3657d6]" : "bg-card hover:bg-muted"}`}
             >
-              <span className="text-xs font-bold text-[#3657d6]">
+              <span className="text-xs font-bold text-primary">
                 0{index + 1}
               </span>
               <span className="mt-2 block font-black">{map.title}</span>
@@ -168,14 +168,14 @@ export function FiveMapsDesigner() {
           ))}
         </div>
         <section className="mt-9">
-          <p className="eyebrow text-[#3657d6]">{currentMap.title}</p>
+          <p className="eyebrow text-primary">{currentMap.title}</p>
           <h2 className="mt-3 text-3xl font-black">{currentMap.question}</h2>
           <div className="mt-8 space-y-7">
             {currentMap.fields.map((field, index) => {
               const key = `${currentMap.key}.${field.key}`;
               return (
                 <label key={key} className="block">
-                  <span className="text-xs font-bold text-[#3657d6]">
+                  <span className="text-xs font-bold text-primary">
                     0{index + 1}
                   </span>
                   <span className="mt-1 block text-xl font-black">
@@ -199,7 +199,7 @@ export function FiveMapsDesigner() {
                     }
                     maxLength={2000}
                     placeholder={field.placeholder}
-                    className="mt-3 min-h-28 rounded-none bg-white"
+                    className="mt-3 min-h-28 rounded-none bg-card"
                   />
                 </label>
               );

@@ -69,8 +69,8 @@ export function ApplicationForm() {
   }
   if (state === "success")
     return (
-      <div className="bg-[#e7eaff] p-10">
-        <CheckCircle2 className="size-12 text-[#3657d6]" />
+      <div className="bg-secondary p-10">
+        <CheckCircle2 className="size-12 text-primary" />
         <h2 className="mt-6 text-3xl font-black">申请已收到</h2>
         <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
           蓝旗鱼会先核验问题价值、数据与负责人条件。符合资格时，再联系确认 30
@@ -89,7 +89,7 @@ export function ApplicationForm() {
           name="name"
           required
           maxLength={80}
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
         />
       </div>
       <div>
@@ -101,7 +101,7 @@ export function ApplicationForm() {
           name="company"
           required
           maxLength={120}
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
         />
       </div>
       <div>
@@ -114,7 +114,7 @@ export function ApplicationForm() {
           required
           maxLength={160}
           placeholder="手机号、邮箱或微信（任选一种）"
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
         />
       </div>
       <div>
@@ -127,7 +127,7 @@ export function ApplicationForm() {
           required
           maxLength={80}
           placeholder="例如：业务负责人、总经理、数字化负责人"
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
         />
       </div>
       <div className="lg:col-span-2">
@@ -140,7 +140,7 @@ export function ApplicationForm() {
           required
           maxLength={80}
           placeholder="例如：跨境电商高价值询盘、制造异常处理、协会会员服务"
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
         />
       </div>
       <div className="lg:col-span-2">
@@ -154,7 +154,7 @@ export function ApplicationForm() {
           minLength={20}
           maxLength={2000}
           placeholder="请说明当前流程、主要损失、发生频率，以及谁对结果负责。不要在这里提交密码、客户名单或其他敏感数据。"
-          className="mt-2 min-h-36 rounded-none bg-white"
+          className="mt-2 min-h-36 rounded-none bg-card"
         />
       </div>
       <div>
@@ -166,7 +166,7 @@ export function ApplicationForm() {
           name="problemFrequency"
           required
           defaultValue=""
-          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+          className="mt-2 h-12 w-full border bg-card px-3 text-sm"
         >
           <option value="" disabled>
             请选择
@@ -186,7 +186,7 @@ export function ApplicationForm() {
           name="annualLossRange"
           required
           defaultValue=""
-          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+          className="mt-2 h-12 w-full border bg-card px-3 text-sm"
         >
           <option value="" disabled>
             请选择
@@ -207,7 +207,7 @@ export function ApplicationForm() {
           name="dataReadiness"
           required
           defaultValue=""
-          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+          className="mt-2 h-12 w-full border bg-card px-3 text-sm"
         >
           <option value="" disabled>
             请选择
@@ -227,7 +227,7 @@ export function ApplicationForm() {
           name="ownerReadiness"
           required
           defaultValue=""
-          className="mt-2 h-12 w-full border bg-white px-3 text-sm"
+          className="mt-2 h-12 w-full border bg-card px-3 text-sm"
         >
           <option value="" disabled>
             请选择
@@ -257,7 +257,7 @@ export function ApplicationForm() {
             我已阅读并同意
             <Link
               href="/privacy"
-              className="font-bold text-[#3657d6] underline underline-offset-4"
+              className="font-bold text-primary underline underline-offset-4"
             >
               《隐私与数据处理政策》
             </Link>
@@ -265,7 +265,7 @@ export function ApplicationForm() {
           </span>
         </label>
         {diagnostic.score && (
-          <p className="mt-4 text-sm text-[#3657d6]">
+          <p className="mt-4 text-sm text-primary">
             已附带诊断结果：{diagnostic.decision} · {diagnostic.score}/100
           </p>
         )}

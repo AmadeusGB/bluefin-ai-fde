@@ -1,0 +1,102 @@
+// Public information supplied by the company; reporting sources are linked below.
+export const company = {
+  name: '蓝旗鱼科技',
+  legalName: '深圳市蓝旗鱼科技有限公司',
+  founded: '2025年8月',
+  phone: '13760256662',
+  email: '86304282@qq.com',
+  offices: ['深圳', '北京'],
+  regions: ['粤港澳大湾区', '北京'],
+  wechatName: '蓝旗鱼AI科技',
+  wechatArticle: 'https://mp.weixin.qq.com/s/lsX-i4DaFeXZ879RwtL7Nw',
+  douyin: 'https://v.douyin.com/5PCbwFhYm4U/',
+};
+
+export const founders = [
+  {
+    slug: 'liuxiang',
+    name: '刘向',
+    alias: '大向',
+    role: '创始人 · 企业AI内训与业务落地',
+    image: '/world/founder.webp',
+    width: 700,
+    height: 930,
+    heading: '让AI与企业实际需求连接',
+    bio: '拥有12年实体企业经营创业经验，专注企业AI内训与AI方案落地。围绕企业真实问题，连接经营判断、岗位实践与技术协作，帮助团队找到适合自己的AI应用路径。',
+    focus: [
+      '企业AI内训与场景诊断',
+      '企业经营与AI应用协作',
+      'AI俱乐部与实战交流',
+    ],
+    reports: ['agic-2026', 'kaiping-2026'],
+  },
+  {
+    slug: 'guobin',
+    name: '郭斌',
+    alias: 'Arthur',
+    role: '技术总监 · FDE技术落地',
+    image: '/official/guobin.jpg',
+    width: 1080,
+    height: 1080,
+    heading: '围绕真实场景，推进技术落地',
+    bio: '蓝旗鱼技术总监，专注企业级AI系统设计与业务交付。围绕业务需求、知识体系与实施流程开展FDE实践，并通过技术课程与实操交流，帮助企业团队理解从工具应用到系统落地的过程。',
+    focus: [
+      '企业级AI系统设计',
+      'FDE技术实施与协作交付',
+      '企业技术培训与实践交流',
+    ],
+    reports: ['kaiping-2026'],
+  },
+  {
+    slug: 'zouyingpeng',
+    name: '邹英鹏',
+    alias: '',
+    role: '联合创始人 · 企业合作与业务落地',
+    image: '/official/zouyingpeng.png',
+    width: 1024,
+    height: 1536,
+    heading: '从经营与业务视角，连接企业需求与AI实践',
+    bio: '拥有12年实体企业经营与商务实战经验，长期深耕企业客户合作、业务拓展与项目落地。现专注企业AI应用与FDE实践，持续参与AI线下沙龙、企业走访及项目需求对接，擅长从经营与业务视角发现企业真实需求，连接客户与技术团队，推动AI智能体、AI超级员工等解决方案在企业实际业务中落地。',
+    focus: [
+      '企业客户合作与业务拓展',
+      '真实需求发现与项目对接',
+      '业务与技术团队协作',
+    ],
+    reports: [],
+  },
+];
+
+export const reports = [
+  {
+    slug: 'agic-2026',
+    city: '深圳',
+    date: '2026-08-27',
+    published: '2026-08-27',
+    title: 'AGIC 2026：企业知识治理与AI场景落地',
+    sourceTitle: '【2026 AGIC】数智赋能 场景破局——AI+社会治理创新大会圆满举办',
+    source: '深圳市人工智能产业协会',
+    url: 'https://mp.weixin.qq.com/s/l9OWC3_I-U-fwWHSBzb0aw',
+    place: '深圳国际会展中心香农院（12号馆）',
+    role: '刘向主题分享',
+    summary:
+      '据深圳市人工智能产业协会报道，刘向在AI+社会治理创新大会上，围绕企业知识治理与AI场景落地作主题分享，介绍企业级智能体在组织管理和决策支持中的应用实践。',
+    topic: '从经验驱动到智能协同——企业知识治理与AI场景落地',
+    people: ['刘向'],
+  },
+  {
+    slug: 'kaiping-2026',
+    city: '江门 · 开平',
+    date: '2026-09-05',
+    published: '2026-09-07',
+    title: '青企大课堂：AI商业化与企业FDE升级',
+    sourceTitle: '青企大课堂第三期｜AI商业化与企业FDE升级专题课',
+    source: '开平市青年企业家联合会',
+    url: 'https://mp.weixin.qq.com/s/p186U5HnovTih7l2bYaorw',
+    place: '国汇誉港销售中心二楼智奕云众创空间',
+    role: '蓝旗鱼科技协办 · 刘向、郭斌授课',
+    summary:
+      '据开平市青年企业家联合会报道，蓝旗鱼科技协办青企大课堂第三期专题课，刘向与郭斌分别从商业实践和技术落地角度授课，围绕企业AI商业化与FDE实施展开交流。',
+    topic: 'AI商业化与企业FDE升级专题课',
+    people: ['刘向', '郭斌'],
+  },
+];

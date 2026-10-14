@@ -1,0 +1,71 @@
+[
+  {
+    "date": "2026-10-02",
+    "register": "brand+member-directory",
+    "scope": "/world and /members",
+    "reference": "User-approved two-page Bluefin cosmic mockup",
+    "axes": {
+      "A": "midnight+blue-violet",
+      "B": "FangYuan rounded 700/450",
+      "C": "split hero + three entry cards; separate member orbit",
+      "D": "pointer tilt + DOM orbit + dialog transition",
+      "E": "original marlin and member avatars; generated night ocean"
+    },
+    "images": "Original bluefin-logo.png via CSS framing; existing authenticated avatars; generated ocean-night.webp (33KB). No replacement member portraits.",
+    "verification": "Next production build and scoped lint pass. Browser: orbit/pause/dialog/Escape/paging/search/city/list/reduced-motion; both pages at 320/375/414/768/1440 without horizontal overflow. Original club account login + course download; unauthenticated members 401; SSR canonical retained. List transition cleanup fixed and retested.",
+    "exceptions": "Blue-violet gradient heading, glass motifs, and three equal portal cards explicitly approved by user in mockup.",
+    "deployment": "Source prepared for existing GitHub branch. Production update pending restored Alibaba Cloud access; no production database changes."
+  },
+  {
+    "date": "2026-09-30",
+    "scope": "company identity, founders, contact channels, sourced reports and industry proposals",
+    "axes": {
+      "D": "feedback-only motion",
+      "B": "FangYuan rounded Chinese",
+      "E": "original portraits and QR assets",
+      "A": "abyss+ice-blue",
+      "C": "independent pages+editorial rows"
+    },
+    "images": "user original photos and QR codes; no synthetic portraits",
+    "verification": "Build and scoped lint passed; 12 pages at 320/375/414/768/1440: 60 checks, no overflow or broken loaded images. Contact/founders and QR dialogs visually inspected. External preview HTTP 200/noindex."
+  },
+  {
+    "date": "2026-09-25",
+    "register": "brand+product",
+    "axes": {
+      "A": "abyss+ice-blue",
+      "B": "Chinese-500-body-400",
+      "C": "independent-spatial-pages",
+      "D": "WebGL-orbit+CSS-depth",
+      "E": "brushed-metal"
+    },
+    "motion": "logo portal plus member float",
+    "images": "official logo, 12 NAS photos, founder source portrait",
+    "status": "build and browser verification passed; legacy lint issues documented"
+  },
+  {
+    "date": "2026-09-30",
+    "reference": "Superlist, selected by user",
+    "scope": "/world only",
+    "changes": [
+      "self-hosted 800-weight Chinese display and variable Latin font",
+      "centered hero and pill actions",
+      "rounded floating navigation and portal deck",
+      "soft blue/cyan/violet dimensional objects"
+    ],
+    "preserved": [
+      "official logo",
+      "independent routes",
+      "member authentication and forms"
+    ],
+    "verification": "Next build, scoped oxlint, Edge desktop/mobile 320/390/768/1440, no-JS headings and reduced-motion passed"
+  },
+  {
+    "date": "2026-09-30",
+    "scope": "site typography",
+    "approval": "user accepted specimen A",
+    "font": "Alimama FangYuanTi VF, BEVL 70",
+    "scale": "navigation17 / body18 / card16 / label14; mobile body16",
+    "verification": "Build and scoped lint; 13 public routes at 320/390/768/1440 without horizontal overflow; signed-in member space inspected at same widths."
+  }
+]

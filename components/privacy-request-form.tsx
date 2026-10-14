@@ -41,8 +41,8 @@ export function PrivacyRequestForm() {
   }
   if (state === "success")
     return (
-      <div className="bg-[#e7eaff] p-8">
-        <CheckCircle2 className="size-10 text-[#3657d6]" />
+      <div className="bg-secondary p-8">
+        <CheckCircle2 className="size-10 text-primary" />
         <h2 className="mt-5 text-2xl font-black">请求已收到</h2>
         <p className="mt-3 leading-7 text-muted-foreground">
           蓝旗鱼会先核验请求人与相关记录的关系，再处理访问、更正或删除请求。为保护数据，不会在无法确认身份时披露记录。
@@ -60,7 +60,7 @@ export function PrivacyRequestForm() {
           name="name"
           required
           maxLength={80}
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
         />
       </div>
       <div>
@@ -72,7 +72,7 @@ export function PrivacyRequestForm() {
           name="contact"
           required
           maxLength={160}
-          className="mt-2 h-12 rounded-none bg-white"
+          className="mt-2 h-12 rounded-none bg-card"
           placeholder="用于定位记录和回复请求"
         />
       </div>
@@ -86,7 +86,7 @@ export function PrivacyRequestForm() {
           required
           minLength={20}
           maxLength={2000}
-          className="mt-2 min-h-32 rounded-none bg-white"
+          className="mt-2 min-h-32 rounded-none bg-card"
           placeholder="请说明请求类型、可能的提交时间与相关企业；不要提交身份证件、密码或额外敏感信息。"
         />
       </div>

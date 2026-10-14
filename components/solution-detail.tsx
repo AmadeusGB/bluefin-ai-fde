@@ -44,7 +44,7 @@ export function SolutionDetail({
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-12 lg:grid-cols-[.9fr_1.1fr]">
             <div>
-              <p className="eyebrow text-[#3657d6]">直接回答</p>
+              <p className="eyebrow text-primary">直接回答</p>
               <h2 className="mt-5 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                 {directTitle}
               </h2>
@@ -58,7 +58,7 @@ export function SolutionDetail({
                   key={problem}
                   className="flex gap-3 border-t border-foreground/15 py-5 text-lg"
                 >
-                  <Check className="shrink-0 text-[#3657d6]" />
+                  <Check className="shrink-0 text-primary" />
                   {problem}
                 </p>
               ))}
@@ -71,7 +71,7 @@ export function SolutionDetail({
             <h2 className="mt-5 max-w-4xl text-4xl font-black tracking-[-.04em] lg:text-6xl">
               先跑通一个可验收闭环。
             </h2>
-            <div className="mt-12 grid gap-px bg-white/15 md:grid-cols-4">
+            <div className="mt-12 grid gap-px bg-card/15 md:grid-cols-4">
               {mvd.map(([name, detail], index) => (
                 <article key={name} className="bg-[#0b1238] p-7">
                   <span className="text-xs text-[#cdd5ff]">0{index + 1}</span>
@@ -85,7 +85,7 @@ export function SolutionDetail({
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-12 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#3657d6]">系统与人工边界</p>
+              <p className="eyebrow text-primary">系统与人工边界</p>
               <h2 className="mt-4 text-4xl font-black">
                 AI 协助判断，人保留责任。
               </h2>
@@ -100,15 +100,15 @@ export function SolutionDetail({
                 ))}
               </div>
             </div>
-            <div className="bg-[#f1eee5] p-8">
-              <p className="eyebrow text-[#8b4a38]">暂不适合</p>
+            <div className="bg-muted p-8">
+              <p className="eyebrow text-[#efad90]">暂不适合</p>
               <div className="mt-6 space-y-4">
                 {notFit.map((item) => (
                   <p
                     key={item}
                     className="flex gap-3 leading-7 text-muted-foreground"
                   >
-                    <X className="mt-1 size-4 shrink-0 text-[#8b4a38]" />
+                    <X className="mt-1 size-4 shrink-0 text-[#efad90]" />
                     {item}
                   </p>
                 ))}
@@ -116,10 +116,10 @@ export function SolutionDetail({
             </div>
           </div>
         </section>
-        <section className="bg-[#e7eaff] px-5 py-18 lg:px-10">
+        <section className="bg-secondary px-5 py-18 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-10 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#3657d6]">证据说明</p>
+              <p className="eyebrow text-primary">证据说明</p>
               <h2 className="mt-4 text-4xl font-black">
                 不把行业假设包装成客户成绩。
               </h2>

@@ -42,7 +42,7 @@ export default function Page() {
                   key={t}
                   className="border-t border-foreground/20 py-7 md:border-r md:px-6 first:pl-0"
                 >
-                  <span className="text-xs text-[#3657d6]">0{i + 1}</span>
+                  <span className="text-xs text-primary">0{i + 1}</span>
                   <h3 className="mt-9 text-2xl font-black">{t}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">{d}</p>
                 </article>
@@ -64,7 +64,7 @@ export default function Page() {
                   nativeButton={false}
                   render={<Link href="/apply" />}
                   size="lg"
-                  className="mt-4 h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
+                  className="mt-4 h-12 rounded-none bg-secondary text-foreground hover:bg-secondary"
                 >
                   申请知识现场诊断 <ArrowRight />
                 </Button>

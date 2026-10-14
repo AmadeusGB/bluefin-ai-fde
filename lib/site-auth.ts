@@ -1,14 +1,4 @@
 export function authenticatedSiteUser(requestHeaders: Headers) {
-  const id = requestHeaders.get('oai-authenticated-user-id')?.trim() || '';
-  const email =
-    requestHeaders.get('oai-authenticated-user-email')?.trim().toLowerCase() ||
-    '';
-  const adminEmail =
-    process.env.OPERATIONS_ADMIN_EMAIL?.trim().toLowerCase() || '';
-  const localOwner =
-    process.env.NODE_ENV !== 'production' && email === 'seedy@sites.test';
-  if (id && email && (localOwner || adminEmail === email)) return { id, email };
-
   const basicUser = basicAuthUser(requestHeaders);
   return basicUser ? { id: `basic:${basicUser}`, email: basicUser } : null;
 }

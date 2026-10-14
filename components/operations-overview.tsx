@@ -73,7 +73,7 @@ export function OperationsOverview() {
   if (loading && !data)
     return (
       <div className="grid min-h-screen place-items-center bg-[#f5f2e9]">
-        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     );
   const systems = [
@@ -168,7 +168,7 @@ export function OperationsOverview() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#3657d6]">品牌 · 获客 · GEO · 证据</p>
+          <p className="eyebrow text-primary">品牌 · 获客 · GEO · 证据</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-7xl">
             今天最该推进什么？
           </h1>
@@ -197,9 +197,9 @@ export function OperationsOverview() {
         {systems.map((system) => (
           <article
             key={system.href}
-            className="border border-foreground/15 bg-white p-7"
+            className="border border-foreground/15 bg-card p-7"
           >
-            <system.icon className="size-7 text-[#3657d6]" />
+            <system.icon className="size-7 text-primary" />
             <h2 className="mt-5 text-2xl font-black">{system.title}</h2>
             <div className="mt-8">
               <strong className="text-6xl font-black tracking-[-.05em]">
@@ -221,7 +221,7 @@ export function OperationsOverview() {
             </div>
             <Link
               href={system.href}
-              className="mt-7 inline-flex items-center gap-2 font-bold text-[#3657d6]"
+              className="mt-7 inline-flex items-center gap-2 font-bold text-primary"
             >
               进入工作台 <ArrowRight className="size-4" />
             </Link>
@@ -232,7 +232,7 @@ export function OperationsOverview() {
         {trafficSections.map(([title, rows]) => (
           <article
             key={title}
-            className="border border-foreground/15 bg-white p-7"
+            className="border border-foreground/15 bg-card p-7"
           >
             <h2 className="text-2xl font-black">{title}</h2>
             <div className="mt-5 divide-y divide-foreground/10">

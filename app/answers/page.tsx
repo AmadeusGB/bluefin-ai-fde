@@ -143,7 +143,7 @@ export default function AnswersPage() {
                 key={q}
                 className="grid gap-5 border-t border-foreground/20 py-9 lg:grid-cols-[70px_1fr_1.7fr]"
               >
-                <span className="text-sm font-bold text-[#3657d6]">
+                <span className="text-sm font-bold text-primary">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <h2 className="text-2xl font-black leading-tight">{q}</h2>
@@ -151,7 +151,7 @@ export default function AnswersPage() {
                   <p className="text-lg leading-8">{a}</p>
                   <Link
                     href={href}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#3657d6]"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary"
                   >
                     查看定义、边界与证据 <ArrowRight className="size-4" />
                   </Link>

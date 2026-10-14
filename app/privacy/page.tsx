@@ -11,6 +11,22 @@ export const metadata: Metadata = {
 };
 const sections = [
   [
+    '快捷注册与游客访问',
+    '快捷注册必填账号与密码，可选填姓名或昵称、行业和城市，默认加入AI俱乐部，无需邀请码，会员名片默认不公开。账号可使用手机号或自定义名称；手机号未经短信认证。游客无需账号即可查看公开活动与照片，不能读取会员名片、下载会员资源或访问个人诊断报告。FDE及企业联盟业务申请仍使用各自的邀请码与问卷。',
+  ],
+  [
+    '会员资料与展示',
+    'AI俱乐部会员基本资料为姓名或昵称、手机号、行业与城市。已有会员由蓝旗鱼团队从历次名单整理，会员名录仅供登录后的同板块会员浏览，手机号仅本人及授权管理员可见；可在会员空间更正基本资料、修改密码或关闭名片展示。尚无手机号的历史会员先保留基本档案。FDE及企业联盟另有自愿提交的业务申请，案例截图、经营数据和诊断报告仅本人及授权管理员可见。',
+  ],
+  [
+    '账号与诊断',
+    '密码以加盐摘要保存；必要的登录Cookie用于维持最长7天的会话。当前手机号用于登录和联系，并未进行短信认证。企业初步诊断由问卷规则生成，未经现场核验，不构成实施或收益承诺。',
+  ],
+  [
+    '草稿与访问限制',
+    '主动保存的报名草稿仅存于本次浏览会话的sessionStorage，不保存密码，提交成功后清除。登录与邀请码尝试次数按短期哈希键统计，15分钟到期后清理。',
+  ],
+  [
     '收集哪些信息',
     '申请表收集姓名、企业或组织、联系方式、角色、行业或场景、业务问题、问题频率、年度损失或机会区间、数据准备度和负责人投入度，并由后四项生成 A/B/C 资格优先级；如果从适配度评估进入，还会保存分数、决定和 12 项是/否编码。资格优先级只用于人工审查排序，不会自动接受或拒绝项目。',
   ],
@@ -52,7 +68,7 @@ const sections = [
   ],
   [
     '政策版本',
-    '当前版本：2026-09-01-v1.2。表单会记录同意时间和政策版本。收集目的、字段或共享方式实质变化时，将更新本页和版本号。',
+    '当前版本：2026-09-28-v3。注册会记录时间和政策版本，详细申请另记录资料处理同意时间。收集目的、字段或共享方式实质变化时，将更新本页和版本号。',
   ],
 ];
 export default function Page() {
@@ -66,7 +82,7 @@ export default function Page() {
         description: metadata.description,
         url: absoluteUrl('/privacy'),
         datePublished: '2026-09-01',
-        dateModified: '2026-09-01',
+        dateModified: '2026-09-25',
         inLanguage: 'zh-CN',
         publisher: {
           '@id': organizationId,
@@ -85,7 +101,7 @@ export default function Page() {
       <main>
         <StructuredData data={schema} />
         <PageHero
-          eyebrow="数据治理 · 版本 2026-09-01-v1.2"
+          eyebrow="数据治理 · 版本 2026-09-25-v2"
           title="只收集资格判断真正需要的数据。"
           intro="本政策说明蓝旗鱼在适配度评估、诊断申请、隐私请求和后续沟通中处理哪些信息、为什么处理、保存在哪里、谁能访问，以及申请人如何请求访问、更正或删除。"
         />
@@ -96,7 +112,7 @@ export default function Page() {
                 key={title}
                 className="grid gap-5 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
               >
-                <span className="text-[#3657d6]">
+                <span className="text-primary">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <h2 className="text-2xl font-black">{title}</h2>
@@ -107,10 +123,10 @@ export default function Page() {
             ))}
           </div>
         </section>
-        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
+        <section className="bg-secondary px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="eyebrow text-[#3657d6]">数据权利请求</p>
+              <p className="eyebrow text-primary">数据权利请求</p>
               <h2 className="mt-4 text-4xl font-black">
                 访问、更正或删除已提交的信息。
               </h2>

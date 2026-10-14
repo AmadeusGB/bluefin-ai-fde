@@ -64,18 +64,18 @@ export default function Page() {
         <section className="px-5 py-18 lg:px-10">
           <div className="mx-auto grid max-w-[1300px] gap-10 lg:grid-cols-[1.1fr_.9fr]">
             <div>
-              <p className="eyebrow text-[#3657d6]">覆盖平台</p>
+              <p className="eyebrow text-primary">覆盖平台</p>
               <div className="mt-7 grid gap-px bg-foreground/15 sm:grid-cols-3">
                 {geoPlatforms.map((platform, index) => (
                   <div key={platform} className="bg-background p-5">
-                    <span className="text-xs text-[#3657d6]">0{index + 1}</span>
+                    <span className="text-xs text-primary">0{index + 1}</span>
                     <p className="mt-4 font-black">{platform}</p>
                   </div>
                 ))}
               </div>
             </div>
-            <aside className="bg-[#e7eaff] p-8">
-              <p className="eyebrow text-[#3657d6]">空白模板</p>
+            <aside className="bg-secondary p-8">
+              <p className="eyebrow text-primary">空白模板</p>
               <strong className="mt-6 block text-6xl font-black">
                 {geoQuerySet.length * geoPlatforms.length}
               </strong>
@@ -117,7 +117,7 @@ export default function Page() {
         <section className="bg-[#0b1238] px-5 py-20 text-white lg:px-10">
           <div className="mx-auto max-w-[1300px]">
             <p className="eyebrow text-[#cdd5ff]">执行协议</p>
-            <div className="mt-10 grid gap-px bg-white/15 md:grid-cols-4">
+            <div className="mt-10 grid gap-px bg-card/15 md:grid-cols-4">
               {[
                 [
                   "01 固定环境",
@@ -146,7 +146,7 @@ export default function Page() {
         </section>
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1300px]">
-            <p className="eyebrow text-[#3657d6]">核心指标定义</p>
+            <p className="eyebrow text-primary">核心指标定义</p>
             <div className="mt-8">
               {metrics.map(([title, detail]) => (
                 <article
@@ -158,7 +158,7 @@ export default function Page() {
                 </article>
               ))}
             </div>
-            <div className="mt-12 bg-[#f1eee5] p-8">
+            <div className="mt-12 bg-muted p-8">
               <h2 className="text-2xl font-black">限制与发布规则</h2>
               <p className="mt-4 max-w-4xl leading-8 text-muted-foreground">
                 生成式回答具有随机性，平台索引、地区和产品模式会变化。单次测试不能代表长期表现；品牌被提及也不等于交付能力。未来如发布月报，应同时说明有效样本、失败请求、环境变化、人工复核方法和原始回答存档范围。
