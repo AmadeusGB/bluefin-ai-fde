@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 };
 const entries = [
   [
+    '孙宇晨访谈—大向人生指南',
+    '学习手册',
+    '大向整理的访谈学习手册：认知、记录、AI 辅助决策与持续实践，附互动工具和行动模板。',
+    '/library/daxiang-life-guide.html',
+  ],
+  [
     '如何持续测量 FDE 的 GEO 可见度？',
     '研究',
     '使用固定的 120 题基准查询集，按月记录提及、引用、语义准确性和品类关联。',

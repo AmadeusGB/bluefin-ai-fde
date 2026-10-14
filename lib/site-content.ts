@@ -2,10 +2,18 @@ export type SiteContentItem = {
   path: string;
   title: string;
   summary: string;
+  updatedAt?: string;
   kind: '品牌' | '方法' | '方案' | '证据' | '工具' | '知识' | '研究' | '转化';
 };
 export const siteContentUpdatedAt = '2026-09-30';
 export const siteContent: SiteContentItem[] = [
+  {
+    path: '/library/daxiang-life-guide.html',
+    title: '孙宇晨访谈—大向人生指南',
+    summary: '大向整理的访谈学习手册，涵盖认知、记录、AI 辅助决策与持续实践，附互动工具和行动模板。',
+    kind: '知识',
+    updatedAt: '2026-10-14',
+  },
   {
     path: '/solutions/retail-chains',
     title: '连锁门店AI应用与FDE方案',
