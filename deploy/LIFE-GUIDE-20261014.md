@@ -13,6 +13,7 @@
 
 本地生产构建、针对修改 TS 文件的 oxlint、git diff --check 通过。页面、知识库、sitemap、llms.txt、内容索引全部 200，含新页面路径；站点地图 79 个公开 URL 均 200。浏览器已验证知识库往返、勾选计数和筛选器分数更新，已保存预览截图。源文件保持原样。
 
-截至此记录：尚未部署正式站。已有 Workbench 终端以及阿里云控制台均提示需要重新登录；等待用户恢复登录后使用 scripts/release-navigation-20261002.sh，明确传入本次应用提交 revision。发布前重新确认服务器分支、工作区、SITE_URL、PREVIEW_MODE、持久卷及资源，保留备份和回退镜像。禁止将本机数据库覆盖到服务器。
+正式部署已完成：应用版本 3c8b332a649241eb18162013d7c56181d129bc92，发布脚本输出 RELEASE_OK。GitHub 直连失败后，通过 Workbench 上传经过 SHA256 核验的增量 Git bundle，使用原有受保护发布流程完成更新。PREVIEW_MODE=false，保留服务器 package-lock.json 改动与 SQLite 持久卷。
 
-正式验收应确认新页面和知识库入口、sitemap、llms、内容索引均 200，正文与内嵌图完整；检查服务器健康和账号数量。
+正式验收：新页面、知识库、sitemap、llms.txt、内容索引、健康接口及注册页均 200；正式 HTML 与 Git 提交文件逐字节一致（本机工作文件仅换行不同），包含两张内嵌图和正确 canonical。浏览器从知识库入口打开手册成功，已保存上线截图。发布前后账号均 club 103、fde 4。数据库备份 backups/bluefin-db-20261014-134621.tar.gz；回退与发布记录保存在 /home/admin/bluefin-release-bULa0dJZ。
+
