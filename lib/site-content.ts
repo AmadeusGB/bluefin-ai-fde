@@ -1,15 +1,102 @@
+import activities from './activity-data.json';
+
 export type SiteContentItem = {
   path: string;
   title: string;
   summary: string;
+  updatedAt?: string;
   kind: '品牌' | '方法' | '方案' | '证据' | '工具' | '知识' | '研究' | '转化';
 };
-export const siteContentUpdatedAt = '2026-09-01';
+export const siteContentUpdatedAt = '2026-11-13';
 export const siteContent: SiteContentItem[] = [
   {
+    path: '/library/daxiang-life-guide.html',
+    title: '孙宇晨访谈—大向人生指南',
+    summary:
+      '大向整理的访谈学习手册，涵盖认知、记录、AI 辅助决策与持续实践，附互动工具和行动模板。',
+    kind: '知识',
+    updatedAt: '2026-10-14',
+  },
+  {
+    path: '/solutions/retail-chains',
+    title: '连锁门店AI应用与FDE方案',
+    summary: '门店内容、客户跟进与经营看板的试点构想，明确数据授权和验证方法。',
+    kind: '方案',
+  },
+  {
+    path: '/solutions/beauty-business',
+    title: '美业企业AI应用与FDE方案',
+    summary: '通过知识沉淀、员工培训和销售协作开展单岗位试点，当前为方案构想。',
+    kind: '方案',
+  },
+  {
+    path: '/contact',
+    title: '联系我们与官方渠道',
+    summary:
+      '咨询个人知识库成长系统、深圳线下培训、工厂与电商企业AI业务梳理及协会商会AI会议合作；提供企业微信、电话、邮箱与官方内容渠道。',
+    kind: '品牌',
+  },
+  {
+    path: '/news/agic-2026',
+    title: 'AGIC 2026：企业知识治理与AI场景落地',
+    summary:
+      '依据深圳市人工智能产业协会2026年8月27日报道，整理刘向的主题分享记录。',
+    kind: '证据',
+  },
+  {
+    path: '/news/kaiping-2026',
+    title: '青企大课堂：AI商业化与企业FDE升级',
+    summary:
+      '2026年9月5日蓝旗鱼科技协办开平青企课程，刘向与郭斌授课，附主办方原文来源。',
+    kind: '证据',
+  },
+  {
+    path: '/founders',
+    title: '创始团队',
+    summary: '创始团队的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders/liuxiang',
+    title: '刘向',
+    summary:
+      '蓝旗鱼科技创始人兼CEO刘向的产业经历、AI实践方向、官方账号与可回查报道。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders/guobin',
+    title: '郭斌',
+    summary: '郭斌的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  {
+    path: '/founders/zouyingpeng',
+    title: '邹英鹏',
+    summary:
+      '蓝旗鱼科技联合创始人，拥有12年实体企业经营与商务实战经验，专注企业合作、企业AI应用与FDE实践。',
+    kind: '品牌',
+  },
+  {
+    path: '/events',
+    title: '往期活动',
+    summary: '往期活动的公开介绍与实践记录。',
+    kind: '品牌',
+  },
+  ...activities.map(
+    (a): SiteContentItem => ({
+      path: `/events/${a.id}`,
+      title: a.title + '回顾',
+      summary: a.summary,
+      kind: '品牌',
+      updatedAt: a.updated_at,
+    }),
+  ),
+
+  {
     path: '/',
-    title: '蓝旗鱼 AI｜企业 AI 落地与 FDE',
-    summary: '面向中国企业的 FDE 落地团队：诊断、MVD、生产部署、采用与复制。',
+    title: '蓝旗鱼科技｜个人AI成长、线下培训与企业AI咨询',
+    summary:
+      '提供Codex+Obsidian个人知识库成长系统、深圳线下AI实战培训、工厂与电商企业AI业务梳理咨询，以及协会商会AI会议合作。',
     kind: '品牌',
   },
   {
@@ -20,14 +107,15 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/about',
-    title: '关于蓝旗鱼 AI',
-    summary: '蓝旗鱼的法定主体、品类定位、服务对象、交付方法与公开边界。',
+    title: '关于蓝旗鱼科技',
+    summary: '蓝旗鱼的法定主体、四项主营业务、服务对象、实施方式与公开边界。',
     kind: '品牌',
   },
   {
     path: '/brand',
     title: '蓝旗鱼 AI 品牌与媒体资料',
-    summary: '正式名称、品牌口号、Logo、实体事实、公开资料使用边界与下载入口。',
+    summary:
+      '蓝旗鱼科技与创始人刘向的标准介绍、正式名称、品牌口号、Logo、公开事实与引用边界。',
     kind: '品牌',
   },
   {
@@ -50,21 +138,31 @@ export const siteContent: SiteContentItem[] = [
     kind: '品牌',
   },
   {
+    path: '/services/personal-knowledge',
+    title: 'Codex+Obsidian个人知识库成长系统',
+    summary:
+      '面向AI初学者的安装配置、个人知识库结构、常用Skills、AI出图、经历梳理、目标与未来行动规划服务；不提供人生预测。',
+    kind: '方案',
+  },
+  {
     path: '/training',
-    title: 'Codex 与企业 AI 实战培训',
-    summary: '建立共同语言、完成真实练习并发现候选 FDE 场景。',
+    title: '深圳线下AI实战培训',
+    summary:
+      '面向AI初学者、企业管理者与业务骨干，围绕Codex、个人知识库、AI出图、常用Skills和业务场景开展现场实操。',
     kind: '方法',
   },
   {
     path: '/partners',
-    title: '合作伙伴与城市 FDE',
-    summary: '合作角色、准入标准、协作闭环、退出规则与申请入口。',
+    title: '协会商会AI会议合作',
+    summary:
+      '面向协会、商会与园区沟通AI主题演讲、专题培训、圆桌交流、共创工作坊和企业走访。',
     kind: '品牌',
   },
   {
     path: '/solutions',
     title: '行业与业务场景',
-    summary: '从昂贵问题切入真实现场的行业方案目录。',
+    summary:
+      '以工厂和电商为重点，先梳理系统、流程、数据和负责人，再判断AI实施路径。',
     kind: '方案',
   },
   {
@@ -111,8 +209,9 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/evidence/cases',
-    title: '脱敏交付记录',
-    summary: '四项真实项目的交付路径、验收指标与证据限制。',
+    title: '企业AI项目摘要与交付路径',
+    summary:
+      '四篇既有脱敏记录的问题、实施路径、验收指标与证据限制，不将历史数据或演示材料作为改善结果。',
     kind: '证据',
   },
   {
@@ -153,8 +252,9 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/services',
-    title: '蓝旗鱼 FDE 服务',
-    summary: '从现场诊断、MVD 到生产部署、采用与交接的分阶段服务阶梯。',
+    title: '蓝旗鱼科技四项主营业务',
+    summary:
+      'Codex+Obsidian个人知识库成长系统、深圳线下AI实战培训、工厂与电商企业AI业务梳理咨询、协会商会AI会议合作；企业内训和FDE作为企业咨询的后续实施方式。',
     kind: '方案',
   },
   {

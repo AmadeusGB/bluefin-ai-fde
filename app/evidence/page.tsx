@@ -55,7 +55,7 @@ export default function Evidence() {
                   key={title}
                   className="border-t border-foreground/20 py-6 md:border-r md:px-5 first:pl-0"
                 >
-                  <span className="text-xs text-[#3657d6]">0{index + 1}</span>
+                  <span className="text-xs text-primary">0{index + 1}</span>
                   <h3 className="mt-8 text-xl font-black">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     {detail}
@@ -72,15 +72,15 @@ export default function Evidence() {
                   key={title}
                   className="grid gap-5 border-t border-foreground/20 py-8 lg:grid-cols-[80px_1fr_1fr_2fr]"
                 >
-                  <span className="text-sm text-[#3657d6]">0{index + 1}</span>
+                  <span className="text-sm text-primary">0{index + 1}</span>
                   <h3 className="text-xl font-black">{title}</h3>
-                  <b className="text-sm text-[#3657d6]">{kind}</b>
+                  <b className="text-sm text-primary">{kind}</b>
                   <p className="leading-7 text-muted-foreground">{detail}</p>
                 </article>
               ))}
             </div>
             <div className="mt-14 grid gap-5 md:grid-cols-2">
-              <div className="bg-[#f1eee5] p-8">
+              <div className="bg-muted p-8">
                 <h2 className="text-3xl font-black">案例证据标准</h2>
                 <p className="mt-3 leading-7 text-muted-foreground">
                   公开案例必须覆盖背景、流程、损失、数据、MVD、结果与限制。
@@ -102,7 +102,7 @@ export default function Evidence() {
                 <Button
                   nativeButton={false}
                   render={<Link href="/evidence/cases" />}
-                  className="mt-6 h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
+                  className="mt-6 h-12 rounded-none bg-secondary text-foreground hover:bg-secondary"
                 >
                   进入交付记录 <ArrowRight />
                 </Button>

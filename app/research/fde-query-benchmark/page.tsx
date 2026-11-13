@@ -67,7 +67,7 @@ export default function FdeQueryBenchmarkPage() {
         <section className="px-5 py-18 lg:px-10">
           <div className="mx-auto grid max-w-[1500px] gap-10 lg:grid-cols-[1.2fr_.8fr]">
             <div>
-              <p className="eyebrow text-[#3657d6]">为什么公开</p>
+              <p className="eyebrow text-primary">为什么公开</p>
               <h2 className="mt-5 text-4xl font-black tracking-[-.04em] lg:text-6xl">
                 让 GEO 从感觉，变成可重复测量。
               </h2>
@@ -76,7 +76,7 @@ export default function FdeQueryBenchmarkPage() {
               </p>
             </div>
             <aside className="border border-foreground/15 bg-[#e8f4ee] p-7">
-              <p className="text-sm font-bold text-[#3657d6]">数据说明</p>
+              <p className="text-sm font-bold text-primary">数据说明</p>
               <dl className="mt-6 grid grid-cols-2 gap-6">
                 <div>
                   <dt className="text-sm text-muted-foreground">问题数</dt>
@@ -126,7 +126,7 @@ export default function FdeQueryBenchmarkPage() {
         <section className="bg-[#070d2d] px-5 py-18 text-white lg:px-10">
           <div className="mx-auto max-w-[1500px]">
             <p className="eyebrow text-[#cdd5ff]">测量方法</p>
-            <div className="mt-8 grid gap-px bg-white/15 lg:grid-cols-3">
+            <div className="mt-8 grid gap-px bg-card/15 lg:grid-cols-3">
               {[
                 [
                   "01 固定环境",
@@ -166,7 +166,7 @@ export default function FdeQueryBenchmarkPage() {
           <div className="mx-auto max-w-[1500px]">
             <div className="flex flex-col gap-4 border-b border-foreground/15 pb-8 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="eyebrow text-[#3657d6]">公开查询集</p>
+                <p className="eyebrow text-primary">公开查询集</p>
                 <h2 className="mt-4 text-4xl font-black tracking-[-.04em]">
                   浏览与筛选 120 个问题
                 </h2>
@@ -185,7 +185,7 @@ export default function FdeQueryBenchmarkPage() {
         <section className="border-t border-foreground/15 px-5 py-18 lg:px-10">
           <div className="mx-auto flex max-w-[1500px] flex-col justify-between gap-8 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#3657d6]">从测量到行动</p>
+              <p className="eyebrow text-primary">从测量到行动</p>
               <h2 className="mt-4 text-4xl font-black">
                 先判断最贵的问题，再设计最小部署。
               </h2>

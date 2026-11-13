@@ -83,7 +83,7 @@ export function DiagnosticTool() {
               <section key={group.key}>
                 <div className="mb-4 flex items-end justify-between">
                   <div>
-                    <span className="text-xs font-bold text-[#3657d6]">
+                    <span className="text-xs font-bold text-primary">
                       0{groupIndex + 1}
                     </span>
                     <h2 className="mt-1 text-2xl font-black">{group.label}</h2>
@@ -113,7 +113,7 @@ export function DiagnosticTool() {
                             ),
                           );
                         }}
-                        className={`flex w-full gap-4 border p-5 text-left transition ${selected[index] ? "border-[#3657d6] bg-[#e7eaff]" : "border-foreground/15 bg-white hover:border-foreground/35"}`}
+                        className={`flex w-full gap-4 border p-5 text-left transition ${selected[index] ? "border-[#3657d6] bg-secondary" : "border-foreground/15 bg-card hover:border-foreground/35"}`}
                       >
                         <span
                           className={`mt-0.5 grid size-6 shrink-0 place-items-center border ${selected[index] ? "border-[#3657d6] bg-[#3657d6] text-white" : "border-foreground/30"}`}
@@ -133,7 +133,7 @@ export function DiagnosticTool() {
       <section className="border-y border-foreground/20 py-10">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
-            <p className="eyebrow text-[#3657d6]">可执行结论</p>
+            <p className="eyebrow text-primary">可执行结论</p>
             <h2 className="mt-3 text-3xl font-black">
               不是分数终点，而是下一步清单。
             </h2>
@@ -147,7 +147,7 @@ export function DiagnosticTool() {
           {dimensions.map((dimension) => (
             <article
               key={dimension.key}
-              className={`border p-6 ${dimension.missing.length ? "border-[#ff735d]/40 bg-[#fff3ef]" : "border-[#3657d6]/35 bg-[#e7eaff]"}`}
+              className={`border p-6 ${dimension.missing.length ? "border-[#ff735d]/40 bg-[#fff3ef]" : "border-[#3657d6]/35 bg-secondary"}`}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-black">{dimension.label}</h3>
@@ -169,7 +169,7 @@ export function DiagnosticTool() {
                   </p>
                 </>
               ) : (
-                <p className="mt-4 text-sm leading-6 text-[#3657d6]">
+                <p className="mt-4 text-sm leading-6 text-primary">
                   三项初筛条件均已确认；现场诊断仍需核验原始证据。
                 </p>
               )}
@@ -220,7 +220,7 @@ export function DiagnosticTool() {
           资格确认通过后，才会书面确认付费现场诊断的范围、周期和报价。{" "}
           <Link
             href="/field-diagnostic"
-            className="font-bold text-[#3657d6] underline underline-offset-4"
+            className="font-bold text-primary underline underline-offset-4"
           >
             查看现场诊断交付物与边界
           </Link>

@@ -40,3 +40,5 @@ tsconfig.tsbuildinfo
 /work/
 /data/
 /backups/
+/.playwright-cli/
+/output/playwright/

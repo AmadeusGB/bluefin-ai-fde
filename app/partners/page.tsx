@@ -1,11 +1,137 @@
 import type { Metadata } from 'next';
-import Link from '@/components/safe-link';
-import { ArrowRight, Check, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
+import Link from 'next/link';
+import {
+  ArrowRight,
+  MessagesSquare,
+  Mic2,
+  Presentation,
+  UsersRound,
+} from 'lucide-react';
+import { WorldShell } from '@/components/world/shell';
+import { ReportList } from '@/components/world/report-list';
 import { siteUrl } from '@/lib/knowledge-graph';
-export const metadata:Metadata={title:'合作伙伴与城市 FDE',description:'蓝旗鱼 AI 面向协会、园区、城市 FDE、技术伙伴和研究机构的合作准入标准、交付边界与质量规则。',alternates:{canonical:'/partners'}};
-const roles=[['行业入口伙伴','协会、商会、园区和专业机构负责连接真实业务现场，不负责承诺技术结果。'],['城市 FDE 伙伴','在本地完成访谈、流程观察、采用支持与项目协同，接受统一方法和证据标准。'],['技术与产品伙伴','提供经过验证的模型、数据、集成或基础设施能力，不绕过客户权限与采购边界。'],['研究与内容伙伴','联合开展调查、白皮书、公开活动和方法研究，明确数据来源与署名规则。']];
-const gates=['能接触真实业务负责人和一线流程，而不是只转发销售线索','认同诊断先于开发、MVD 先于大规模部署','愿意公开利益关系、角色边界与项目责任','接受数据授权、保密、日志、人工闸门和退出机制','不把 Demo、培训或未授权原型包装成客户成功'];
-const stops=['只按线索数量收取不透明佣金','对客户承诺“全自动”“零风险”或固定经营结果','要求绕过数据授权、采购、审计或安全流程','拒绝记录基线、验收结果、限制和失败复盘'];
-export default function Page(){const schema={'@context':'https://schema.org','@type':'Service',name:'蓝旗鱼 AI 合作伙伴与城市 FDE 计划',provider:{'@type':'Organization',name:'蓝旗鱼 AI',url:siteUrl},areaServed:{'@type':'Country',name:'中国'},description:metadata.description};return <><SiteHeader/><main><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><PageHero eyebrow="合作伙伴网络 · 公开准入规则" title="共同进入现场，也共同对交付证据负责。" intro="蓝旗鱼需要本地行业理解、客户信任和长期采用支持，但不会用松散加盟扩张。所有伙伴都必须明确角色、责任、利益关系和可核验交付标准。"/><section className="px-5 py-20 lg:px-10"><div className="mx-auto max-w-[1300px]"><div className="grid gap-px bg-foreground/15 md:grid-cols-2">{roles.map(([title,detail],index)=><article key={title} className="bg-background p-8"><span className="text-xs text-[#3657d6]">0{index+1}</span><h2 className="mt-7 text-2xl font-black">{title}</h2><p className="mt-4 leading-7 text-muted-foreground">{detail}</p></article>)}</div></div></section><section className="bg-[#0b1238] px-5 py-20 text-white lg:px-10"><div className="mx-auto max-w-[1300px]"><p className="eyebrow text-[#cdd5ff]">城市 FDE 协作闭环</p><h2 className="mt-5 text-4xl font-black tracking-[-.04em] lg:text-6xl">入口在本地，方法与证据必须统一。</h2><div className="mt-12 grid gap-px bg-white/15 md:grid-cols-5">{[['资格初筛','伙伴确认负责人、问题和基本数据条件'],['联合诊断','蓝旗鱼与本地伙伴共同画五张地图'],['MVD 决策','明确范围、基线、人工边界和停止条件'],['生产与采用','按权限上线，记录使用、异常和业务结果'],['交接与证据','客户接管，授权后再形成案例与复用资产']].map(([title,detail],index)=><article key={title} className="bg-[#0b1238] p-6"><span className="text-xs text-[#cdd5ff]">0{index+1}</span><h3 className="mt-7 text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-white/55">{detail}</p></article>)}</div></div></section><section className="px-5 py-20 lg:px-10"><div className="mx-auto grid max-w-[1300px] gap-10 lg:grid-cols-2"><div><p className="eyebrow text-[#3657d6]">准入条件</p><h2 className="mt-4 text-4xl font-black">先证明能守住边界。</h2><div className="mt-8 space-y-4">{gates.map((item)=><p key={item} className="flex gap-3 border-t border-foreground/15 pt-4 leading-7"><Check className="mt-1 size-5 shrink-0 text-[#3657d6]"/>{item}</p>)}</div></div><div className="bg-[#f1eee5] p-8"><p className="eyebrow text-[#8b4a38]">直接停止合作</p><div className="mt-6 space-y-5">{stops.map((item)=><p key={item} className="flex gap-3 leading-7 text-muted-foreground"><X className="mt-1 size-4 shrink-0 text-[#8b4a38]"/>{item}</p>)}</div></div></div></section><section className="bg-[#e7eaff] px-5 py-18 lg:px-10"><div className="mx-auto grid max-w-[1300px] gap-10 lg:grid-cols-[1.2fr_.8fr]"><div><p className="eyebrow text-[#3657d6]">当前公开状态</p><h2 className="mt-4 text-4xl font-black">尚未发布认证伙伴名单。</h2><p className="mt-5 max-w-3xl leading-8 text-muted-foreground">本页是合作标准和申请入口，不代表页面提到的任何机构已经与蓝旗鱼建立伙伴关系。未来只有完成准入、共同交付和授权公开后，才会展示名称与证据。</p></div><div className="flex flex-col justify-center gap-3"><Button nativeButton={false} render={<Link href="/apply?source=partner"/>} className="h-12 rounded-none">提交合作申请 <ArrowRight/></Button><Button nativeButton={false} render={<Link href="/tools/project-decision-scorer"/>} variant="outline" className="h-12 rounded-none bg-transparent">先查看项目质量标准</Button></div></div></section></main><SiteFooter/></>}
+
+export const metadata: Metadata = {
+  title: '协会商会AI会议合作',
+  description:
+    '蓝旗鱼科技面向协会、商会、园区与企业家组织提供AI主题演讲、专题培训、圆桌对谈和共创工作坊合作。',
+  alternates: { canonical: '/partners' },
+};
+
+const formats = [
+  {
+    icon: Mic2,
+    title: '主题演讲',
+    detail: '结合参会人群与行业背景，讲清AI趋势、企业应用与真实落地边界。',
+  },
+  {
+    icon: Presentation,
+    title: '专题培训',
+    detail: '围绕Codex、AI工具、企业场景或FDE方法设计半天、一天或系列课程。',
+  },
+  {
+    icon: MessagesSquare,
+    title: '圆桌对谈',
+    detail: '围绕企业经营者关心的真实问题，组织案例拆解、提问与现场讨论。',
+  },
+  {
+    icon: UsersRound,
+    title: '共创工作坊',
+    detail: '让参与者带着业务问题来，现场梳理任务、流程和可尝试的AI场景。',
+  },
+];
+
+export default function Page() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: '协会商会AI会议合作',
+    description: metadata.description,
+    provider: {
+      '@type': 'Organization',
+      name: '蓝旗鱼科技',
+      url: siteUrl,
+    },
+    areaServed: { '@type': 'Country', name: '中国' },
+  };
+
+  return (
+    <WorldShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <div className="page-heading">
+        <p className="micro accent">ASSOCIATIONS · CHAMBERS · EVENTS</p>
+        <h1>
+          把AI讲清楚，
+          <br />
+          也把下一步带回组织。
+        </h1>
+        <p className="intro">
+          欢迎协会、商会、园区与企业家组织洽谈AI会议合作。我们会根据行业、参会人群和会议目标，共同设计能听懂、能讨论、能带走的内容。
+        </p>
+      </div>
+
+      <section className="knowledge-growth-map event-format-grid" aria-label="会议合作形式">
+        {formats.map((format, index) => {
+          const Icon = format.icon;
+          return (
+            <article key={format.title}>
+              <div className="growth-index">0{index + 1}</div>
+              <Icon aria-hidden="true" />
+              <h2>{format.title}</h2>
+              <p>{format.detail}</p>
+            </article>
+          );
+        })}
+      </section>
+
+      <section className="public-reading">
+        <p className="micro accent">CO-CREATE THE AGENDA</p>
+        <h2>先确认四件事，再定会议内容。</h2>
+        <ol>
+          <li>
+            <strong>参会者是谁。</strong>
+            企业负责人、管理者、一线员工或创业者，关注的问题并不相同。
+          </li>
+          <li>
+            <strong>希望解决什么。</strong>
+            是建立AI认知、学习工具、寻找业务场景，还是推动一次行业交流。
+          </li>
+          <li>
+            <strong>现场如何参与。</strong>
+            确认演讲、实操、圆桌、企业走访或工作坊的组合方式。
+          </li>
+          <li>
+            <strong>会后留下什么。</strong>
+            可以是学习资料、问题清单、场景地图或下一次深入沟通的方向。
+          </li>
+        </ol>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <p className="micro accent">公开活动与报道</p>
+          <h2>可核查的公开交流记录</h2>
+          <p>
+            以下内容用于说明公开活动主题与参与角色，不把一次分享包装成客户实施结果。
+          </p>
+        </div>
+        <ReportList />
+      </section>
+
+      <div className="diagnostic-callout">
+        <div>
+          <h2>准备一场AI主题活动？</h2>
+          <p>
+            告诉我们主办方、参会人群、城市、预计时间和希望达成的目标，我们再共同确认主题、形式与合作范围。
+          </p>
+        </div>
+        <Link href="/contact" className="primary-button">
+          洽谈会议合作 <ArrowRight size={18} />
+        </Link>
+      </div>
+    </WorldShell>
+  );
+}

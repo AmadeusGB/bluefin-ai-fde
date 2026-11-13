@@ -8,6 +8,9 @@ services:
     environment:
       SITE_URL: ${SITE_URL}
       DATABASE_PATH: /app/data/bluefin.db
+      SECURE_COOKIES: "true"
+      COMMUNITY_INVITES: ${COMMUNITY_INVITES:-}
+      PREVIEW_MODE: "false"
       OPERATIONS_ADMIN_EMAIL: ${OPERATIONS_ADMIN_EMAIL}
       OPERATIONS_ADMIN_PASSWORD: ${OPERATIONS_ADMIN_PASSWORD}
     restart: unless-stopped

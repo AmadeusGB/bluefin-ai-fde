@@ -82,7 +82,7 @@ export default function Page() {
           title="可引用之前，先做到可追责。"
           intro="本政策说明蓝旗鱼如何确定作者、核验事实、区分证据、使用 AI 辅助、处理客户授权、更新内容和纠正错误。它适用于本站知识、研究、服务、案例与工具说明。"
         />
-        <section className="border-y border-foreground/10 bg-white px-5 py-4 text-sm lg:px-10">
+        <section className="border-y border-foreground/10 bg-card px-5 py-4 text-sm lg:px-10">
           <div className="mx-auto flex max-w-[1500px] flex-wrap gap-x-8 gap-y-2 text-muted-foreground">
             <span>
               政策负责人：
@@ -99,7 +99,7 @@ export default function Page() {
                 key={title}
                 className="grid gap-5 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
               >
-                <span className="text-[#3657d6]">0{index + 1}</span>
+                <span className="text-primary">0{index + 1}</span>
                 <h2 className="text-2xl font-black">{title}</h2>
                 <p className="text-lg leading-8 text-muted-foreground">
                   {detail}
@@ -124,7 +124,7 @@ export default function Page() {
               <Button
                 nativeButton={false}
                 render={<Link href="/apply?source=content-correction" />}
-                className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
+                className="h-12 rounded-none bg-secondary text-foreground hover:bg-secondary"
               >
                 提交内容纠错 <ArrowRight />
               </Button>
@@ -132,7 +132,7 @@ export default function Page() {
                 nativeButton={false}
                 render={<Link href="/evidence" />}
                 variant="outline"
-                className="h-12 rounded-none border-white/30 bg-transparent text-white hover:bg-white hover:text-[#0b1238]"
+                className="h-12 rounded-none border-white/30 bg-transparent text-white hover:bg-card hover:text-foreground"
               >
                 查看证据分级
               </Button>

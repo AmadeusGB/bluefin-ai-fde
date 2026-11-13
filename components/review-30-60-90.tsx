@@ -94,7 +94,7 @@ export function Review306090() {
           onChange={(event) => setProject(event.target.value)}
           maxLength={120}
           placeholder="例如：报价知识库 MVD"
-          className="mt-2 rounded-none border-white/25 bg-white/5 text-white placeholder:text-white/30"
+          className="mt-2 rounded-none border-white/25 bg-card/5 text-white placeholder:text-white/30"
         />
         <div className="mt-8 flex items-end gap-2">
           <strong className="text-7xl font-black text-[#cdd5ff]">
@@ -140,9 +140,9 @@ export function Review306090() {
               type="button"
               aria-pressed={active === item.key}
               onClick={() => setActive(item.key)}
-              className={`p-5 text-left ${active === item.key ? "bg-[#e7eaff] ring-2 ring-inset ring-[#3657d6]" : "bg-white hover:bg-[#f1eee5]"}`}
+              className={`p-5 text-left ${active === item.key ? "bg-secondary ring-2 ring-inset ring-[#3657d6]" : "bg-card hover:bg-muted"}`}
             >
-              <span className="text-xs font-bold text-[#3657d6]">
+              <span className="text-xs font-bold text-primary">
                 第 {item.key} 天
               </span>
               <span className="mt-2 block font-black">{item.label}</span>
@@ -150,13 +150,13 @@ export function Review306090() {
           ))}
         </div>
         <section className="mt-9">
-          <p className="eyebrow text-[#3657d6]">{phase.label} · 复查重点</p>
+          <p className="eyebrow text-primary">{phase.label} · 复查重点</p>
           <h2 className="mt-3 text-3xl font-black">{phase.focus}</h2>
           <div className="mt-8 space-y-5">
             {phase.questions.map((question, index) => (
               <fieldset
                 key={question.text}
-                className="border border-foreground/15 bg-white p-5"
+                className="border border-foreground/15 bg-card p-5"
               >
                 <legend className="px-2 font-bold leading-7">
                   {question.text}
@@ -183,11 +183,11 @@ export function Review306090() {
                           ),
                         }))
                       }
-                      className={`border p-3 text-left ${current[index] === option.value ? "border-[#3657d6] bg-[#e7eaff]" : "border-foreground/15 hover:border-foreground/40"}`}
+                      className={`border p-3 text-left ${current[index] === option.value ? "border-[#3657d6] bg-secondary" : "border-foreground/15 hover:border-foreground/40"}`}
                     >
                       <span className="flex items-center gap-2 font-bold">
                         {current[index] === option.value && (
-                          <Check className="size-4 text-[#3657d6]" />
+                          <Check className="size-4 text-primary" />
                         )}
                         {option.label}
                       </span>

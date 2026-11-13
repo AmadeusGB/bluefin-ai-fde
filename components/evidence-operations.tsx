@@ -136,7 +136,7 @@ export function EvidenceOperations() {
   if (loading && !data)
     return (
       <div className="grid min-h-64 place-items-center">
-        <Loader2 className="size-8 animate-spin text-[#3657d6]" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     );
   return (
@@ -144,7 +144,7 @@ export function EvidenceOperations() {
       <OperationsNav />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow text-[#3657d6]">交付资产系统</p>
+          <p className="eyebrow text-primary">交付资产系统</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.04em] lg:text-6xl">
             案例证据工作台
           </h1>
@@ -170,17 +170,17 @@ export function EvidenceOperations() {
         </p>
       )}
       {message && (
-        <p className="mt-6 border border-[#3657d6]/30 bg-[#e7eaff] p-4 text-sm text-[#3657d6]">
+        <p className="mt-6 border border-[#3657d6]/30 bg-secondary p-4 text-sm text-primary">
           {message}
         </p>
       )}
       <form
         onSubmit={submit}
-        className="mt-10 border border-foreground/15 bg-white p-6 lg:p-10"
+        className="mt-10 border border-foreground/15 bg-card p-6 lg:p-10"
       >
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="eyebrow text-[#3657d6]">
+            <p className="eyebrow text-primary">
               {form.id ? '编辑记录' : '新建记录'}
             </p>
             <h2 className="mt-2 text-3xl font-black">先保留证据，再写案例。</h2>
@@ -356,10 +356,10 @@ export function EvidenceOperations() {
             <button
               key={record.id}
               onClick={() => edit(record)}
-              className="border border-foreground/15 bg-white p-6 text-left hover:border-[#3657d6]"
+              className="border border-foreground/15 bg-card p-6 text-left hover:border-[#3657d6]"
             >
               <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="bg-[#e7eaff] px-2 py-1 font-bold text-[#3657d6]">
+                <span className="bg-secondary px-2 py-1 font-bold text-primary">
                   {
                     evidenceLevels.find(
                       ([key]) => key === record.evidence_level,

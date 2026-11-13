@@ -39,14 +39,14 @@ export function MethodKnowledgePage({
         <ArticleMeta title={title} description={description} path={path} />
         <section className="px-5 py-20 lg:px-10">
           <div className="mx-auto max-w-[1200px]">
-            <p className="eyebrow text-[#3657d6]">方法步骤</p>
+            <p className="eyebrow text-primary">方法步骤</p>
             <div className="mt-8">
               {sections.map((section, index) => (
                 <article
                   key={section.title}
                   className="grid gap-4 border-t border-foreground/20 py-8 md:grid-cols-[70px_1fr_2fr]"
                 >
-                  <span className="text-[#3657d6]">
+                  <span className="text-primary">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <h2 className="text-2xl font-black">{section.title}</h2>
@@ -65,10 +65,10 @@ export function MethodKnowledgePage({
             </div>
           </div>
         </section>
-        <section className="bg-[#e7eaff] px-5 py-20 lg:px-10">
+        <section className="bg-secondary px-5 py-20 lg:px-10">
           <div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-2">
             <div>
-              <p className="eyebrow text-[#3657d6]">适用边界</p>
+              <p className="eyebrow text-primary">适用边界</p>
               <h2 className="mt-4 text-4xl font-black">什么时候应该使用？</h2>
               <div className="mt-7 space-y-3">
                 {good.map((item) => (
@@ -76,7 +76,7 @@ export function MethodKnowledgePage({
                     key={item}
                     className="flex gap-3 border-t border-foreground/15 py-4 leading-7"
                   >
-                    <Check className="mt-1 size-5 shrink-0 text-[#3657d6]" />
+                    <Check className="mt-1 size-5 shrink-0 text-primary" />
                     {item}
                   </p>
                 ))}
@@ -105,7 +105,7 @@ export function MethodKnowledgePage({
             <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-.04em] lg:text-6xl">
               产出必须能被检查，而不是只有一张漂亮图。
             </h2>
-            <div className="mt-10 grid gap-px bg-white/15 md:grid-cols-3">
+            <div className="mt-10 grid gap-px bg-card/15 md:grid-cols-3">
               {verification.map((item, index) => (
                 <article key={item} className="bg-[#0b1238] p-7">
                   <span className="text-xs text-[#cdd5ff]">0{index + 1}</span>
@@ -116,9 +116,9 @@ export function MethodKnowledgePage({
           </div>
         </section>
         {sources.length > 0 && (
-          <section className="border-t border-foreground/10 bg-[#f1eee5] px-5 py-16 lg:px-10">
+          <section className="border-t border-foreground/10 bg-muted px-5 py-16 lg:px-10">
             <div className="mx-auto max-w-[1200px]">
-              <p className="eyebrow text-[#3657d6]">原始依据</p>
+              <p className="eyebrow text-primary">原始依据</p>
               <h2 className="mt-4 text-3xl font-black">优先引用官方原文。</h2>
               <div className="mt-7 grid gap-4 lg:grid-cols-3">
                 {sources.map((source) => (
@@ -127,7 +127,7 @@ export function MethodKnowledgePage({
                     href={source.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="border border-foreground/15 bg-white p-6 hover:border-[#3657d6]"
+                    className="border border-foreground/15 bg-card p-6 hover:border-[#3657d6]"
                   >
                     <h3 className="font-black">{source.label}</h3>
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -142,7 +142,7 @@ export function MethodKnowledgePage({
         <section className="px-5 py-16 lg:px-10">
           <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-7 lg:flex-row lg:items-center">
             <div>
-              <p className="eyebrow text-[#3657d6]">继续推进</p>
+              <p className="eyebrow text-primary">继续推进</p>
               <h2 className="mt-3 text-3xl font-black">
                 从方法进入真实项目判断。
               </h2>

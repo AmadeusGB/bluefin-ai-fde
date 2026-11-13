@@ -1,112 +1,162 @@
-import type { Metadata } from "next";
-import Link from "@/components/safe-link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { PageHero, SiteFooter, SiteHeader } from "@/components/site-shell";
-import { breadcrumbList, StructuredData } from "@/components/structured-data";
-import { absoluteUrl } from '@/lib/knowledge-graph';
-export const metadata: Metadata = {
-  title: "蓝旗鱼 FDE 服务",
-  description:
-    "从付费现场诊断、最小可行部署 MVD 到生产部署、采用与交接的分阶段企业 AI 落地服务。",
-  alternates: { canonical: "/services" },
+import Link from 'next/link';
+import { WorldShell } from '@/components/world/shell';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { companyDescription, serviceQuestions } from '@/lib/public-copy';
+
+export const metadata = {
+  title: '蓝旗鱼主营业务｜个人知识库、深圳AI培训与企业咨询',
+  description: companyDescription,
+  alternates: { canonical: '/services' },
 };
+
 const services = [
-  [
-    "01",
-    "付费现场诊断",
-    "证明问题值得做，并核验流程、数据、责任和风险。",
-    "五张地图、业务基线、MVD 决策包",
-    "/field-diagnostic",
-  ],
-  [
-    "02",
-    "最小可行部署 MVD",
-    "用真实数据、真实使用者和生产边界跑通一个最小闭环。",
-    "工作系统、评估集、基线对比、阶段决定",
-    "/services/mvd",
-  ],
-  [
-    "03",
-    "生产部署与采用",
-    "把已验证闭环接入权限、系统、监控、工作流和企业运营责任。",
-    "生产系统、护栏、运营资产、30/60/90 天复查",
-    "/services/production-adoption",
-  ],
-];
-export default function Page() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "CollectionPage",
-        "@id": `${absoluteUrl('/services')}#collection`,
-        name: "蓝旗鱼 FDE 服务",
-        description: metadata.description,
-        url: absoluteUrl('/services'),
-        mainEntity: {
-          "@type": "ItemList",
-          itemListElement: services.map((item, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            name: item[1],
-            url: absoluteUrl(item[4]),
-          })),
-        },
-      },
-      breadcrumbList([
-        { name: "首页", path: "/" },
-        { name: "FDE 服务", path: "/services" },
-      ]),
+  {
+    label: 'PERSONAL AI SYSTEM',
+    title: 'Codex + Obsidian 个人知识库成长系统',
+    description:
+      '面向刚接触AI、希望系统整理经历与知识的人，完成工具安装、知识库结构、常用Skills与上手训练。',
+    points: [
+      'Codex与Obsidian安装、基础配置和备份说明',
+      'AI入门、个人资料整理与知识调用练习',
+      'AI出图、常用Skills与个人工作流上手',
+      '梳理过往经历，形成未来目标与行动清单',
     ],
-  };
+    href: '/services/personal-knowledge',
+    action: '了解个人成长系统',
+  },
+  {
+    label: 'SHENZHEN AI TRAINING',
+    title: '深圳线下AI实战培训',
+    description:
+      '以小班现场实操为主，从工具入门到真实工作练习，让学员在课堂上完成可继续使用的成果。',
+    points: [
+      'Codex与AI工具基础操作',
+      'AI出图、内容生产与Skills调用',
+      '个人知识库、工作流与智能体体验',
+      '基础班、高阶班及企业专题培训',
+    ],
+    href: '/training',
+    action: '查看深圳培训内容',
+  },
+  {
+    label: 'BUSINESS CONSULTING',
+    title: '工厂与电商AI业务梳理咨询',
+    description:
+      '针对工厂与电商团队，先看现有系统、人员、数据与流程，再判断哪些问题值得进入AI试点。',
+    points: [
+      '盘点现有软件、表格、岗位与数据流',
+      '梳理重复任务、异常节点与责任边界',
+      '评估AI机会、优先级与最小试点范围',
+      '需要实施时再进入FDE方案与交付',
+    ],
+    href: '/solutions',
+    action: '了解企业咨询路径',
+    id: 'enterprise-consulting',
+  },
+  {
+    label: 'ASSOCIATION EVENTS',
+    title: '协会商会AI会议合作',
+    description:
+      '面向协会、商会、园区与企业家组织，围绕AI认知、商业应用与现场实操设计合作内容。',
+    points: [
+      'AI趋势与企业应用主题演讲',
+      '企业AI与Codex专题培训',
+      '圆桌对谈、企业走访与案例拆解',
+      '结合行业问题的共创工作坊',
+    ],
+    href: '/partners',
+    action: '洽谈会议合作',
+  },
+];
+
+export default function Page() {
   return (
-    <>
-      <SiteHeader />
-      <main>
-        <StructuredData data={schema} />
-        <PageHero
-          eyebrow="FDE 商业服务"
-          title="每一阶段，先用证据决定是否继续。"
-          intro="蓝旗鱼不把诊断、原型和生产上线打包成一个无法停止的大项目。现场诊断证明问题与条件，MVD 证明最小闭环值得部署，生产阶段证明系统能够安全运行、被一线采用并由企业接管。"
-        />
-        <section className="px-5 py-20 lg:px-10">
-          <div className="mx-auto max-w-[1300px]">
-            {services.map(([n, title, detail, output, href]) => (
-              <Link
-                key={href}
-                href={href}
-                className="group grid gap-5 border-t border-foreground/20 py-9 lg:grid-cols-[70px_1fr_1.5fr_1.5fr_30px]"
-              >
-                <span className="text-[#3657d6]">{n}</span>
-                <h2 className="text-2xl font-black">{title}</h2>
-                <p className="leading-7 text-muted-foreground">{detail}</p>
-                <p className="font-semibold leading-7">交付：{output}</p>
-                <ArrowRight className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            ))}
-            <div className="mt-14 grid gap-8 bg-[#0b1238] p-8 text-white lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <p className="eyebrow text-[#cdd5ff]">共同规则</p>
-                <h2 className="mt-4 text-3xl font-black">
-                  阶段报价、阶段验收、阶段停止。
-                </h2>
-                <p className="mt-3 max-w-3xl leading-7 text-white/55">
-                  任何阶段都不承诺自动进入下一阶段。前一阶段输出属于客户决策资产；继续合作时再确认新的范围、责任、周期、费用和验收标准。
-                </p>
-              </div>
-              <Button
-                nativeButton={false}
-                render={<Link href="/diagnostic" />}
-                className="h-12 rounded-none bg-[#cdd5ff] text-[#0b1238] hover:bg-[#e4e8ff]"
-              >
-                先做适配度评估 <ArrowRight />
-              </Button>
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+    <WorldShell>
+      <div className="page-heading">
+        <p className="micro accent">BLUEFIN SERVICES</p>
+        <h1>
+          从个人成长，
+          <br />
+          到企业现场。
+        </h1>
+        <p className="intro">{companyDescription}</p>
+      </div>
+
+      <div className="service-editorial service-editorial-four">
+        {services.map((service) => (
+          <article key={service.title} id={service.id}>
+            <span className="micro accent">{service.label}</span>
+            <h2>{service.title}</h2>
+            <p>{service.description}</p>
+            <ul>
+              {service.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <Link className="primary-button" href={service.href}>
+              {service.action} <ArrowUpRight size={18} />
+            </Link>
+          </article>
+        ))}
+      </div>
+
+      <section className="public-reading">
+        <p className="micro accent">HOW TO START</p>
+        <h2>先确认你要解决的是哪一类问题。</h2>
+        <ol>
+          <li>
+            <strong>个人刚开始接触AI。</strong>
+            先完成工具安装、个人知识库与基础使用训练。
+          </li>
+          <li>
+            <strong>希望现场学会并做出作品。</strong>
+            选择深圳线下实战培训，按当期课程安排报名。
+          </li>
+          <li>
+            <strong>工厂或电商有具体业务问题。</strong>
+            先做系统、流程、岗位与数据梳理，再确定试点范围。
+          </li>
+          <li>
+            <strong>协会商会希望组织AI活动。</strong>
+            明确参会人群、行业背景与会议目标后共同设计内容。
+          </li>
+        </ol>
+        <div className="auth-links">
+          <Link href="/events">查看往期课程与活动 →</Link>
+          <Link href="/solutions/manufacturing-supply-chain">
+            查看工厂咨询方向 →
+          </Link>
+          <Link href="/solutions/cross-border-ecommerce">
+            查看电商咨询方向 →
+          </Link>
+          <Link href="/contact">添加企业微信咨询 →</Link>
+        </div>
+      </section>
+
+      <section className="faq-block">
+        <h2>开始之前，常问的问题</h2>
+        {serviceQuestions.map(([q, a]) => (
+          <details key={q}>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </section>
+
+      <div className="diagnostic-callout">
+        <div>
+          <h2>不确定从哪项开始？</h2>
+          <p>
+            带上你的基础情况、目前最想解决的一件事，以及已有工具或资料，我们先判断更适合个人系统、培训还是企业咨询。
+          </p>
+        </div>
+        <Link href="/contact" className="primary-button">
+          联系蓝旗鱼 <ArrowRight size={18} />
+        </Link>
+      </div>
+      <Link href="/apply" className="text-link">
+        企业可直接提交业务梳理需求 <ArrowUpRight size={17} />
+      </Link>
+    </WorldShell>
   );
 }
