@@ -5,25 +5,53 @@ import { ArrowRight, Download, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageHero, SiteFooter, SiteHeader } from '@/components/site-shell';
 import { breadcrumbList, StructuredData } from '@/components/structured-data';
+import { company } from '@/lib/company';
 import { organizationId, siteUrl } from '@/lib/knowledge-graph';
+import { mediaIntroductions } from '@/lib/public-copy';
 
 export const metadata: Metadata = {
   title: '蓝旗鱼 AI 品牌与媒体资料',
   description:
-    '蓝旗鱼 AI 的正式名称、品牌口号、Logo、实体说明、公开资料使用边界与下载入口。',
+    '蓝旗鱼科技与创始人刘向的标准介绍、品牌口号、Logo、官方账号、公开事实与媒体资料。',
   alternates: { canonical: '/brand' },
 };
 
 const identity = [
   ['公开品牌', '蓝旗鱼科技 / 蓝旗鱼 AI'],
   ['Logo 字样', '蓝旗鱼Ai'],
-  ['法定主体', '深圳市蓝旗鱼科技有限公司'],
+  ['法定主体', company.legalName],
   ['品牌口号', '探索 · 实践 · 共创'],
-  ['核心业务', '企业AI内训 / 企业AI方案落地（FDE）'],
-  ['办公城市', '深圳、北京'],
+  [
+    '主营业务',
+    '个人知识库 / 深圳线下AI培训 / 工厂与电商企业AI咨询 / 协会商会AI会议合作',
+  ],
+  ['办公城市', company.offices.join('、')],
   ['服务区域', '粤港澳大湾区、北京'],
-  ['商标状态', '蓝旗鱼商标注册申请中'],
+  ['深圳地址', company.address.display],
+  [
+    '关联企业',
+    `${company.relatedCompanies[0].legalName}，${company.relatedCompanies[0].relation}`,
+  ],
 ];
+
+const profiles = [
+  {
+    title: '蓝旗鱼科技',
+    items: [
+      ['简短署名', mediaIntroductions.company.short],
+      ['平台简介', mediaIntroductions.company.medium],
+      ['正式介绍', mediaIntroductions.company.long],
+    ],
+  },
+  {
+    title: '刘向（大向）',
+    items: [
+      ['简短署名', mediaIntroductions.liuxiang.short],
+      ['平台简介', mediaIntroductions.liuxiang.medium],
+      ['嘉宾与媒体介绍', mediaIntroductions.liuxiang.long],
+    ],
+  },
+] as const;
 
 export default function BrandPage() {
   const schema = {
@@ -37,7 +65,7 @@ export default function BrandPage() {
         description: metadata.description,
         about: { '@id': organizationId },
         datePublished: '2026-09-01',
-        dateModified: '2026-09-01',
+        dateModified: '2026-11-13',
         inLanguage: 'zh-CN',
       },
       breadcrumbList([
@@ -87,6 +115,46 @@ export default function BrandPage() {
                 ))}
               </dl>
             </div>
+          </div>
+        </section>
+        <section className="px-5 py-20 lg:px-10">
+          <div className="mx-auto max-w-[1300px]">
+            <div className="max-w-3xl">
+              <h2 className="text-4xl font-black tracking-[-.04em] sm:text-5xl">
+                可直接引用的标准介绍
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                核心事实保持一致，公众号、视频号、抖音、协会材料和媒体报道可按篇幅选用。引用经历与合作关系时，请保留原有边界，不追加未经核验的客户、规模或效果数字。
+              </p>
+            </div>
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              {profiles.map((profile) => (
+                <article
+                  key={profile.title}
+                  className="border border-foreground/15 bg-card p-7 sm:p-9"
+                >
+                  <h3 className="text-3xl font-black">{profile.title}</h3>
+                  <dl className="mt-8">
+                    {profile.items.map(([label, text]) => (
+                      <div
+                        key={label}
+                        className="border-t border-foreground/15 py-6"
+                      >
+                        <dt className="text-sm font-bold text-primary">
+                          {label}
+                        </dt>
+                        <dd className="mt-3 leading-8 text-muted-foreground">
+                          {text}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              ))}
+            </div>
+            <p className="mt-7 text-sm text-muted-foreground">
+              本页资料最后核验：2026年11月13日。
+            </p>
           </div>
         </section>
         <section className="bg-[#0b1238] px-5 py-20 text-white lg:px-10">

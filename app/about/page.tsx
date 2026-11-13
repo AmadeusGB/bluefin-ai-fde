@@ -5,37 +5,55 @@ import { ArrowUpRight } from 'lucide-react';
 import { companyDescription } from '@/lib/public-copy';
 import { company } from '@/lib/company';
 import { ReportList } from '@/components/world/report-list';
+import { absoluteUrl, organizationId } from '@/lib/knowledge-graph';
 export const metadata = {
   title: '关于蓝旗鱼科技',
   description: companyDescription,
   alternates: { canonical: '/about' },
 };
 export default function Page() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${absoluteUrl('/about')}#page`,
+    name: '关于蓝旗鱼科技',
+    url: absoluteUrl('/about'),
+    description: companyDescription,
+    about: { '@id': organizationId },
+    dateModified: '2026-11-13',
+    inLanguage: 'zh-CN',
+  };
   return (
     <WorldShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <div className="page-heading">
         <p className="micro accent">ABOUT BLUEFIN</p>
         <h1>
-          让AI走出想象，
+          让AI进入成长，
           <br />
-          进入业务现场。
+          也进入业务现场。
         </h1>
-        <p className="intro">蓝旗鱼科技，专注企业AI内训与AI方案落地。</p>
+        <p className="intro">
+          蓝旗鱼科技，为个人提供AI成长服务，为企业提供AI业务梳理与落地咨询。
+        </p>
       </div>
       <div className="about-statement">
         <span className="micro">我们的工作</span>
         <div>
           <h2>
-            从团队会用，
+            从个人会用，
             <br />
-            到业务用起来。
+            到组织真正用起来。
           </h2>
           <p>{companyDescription}</p>
           <p>
-            面向工厂、实体门店、电商等企业的管理者与业务骨干，从一项具体任务出发，连接学习、试点与实际使用。
+            面向个人、企业管理者、业务骨干及协会商会，从明确问题出发，连接学习、梳理、试点与实际使用。
           </p>
           <Link href="/services" className="text-link">
-            了解两项核心服务 <ArrowUpRight size={17} />
+            了解四项主营业务 <ArrowUpRight size={17} />
           </Link>
         </div>
       </div>
@@ -55,6 +73,18 @@ export default function Page() {
         <div>
           <dt>服务区域</dt>
           <dd>{company.regions.join(' · ')}</dd>
+        </div>
+        <div>
+          <dt>深圳办公地址</dt>
+          <dd>{company.address.display}</dd>
+        </div>
+        <div>
+          <dt>关联公司</dt>
+          <dd>
+            {company.relatedCompanies[0].legalName}
+            <br />
+            {company.relatedCompanies[0].relation}
+          </dd>
         </div>
         <div>
           <dt>业务咨询</dt>

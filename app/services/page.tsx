@@ -2,83 +2,139 @@ import Link from 'next/link';
 import { WorldShell } from '@/components/world/shell';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { companyDescription, serviceQuestions } from '@/lib/public-copy';
+
 export const metadata = {
-  title: '企业AI内训与AI方案落地',
+  title: '蓝旗鱼主营业务｜个人知识库、深圳AI培训与企业咨询',
   description: companyDescription,
   alternates: { canonical: '/services' },
 };
+
+const services = [
+  {
+    label: 'PERSONAL AI SYSTEM',
+    title: 'Codex + Obsidian 个人知识库成长系统',
+    description:
+      '面向刚接触AI、希望系统整理经历与知识的人，完成工具安装、知识库结构、常用Skills与上手训练。',
+    points: [
+      'Codex与Obsidian安装、基础配置和备份说明',
+      'AI入门、个人资料整理与知识调用练习',
+      'AI出图、常用Skills与个人工作流上手',
+      '梳理过往经历，形成未来目标与行动清单',
+    ],
+    href: '/services/personal-knowledge',
+    action: '了解个人成长系统',
+  },
+  {
+    label: 'SHENZHEN AI TRAINING',
+    title: '深圳线下AI实战培训',
+    description:
+      '以小班现场实操为主，从工具入门到真实工作练习，让学员在课堂上完成可继续使用的成果。',
+    points: [
+      'Codex与AI工具基础操作',
+      'AI出图、内容生产与Skills调用',
+      '个人知识库、工作流与智能体体验',
+      '基础班、高阶班及企业专题培训',
+    ],
+    href: '/training',
+    action: '查看深圳培训内容',
+  },
+  {
+    label: 'BUSINESS CONSULTING',
+    title: '工厂与电商AI业务梳理咨询',
+    description:
+      '针对工厂与电商团队，先看现有系统、人员、数据与流程，再判断哪些问题值得进入AI试点。',
+    points: [
+      '盘点现有软件、表格、岗位与数据流',
+      '梳理重复任务、异常节点与责任边界',
+      '评估AI机会、优先级与最小试点范围',
+      '需要实施时再进入FDE方案与交付',
+    ],
+    href: '/solutions',
+    action: '了解企业咨询路径',
+    id: 'enterprise-consulting',
+  },
+  {
+    label: 'ASSOCIATION EVENTS',
+    title: '协会商会AI会议合作',
+    description:
+      '面向协会、商会、园区与企业家组织，围绕AI认知、商业应用与现场实操设计合作内容。',
+    points: [
+      'AI趋势与企业应用主题演讲',
+      '企业AI与Codex专题培训',
+      '圆桌对谈、企业走访与案例拆解',
+      '结合行业问题的共创工作坊',
+    ],
+    href: '/partners',
+    action: '洽谈会议合作',
+  },
+];
+
 export default function Page() {
   return (
     <WorldShell>
       <div className="page-heading">
-        <p className="micro accent">BUILT FOR YOUR BUSINESS</p>
+        <p className="micro accent">BLUEFIN SERVICES</p>
         <h1>
-          从学会AI，
+          从个人成长，
           <br />
-          到用AI做成事。
+          到企业现场。
         </h1>
         <p className="intro">{companyDescription}</p>
       </div>
-      <div className="service-editorial">
-        <article>
-          <span className="micro accent">ENTERPRISE TRAINING</span>
-          <h2>企业AI内训</h2>
-          <p>围绕团队岗位与业务场景，建立AI认知、工具使用和实践能力。</p>
-          <ul>
-            <li>了解团队基础与培训目标</li>
-            <li>结合岗位设计课程和练习</li>
-            <li>通过实操识别可继续推进的场景</li>
-          </ul>
-          <Link className="primary-button" href="/training">
-            了解内训内容 <ArrowUpRight size={18} />
-          </Link>
-        </article>
-        <article>
-          <span className="micro accent">FORWARD DEPLOYED ENGINEERING</span>
-          <h2>企业AI方案落地</h2>
-          <p>
-            以FDE方式进入业务现场，围绕具体问题推进需求梳理、方案设计、实施和交接。
-          </p>
-          <ul>
-            <li>梳理业务问题、数据与责任人</li>
-            <li>限定试点范围，验证关键能力</li>
-            <li>部署、使用反馈与后续迭代</li>
-          </ul>
-          <Link className="primary-button" href="/fde">
-            了解FDE方法 <ArrowUpRight size={18} />
-          </Link>
-        </article>
+
+      <div className="service-editorial service-editorial-four">
+        {services.map((service) => (
+          <article key={service.title} id={service.id}>
+            <span className="micro accent">{service.label}</span>
+            <h2>{service.title}</h2>
+            <p>{service.description}</p>
+            <ul>
+              {service.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <Link className="primary-button" href={service.href}>
+              {service.action} <ArrowUpRight size={18} />
+            </Link>
+          </article>
+        ))}
       </div>
+
       <section className="public-reading">
-        <p className="micro accent">HOW WE WORK</p>
-        <h2>从业务问题，到可确认的交付。</h2>
+        <p className="micro accent">HOW TO START</p>
+        <h2>先确认你要解决的是哪一类问题。</h2>
         <ol>
           <li>
-            <strong>说明现状。</strong>
-            明确团队岗位、重复任务、现有流程和希望改善的问题。
+            <strong>个人刚开始接触AI。</strong>
+            先完成工具安装、个人知识库与基础使用训练。
           </li>
           <li>
-            <strong>确认路径。</strong>
-            以能力建设为主时先做内训；涉及企业数据、系统与流程时进入FDE需求梳理。
+            <strong>希望现场学会并做出作品。</strong>
+            选择深圳线下实战培训，按当期课程安排报名。
           </li>
           <li>
-            <strong>约定范围。</strong>
-            确认课程或试点范围、交付物、双方责任、费用与验收方式。
+            <strong>工厂或电商有具体业务问题。</strong>
+            先做系统、流程、岗位与数据梳理，再确定试点范围。
           </li>
           <li>
-            <strong>实施与复查。</strong>
-            对照约定目标检查学习产出或试点结果，再决定下一阶段。
+            <strong>协会商会希望组织AI活动。</strong>
+            明确参会人群、行业背景与会议目标后共同设计内容。
           </li>
         </ol>
         <div className="auth-links">
-          <Link href="/evidence/cases">查看公开项目摘要 →</Link>
-          <Link href="/events">查看课程与沙龙记录 →</Link>
-          <Link href="/solutions">查看行业解决方案 →</Link>
+          <Link href="/events">查看往期课程与活动 →</Link>
+          <Link href="/solutions/manufacturing-supply-chain">
+            查看工厂咨询方向 →
+          </Link>
+          <Link href="/solutions/cross-border-ecommerce">
+            查看电商咨询方向 →
+          </Link>
           <Link href="/contact">添加企业微信咨询 →</Link>
         </div>
       </section>
+
       <section className="faq-block">
-        <h2>企业开始之前，常问的问题</h2>
+        <h2>开始之前，常问的问题</h2>
         {serviceQuestions.map(([q, a]) => (
           <details key={q}>
             <summary>{q}</summary>
@@ -86,19 +142,20 @@ export default function Page() {
           </details>
         ))}
       </section>
+
       <div className="diagnostic-callout">
         <div>
-          <h2>先找到适合你的第一步。</h2>
+          <h2>不确定从哪项开始？</h2>
           <p>
-            填写企业问卷，获取一份免费的企业AI初步诊断。正式方案、周期和费用在需求确认后另行确定。
+            带上你的基础情况、目前最想解决的一件事，以及已有工具或资料，我们先判断更适合个人系统、培训还是企业咨询。
           </p>
         </div>
-        <Link href="/join?section=enterprise" className="primary-button">
-          加入并获取诊断 <ArrowRight size={18} />
+        <Link href="/contact" className="primary-button">
+          联系蓝旗鱼 <ArrowRight size={18} />
         </Link>
       </div>
       <Link href="/apply" className="text-link">
-        直接提交企业需求，不加入联盟 <ArrowUpRight size={17} />
+        企业可直接提交业务梳理需求 <ArrowUpRight size={17} />
       </Link>
     </WorldShell>
   );

@@ -60,7 +60,9 @@ export function Entrance() {
           />
           <span className="logo-caption">BLUEFIN TECHNOLOGY</span>
         </button>
-        <h1 className="entrance-position">专注企业AI内训与AI方案落地</h1>
+        <h1 className="entrance-position">
+          从个人成长到企业现场，让AI真正用起来
+        </h1>
         {entering ? (
           <div className="entry-progress" aria-live="polite">
             <p>
@@ -77,8 +79,8 @@ export function Entrance() {
       <div className="entrance-bottom">
         <span className="micro">从一个想法，到真实改变</span>
         <nav aria-label="快捷入口">
-          <Link href="/services">企业服务</Link>
-          <Link href="/world">三大社群</Link>
+          <Link href="/services">四项主营业务</Link>
+          <Link href="/training">深圳线下培训</Link>
           <Link href="/knowledge">实践知识库</Link>
           <Link href="/login">会员登录</Link>
           <Link href="/register">注册</Link>

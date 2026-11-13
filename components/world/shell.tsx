@@ -2,32 +2,36 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Menu, ArrowLeft } from 'lucide-react';
 import { company } from '@/lib/company';
-import { MarlinMark } from './marlin-mark';
 export function WorldHeader({ immersive = false }: { immersive?: boolean }) {
   const links = [
-    ['企业服务', '/services'],
-    ['关于蓝旗鱼', '/about'],
-    ['创始团队', '/founders'],
-    ['知识库', '/knowledge'],
+    ['服务总览', '/services'],
+    ['个人知识库', '/services/personal-knowledge'],
+    ['深圳培训', '/training'],
+    ['企业咨询', '/services#enterprise-consulting'],
+    ['会议合作', '/partners'],
   ];
   return (
     <header className="world-header site-navigation">
       <Link
-        href="/world"
+        href="/"
         className={immersive ? 'cosmic-brand' : 'brand-logo'}
-        aria-label="蓝旗鱼科技，返回AI世界"
+        aria-label="蓝旗鱼科技，返回首页"
       >
         {immersive ? (
-          <>
-            <MarlinMark />
-            <span>蓝旗鱼科技</span>
-          </>
+          <Image
+            className="official-brand-lockup"
+            src="/brand/bluefin-logo-lockup.png"
+            alt="蓝旗鱼AI · 探索 · 实践 · 共创"
+            width={1800}
+            height={524}
+            priority
+          />
         ) : (
           <Image
-            src="/world/logo.png"
+            src="/brand/bluefin-logo-lockup.png"
             alt="蓝旗鱼AI · 探索 · 实践 · 共创"
-            width={500}
-            height={205}
+            width={1800}
+            height={524}
             priority
           />
         )}
@@ -40,11 +44,8 @@ export function WorldHeader({ immersive = false }: { immersive?: boolean }) {
         ))}
       </nav>
       <div className="header-account-actions">
-        <Link className="header-register" href="/register">
-          注册
-        </Link>
-        <Link className="header-login" href="/members">
-          会员空间 <ArrowUpRight size={15} />
+        <Link className="header-login" href="/contact">
+          预约咨询 <ArrowUpRight size={15} />
         </Link>
       </div>
       <details className="mobile-nav">
@@ -57,9 +58,12 @@ export function WorldHeader({ immersive = false }: { immersive?: boolean }) {
               {title}
             </Link>
           ))}
-          <Link href="/world">三大社群</Link>
-          <Link href="/register">注册账号</Link>
-          <Link href="/guest">游客访问</Link>
+          <Link href="/">首页</Link>
+          <Link href="/events">活动与报道</Link>
+          <Link href="/founders">创始团队</Link>
+          <Link href="/knowledge">知识库</Link>
+          <Link href="/answers">常见问题</Link>
+          <Link href="/about">关于蓝旗鱼</Link>
           <Link href="/contact">联系我们</Link>
         </nav>
       </details>
@@ -71,7 +75,9 @@ export function WorldFooter() {
     <footer className="world-footer">
       <span>© 2026 深圳市蓝旗鱼科技有限公司</span>
       <div className="footer-contact">
-        <span>深圳 · 北京｜企业AI内训 · FDE</span>
+        <span>
+          深圳办公 · 服务大湾区及北京｜个人成长 · 线下培训 · 企业咨询 · 会议合作
+        </span>
         <a href={`tel:${company.phone}`}>{company.phone}</a>
       </div>
       <nav>
@@ -86,8 +92,8 @@ export function WorldFooter() {
 }
 export function WorldBackLink() {
   return (
-    <Link className="back-link" href="/world">
-      <ArrowLeft size={20} /> 返回AI世界
+    <Link className="back-link" href="/">
+      <ArrowLeft size={20} /> 返回蓝旗鱼首页
     </Link>
   );
 }

@@ -33,13 +33,14 @@ export default async function Page({
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': absoluteUrl(`/news/${slug}#page`),
     headline: r.title,
     description: r.summary,
     url: absoluteUrl(`/news/${slug}`),
     author: { '@id': organizationId },
     publisher: { '@id': organizationId },
-    datePublished: '2026-09-30',
-    dateModified: '2026-09-30',
+    datePublished: r.published,
+    dateModified: '2026-11-13',
     inLanguage: 'zh-CN',
     citation: {
       '@type': 'Article',

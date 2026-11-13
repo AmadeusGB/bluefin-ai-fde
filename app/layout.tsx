@@ -15,11 +15,11 @@ export const metadata: Metadata = {
       ? { index: false, follow: false }
       : { index: true, follow: true },
   title: {
-    default: '蓝旗鱼科技｜企业AI内训与AI方案落地',
+    default: '蓝旗鱼科技｜深圳AI培训、个人知识库与企业AI咨询',
     template: '%s｜蓝旗鱼科技',
   },
   description:
-    '蓝旗鱼科技专注企业AI内训与企业AI方案落地（FDE），连接AI爱好者、FDE实践者与企业负责人。',
+    '深圳市蓝旗鱼科技有限公司提供Codex+Obsidian个人知识库成长系统、深圳线下AI实战培训、工厂与电商企业AI业务梳理咨询，以及协会商会AI会议合作。',
   alternates: {
     canonical: '/',
     types: {
@@ -28,27 +28,30 @@ export const metadata: Metadata = {
       'text/plain': '/llms.txt',
     },
   },
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+  },
   openGraph: {
-    title: '蓝旗鱼科技｜企业AI内训与AI方案落地',
-    description: '让 AI 在真实业务里产生结果。',
+    title: '蓝旗鱼科技｜深圳AI培训、个人知识库与企业AI咨询',
+    description: '让AI真正进入个人成长与企业业务。',
     url: '/',
     siteName: '蓝旗鱼科技',
     locale: 'zh_CN',
     type: 'website',
     images: [
       {
-        url: '/og.png',
-        width: 1536,
-        height: 1024,
-        alt: '蓝旗鱼科技｜企业AI内训与AI方案落地',
+        url: '/brand/bluefin-logo-lockup.png',
+        width: 1800,
+        height: 524,
+        alt: '蓝旗鱼科技｜深圳AI培训、个人知识库与企业AI咨询',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '蓝旗鱼科技｜企业AI内训与AI方案落地',
-    description: '让 AI 在真实业务里产生结果。',
-    images: ['/og.png'],
+    title: '蓝旗鱼科技｜深圳AI培训、个人知识库与企业AI咨询',
+    description: '让AI真正进入个人成长与企业业务。',
+    images: ['/brand/bluefin-logo-lockup.png'],
   },
 };
 

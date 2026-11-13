@@ -5,6 +5,7 @@ import activities from '@/lib/activity-data.json';
 export const metadata = {
   title: '游客空间',
   alternates: { canonical: '/guest' },
+  robots: { index: false, follow: false },
 };
 export default function Page() {
   return (
@@ -49,8 +50,8 @@ export default function Page() {
         ))}
       </div>
       <div className="auth-links">
-        <Link href="/world">了解三大社群 →</Link>
-        <Link href="/services">了解企业服务 →</Link>
+        <Link href="/events">浏览公开活动 →</Link>
+        <Link href="/services">了解四项服务 →</Link>
       </div>
     </WorldShell>
   );

@@ -10,6 +10,8 @@ export function QrCard({
   image,
   width,
   height,
+  featured = false,
+  instruction = '微信扫一扫，或保存原图后在微信中识别。',
 }: {
   title: string;
   label: string;
@@ -17,11 +19,15 @@ export function QrCard({
   image: string;
   width: number;
   height: number;
+  featured?: boolean;
+  instruction?: string;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const id = useId();
   return (
-    <article className="channel-card">
+    <article
+      className={`channel-card${featured ? ' channel-card-featured' : ''}`}
+    >
       <p className="micro accent">{label}</p>
       <h2>{title}</h2>
       <p>{description}</p>
@@ -51,7 +57,7 @@ export function QrCard({
             <X size={22} />
           </button>
         </div>
-        <p>微信扫一扫，或保存原图后在微信中识别。</p>
+        <p>{instruction}</p>
         {image.includes('wecom-') ? (
           <div className="wecom-code-frame">
             <Image

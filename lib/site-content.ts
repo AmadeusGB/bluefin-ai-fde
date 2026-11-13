@@ -7,7 +7,7 @@ export type SiteContentItem = {
   updatedAt?: string;
   kind: '品牌' | '方法' | '方案' | '证据' | '工具' | '知识' | '研究' | '转化';
 };
-export const siteContentUpdatedAt = '2026-09-30';
+export const siteContentUpdatedAt = '2026-11-13';
 export const siteContent: SiteContentItem[] = [
   {
     path: '/library/daxiang-life-guide.html',
@@ -33,7 +33,7 @@ export const siteContent: SiteContentItem[] = [
     path: '/contact',
     title: '联系我们与官方渠道',
     summary:
-      '深圳、北京办公，服务粤港澳大湾区与北京；企业微信、小程序、公众号及个人内容渠道。',
+      '咨询个人知识库成长系统、深圳线下培训、工厂与电商企业AI业务梳理及协会商会AI会议合作；提供企业微信、电话、邮箱与官方内容渠道。',
     kind: '品牌',
   },
   {
@@ -51,30 +51,6 @@ export const siteContent: SiteContentItem[] = [
     kind: '证据',
   },
   {
-    path: '/world',
-    title: '蓝旗鱼AI世界',
-    summary: '蓝旗鱼AI世界的公开介绍与实践记录。',
-    kind: '品牌',
-  },
-  {
-    path: '/community/club',
-    title: 'AI俱乐部',
-    summary: '面向AI爱好者与学习者，账号密码即可注册加入，公开活动无需登录。',
-    kind: '品牌',
-  },
-  {
-    path: '/community/fde',
-    title: 'FDE联盟',
-    summary: 'FDE联盟的公开介绍与实践记录。',
-    kind: '品牌',
-  },
-  {
-    path: '/community/enterprise',
-    title: 'AI企业家联盟',
-    summary: 'AI企业家联盟的公开介绍与实践记录。',
-    kind: '品牌',
-  },
-  {
     path: '/founders',
     title: '创始团队',
     summary: '创始团队的公开介绍与实践记录。',
@@ -83,7 +59,8 @@ export const siteContent: SiteContentItem[] = [
   {
     path: '/founders/liuxiang',
     title: '刘向',
-    summary: '刘向的公开介绍与实践记录。',
+    summary:
+      '蓝旗鱼科技创始人兼CEO刘向的产业经历、AI实践方向、官方账号与可回查报道。',
     kind: '品牌',
   },
   {
@@ -97,12 +74,6 @@ export const siteContent: SiteContentItem[] = [
     title: '邹英鹏',
     summary:
       '蓝旗鱼科技联合创始人，拥有12年实体企业经营与商务实战经验，专注企业合作、企业AI应用与FDE实践。',
-    kind: '品牌',
-  },
-  {
-    path: '/guest',
-    title: '游客空间',
-    summary: '无需注册即可浏览蓝旗鱼往期公开活动与照片。',
     kind: '品牌',
   },
   {
@@ -123,8 +94,9 @@ export const siteContent: SiteContentItem[] = [
 
   {
     path: '/',
-    title: '蓝旗鱼科技｜企业AI内训与AI方案落地',
-    summary: '专注企业AI内训与AI方案落地（FDE）。',
+    title: '蓝旗鱼科技｜个人AI成长、线下培训与企业AI咨询',
+    summary:
+      '提供Codex+Obsidian个人知识库成长系统、深圳线下AI实战培训、工厂与电商企业AI业务梳理咨询，以及协会商会AI会议合作。',
     kind: '品牌',
   },
   {
@@ -136,13 +108,14 @@ export const siteContent: SiteContentItem[] = [
   {
     path: '/about',
     title: '关于蓝旗鱼科技',
-    summary: '蓝旗鱼的法定主体、品类定位、服务对象、交付方法与公开边界。',
+    summary: '蓝旗鱼的法定主体、四项主营业务、服务对象、实施方式与公开边界。',
     kind: '品牌',
   },
   {
     path: '/brand',
     title: '蓝旗鱼 AI 品牌与媒体资料',
-    summary: '正式名称、品牌口号、Logo、实体事实、公开资料使用边界与下载入口。',
+    summary:
+      '蓝旗鱼科技与创始人刘向的标准介绍、正式名称、品牌口号、Logo、公开事实与引用边界。',
     kind: '品牌',
   },
   {
@@ -165,21 +138,31 @@ export const siteContent: SiteContentItem[] = [
     kind: '品牌',
   },
   {
+    path: '/services/personal-knowledge',
+    title: 'Codex+Obsidian个人知识库成长系统',
+    summary:
+      '面向AI初学者的安装配置、个人知识库结构、常用Skills、AI出图、经历梳理、目标与未来行动规划服务；不提供人生预测。',
+    kind: '方案',
+  },
+  {
     path: '/training',
-    title: 'Codex 与企业 AI 实战培训',
-    summary: '建立共同语言、完成真实练习并发现候选 FDE 场景。',
+    title: '深圳线下AI实战培训',
+    summary:
+      '面向AI初学者、企业管理者与业务骨干，围绕Codex、个人知识库、AI出图、常用Skills和业务场景开展现场实操。',
     kind: '方法',
   },
   {
     path: '/partners',
-    title: '合作伙伴与城市 FDE',
-    summary: '合作角色、准入标准、协作闭环、退出规则与申请入口。',
+    title: '协会商会AI会议合作',
+    summary:
+      '面向协会、商会与园区沟通AI主题演讲、专题培训、圆桌交流、共创工作坊和企业走访。',
     kind: '品牌',
   },
   {
     path: '/solutions',
     title: '行业与业务场景',
-    summary: '从昂贵问题切入真实现场的行业方案目录。',
+    summary:
+      '以工厂和电商为重点，先梳理系统、流程、数据和负责人，再判断AI实施路径。',
     kind: '方案',
   },
   {
@@ -269,9 +252,9 @@ export const siteContent: SiteContentItem[] = [
   },
   {
     path: '/services',
-    title: '企业AI内训与企业AI方案落地（FDE）',
+    title: '蓝旗鱼科技四项主营业务',
     summary:
-      '两项核心业务的适用人群、定制方式、准备条件、交付流程、周期费用因素与常见问题。',
+      'Codex+Obsidian个人知识库成长系统、深圳线下AI实战培训、工厂与电商企业AI业务梳理咨询、协会商会AI会议合作；企业内训和FDE作为企业咨询的后续实施方式。',
     kind: '方案',
   },
   {

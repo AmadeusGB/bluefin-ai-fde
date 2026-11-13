@@ -46,6 +46,11 @@ body .world-page.cosmic-shell .world-header {
   font-weight: 700;
   white-space: nowrap;
 }
+.cosmic-brand .official-brand-lockup {
+  display: block;
+  width: 210px;
+  height: auto;
+}
 .marlin-mark {
   display: block;
   position: relative;
@@ -386,6 +391,9 @@ body .cosmic-members .member-heading h1 {
   .cosmic-brand {
     gap: 5px;
     font-size: 17px;
+  }
+  .cosmic-brand .official-brand-lockup {
+    width: 150px;
   }
   .cosmic-brand .marlin-mark {
     width: 42px;

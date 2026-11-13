@@ -19,6 +19,7 @@ export async function generateMetadata({
         title: sections[section].name,
         description: sections[section].intro,
         alternates: { canonical: `/community/${section}` },
+        robots: { index: false, follow: false },
       }
     : {};
 }
